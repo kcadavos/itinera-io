@@ -1,5 +1,6 @@
 'use client'
 
+import AccountCreationComponent from "@/components/AccountCreationComponent";
 import LogInComponent from "@/components/LogInComponent";
 
 export default function Home() {
@@ -20,7 +21,8 @@ export default function Home() {
       
       <div className="bg-[#ECF0F1] rounded-2xl min-h-[28rem] min-w-[20rem] lg:min-h-[25rem] lg:max-w-[20rem] mx-4 px-4">
 
-        <LogInComponent />        
+        {/* <LogInComponent />         */}
+        <AccountCreationComponent />
 
       </div>
 
