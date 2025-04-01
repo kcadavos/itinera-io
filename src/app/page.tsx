@@ -2,37 +2,53 @@
 
 export default function Home() {
   return (
-    <div className="">
+    <div className="font-roboto">
       <div className='bg-[#E1ECFF] rounded-2xl py-10 pb-56 relative max-w-screen'>
-        <p className="mx-8 font-inter text-[#1ABC9C]">Itinera-IO</p>
+        <div className="mx-8 font-inter">
+        <p className=" text-[#1ABC9C]">Itinera-IO</p>
+          <div className="text-3xl">            
+            <p className="text-[#E67E22]">Votes In, </p>
+            <p className="text-[#E67E22]">Adventure Out.</p>
+            <p className="text-[#2C3E50]">Log In.</p>
+          </div>
+          
+        </div>
+        
       </div>
       
-      <div className="bg-[#ECF0F1] rounded-2xl absolute bottom-30 min-h-[28rem] min-w-[20rem] my-10 m-6 px-4">
+      <div className="bg-[#ECF0F1] rounded-2xl absolute bottom-35 min-h-[28rem] min-w-[20rem] mx-6 px-4">
 
-        <div className="flex justify-start my-3">
-          <div className="py-1 mr-4"> 
+        <div className="flex justify-start my-4 mt-20">
+          <div className="py-2 mr-4"> 
             <img src="/assets/Icons/Orion_user-address.svg" alt="user address" className="w-10" />
           </div>
           
-          <input type="text" placeholder="Email Address" className="bg-white rounded-lg p-3 px-6" />
+          <input type="text" placeholder="Email Address" className="bg-white rounded-lg p-4 px-6" />
         </div>
         
-        <div className="flex justify-start my-3">
-          <div className="py-1 mr-4"> 
+        <div className="flex justify-start my-4">
+          <div className="py-2 mr-4"> 
             <img src="/assets/Icons/Orion_keyhole.svg" alt="user address" className="w-10" />
           </div>
           
-          <input type="text" placeholder="Password" className="bg-white rounded-lg p-3 px-6" />
+          <input type="text" placeholder="Password" className="bg-white rounded-lg p-4 px-6" />
         </div>
 
-        <div className="flex justify-center my-3">
+        <div className="flex justify-center my-4">
           <button className="bg-[#E67E22] text-xl text-white rounded-xl p-[.6rem] px-14">Log In</button>
         </div>
 
       </div>
 
-      <div>
-        <p></p>
+
+
+      <div className="absolute bottom-0 bg-[#1ABC9C] w-screen py-5 rounded-t-4xl">
+        <div className="flex text-white text-3xl justify-center ">
+          <p>Hello, </p>
+          <p className="text-[#2C3E50]"> Itinerista</p>
+          <p>.</p>
+        </div>
+        
       </div>
     </div>
   );
