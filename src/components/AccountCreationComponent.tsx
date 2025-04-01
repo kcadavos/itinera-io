@@ -1,8 +1,8 @@
 import React from 'react'
 
-const LogInComponent = () => {
+const AccountCreationComponent = () => {
   return (
-    <div className=''>
+    <div className='my-6'>
         <div className="flex justify-start my-4 pt-24">
             <div className="py-2 mr-4"> 
                 <img src="/assets/Icons/Orion_user-address.svg" alt="user address" className="w-10" />
@@ -31,4 +31,4 @@ const LogInComponent = () => {
   )
 }
 
-export default LogInComponent
+export default AccountCreationComponent
