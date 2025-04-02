@@ -36,7 +36,7 @@ export default function Home() {
 
         {/* <LogInComponent />         */}
         {/* <AccountCreationComponent /> */}
-      <HeaderComponent />
+      
       </div>
 
 
@@ -50,8 +50,6 @@ export default function Home() {
         </div>
         
       </div>
-
-      <FooterComponent />
 
     </div>
   );
