@@ -1,0 +1,34 @@
+import React from 'react'
+
+const AccountCreationComponent = () => {
+  return (
+    <div className='my-6'>
+        <div className="flex justify-start my-4 pt-24">
+            <div className="py-2 mr-4"> 
+                <img src="/assets/Icons/Orion_user-address.svg" alt="user address" className="w-10" />
+            </div>
+            
+            <input type="text" placeholder="Email Address" className="bg-white rounded-lg p-4 px-6" />
+        </div>
+          
+        <div className="flex justify-start my-4">
+            <div className="py-2 mr-4"> 
+              <img src="/assets/Icons/Orion_keyhole.svg" alt="user address" className="w-10" />
+            </div>
+            
+            <input type="text" placeholder="Password" className="bg-white rounded-lg p-4 px-6" />
+        </div>
+
+        <div className="flex justify-center my-4">
+            <button className="bg-[#E67E22] text-xl text-white rounded-xl p-[.6rem] px-14">Log In</button>
+        </div>
+
+        <div className="text-[#2C3E50] text-center mt-28 lg:mt-20">
+            {/* <p >Forgot Password?</p> */}
+            <p >Don't have an account?</p>
+        </div>
+    </div>
+  )
+}
+
+export default AccountCreationComponent
