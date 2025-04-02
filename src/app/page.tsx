@@ -1,8 +1,11 @@
-'use client'
+"use client";
 
 import AccountCreationComponent from "@/components/AccountCreationComponent";
 import LogInComponent from "@/components/LogInComponent";
 import { useState } from "react";
+import FooterComponent from "@/components/ui/FooterComponent";
+import HeaderComponent from "@/components/ui/HeaderComponent";
+
 
 export default function Home() {
   const [switchBool, setSwitchBool] = useState<boolean>(true);
@@ -14,6 +17,7 @@ export default function Home() {
   
   return (
     <div className="font-roboto m-0 max-h-screen">
+
       <div className='bg-[#E1ECFF] rounded-2xl py-10 min-w-screen max-w-screen mb-6'>
         <div className="mx-8 font-inter">
         <p className=" text-[#1ABC9C]">Itinera-IO</p>
@@ -27,12 +31,14 @@ export default function Home() {
         
       </div>
       
-      <div className="bg-[#ECF0F1] rounded-2xl min-h-[28rem] min-w-[20rem] lg:min-h-[25rem] lg:max-w-[20rem] mx-4 px-4">
+
+     <div className="bg-[#ECF0F1] rounded-2xl min-h-[28rem] min-w-[20rem] lg:min-h-[25rem] lg:max-w-[20rem] mx-4 px-4">
 
         {/* <LogInComponent />         */}
         {/* <AccountCreationComponent /> */}
-
+      <HeaderComponent />
       </div>
+
 
 
 
@@ -44,6 +50,9 @@ export default function Home() {
         </div>
         
       </div>
+
+      <FooterComponent />
+
     </div>
   );
 }
