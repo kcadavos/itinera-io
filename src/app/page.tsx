@@ -1,8 +1,11 @@
-'use client'
+"use client";
 
 import AccountCreationComponent from "@/components/AccountCreationComponent";
 import LogInComponent from "@/components/LogInComponent";
 import { useState } from "react";
+import FooterComponent from "@/components/ui/FooterComponent";
+import HeaderComponent from "@/components/ui/HeaderComponent";
+
 
 export default function Home() {
   const [switchBool, setSwitchBool] = useState<boolean>(true);
@@ -58,6 +61,7 @@ export default function Home() {
 
 
 
+
       <div className=" bg-[#1ABC9C] min-w-screen max-w-screen py-5 rounded-t-4xl mt-7">
         {
           switchBool ? (
@@ -74,6 +78,9 @@ export default function Home() {
         }
         
       </div>
+
+      <FooterComponent />
+
     </div>
   );
 }
