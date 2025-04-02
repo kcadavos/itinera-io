@@ -8,7 +8,7 @@ const LogInComponent = () => {
                 <img src="/assets/Icons/Orion_user-address.svg" alt="user address" className="w-10" />
             </div>
             
-            <input type="text" placeholder="Email Address" className="bg-white rounded-lg p-4 px-6" />
+            <input type="text" placeholder="Email Address" required className="bg-white rounded-lg p-4 px-6" />
         </div>
           
         <div className="flex justify-start my-4">
@@ -16,7 +16,7 @@ const LogInComponent = () => {
               <img src="/assets/Icons/Orion_keyhole.svg" alt="user address" className="w-10" />
             </div>
             
-            <input type="text" placeholder="Password" className="bg-white rounded-lg p-4 px-6" />
+            <input type="text" placeholder="Password" required className="bg-white rounded-lg p-4 px-6" />
         </div>
 
         <div className="flex justify-center my-4">
