@@ -27,11 +27,16 @@ export default function Home() {
         
       </div>
       
+
       <div className="bg-[#ECF0F1] rounded-2xl min-h-[28rem] min-w-[20rem] lg:min-h-[25rem] lg:max-w-[20rem] mx-4 px-4">
 
         {/* <LogInComponent />         */}
-        {/* <AccountCreationComponent /> */}
-
+        <AccountCreationComponent />
+      
+        <div className="text-[#2C3E50] text-center mt-28 lg:mt-20">
+            {/* <p >Forgot Password?</p> */}
+            <p >Don't have an account?</p>
+        </div>
       </div>
 
 
