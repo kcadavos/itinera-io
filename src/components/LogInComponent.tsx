@@ -20,13 +20,10 @@ const LogInComponent = () => {
         </div>
 
         <div className="flex justify-center my-4">
-            <button className="bg-[#E67E22] text-xl text-white rounded-xl p-[.6rem] px-14">Log In</button>
+            <button className="bg-[#E67E22] text-xl text-white rounded-xl p-[.6rem] px-14 cursor-pointer">Log In</button>
         </div>
 
-        <div className="text-[#2C3E50] text-center mt-28 lg:mt-20">
-            {/* <p >Forgot Password?</p> */}
-            <p >Don't have an account?</p>
-        </div>
+        
     </div>
   )
 }
