@@ -13,15 +13,28 @@ export default function Home() {
 
   
   return (
-    <div className="font-roboto m-0 max-h-screen">
+    <div className="font-roboto m-0 p-0 max-h-screen max-w-screen">
       <div className='bg-[#E1ECFF] rounded-2xl py-10 min-w-screen max-w-screen mb-6'>
         <div className="mx-8 font-inter">
         <p className=" text-[#1ABC9C]">Itinera-IO</p>
-          <div className="text-3xl">            
-            <p className="text-[#E67E22]">Votes In, </p>
-            <p className="text-[#E67E22]">Adventure Out.</p>
-            <p className="text-[#2C3E50]">Log In.</p>
-          </div>
+        {
+          switchBool ? (
+            <div className="text-3xl">            
+              <p className="text-[#E67E22]">Votes In, </p>
+              <p className="text-[#E67E22]">Adventure Out.</p>
+              <p className="text-[#2C3E50]">Log In.</p>
+            </div>
+          ) : (
+            <div className="text-3xl">            
+              <div className="flex">
+                <p className="text-[#2C3E50]">Welcome, </p>
+                <p className="text-[#E67E22]">Nomad.</p>
+              </div>
+              <p className="text-[#2C3E50]">Ready for an Adventure?</p>
+            </div>
+          )
+        }
+          
           
         </div>
         
@@ -30,23 +43,35 @@ export default function Home() {
 
       <div className="bg-[#ECF0F1] rounded-2xl min-h-[28rem] min-w-[20rem] lg:min-h-[25rem] lg:max-w-[20rem] mx-4 px-4">
 
-        {/* <LogInComponent />         */}
-        <AccountCreationComponent />
+        {
+          switchBool ? <LogInComponent /> : <AccountCreationComponent />
+        }        
       
-        <div className="text-[#2C3E50] text-center mt-28 lg:mt-20">
+        <div className="text-[#2C3E50] text-center  lg:mt-20">
             {/* <p >Forgot Password?</p> */}
-            <p >Don't have an account?</p>
+            {
+              switchBool ? <button className="bg-none" onClick={handleSwitch}>Don't have an account?</button> : <p></p>
+            }
+            
         </div>
       </div>
 
 
 
       <div className=" bg-[#1ABC9C] min-w-screen max-w-screen py-5 rounded-t-4xl mt-7">
-        <div className="flex text-white text-3xl justify-center ">
-          <p>Hello, </p>
-          <p className="text-[#2C3E50]"> Itinerista</p>
-          <p>.</p>
-        </div>
+        {
+          switchBool ? (
+            <div className="flex text-white text-3xl justify-center ">
+              <p>Hello, </p>
+              <p className="text-[#2C3E50]">Itinerista</p>
+              <p>.</p>
+            </div>
+          ) : (
+            <div className="flex text-white text-3xl justify-center ">
+              <button className="bg-none" onClick={handleSwitch}>Already have an Account?</button>
+            </div>
+          )
+        }
         
       </div>
     </div>
