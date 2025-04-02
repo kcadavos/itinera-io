@@ -1,6 +1,37 @@
-import React from 'react'
+import { GetLoggedInUserData, Login } from '@/lib/DataServices';
+import { IToken } from '@/lib/Interfaces';
+import React, { useState } from 'react'
+import { useRouter } from "next/navigation";
 
 const LogInComponent = () => {
+  const [email, setEmail] = useState<string>('');
+  const [password, setPassword] = useState<string>('');
+
+  const router = useRouter();
+
+  const submitLogin = async () => {
+  
+    let userData = {
+      email: email,
+      password: password
+    }
+  
+    let token: IToken = await Login(userData);
+
+      if(token != null){
+        if(typeof window != null){
+          localStorage.setItem("Token", token.token);
+          console.log(token.token);
+          
+          await GetLoggedInUserData(email);
+
+          router.push('/Homepage');
+        }
+      }else{
+        alert("Login was no good wrong password or somthing")
+      }
+  }
+
   return (
     <div className=''>
         <div className="flex justify-start my-4 pt-24">
@@ -8,7 +39,7 @@ const LogInComponent = () => {
                 <img src="/assets/Icons/Orion_user-address.svg" alt="user address" className="w-10" />
             </div>
             
-            <input type="text" placeholder="Email Address" required className="bg-white rounded-lg p-4 px-6" />
+            <input type="email" placeholder="Email Address" required className="bg-white rounded-lg p-4 px-6" onChange={(e) => setEmail(e.target.value)} />
         </div>
           
         <div className="flex justify-start my-4">
@@ -16,11 +47,11 @@ const LogInComponent = () => {
               <img src="/assets/Icons/Orion_keyhole.svg" alt="user address" className="w-10" />
             </div>
             
-            <input type="text" placeholder="Password" required className="bg-white rounded-lg p-4 px-6" />
+            <input type="password" placeholder="Password" required className="bg-white rounded-lg p-4 px-6" onChange={(e) => setPassword(e.target.value)} />
         </div>
 
         <div className="flex justify-center my-4">
-            <button className="bg-[#E67E22] text-xl text-white rounded-xl p-[.6rem] px-14 cursor-pointer">Log In</button>
+            <button className="bg-[#E67E22] text-xl text-white rounded-xl p-[.6rem] px-14 cursor-pointer" onClick={submitLogin}>Log In</button>
         </div>
 
         

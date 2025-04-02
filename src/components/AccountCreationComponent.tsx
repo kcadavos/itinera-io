@@ -1,3 +1,4 @@
+import { CreateAccount } from "@/lib/DataServices";
 import React, { useState } from "react";
 
 const AccountCreationComponent = () => {
@@ -5,6 +6,21 @@ const AccountCreationComponent = () => {
   const [password, setPassword] = useState<string>('');
   const [confirmPassword, setConfirmPassword] = useState<string>('');
   const [username, setUsername] = useState<string>('');
+
+  const submitCreation = async () => {
+
+    let userData = {
+      email: email,
+      password: password,
+      name: username
+    }
+
+    if(password != '' && password == confirmPassword){
+      let result = await CreateAccount(userData);
+
+      result ? alert("Account Created!") : alert("Account Already Exsists");
+    }
+  }
 
   return (
     <div className=" ">
@@ -18,10 +34,11 @@ const AccountCreationComponent = () => {
         </div>
 
         <input
-          type="text"
+          type="email"
           placeholder="Email Address"
           required
           className="bg-white rounded-lg p-1 px-6"
+          onChange={(e) => setEmail(e.target.value)}
         />
       </div>
 
@@ -35,10 +52,11 @@ const AccountCreationComponent = () => {
         </div>
 
         <input
-          type="text"
+          type="password"
           placeholder="Password"
           required
           className="bg-white rounded-lg p-1 px-6"
+          onChange={(e) => setPassword(e.target.value)}
         />
       </div>
 
@@ -52,10 +70,11 @@ const AccountCreationComponent = () => {
         </div>
 
         <input
-          type="text"
+          type="password"
           placeholder="Confirm Password"
           required
           className="bg-white rounded-lg p-1 px-6"
+          onChange={(e) => setConfirmPassword(e.target.value)}
         />
       </div>
 
@@ -73,11 +92,12 @@ const AccountCreationComponent = () => {
           placeholder="Name"
           required
           className="bg-white rounded-lg p-1 px-6"
+          onChange={(e) => setUsername(e.target.value)}
         />
       </div>
 
       <div className="flex justify-center mt-18 absolute -bottom-5 left-1/2 transform -translate-x-1/2">
-        <button className="bg-[#E67E22] border-4 border-white text-xl text-white rounded-4xl p-2 cursor-pointer">
+        <button className="bg-[#E67E22] border-4 border-white text-xl text-white rounded-4xl p-2 cursor-pointer" onClick={submitCreation}>
           <img
             src="/assets/Icons/Orion_add-user.svg"
             className="w-10"

@@ -6,7 +6,7 @@ import { useState } from "react";
 
 
 export default function Home() {
-  const [switchBool, setSwitchBool] = useState<boolean>(false);
+  const [switchBool, setSwitchBool] = useState<boolean>(true);
   
   const handleSwitch = () => {
     setSwitchBool(!switchBool);
