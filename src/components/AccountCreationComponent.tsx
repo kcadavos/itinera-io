@@ -3,7 +3,7 @@ import React from 'react'
 const AccountCreationComponent = () => {
   return (
     <div className=' '>
-        <div className="flex justify-start my-4 pt-10">
+        <div className="flex justify-start my-4 pt-16">
             <div className="mr-4"> 
                 <img src="/assets/Icons/Orion_user-address.svg" alt="user address" className="w-10 p-1" />
             </div>
