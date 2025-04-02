@@ -20,7 +20,7 @@ const LogInComponent = () => {
         </div>
 
         <div className="flex justify-center my-4">
-            <button className="bg-[#E67E22] text-xl text-white rounded-xl p-[.6rem] px-14">Log In</button>
+            <button className="bg-[#E67E22] text-xl text-white rounded-xl p-[.6rem] px-14 cursor-pointer">Log In</button>
         </div>
 
         
