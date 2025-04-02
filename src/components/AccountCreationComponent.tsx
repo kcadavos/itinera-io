@@ -1,6 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 
 const AccountCreationComponent = () => {
+  const [email, setEmail] = useState<string>('');
+  const [password, setPassword] = useState<string>('');
+  const [confirmPassword, setConfirmPassword] = useState<string>('');
+  const [username, setUsername] = useState<string>('');
+
   return (
     <div className=" ">
       <div className="flex justify-start my-4 pt-10">
@@ -11,13 +16,6 @@ const AccountCreationComponent = () => {
             className="w-10 p-1"
           />
         </div>
-
-        <input
-          type="text"
-          placeholder="Email Address"
-          required
-          className="bg-white rounded-lg p-1 px-6"
-        />
 
         <input
           type="text"
