@@ -1,4 +1,6 @@
 'use client'
+import footer from "@/components/ui/footer";
+
 
 export default function Home() {
   return (
@@ -6,7 +8,7 @@ export default function Home() {
       <div className='bg-[#E1ECFF] rounded-2xl py-10 pb-56 relative'>
         <p className="mx-8 font-inter text-[#1ABC9C]">Itinera-IO</p>
       </div>
-      
+      <footer/>
       <div className="bg-[#ECF0F1] rounded-2xl my-10 m-6 p-5 py-20 absolute bottom-50">
 
         <div className="flex justify-evenly my-3">
@@ -28,7 +30,6 @@ export default function Home() {
         <div className="flex justify-center my-3">
           <button className="bg-[#E67E22] text-xl text-white rounded-xl p-3 px-14">Log In</button>
         </div>
-
       </div>
     </div>
   );
