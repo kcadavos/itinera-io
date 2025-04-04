@@ -102,7 +102,7 @@ const AccountCreationComponent = () => {
         />
       </div>
 
-      <div className="flex justify-center mt-18 absolute -bottom-5 left-1/2 transform -translate-x-1/2">
+      <div className="flex justify-center mt-18 absolute -bottom-7 left-1/2 transform -translate-x-1/2">
         <button className="bg-[#E67E22] border-4 border-white text-xl text-white rounded-4xl p-2 cursor-pointer" onClick={submitCreation}>
           <img
             src="/assets/Icons/Orion_add-user.svg"
