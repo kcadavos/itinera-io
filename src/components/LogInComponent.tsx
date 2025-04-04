@@ -15,21 +15,29 @@ const LogInComponent = () => {
       email: email,
       password: password
     }
-  
-    let token: IToken = await Login(userData);
 
-      if(token != null){
-        if(typeof window != null){
-          localStorage.setItem("Token", token.token);
-          console.log(token.token);
-          
-          await GetLoggedInUserData(email);
+    if(email != '' && password != ''){
+      let token: IToken = await Login(userData);
 
-          router.push('/Homepage');
+    if(token != null){
+      if(typeof window != null){
+        localStorage.setItem("Token", token.token);
+        console.log(token.token);
+        console.log(email)  
+        const loggedInData = await GetLoggedInUserData(email);
+
+        if(loggedInData != null){
+          router.push('/HomePage');
         }
-      }else{
-        alert("Login was no good wrong password or somthing")
+
+        
       }
+    }else{
+      alert("Login was no good wrong password or somthing")
+    }
+    }
+  
+    
   }
 
   return (

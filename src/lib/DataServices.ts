@@ -47,7 +47,7 @@ export const Login = async (user:IUserDataLogin) => {
 
 let userData: IUserDataLogin;
 export const GetLoggedInUserData = async (email:string) => {
-    const res = await fetch(url + `User/GetUserByEmail/${email}`);
+    const res = await fetch(url + `User/GetUserInfoByEmail/${email}`);
 
     if(!res.ok){
         const data = await res.json();
