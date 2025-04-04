@@ -1,3 +1,4 @@
+import { useAppcontext } from "@/context/DataContext";
 import { CreateAccount } from "@/lib/DataServices";
 import React, { useState } from "react";
 
@@ -6,6 +7,8 @@ const AccountCreationComponent = () => {
   const [password, setPassword] = useState<string>('');
   const [confirmPassword, setConfirmPassword] = useState<string>('');
   const [username, setUsername] = useState<string>('');
+
+  const {setSwitchBool} = useAppcontext();
 
   const submitCreation = async () => {
 
@@ -18,7 +21,10 @@ const AccountCreationComponent = () => {
     if(password != '' && password == confirmPassword){
       let result = await CreateAccount(userData);
 
-      result ? alert("Account Created!") : alert("Account Already Exsists");
+      result ? (
+        alert("Account Created!"),
+        setSwitchBool(true) 
+      ) : alert("Account Already Exsists");
     }
   }
 
