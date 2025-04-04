@@ -42,25 +42,27 @@ const LogInComponent = () => {
 
   return (
     <div className=''>
-        <div className="flex justify-start my-4 pt-24 lg:pt-18">
-            <div className="py-2 mr-4"> 
-                <img src="/assets/Icons/Orion_user-address.svg" alt="user address" className="w-10" />
-            </div>
-            
-            <input type="email" placeholder="Email Address" required className="bg-white rounded-lg p-4 px-6" onChange={(e) => setEmail(e.target.value)} />
+      
+      <div className="flex justify-start my-4 lg:my-6 pt-24 lg:pt-8">
+        <div className="py-2  mr-4"> 
+          <img src="/assets/Icons/Orion_user-address.svg" alt="user address" className="w-10" />
         </div>
+            
+        <input type="email" placeholder="Email Address" required className="bg-white lg:bg-[#ECF0F1] rounded-lg p-4 px-6" onChange={(e) => setEmail(e.target.value)} />
+            
+      </div>
           
-        <div className="flex justify-start my-4">
-            <div className="py-2 mr-4"> 
-              <img src="/assets/Icons/Orion_keyhole.svg" alt="user address" className="w-10" />
-            </div>
+      <div className="flex justify-start my-4 lg:my-6">
+        <div className="py-2 mr-4"> 
+          <img src="/assets/Icons/Orion_keyhole.svg" alt="user address" className="w-10" />
+        </div>
             
-            <input type="password" placeholder="Password" required className="bg-white rounded-lg p-4 px-6" onChange={(e) => setPassword(e.target.value)} />
-        </div>
+        <input type="password" placeholder="Password" required className="bg-white lg:bg-[#ECF0F1] rounded-lg p-4 px-6" onChange={(e) => setPassword(e.target.value)} />
+      </div>
 
-        <div className="flex justify-center my-4">
-            <button className="bg-[#E67E22] text-xl text-white rounded-xl p-[.6rem] px-14 cursor-pointer" onClick={submitLogin}>Log In</button>
-        </div>
+      <div className="flex justify-center my-4">
+        <button className="bg-[#E67E22] text-xl text-white rounded-xl p-[.6rem] px-14 cursor-pointer" onClick={submitLogin}>Log In</button>
+      </div>
 
         
     </div>
