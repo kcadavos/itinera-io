@@ -1,6 +1,7 @@
+import FooterComponent from '@/components/NavbarComponent'
 import React from 'react'
 
-const page = () => {
+const AddSuggestionPage = () => {
   return (
     <div className='font-roboto m-0 p-0 max-w-screen'>
         {/* mobile */}
@@ -25,4 +26,4 @@ const page = () => {
   )
 }
 
-export default page
+export default AddSuggestionPage

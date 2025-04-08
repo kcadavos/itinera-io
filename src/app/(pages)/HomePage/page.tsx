@@ -1,12 +1,13 @@
 "use client"
+import FooterComponent from '@/components/NavbarComponent'
 import React from 'react'
 
-const homePage = () => {
+const HomePage = () => {
   return (
-    <div>
+    <div className='bg-gray-500 h-screen'>
       
     </div>
   )
 }
 
-export default homePage
+export default HomePage
