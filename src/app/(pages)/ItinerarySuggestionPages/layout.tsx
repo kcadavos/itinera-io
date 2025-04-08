@@ -1,3 +1,4 @@
+"use client"
 import NavbarComponent from '@/components/NavbarComponent'
 import React from 'react'
 
