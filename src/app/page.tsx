@@ -122,13 +122,13 @@ export default function Home() {
             <div className="flex justify-center">
               {
                 switchBool ?
-                  <div className="bg-white rounded-2xl min-w-[26rem] min-h-[20rem] max-w-[26rem] mx-4 px-4 relative">
+                  <div className="bg-white rounded-2xl min-w-[26rem] min-h-[19rem] max-w-[26rem] mx-4 px-4 relative">
                     <div className="flex justify-center">
                       <LogInComponent /> 
 
                     </div>
                   </div> 
-                  : <div className="bg-[#ECF0F1] rounded-2xl min-w-[23=2rem] min-h-[22rem] max-w-[25rem] mx-4 px-4 relative">
+                  : <div className="bg-[#ECF0F1] rounded-2xl min-w-[22rem] min-h-[22rem] max-w-[25rem] mx-4 px-4 relative">
                     <div className="flex justify-center">
                       <AppWrapper>
                         <AccountCreationComponent />
