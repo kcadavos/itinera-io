@@ -2,13 +2,17 @@
 import React from 'react'
 
 const AddSuggestionPage = () => {
+    
   return (
     <div className='font-roboto m-0 p-0 max-w-screen'>
         {/* mobile */}
         <div className="block md:hidden">
-            <div className='bg-[#E1ECFF] min-h-[10rem] max-h-[10rem] py-5  min-w-screen max-w-screen mb-6 lg:mb-4'>
+            <div className='bg-[#E1ECFF] min-h-[10rem] max-h-[10rem] pt-10 pb-5  min-w-screen max-w-screen mb-6 lg:mb-4'>
                 <div className="mx-8 font-inter">
                     <p className=" text-[#1ABC9C]">Header</p>
+                    <p>Hi name, lets plan for</p>
+                    <p className='text-3xl text-[#E67E22]'>Place</p>
+                    <p className='text-sm'>What are you excided about?</p>
                             
                 </div>
             
@@ -54,11 +58,7 @@ const AddSuggestionPage = () => {
 
                 <div className="flex justify-center absolute -bottom-7 left-1/2 transform -translate-x-1/2">
                     <button className="bg-[#E67E22] hover:bg-[#d56b0f] border-4 border-white text-xl text-white rounded-[2.5rem] p-3 cursor-pointer" >
-                    <img
-                        src="/assets/Icons/Orion_add-place_solid.svg"
-                        className="w-10"
-                        alt="add"
-                    />
+                    <img src="/assets/Icons/Orion_add-place_solid.svg" className="w-10" alt="add" />
                     </button>
                 </div>
                 

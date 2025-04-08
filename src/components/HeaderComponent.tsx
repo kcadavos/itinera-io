@@ -3,7 +3,7 @@ import React from 'react'
 const HeaderComponent = () => {
   return (
     <div>
-      <div className='bg-[#E1ECFF] rounded-2xl py-10 min-w-screen max-w-screen mb-6'>
+      <div className='bg-[#E1ECFF] min-h-[10rem] max-h-[10rem] lg:min-h-[13.2rem] lg:max-h-[13.2rem] pt-10 pb-5 min-w-screen max-w-screen mb-6'>
         <div className="mx-8 font-inter">
         <p className=" text-[#1ABC9C]">Itinera-IO</p>
           <div className="text-3xl">            
