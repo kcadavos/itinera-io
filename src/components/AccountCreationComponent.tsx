@@ -25,6 +25,8 @@ const AccountCreationComponent = () => {
         alert("Account Created!"),
         setSwitchBool(true) 
       ) : alert("Account Already Exsists");
+    }else{
+      alert("Passwords are not the same");
     }
   }
 
