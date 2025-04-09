@@ -46,7 +46,7 @@ export default function Home() {
         </div>
         
 
-        <div className="bg-[#ECF0F1] rounded-2xl min-h-[26rem] min-w-[20rem] lg:min-h-[25rem] max-w-[20rem] mx-4 px-4 relative">
+        <div className="bg-[#ECF0F1] rounded-2xl min-h-[26rem] min-w-[20rem] lg:min-h-[25rem] lg:max-w-[20rem] mx-4 px-4 relative">
 
 
           {
