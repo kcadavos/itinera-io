@@ -10,7 +10,7 @@ const HomePage = () => {
 
   return (
     <div className='bg-gray-500 h-screen'>
-      
+      <p>Homepage</p>
     </div>
   )
 }
