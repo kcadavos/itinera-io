@@ -20,30 +20,7 @@ export default function Home() {
     <div className="font-roboto m-0 p-0 max-h-screen max-w-screen">
       {/* mobile */}
       <div className="block md:hidden">
-        <div className='bg-[#E1ECFF] lg:min-h-[13.2rem] lg:max-h-[13.2rem] pt-10 pb-5 min-w-screen max-w-screen mb-6 lg:mb-4'>
-          <div className="mx-8 font-inter">
-          <p className=" text-[#1ABC9C]">Itinera-IO</p>
-          {
-            switchBool ? (
-              <div className="text-3xl">            
-                <p className="text-[#E67E22]">Votes In, </p>
-                <p className="text-[#E67E22]">Adventure Out.</p>
-                <p className="text-[#2C3E50]">Log In.</p>
-              </div>
-            ) : (
-              <div className="text-3xl">            
-                <div className="flex">
-                  <p className="text-[#2C3E50]">Welcome, </p>
-                  <p className="text-[#E67E22]">Nomad.</p>
-                </div>
-                <p className="text-[#2C3E50]">Ready for an Adventure?</p>
-              </div>
-            )
-          }
-            
-          </div>
-          
-        </div>
+        
         
 
         <div className="bg-[#ECF0F1] rounded-2xl min-h-[26rem] min-w-[20rem] lg:min-h-[25rem] max-w-[20rem] mx-4 px-4 relative">
@@ -66,7 +43,7 @@ export default function Home() {
           </div>
 
 
-        <div className=" bg-[#1ABC9C] min-w-screen max-w-screen py-5 rounded-t-4xl mt-3 lg:mt-[2.1rem]">
+        <div className=" bg-[#1ABC9C] min-w-screen max-w-screen py-5 rounded-t-4xl mt-3 lg:mt-[2.1rem] fixed bottom-0">
           {
             switchBool ? (
               <div className="flex text-white text-3xl justify-center ">
