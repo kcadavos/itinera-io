@@ -69,7 +69,7 @@ export default function Home() {
           </div>
 
           <div className="float-right bg-[#E1ECFF] min-h-screen max-h-screen">
-            <div className=' rounded-2xl min-h-[13.2rem] max-h-[13.2rem] pt-10 pb-5 min-w-[30rem] max-w-[30rem] mb-2'>
+            <div className=" rounded-2xl min-h-[13.2rem] max-h-[13.2rem] pt-10 pb-5 min-w-[30rem] max-w-[30rem] mb-2">
               <div className="mx-8 font-inter">
                 <p className=" text-[#1ABC9C]">Itinera-IO</p>
                 {

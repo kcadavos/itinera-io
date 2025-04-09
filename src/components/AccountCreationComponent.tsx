@@ -12,14 +12,14 @@ const AccountCreationComponent = () => {
 
   const submitCreation = async () => {
 
-    let userData = {
+    const userData = {
       email: email,
       password: password,
       name: username
     }
 
     if(password != '' && password == confirmPassword){
-      let result = await CreateAccount(userData);
+      const result = await CreateAccount(userData);
 
       if(result){
         alert("Account Created!"),
