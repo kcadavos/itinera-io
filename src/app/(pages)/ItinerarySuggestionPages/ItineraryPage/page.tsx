@@ -2,7 +2,7 @@ import React from 'react'
 
 const ItineraryPage = () => {
   return (
-    <div>
+    <div className='bg-[#ECF0F1]'>
       
     </div>
   )
