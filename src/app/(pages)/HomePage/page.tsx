@@ -1,6 +1,6 @@
 "use client"
-import FooterComponent from '@/components/NavbarComponent'
-import { useRouter } from 'next/navigation';
+// import FooterComponent from '@/components/NavbarComponent'
+// import { useRouter } from 'next/navigation';
 import React from 'react'
 
 const HomePage = () => {
