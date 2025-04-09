@@ -1,6 +1,6 @@
 "use client"
 import FooterComponent from '@/components/FooterComponent'
-import HeaderComponent from '@/components/HeaderComponent'
+// import HeaderComponent from '@/components/HeaderComponent'
 import { usePathname } from 'next/navigation'
 import React, { useEffect , useState } from 'react'
 

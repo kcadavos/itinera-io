@@ -11,13 +11,13 @@ const LogInComponent = () => {
 
   const submitLogin = async () => {
   
-    let userData = {
+    const userData = {
       email: email,
       password: password
     }
 
     if(email != '' && password != ''){
-      let token: IToken = await Login(userData);
+      const token: IToken = await Login(userData);
 
     if(token != null){
       if(typeof window != null){

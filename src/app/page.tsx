@@ -37,7 +37,7 @@ export default function Home() {
         <div className="text-[#2C3E50] text-center ">
               {/* <p >Forgot Password?</p> */}
               {
-                switchBool ? <p className="mt-16" >Don't have an account?</p> : <p className="mt-16" >Already have an account?</p>
+                switchBool ? <p className="mt-16" >Don’t have an account?</p> : <p className="mt-16" >Already have an account?</p>
               }
               
           </div>
@@ -115,7 +115,7 @@ export default function Home() {
               {
                 switchBool ? (
                   <div className="flex text-white text-xl justify-center ">
-                    <button className="bg-none cursor-pointer " onClick={handleSwitch}>Don't have an account? Sign Up</button>
+                    <button className="bg-none cursor-pointer " onClick={handleSwitch}>Don’t have an account? Sign Up</button>
                   </div>
                   
                 ) : (

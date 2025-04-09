@@ -21,10 +21,12 @@ const AccountCreationComponent = () => {
     if(password != '' && password == confirmPassword){
       let result = await CreateAccount(userData);
 
-      result ? (
+      if(result){
         alert("Account Created!"),
         setSwitchBool(true) 
-      ) : alert("Account Already Exsists");
+     }else{
+      alert("Account Already Exsists");
+     } 
     }else{
       alert("Passwords are not the same");
     }
