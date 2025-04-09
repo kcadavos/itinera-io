@@ -16,19 +16,19 @@ const NavbarComponent = () => {
           },
           {
             src: "/assets/icons/Orion_markers 1.svg ",
-            href: "/ItinerarySuggestionPages/DislikedListPage",
+            href: "/ItinerarySuggestionPages/UndecidedListPage",
           },
           {
             src: "/assets/icons/Orion_checkin-place 2.svg",
-            href: "/ItinerarySuggestionPages/ItineraryPage",
-          },
-          {
-            src: "/assets/icons/Orion_delete-place 1.svg",
             href: "/ItinerarySuggestionPages/LikedListPage",
           },
           {
+            src: "/assets/icons/Orion_delete-place 1.svg",
+            href: " /ItinerarySuggestionPages/DislikedListPage",
+          },
+          {
             src: "/assets/icons/Orion_travel-map 1.svg",
-            href: "/ItinerarySuggestionPages/UndecidedListPage",
+            href: " /ItinerarySuggestionPages/ItineraryPage",
           },
         ];
       case "/ItinerarySuggestionPages/DislikedListPage":
@@ -39,19 +39,19 @@ const NavbarComponent = () => {
           },
           {
             src: "/assets/icons/Orion_markers.svg ",
-            href: "/ItinerarySuggestionPages/DislikedListPage",
+            href: "/ItinerarySuggestionPages/UndecidedListPage",
           },
           {
             src: "/assets/icons/Orion_checkin-place 2.svg",
-            href: "/ItinerarySuggestionPages/ItineraryPage",
-          },
-          {
-            src: "/assets/icons/Orion_delete-place 1.svg",
             href: "/ItinerarySuggestionPages/LikedListPage",
           },
           {
+            src: "/assets/icons/Orion_delete-place 1.svg",
+            href: "/ItinerarySuggestionPages/DislikedListPage",
+          },
+          {
             src: "/assets/icons/Orion_travel-map 1.svg",
-            href: "/ItinerarySuggestionPages/UndecidedListPage",
+            href: "/ItinerarySuggestionPages/ItineraryPage",
           },
         ];
       case "/ItinerarySuggestionPages/ItineraryPage":
@@ -62,19 +62,19 @@ const NavbarComponent = () => {
           },
           {
             src: "/assets/icons/Orion_markers 1.svg ",
-            href: "/ItinerarySuggestionPages/DislikedListPage",
+            href: "/ItinerarySuggestionPages/UndecidedListPage",
           },
           {
             src: "/assets/icons/Orion_checkin-place.svg",
-            href: " /ItinerarySuggestionPages/ItineraryPage",
-          },
-          {
-            src: "/assets/icons/Orion_delete-place 1.svg",
             href: " /ItinerarySuggestionPages/LikedListPage",
           },
           {
+            src: "/assets/icons/Orion_delete-place 1.svg",
+            href: "/ItinerarySuggestionPages/DislikedListPage",
+          },
+          {
             src: "/assets/icons/Orion_travel-map 1.svg",
-            href: " /ItinerarySuggestionPages/UndecidedListPage",
+            href: "/ItinerarySuggestionPages/ItineraryPage",
           },
         ];
 
@@ -86,19 +86,19 @@ const NavbarComponent = () => {
           },
           {
             src: "/assets/icons/Orion_markers 1.svg ",
-            href: " /ItinerarySuggestionPages/DislikedListPage",
+            href: "/ItinerarySuggestionPages/UndecidedListPage",
           },
           {
             src: "/assets/icons/Orion_checkin-place 2.svg",
-            href: " /ItinerarySuggestionPages/ItineraryPage",
-          },
-          {
-            src: "/assets/icons/Orion_delete-place.svg",
             href: " /ItinerarySuggestionPages/LikedListPage",
           },
           {
+            src: "/assets/icons/Orion_delete-place.svg",
+            href: "/ItinerarySuggestionPages/DislikedListPage",
+          },
+          {
             src: "/assets/icons/Orion_travel-map 1.svg",
-            href: " /ItinerarySuggestionPages/UndecidedListPage",
+            href: " /ItinerarySuggestionPages/ItineraryPage",
           },
         ];
       case "/ItinerarySuggestionPages/UndecidedListPage":
@@ -109,19 +109,19 @@ const NavbarComponent = () => {
           },
           {
             src: "/assets/icons/Orion_markers 1.svg ",
-            href: " /ItinerarySuggestionPages/DislikedListPage",
+            href: " /ItinerarySuggestionPages/UndecidedListPage",
           },
           {
             src: "/assets/icons/Orion_checkin-place 2.svg",
-            href: " /ItinerarySuggestionPages/ItineraryPage",
+            href: "/ItinerarySuggestionPages/LikedListPage",
           },
           {
             src: "/assets/icons/Orion_delete-place 1.svg",
-            href: " /ItinerarySuggestionPages/LikedListPage",
+            href: " /ItinerarySuggestionPages/DislikedListPage",
           },
           {
             src: "/assets/icons/Orion_travel-map.svg",
-            href: " /ItinerarySuggestionPages/UndecidedListPage",
+            href: "/ItinerarySuggestionPages/ItineraryPage",
           },
         ];
       default:
@@ -132,19 +132,19 @@ const NavbarComponent = () => {
           },
           {
             src: "/assets/icons/Orion_markers 1.svg ",
-            href: " /ItinerarySuggestionPages/DislikedListPage",
+            href: " /ItinerarySuggestionPages/UndecidedListPage",
           },
           {
             src: "/assets/icons/Orion_checkin-place 2.svg",
-            href: " /ItinerarySuggestionPages/ItineraryPage",
+            href: "/ItinerarySuggestionPages/LikedListPage",
           },
           {
             src: "/assets/icons/Orion_delete-place 1.svg",
-            href: " /ItinerarySuggestionPages/LikedListPage",
+            href: " /ItinerarySuggestionPages/DislikedListPage",
           },
           {
             src: "/assets/icons/Orion_travel-map 1.svg",
-            href: " /ItinerarySuggestionPages/UndecidedListPage",
+            href: " /ItinerarySuggestionPages/ItineraryPage",
           }
         ];
     }
