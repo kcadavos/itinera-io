@@ -1,3 +1,4 @@
+'use client'
 import { GetLoggedInUserData, Login } from '@/lib/DataServices';
 import { IToken } from '@/lib/Interfaces';
 import React, { useState } from 'react'
