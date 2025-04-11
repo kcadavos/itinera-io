@@ -1,4 +1,5 @@
 "use client"
+import { useNameContext } from '@/context/DataContext';
 // import FooterComponent from '@/components/NavbarComponent'
 // import { useRouter } from 'next/navigation';
 import React from 'react'
@@ -8,9 +9,11 @@ const HomePage = () => {
   // const router = useRouter();
   // router.push('/ItinerarySuggestionPages/AddSuggestionPage');
 
+  const {name}=useNameContext();
+
   return (
     <div className='bg-gray-500 h-screen'>
-      <p>Homepage</p>
+      <p>Homepage{name}, welcome </p>
     </div>
   )
 }
