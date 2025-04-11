@@ -2,7 +2,7 @@
 
 import AccountCreationComponent from "@/components/AccountCreationComponent";
 import LogInComponent from "@/components/LogInComponent";
-import { useNameContext } from "@/context/DataContext";
+
 import {  useEffect, useState } from "react";
 
 const LoginSignUpComponent = () => {

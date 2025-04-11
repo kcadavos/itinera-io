@@ -1,5 +1,3 @@
-
-import { useNameContext } from '@/context/DataContext';
 // import FooterComponent from '@/components/NavbarComponent'
 // import { useRouter } from 'next/navigation';
 import React from 'react'
