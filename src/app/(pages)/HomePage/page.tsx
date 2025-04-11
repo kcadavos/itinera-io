@@ -9,6 +9,10 @@ const HomePage = () => {
   // const router = useRouter();
   // router.push('/ItinerarySuggestionPages/AddSuggestionPage');
 
+
+  // Shitf this stuff to a client component so the page can remain a server
+  // there is an extra folder inside components for whole pages
+  //if you have questions about this come ask me ~Kass
   const {name}=useNameContext();
 
   return (
