@@ -1,14 +1,12 @@
 "use client"
-import { useNameContext, useTripIdContext } from '@/context/DataContext'
+import { useNameContext } from '@/context/DataContext'
 // import React, { useState } from 'react'
 
 const HeaderComponent = () => {
   // const [switchBool, setSwitchBool] = useState<boolean>(true);
   //const {switchBool, setSwitchBool} = useAppcontext();
   const {name}=useNameContext();
-  const {tripId,setTripId}=useTripIdContext();
 
-setTripId(21);
 
   return (
     <div>

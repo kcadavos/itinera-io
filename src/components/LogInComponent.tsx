@@ -7,7 +7,7 @@ import { useNameContext } from '@/context/DataContext';
 const LogInComponent = () => {
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
-  const {name,setName}=useNameContext();
+  const {setName}=useNameContext();
 
   const router = useRouter();
 
