@@ -2,23 +2,30 @@
 
 import AccountCreationComponent from "@/components/AccountCreationComponent";
 import LogInComponent from "@/components/LogInComponent";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 //import { AppWrapper, useAppcontext } from "@/context/DataContext";
 
 
 export default function Home() {
   const [switchBool, setSwitchBool] = useState<boolean>(true);
   //const {switchBool, setSwitchBool} = useAppcontext();
-  
+ 
+
   const handleSwitch = () => {
     setSwitchBool(!switchBool);
     console.log(switchBool)
   }
 
+  useEffect(()=>{
+
+  },[]) 
+
   
   return (
     <div className="font-roboto m-0 p-0 max-h-screen max-w-screen">
       {/* mobile */}
+     
+
       <div className="block md:hidden">
         
         
@@ -95,7 +102,7 @@ export default function Home() {
             <div className="flex justify-center">
               {
                 switchBool ?
-                  <div className="bg-white rounded-2xl min-w-[26rem] min-h-[19rem] max-w-[26rem] mx-4 px-4 relative">
+                <div className="bg-white rounded-2xl min-w-[26rem] min-h-[19rem] max-w-[26rem] mx-4 px-4 relative">
                     <div className="flex justify-center">
                       <LogInComponent /> 
 

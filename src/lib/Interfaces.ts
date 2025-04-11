@@ -7,6 +7,16 @@ export interface IUserInfoCreate {
 export interface IUserDataLogin {
     password: string
     email: string
+
+
+}
+
+
+export interface IUserInfo {
+    id: number
+    email: string
+    name: string
+
 }
 
 export interface IToken {

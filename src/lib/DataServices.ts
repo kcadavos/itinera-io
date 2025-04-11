@@ -1,4 +1,4 @@
-import { IUserInfoCreate, IUserDataLogin } from "./Interfaces";
+import { IUserInfoCreate, IUserDataLogin, IUserInfo } from "./Interfaces";
 
 
 const url = 'https://itineraioapi-cqapgsgcbschc7hu.westus-01.azurewebsites.net/';
@@ -45,7 +45,8 @@ export const Login = async (user:IUserDataLogin) => {
     return data;
 }
 
-let userData: IUserDataLogin;
+let userData: IUserInfo;
+
 export const GetLoggedInUserData = async (email:string) => {
     const res = await fetch(url + `User/GetUserInfoByEmail/${email}`);
 
