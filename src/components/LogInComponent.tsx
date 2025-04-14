@@ -1,13 +1,15 @@
+'use client'
 import { GetLoggedInUserData, Login } from '@/lib/DataServices';
 import { IToken } from '@/lib/Interfaces';
 import React, { useState } from 'react'
 import { useRouter } from "next/navigation";
-import { useNameContext } from '@/context/DataContext';
+import { useNameContext, useUserIdContext } from '@/context/DataContext';
 
 const LogInComponent = () => {
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const {setName}=useNameContext();
+  const {setUserId}= useUserIdContext();
 
   const router = useRouter();
 
@@ -30,8 +32,10 @@ const LogInComponent = () => {
         const loggedInData = await GetLoggedInUserData(email);
 
         if(loggedInData != null){
-          setName(loggedInData.name)
-          router.push('/HomePage');
+          //set data context values
+          setName(loggedInData.name);
+          setUserId(loggedInData.id);
+          router.push('Trips/TripList');
         }
 
         

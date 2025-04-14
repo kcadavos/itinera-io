@@ -2,11 +2,12 @@
 
 import AccountCreationComponent from "@/components/AccountCreationComponent";
 import LogInComponent from "@/components/LogInComponent";
-import { useEffect, useState } from "react";
+
+import {  useEffect, useState } from "react";
 
 const LoginSignUpComponent = () => {
   const [switchBool, setSwitchBool] = useState<boolean>(true);
-  
+
  
   const handleSwitch = () => {
     setSwitchBool(!switchBool);
