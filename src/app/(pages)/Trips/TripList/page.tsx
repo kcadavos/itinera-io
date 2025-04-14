@@ -8,7 +8,7 @@ import React, { useEffect, useState } from 'react'
 const TripList = () => {
 const {userId} = useUserIdContext();
 const [tripListData,setTripListData] = useState<ITripData[]>([]);
-const [tripDest,setTripDest]=useState <string>('');
+
 
 
 

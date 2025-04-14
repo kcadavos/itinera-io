@@ -12,7 +12,7 @@ useEffect(()=>{
             
     {trips.length>0 ?
        ( <div className='flex flex-wrap justify-center gap-6 '>
-    { trips.map((trip,index) => (
+    { trips.map((trip) => (
         <a key={trip.id} href="#" className="w-full max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow-sm hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
     <div className='flex justify-between'>
     <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{trip.destination}</h5>
