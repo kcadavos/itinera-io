@@ -16,6 +16,8 @@ const Layout = ({ children }: { children: React.ReactNode }) =>  {
 
     <div>
       {/* <HeaderComponent/> */}
+ 
+
       {children}
       {!isHidden && <FooterComponent/>}
     </div>

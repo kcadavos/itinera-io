@@ -45,7 +45,8 @@ export const Login = async (user:IUserDataLogin) => {
     return data;
 }
 
-let userData: IUserDataLogin;
+let userData: IUserInfo;
+
 export const GetLoggedInUserData = async (email:string) => {
     const res = await fetch(url + `User/GetUserInfoByEmail/${email}`);
 
