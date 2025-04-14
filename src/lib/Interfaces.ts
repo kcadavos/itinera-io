@@ -3,20 +3,14 @@ export interface IUserInfoCreate {
     password: string
     name: string
 }
+export interface IUserTrips{
+    
+}
 
 export interface IUserDataLogin {
     password: string
     email: string
-
-
-}
-
-
-export interface IUserInfo {
-    id: number
-    email: string
     name: string
-
 }
 
 export interface IToken {

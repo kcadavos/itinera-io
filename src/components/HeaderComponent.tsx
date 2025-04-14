@@ -1,11 +1,33 @@
 "use client"
-import { useNameContext } from '@/context/DataContext'
-// import React, { useState } from 'react'
+import { GetLoggedInUserData } from '@/lib/DataServices';
+
+import React, { useState, useEffect } from 'react';
+
 
 const HeaderComponent = () => {
-  // const [switchBool, setSwitchBool] = useState<boolean>(true);
-  //const {switchBool, setSwitchBool} = useAppcontext();
-  const {name}=useNameContext();
+  const [destination, setDestination] = useState<string>('');
+  const  [name, setName] = useState<string>('');
+  const [email, setEmail] = useState<string>('');
+
+  const func = async()=>{
+    
+
+    var  userInfo = await GetLoggedInUserData(email);
+    
+   
+    if(userInfo == null){
+      setName("error");
+    }else{
+      
+      setName(userInfo.name) 
+    }
+  }
+ useEffect(()=>{
+   func();
+  }, [])
+  
+  const placeId ="Stockton, CA"
+ 
 
 
   return (
@@ -14,7 +36,7 @@ const HeaderComponent = () => {
         <div className="mx-8 font-inter">
           <p className=" text-[#1ABC9C]">Itinera-IO</p>
           <p>Hi {name}, lets plan for</p>
-          <p className='text-3xl text-[#E67E22]'>{}</p>
+          <p className='text-3xl text-[#E67E22]'>{placeId}</p>
           <p className='text-sm'>What are you excided about?</p>  
         </div>  
       </div>

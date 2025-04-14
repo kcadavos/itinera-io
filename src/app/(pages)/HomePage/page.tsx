@@ -14,8 +14,9 @@ const HomePage = () => {
 
 
   return (
-    <div className='bg-gray-500 h-screen'>
-      <p>Homepage, welcome </p>
+
+    <div className=''>
+      <p>Homepage</p>
     </div>
   )
 }
