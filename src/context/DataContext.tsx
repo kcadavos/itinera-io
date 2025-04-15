@@ -17,8 +17,6 @@ interface userIdInterface{
     setUserId: (userId:number)=>void;
 }
 
-
-
 interface selectedTripIdInterface {
     selectedTripId: number;
     setSelectedTripId: (tripId:number)=>void;
@@ -28,6 +26,18 @@ interface selectedTripDestinationInterface {
     selectedTripDestination: string;
     setSelectedTripDestination: (destination:string)=>void;
 }
+
+interface selectedTripStartDateInterface {
+    selectedTripStartDate: string;
+    setSelectedTripStartDate: (startDate:string)=>void;
+}
+
+interface selectedTripEndDateInterface {
+    selectedTripEndDate: string;
+    setSelectedTripEndDate: (endDate:string)=>void;
+}
+
+
 // Creating the context
 // const SwitchBoolContext = createContext<Context>({
 //     switchBool: true ,
@@ -49,6 +59,16 @@ const SelectedTripDestinationContext = createContext<selectedTripDestinationInte
     setSelectedTripDestination: destination=>destination
 })
 
+
+const SelectedTripStartDateContext = createContext<selectedTripStartDateInterface> ({
+    selectedTripStartDate:'',
+    setSelectedTripStartDate: startDate=>startDate
+})
+const SelectedTripEndDateContext = createContext<selectedTripEndDateInterface> ({
+    selectedTripEndDate:'',
+    setSelectedTripEndDate: endDate=>endDate
+})
+
 const UserIdContext = createContext<userIdInterface> ({
     userId : 0,
     setUserId : userId=> userId
@@ -61,7 +81,8 @@ export function AppWrapper({ children }: { children: React.ReactNode }){
     const[userId,setUserId] = useState<number> (0);
     const[selectedTripId,setSelectedTripId]=useState<number>(0);
     const[selectedTripDestination,setSelectedTripDestination]=useState<string>('');
-
+    const[selectedTripStartDate,setSelectedTripStartDate]=useState<string>('');
+    const[selectedTripEndDate,setSelectedTripEndDate]=useState<string>('');
     return(
         // <SwitchBoolContext.Provider value={ { switchBool, setSwitchBool } }>
         //     {children}
@@ -70,8 +91,11 @@ export function AppWrapper({ children }: { children: React.ReactNode }){
             <UserIdContext.Provider  value = {{userId,setUserId}}>
             <SelectedTripIdContext.Provider value={{selectedTripId,setSelectedTripId}}>
             <SelectedTripDestinationContext.Provider value={{selectedTripDestination,setSelectedTripDestination}}>
-
+            <SelectedTripStartDateContext.Provider value = {{selectedTripStartDate,setSelectedTripStartDate}}>
+            <SelectedTripEndDateContext.Provider value ={{selectedTripEndDate,setSelectedTripEndDate}}>
              {children}
+            </SelectedTripEndDateContext.Provider>
+            </SelectedTripStartDateContext.Provider>
             </SelectedTripDestinationContext.Provider>
             </SelectedTripIdContext.Provider>
             </UserIdContext.Provider>
@@ -94,6 +118,13 @@ export function useSelectedTripIdContext(){
 
 export function useSelectedTripDestinationContext(){
     return useContext(SelectedTripDestinationContext);
+}
+export function useSelectedTripStartDateContext(){
+    return useContext(SelectedTripStartDateContext);
+}
+
+export function useSelectedTripEndDateContext(){
+    return useContext(SelectedTripEndDateContext)
 }
 export function useUserIdContext(){
     return useContext(UserIdContext);

@@ -6,13 +6,10 @@ import React from 'react';
 
 
 const HeaderComponent = () => {
-  // const [destination, setDestination] = useState<string>('');
+
   const  {name}=useNameContext();
   const {selectedTripDestination} = useSelectedTripDestinationContext();
-  
-  
-  const placeId ="Stockton, CA"
- 
+
 
 
   return (
