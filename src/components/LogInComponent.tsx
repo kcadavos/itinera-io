@@ -17,8 +17,9 @@ const LogInComponent = () => {
   
     const userData = {
       email: email,
-      password: password
-  
+      password: password,
+      
+      
     }
 
     if(email != '' && password != ''){
@@ -34,7 +35,7 @@ const LogInComponent = () => {
         if(loggedInData != null){
           //set data context values
           setName(loggedInData.name);
-          setUserId(loggedInData.id);
+          setUserId(loggedInData.id)
           router.push('Trips/TripList');
         }
 

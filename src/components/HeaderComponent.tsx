@@ -5,14 +5,14 @@ import React, { useState, useEffect } from 'react';
 
 
 const HeaderComponent = () => {
-  const [destination, setDestination] = useState<string>('');
+  // const [destination, setDestination] = useState<string>('');
   const  [name, setName] = useState<string>('');
-  const [email, setEmail] = useState<string>('');
+  const [email] = useState<string>('');
 
   const func = async()=>{
     
 
-    var  userInfo = await GetLoggedInUserData(email);
+    const  userInfo = await GetLoggedInUserData(email);
     
    
     if(userInfo == null){

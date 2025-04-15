@@ -1,4 +1,4 @@
-import { IUserInfoCreate, IUserDataLogin, IUserTrips } from "./Interfaces";
+import { IUserInfoCreate, IUserDataLogin, IUserInfo } from "./Interfaces";
 
 
 const url = 'https://itineraioapi-cqapgsgcbschc7hu.westus-01.azurewebsites.net/';
@@ -45,9 +45,10 @@ export const Login = async (user:IUserDataLogin) => {
     return data;
 }
 
-let userData: IUserInfo;
 
 export const GetLoggedInUserData = async (email:string) => {
+    // userId , email, name
+
     const res = await fetch(url + `User/GetUserInfoByEmail/${email}`);
 
     if(!res.ok){
@@ -55,11 +56,12 @@ export const GetLoggedInUserData = async (email:string) => {
         const message = data.message;
         console.log(message);
         return null;
+    }else{
+
+        const userData: IUserInfo = await res.json();
+        return userData;
     }
 
-    userData = await res.json();
-    
-    return userData;
 }
 //----------------Trip fetch ---------------------
 

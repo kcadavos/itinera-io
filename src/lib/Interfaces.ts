@@ -3,14 +3,22 @@ export interface IUserInfoCreate {
     password: string
     name: string
 }
-export interface IUserTrips{
+// export interface IUserTrips{
     
-}
+// }
 
 export interface IUserDataLogin {
     password: string
     email: string
-    name: string
+   
+}
+
+
+// to use for getting userid and user's name from db
+export interface IUserInfo{ 
+    id:number
+    email: string,
+    name:string
 }
 
 export interface IToken {
