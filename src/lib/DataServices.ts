@@ -47,8 +47,6 @@ export const Login = async (user:IUserDataLogin) => {
 
 
 export const GetLoggedInUserData = async (email:string) => {
-    // userId , email, name
-
     const res = await fetch(url + `User/GetUserInfoByEmail/${email}`);
 
     if(!res.ok){
@@ -56,11 +54,11 @@ export const GetLoggedInUserData = async (email:string) => {
         const message = data.message;
         console.log(message);
         return null;
-    }else{
+    }
 
         const userData: IUserInfo = await res.json();
         return userData;
-    }
+    
 
 }
 //----------------Trip fetch ---------------------

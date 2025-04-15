@@ -1,30 +1,15 @@
 "use client"
-import { GetLoggedInUserData } from '@/lib/DataServices';
+import { useNameContext, useSelectedTripDestinationContext } from '@/context/DataContext';
 
-import React, { useState, useEffect } from 'react';
+
+import React from 'react';
 
 
 const HeaderComponent = () => {
   // const [destination, setDestination] = useState<string>('');
-  const  [name, setName] = useState<string>('');
-  const [email] = useState<string>('');
-
-  const func = async()=>{
-    
-
-    const  userInfo = await GetLoggedInUserData(email);
-    
-   
-    if(userInfo == null){
-      setName("error");
-    }else{
-      
-      setName(userInfo.name) 
-    }
-  }
- useEffect(()=>{
-   func();
-  }, [])
+  const  {name}=useNameContext();
+  const {selectedTripDestination} = useSelectedTripDestinationContext();
+  
   
   const placeId ="Stockton, CA"
  
@@ -36,7 +21,7 @@ const HeaderComponent = () => {
         <div className="mx-8 font-inter">
           <p className=" text-[#1ABC9C]">Itinera-IO</p>
           <p>Hi {name}, lets plan for</p>
-          <p className='text-3xl text-[#E67E22]'>{placeId}</p>
+          <p className='text-3xl text-[#E67E22]'> {selectedTripDestination} </p>
           <p className='text-sm'>What are you excided about?</p>  
         </div>  
       </div>

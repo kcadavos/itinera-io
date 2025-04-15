@@ -19,9 +19,14 @@ interface userIdInterface{
 
 
 
-interface tripIdInterface {
-    tripId: number;
-    setTripId: (tripId:number)=>void;
+interface selectedTripIdInterface {
+    selectedTripId: number;
+    setSelectedTripId: (tripId:number)=>void;
+}
+
+interface selectedTripDestinationInterface {
+    selectedTripDestination: string;
+    setSelectedTripDestination: (destination:string)=>void;
 }
 // Creating the context
 // const SwitchBoolContext = createContext<Context>({
@@ -34,9 +39,14 @@ const NameContext = createContext<nameInterface>({
     setName: name => name
 });
 
-const TripIdContext = createContext<tripIdInterface> ({
-    tripId:0,
-    setTripId: tripId=>tripId
+const SelectedTripIdContext = createContext<selectedTripIdInterface> ({
+    selectedTripId:0,
+    setSelectedTripId: tripId=>tripId
+})
+
+const SelectedTripDestinationContext = createContext<selectedTripDestinationInterface> ({
+    selectedTripDestination:'',
+    setSelectedTripDestination: destination=>destination
 })
 
 const UserIdContext = createContext<userIdInterface> ({
@@ -49,7 +59,8 @@ export function AppWrapper({ children }: { children: React.ReactNode }){
     // const [switchBool, setSwitchBool] = useState<boolean>(true);
     const [name,setName] = useState<string>('');
     const[userId,setUserId] = useState<number> (0);
-    const[tripId,setTripId]=useState<number>(0);
+    const[selectedTripId,setSelectedTripId]=useState<number>(0);
+    const[selectedTripDestination,setSelectedTripDestination]=useState<string>('');
 
     return(
         // <SwitchBoolContext.Provider value={ { switchBool, setSwitchBool } }>
@@ -57,9 +68,12 @@ export function AppWrapper({ children }: { children: React.ReactNode }){
         // </SwitchBoolContext.Provider>
         <NameContext.Provider value ={{name,setName}}>
             <UserIdContext.Provider  value = {{userId,setUserId}}>
-            <TripIdContext.Provider value={{tripId,setTripId}}>
+            <SelectedTripIdContext.Provider value={{selectedTripId,setSelectedTripId}}>
+            <SelectedTripDestinationContext.Provider value={{selectedTripDestination,setSelectedTripDestination}}>
+
              {children}
-            </TripIdContext.Provider>
+            </SelectedTripDestinationContext.Provider>
+            </SelectedTripIdContext.Provider>
             </UserIdContext.Provider>
         </NameContext.Provider>
     )
@@ -74,8 +88,12 @@ export function AppWrapper({ children }: { children: React.ReactNode }){
 export function useNameContext(){
     return useContext(NameContext);
 }
-export function useTripIdContext(){
-    return useContext(TripIdContext);
+export function useSelectedTripIdContext(){
+    return useContext(SelectedTripIdContext);
+}
+
+export function useSelectedTripDestinationContext(){
+    return useContext(SelectedTripDestinationContext);
 }
 export function useUserIdContext(){
     return useContext(UserIdContext);

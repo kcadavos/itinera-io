@@ -17,8 +17,7 @@ const LogInComponent = () => {
   
     const userData = {
       email: email,
-      password: password,
-      
+      password: password
       
     }
 

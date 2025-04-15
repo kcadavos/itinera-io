@@ -1,6 +1,6 @@
 'use client'
 import TripCardComponent from '@/components/TripCardComponent'
-import { useUserIdContext } from '@/context/DataContext'
+import {  useUserIdContext } from '@/context/DataContext'
 import { ITripData } from '@/lib/Interfaces'
 import { getTripListByUserId } from '@/lib/TripDataService'
 import React, { useEffect, useState } from 'react'
@@ -19,7 +19,7 @@ const getTripListData = async (userId:number)=>{
 
 useEffect(()=>{
     getTripListData(userId);
-},[])
+},[userId])
 
 // useEffect(()=>{
 //     console.log("INSIDE USE EFFECT"+JSON.stringify(tripListData));
