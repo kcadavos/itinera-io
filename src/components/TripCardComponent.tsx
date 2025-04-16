@@ -3,15 +3,14 @@ import React, { useEffect } from 'react'
 import { format } from 'date-fns'; 
 import { useSelectedTripDestinationContext, useSelectedTripEndDateContext, useSelectedTripIdContext, useSelectedTripStartDateContext } from '@/context/DataContext';
 
+
 const TripCardComponent = ({ trips }:{trips:ITripData[]}) => {
     const {selectedTripId,setSelectedTripId}= useSelectedTripIdContext();
     const {setSelectedTripDestination}= useSelectedTripDestinationContext();
     const {selectedTripStartDate,setSelectedTripStartDate}=useSelectedTripStartDateContext();
     const{selectedTripEndDate,setSelectedTripEndDate}=useSelectedTripEndDateContext();
+
     
-    useEffect(()=>{
-    console.log("COMPONENT"+trips);
-    },[trips])
 
  const handleSelectTrip= (trip:ITripData)=>{
     setSelectedTripId (trip.id);
@@ -51,7 +50,7 @@ const TripCardComponent = ({ trips }:{trips:ITripData[]}) => {
       
     ))}
     </div>
-     ): <p className='text-2xl'> No trips available</p>}
+     ): <p className='text-2xl'> No trips data list available</p>}
     </div>
     </>
  

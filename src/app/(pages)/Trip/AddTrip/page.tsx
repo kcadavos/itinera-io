@@ -1,9 +1,10 @@
+
 import React from 'react'
 
-const page = () => {
+const AddTrip = () => {
   return (
-    <div>page</div>
+    <div> <p>hello</p></div>
   )
 }
 
-export default page
+export default AddTrip
