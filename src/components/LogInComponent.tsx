@@ -35,7 +35,7 @@ const LogInComponent = () => {
           //set data context values
           setName(loggedInData.name);
           setUserId(loggedInData.id)
-          router.push('Trips/TripList');
+          router.push('Trip/TripList');
         }
 
         
