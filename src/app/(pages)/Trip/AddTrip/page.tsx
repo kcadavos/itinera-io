@@ -1,9 +1,10 @@
 
+import AddTripComponent from '@/components/AddTripComponent'
 import React from 'react'
 
 const AddTrip = () => {
   return (
-    <div> <p>hello</p></div>
+   <AddTripComponent/>
   )
 }
 

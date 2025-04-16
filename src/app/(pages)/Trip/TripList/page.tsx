@@ -14,19 +14,15 @@ const [tripListData,setTripListData] = useState<ITripData[] | null>(null); //set
 
 
 useEffect(()=>{
-  if (tripListData !== null && tripListData.length <=0){
-    console.log("TRIP LEN"+tripListData.length)
+  if (tripListData !== null && tripListData.length ===0)
     router.push("/Trip/AddTrip");
-  }
+  
 },[tripListData])
 
 useEffect(()=>{
 const getTripListData = async (userId:number)=>{
   const tripList= (await getTripListByUserId(userId));  
-    console.log("SET TRIP LIST")
-    
     setTripListData(tripList);
-    
 }
     getTripListData(userId);
     console.log("USER"+ userId);
@@ -35,12 +31,16 @@ const getTripListData = async (userId:number)=>{
 
   return (
 <>
-   {( tripListData!==null && tripListData.length>0) &&
-
-    <TripCardComponent  trips={tripListData}/> 
-   }
+   {( tripListData!==null && tripListData.length>0) &&(
+    <>
+  <TripCardComponent  trips={tripListData}/> 
     <FooterComponent/>
+    </>
+   )
+
     
+   }
+
     </>
 
 
