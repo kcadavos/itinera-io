@@ -61,5 +61,9 @@ export const GetLoggedInUserData = async (email:string) => {
     
 
 }
-//----------------Trip fetch ---------------------
+
+export const getToken =()=>{
+    return localStorage.getItem("ItineraToken") ?? ""; // return a empty string if the local storage is null
+}
+
 
