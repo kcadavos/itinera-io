@@ -15,7 +15,10 @@ const [tripListData,setTripListData] = useState<ITripData[] | null>(null); //set
 
 useEffect(()=>{
   if (tripListData !== null && tripListData.length ===0)
-    router.push("/Trip/AddTrip");
+    {
+      console.log("PUSH ROUTER");
+      router.push("/Trip/AddTrip");
+    }
   
 },[tripListData])
 
