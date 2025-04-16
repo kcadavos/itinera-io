@@ -8,7 +8,11 @@ const FooterComponent = () => {
             case "/HomePage":
             return {text:"Initailize a Trip",
               src:"/assets/icons/Orion_aircraft 1.svg"
-        };
+                  };
+            case "/Trip/TripList":
+            return { text:"Initiate a Trip",
+              src:"/assets/icons/Orion_aircraft 1.svg"
+            } ;
             default:
                 return {text: "Go to Trip List",
                   src:"/assets/icons/Orion_destination-map 1.svg"
