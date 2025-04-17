@@ -14,8 +14,8 @@ export const getTripListByUserId = async (userId: number,token:string)=>{
     //if promise is not ok
     if (!res.ok){
         const errorData = await res.json();
-        const errorMsg = "ERROR";
-        console.log("ERROR " +errorMsg);
+        const errorMsg = errorData.message;
+        console.log("Error on fetch: " +errorMsg);
         return [] // return empty array 
     }
 
