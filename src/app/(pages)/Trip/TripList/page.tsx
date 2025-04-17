@@ -2,6 +2,7 @@
 import FooterComponent from '@/components/FooterComponent'
 import TripCardComponent from '@/components/TripCardComponent'
 import {  useUserIdContext } from '@/context/DataContext'
+import { getToken } from '@/lib/DataServices'
 import { ITripData } from '@/lib/Interfaces'
 import { getTripListByUserId } from '@/lib/TripDataService'
 import { useRouter } from "next/navigation";
@@ -24,7 +25,7 @@ useEffect(()=>{
 
 useEffect(()=>{
 const getTripListData = async (userId:number)=>{
-  const tripList= (await getTripListByUserId(userId));  
+  const tripList= (await getTripListByUserId(userId,getToken()));  
     setTripListData(tripList);
 }
     getTripListData(userId);

@@ -26,7 +26,7 @@ const LogInComponent = () => {
 
     if(token != null){
       if(typeof window != null){
-        localStorage.setItem("Token", token.token);
+        localStorage.setItem("ItineraToken", token.token);
         console.log(token.token);
         console.log(email)  
         const loggedInData = await GetLoggedInUserData(email);
