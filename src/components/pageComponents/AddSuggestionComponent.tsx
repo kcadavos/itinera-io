@@ -1,6 +1,23 @@
-import React from 'react'
+import { useSelectedTripIdContext } from '@/context/DataContext';
+import React, { useState } from 'react'
 
 const AddSuggestionComponent = () => {
+    const {selectedTripId} = useSelectedTripIdContext();
+    const [activity, setActivity] = useState<string>();
+    const [categorty, setCategory] = useState<string>();
+    const [address, setAddress] = useState<string>();
+    const [detailes, setADetails] = useState<string>();
+
+    const activityData = {
+        tripId: selectedTripId,
+        activity: activity,
+        category: categorty,
+        address: address,
+        details: detailes,
+    }
+
+    
+
   return (
     <div>
         {/* mobile */}

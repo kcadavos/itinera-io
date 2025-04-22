@@ -34,3 +34,11 @@ export interface ITripData {
     setTripListData: number[],
     isVotingOpen: boolean,
 }
+
+export interface IActivityData {
+    tripId: number,
+    activity: string,
+    category: string,
+    address: string,
+    details: string,
+}

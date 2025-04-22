@@ -2,35 +2,39 @@ import { ITripData } from '@/lib/Interfaces'
 import React, { useEffect } from 'react'
 import { format } from 'date-fns'; 
 import { useSelectedTripDestinationContext, useSelectedTripEndDateContext, useSelectedTripIdContext, useSelectedTripStartDateContext } from '@/context/DataContext';
+//import { useRouter } from 'next/navigation';
 
 
 const TripCardComponent = ({ trips }:{trips:ITripData[]}) => {
-    const {selectedTripId,setSelectedTripId}= useSelectedTripIdContext();
-    const {setSelectedTripDestination}= useSelectedTripDestinationContext();
-    const {selectedTripStartDate,setSelectedTripStartDate}=useSelectedTripStartDateContext();
-    const{selectedTripEndDate,setSelectedTripEndDate}=useSelectedTripEndDateContext();
+   const {selectedTripId,setSelectedTripId}= useSelectedTripIdContext();
+   const {setSelectedTripDestination}= useSelectedTripDestinationContext();
+   const {selectedTripStartDate,setSelectedTripStartDate}=useSelectedTripStartDateContext();
+   const{selectedTripEndDate,setSelectedTripEndDate}=useSelectedTripEndDateContext();
 
+   // const router = useRouter();
+   
     
 
- const handleSelectTrip= (trip:ITripData)=>{
-    setSelectedTripId (trip.id);
-    setSelectedTripDestination(trip.destination);
-    setSelectedTripStartDate(trip.startDate);
-    setSelectedTripEndDate(trip.endDate);
- }
- useEffect (()=>{
-    console.log("SELECTED TRIP"+selectedTripId);
-  
- },[selectedTripId])
+   const handleSelectTrip= (trip:ITripData)=>{
+      setSelectedTripId (trip.id);
+      setSelectedTripDestination(trip.destination);
+      setSelectedTripStartDate(trip.startDate);
+      setSelectedTripEndDate(trip.endDate);
+      // router.push('ItinerarySuggestionPages/AddSuggestionPage'); this doesnt work properly. it keeps itself in the trip folder, might need to change the file structure
+   }
+   useEffect (()=>{
+      console.log("SELECTED TRIP "+selectedTripId);
+   
+   },[selectedTripId])
 
- useEffect (()=>{
-    console.log("START" +selectedTripStartDate)
- },[selectedTripStartDate])
+   useEffect (()=>{
+      console.log("START " +selectedTripStartDate)
+   },[selectedTripStartDate])
 
 
- useEffect (()=>{
-    console.log("END" +selectedTripEndDate)
- },[selectedTripEndDate])
+   useEffect (()=>{
+      console.log("END " +selectedTripEndDate)
+   },[selectedTripEndDate])
 
     return (
         <>

@@ -1,6 +1,6 @@
 
 const url = 'https://itineraioapi-cqapgsgcbschc7hu.westus-01.azurewebsites.net/';
-// const url ='https://localhost:5054/';
+
 
 export const getTripListByUserId = async (userId: number,token:string)=>{
     const res = await fetch (url+"/Trip/GetTripsByUserId/"+userId,{
@@ -15,7 +15,7 @@ export const getTripListByUserId = async (userId: number,token:string)=>{
     if (!res.ok){
         const errorData = await res.json();
         const errorMsg = errorData.message;
-        console.log("Error on fetch: " +errorMsg);
+        console.log("Error on fetch: " + errorMsg);
         return [] // return empty array 
     }
 

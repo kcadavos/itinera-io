@@ -25,7 +25,7 @@ useEffect(()=>{
 
 useEffect(()=>{
 const getTripListData = async (userId:number)=>{
-  const tripList= (await getTripListByUserId(userId,getToken()));  
+  const tripList= (await getTripListByUserId(userId, getToken()));  
     setTripListData(tripList);
 }
     getTripListData(userId);
