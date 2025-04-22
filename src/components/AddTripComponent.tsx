@@ -38,7 +38,12 @@ const AddTripComponent = () => {
         }
         
         const result = await AddTrip(trip,getToken())
-
+      
+        if(result){
+            alert("Trip Added!");
+          }else{
+            alert("Trip not added");
+          }
     }
   return (
     //for mobile
