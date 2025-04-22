@@ -2,9 +2,9 @@
 import FooterComponent from '@/components/FooterComponent'
 import TripCardComponent from '@/components/TripCardComponent'
 import {  useUserIdContext } from '@/context/DataContext'
-import { getToken } from '@/lib/DataServices'
+import { getToken } from '@/lib/services/DataServices'
 import { ITripData } from '@/lib/Interfaces'
-import { getTripListByUserId } from '@/lib/TripDataService'
+import { getTripListByUserId } from '@/lib/services/TripDataService'
 import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from 'react'
 

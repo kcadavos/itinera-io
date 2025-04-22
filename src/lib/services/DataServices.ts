@@ -1,4 +1,4 @@
-import { IUserInfoCreate, IUserDataLogin, IUserInfo } from "./Interfaces";
+import { IUserInfoCreate, IUserDataLogin, IUserInfo } from "../Interfaces";
 
 
 const url = 'https://itineraioapi-cqapgsgcbschc7hu.westus-01.azurewebsites.net/';
