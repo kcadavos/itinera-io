@@ -2,9 +2,11 @@ import { ITripData } from '@/lib/Interfaces'
 import React, { useEffect } from 'react'
 import { format } from 'date-fns'; 
 import { useSelectedTripDestinationContext, useSelectedTripEndDateContext, useSelectedTripIdContext, useSelectedTripStartDateContext } from '@/context/DataContext';
+import { useRouter } from 'next/navigation';
 
 
 const TripCardComponent = ({ trips }:{trips:ITripData[]}) => {
+   const router = useRouter();
     const {selectedTripId,setSelectedTripId}= useSelectedTripIdContext();
     const {setSelectedTripDestination}= useSelectedTripDestinationContext();
     const {selectedTripStartDate,setSelectedTripStartDate}=useSelectedTripStartDateContext();
@@ -17,6 +19,9 @@ const TripCardComponent = ({ trips }:{trips:ITripData[]}) => {
     setSelectedTripDestination(trip.destination);
     setSelectedTripStartDate(trip.startDate);
     setSelectedTripEndDate(trip.endDate);
+  
+    router.push("/ItinerarySuggestionPages/AddSuggestionPage")
+    
  }
  useEffect (()=>{
     console.log("SELECTED TRIP"+selectedTripId);

@@ -3,10 +3,11 @@
 import { useUserIdContext } from '@/context/DataContext';
 import { getToken } from '@/lib/services/DataServices';
 import { AddTrip, GetParticipantsId } from '@/lib/services/TripDataService';
+import { useRouter } from 'next/navigation';
 import React, { useEffect, useState } from 'react'
 
 const AddTripComponent = () => {
-
+    const router = useRouter();
     // add new trip useStates
     const [destination,setDestination]= useState<string>('');
     const [startDate, setStartDate] = useState<string>(''); 
@@ -23,6 +24,7 @@ const AddTripComponent = () => {
 
     useEffect(()=>{
         console.log("PARTS"+participantIds);
+        console.log("USERID"+userId);
     },[participantIds])
 
     const SaveTripDetails=async()=>{
@@ -41,6 +43,7 @@ const AddTripComponent = () => {
       
         if(result){
             alert("Trip Added!");
+            router.push("/Trip/AddTrip");
           }else{
             alert("Trip not added");
           }

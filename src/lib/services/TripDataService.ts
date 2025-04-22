@@ -29,6 +29,7 @@ export const GetTripListByUserId = async (userId: number,token:string)=>{
 }
 
 export const AddTrip = async (trip:ITripData, token:string)=>{
+    console.log("TRIP"+ trip)
     const res = await fetch(url+"/Trip/AddTrip",{
         method: "POST",
         headers: {
