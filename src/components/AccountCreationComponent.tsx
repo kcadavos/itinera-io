@@ -1,5 +1,5 @@
 // import { useAppcontext } from "@/context/DataContext";
-import { CreateAccount } from "@/lib/DataServices";
+import { CreateAccount } from "@/lib/services/DataServices";
 import React, { useState } from "react";
 
 const AccountCreationComponent = () => {

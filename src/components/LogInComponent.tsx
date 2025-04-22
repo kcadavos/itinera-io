@@ -1,5 +1,5 @@
 'use client'
-import { GetLoggedInUserData, Login } from '@/lib/DataServices';
+import { GetLoggedInUserData, Login } from '@/lib/services/DataServices';
 import { IToken } from '@/lib/Interfaces';
 import React, { useState } from 'react'
 import { useRouter } from "next/navigation";
