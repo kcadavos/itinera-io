@@ -4,7 +4,7 @@ import TripCardComponent from '@/components/TripCardComponent'
 import {  useUserIdContext } from '@/context/DataContext'
 import { getToken } from '@/lib/services/DataServices'
 import { ITripData } from '@/lib/Interfaces'
-import { getTripListByUserId } from '@/lib/services/TripDataService'
+import { GetTripListByUserId } from '@/lib/services/TripDataService'
 import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from 'react'
 
@@ -25,7 +25,7 @@ useEffect(()=>{
 
 useEffect(()=>{
 const getTripListData = async (userId:number)=>{
-  const tripList= (await getTripListByUserId(userId,getToken()));  
+  const tripList= (await GetTripListByUserId(userId,getToken()));  
     setTripListData(tripList);
 }
     getTripListData(userId);
