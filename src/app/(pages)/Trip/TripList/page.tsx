@@ -25,6 +25,7 @@ useEffect(()=>{
 
 useEffect(()=>{
 const getTripListData = async (userId:number)=>{
+
   const tripList= (await GetTripListByUserId(userId,getToken()));
 
 //  Sort by startDate (latest first)
