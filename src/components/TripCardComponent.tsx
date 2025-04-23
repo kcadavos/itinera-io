@@ -28,14 +28,14 @@ const TripCardComponent = ({ trips }:{trips:ITripData[]}) => {
   
  },[selectedTripId])
 
- useEffect (()=>{
-    console.log("START" +selectedTripStartDate)
- },[selectedTripStartDate])
+   useEffect (()=>{
+      console.log("START " +selectedTripStartDate)
+   },[selectedTripStartDate])
 
 
- useEffect (()=>{
-    console.log("END" +selectedTripEndDate)
- },[selectedTripEndDate])
+   useEffect (()=>{
+      console.log("END " +selectedTripEndDate)
+   },[selectedTripEndDate])
 
     return (
         <>

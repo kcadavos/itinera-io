@@ -3,7 +3,7 @@ import { ITripData } from "../TripInterfaces";
 
 
 const url = 'https://itineraioapi-cqapgsgcbschc7hu.westus-01.azurewebsites.net/';
-// const url ='https://localhost:5054/';
+
 
 export const GetTripListByUserId = async (userId: number,token:string)=>{
     const res = await fetch (url+"/Trip/GetTripsByUserId/"+userId,{

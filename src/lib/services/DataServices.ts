@@ -56,8 +56,8 @@ export const GetLoggedInUserData = async (email:string) => {
         return null;
     }
 
-        const userData: IUserInfo = await res.json();
-        return userData;
+    const userData: IUserInfo = await res.json();
+    return userData;
     
 
 }
