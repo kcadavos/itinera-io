@@ -6,7 +6,7 @@ import {
   useSelectedTripEndDateContext,
 } from "@/context/DataContext";
 import { usePathname } from "next/navigation";
-import { format } from "date-fns";
+//import { format } from "date-fns"; commented out for vercel
 
 import React from "react";
 
@@ -17,8 +17,8 @@ const HeaderComponent = () => {
   const { selectedTripStartDate } = useSelectedTripStartDateContext();
   const { selectedTripEndDate } = useSelectedTripEndDateContext();
   const { selectedTripDestination } = useSelectedTripDestinationContext();
-  const startDate = new Date(selectedTripStartDate);
-  const endDate = new Date(selectedTripEndDate);
+  // const startDate = new Date(selectedTripStartDate);
+  // const endDate = new Date(selectedTripEndDate);
   const findPath = () => {
     if (path == "/ItinerarySuggestionPages/AddSuggestionPage") {
       return {message: "What activities are you excided about?",
