@@ -55,7 +55,7 @@ const AddTripComponent = () => {
             alert("Trip Added !");
             router.push("/Trip/TripList");
           }else{
-            alert("Trip not added");
+            alert("Sorry Trip not added");
           }
     }
   return (
