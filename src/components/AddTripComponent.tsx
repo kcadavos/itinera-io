@@ -6,6 +6,19 @@ import { AddTrip, GetParticipantsId } from '@/lib/services/TripDataService';
 import { useRouter } from 'next/navigation';
 import React, { useEffect, useState } from 'react'
 
+//for date picker
+import { format } from "date-fns"
+import { Calendar as CalendarIcon } from "lucide-react"
+ 
+import { cn } from "@/lib/utils"
+import { Button } from "@/components/ui/button"
+import { Calendar } from "@/components/ui/calendar"
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover"
+
 const AddTripComponent = () => {
     const router = useRouter();
     // add new trip useStates
@@ -25,7 +38,9 @@ const AddTripComponent = () => {
     useEffect(()=>{
         console.log("PARTS"+participantIds);
         console.log("USERID"+userId);
-    },[participantIds])
+        console.log("START", startDate);
+        console.log("End"+ endDate);
+    },[participantIds,startDate,endDate])
 
     const SaveTripDetails=async()=>{
 
@@ -50,7 +65,7 @@ const AddTripComponent = () => {
     }
   return (
     //for mobile
-    <div className="block md:hidden">
+    <div className="block md:hidden ">
   
     <div className="bg-[#ECF0F1] rounded-2xl min-h-[28rem] min-w-[20rem] lg:min-h-[25rem] lg:max-w-[20rem] mx-4 px-4 relative mb-40">
 
@@ -64,26 +79,81 @@ const AddTripComponent = () => {
                 <input type="text" placeholder='Destination' className='bg-white rounded-md py-1 px-2 w-full'     onChange={(e) => setDestination(e.target.value)}/>
             </div>
 
-            <div className='flex justify-start my-4'>
-                <div className=" mr-2"> 
+            <div className='flex  justify-start my-4'>
+            <div className=" mr-2"> 
                     <img src="/assets/Icons/Orion_meeting-geotag.svg" alt="Start Date" className="w-8" />
+                    
                 </div>
+                <div className='w-full'>
+                <Popover>
+      <PopoverTrigger asChild>
+        <Button
+          variant={"outline"}
+          className={cn(
+            "w-full bg-white rounded-md py-1 px-2 justify-start text-left font-normal",
+            !startDate && "text-muted-foreground"
+          )  }
+        >
+          
+          {startDate ? format(startDate,"yyyy-MM-dd") : <span>Start Date</span>}
+        </Button>
+      </PopoverTrigger>
+      <PopoverContent className="w-auto p-0">
+        <Calendar
+          mode="single"
+          selected={startDate ? new Date(startDate) : undefined}
+          onSelect={(date) => {
+            if (date) setStartDate(date.toISOString().split("T")[0]); // format as 'YYYY-MM-DD'
+          }}
+          initialFocus
+        />
+      </PopoverContent>
+    </Popover> 
+                </div>
+              
+                 
 
-                <input type="text" placeholder='Start Date YYYY-MM-DD' className='bg-white rounded-md py-1 px-2 w-full' onChange={(e) => setStartDate(e.target.value)} />
+                {/* <input type="text" placeholder='Start Date YYYY-MM-DD' className='bg-white rounded-md py-1 px-2 w-full' onChange={(e) => setStartDate(e.target.value)} /> */}
             </div>
 
             <div className='flex justify-start my-4'>
                 <div className=" mr-2"> 
                     <img src="/assets/Icons/Orion_meeting-geotag.svg" alt="End Date" className='w-8' />
                 </div>
-
-                <input type="text" placeholder='End Date YYYY-MM-DD' className='bg-white rounded-md py-1 px-2 w-full'     onChange={(e) => setEndDate(e.target.value)}/>
+                <div className='w-full'>
+                <Popover>
+      <PopoverTrigger asChild>
+        <Button
+          variant={"outline"}
+          className={cn(
+            "w-full bg-white rounded-md py-1 px-2 justify-start text-left font-normal",
+            !endDate && "text-muted-foreground"
+          )  }
+        >
+          
+          {endDate ? format(endDate,"yyyy-MM-dd") : <span>End Date</span>}
+        </Button>
+      </PopoverTrigger>
+      <PopoverContent className="w-auto p-0">
+        <Calendar
+          mode="single"
+          selected={endDate ? new Date(endDate) : undefined}
+          onSelect={(date) => {
+            if (date) setEndDate(date.toISOString().split("T")[0]); // format as 'YYYY-MM-DD' removes time
+          }}
+          initialFocus
+        />
+      </PopoverContent>
+    </Popover> 
+                </div>
+                {/* <input type="text" placeholder='End Date YYYY-MM-DD' className='bg-white rounded-md py-1 px-2 w-full'     onChange={(e) => setEndDate(e.target.value)}/> */}
             </div>
 
             <div className='flex justify-start my-4'>
                 <div className=" mr-2"> 
                     <img src="/assets/Icons/Orion_people.svg" alt="Participants" className="w-8" />
                 </div>
+
 
                 <textarea placeholder='Participants e-mail address    (separate with comma)' className='bg-white rounded-md py-1 px-2 pb-36 w-full resize-none' onChange ={(e)=>handleParticipantsEmailList(e.target.value)}></textarea>
             </div>

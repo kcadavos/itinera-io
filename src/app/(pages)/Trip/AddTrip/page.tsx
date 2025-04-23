@@ -4,7 +4,7 @@ import React from 'react'
 
 const AddTrip = () => {
   return (
-   <AddTripComponent/>
+   <AddTripComponent />
   )
 }
 
