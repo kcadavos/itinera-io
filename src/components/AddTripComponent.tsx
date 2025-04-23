@@ -40,7 +40,7 @@ const AddTripComponent = () => {
         console.log("USERID"+userId);
         console.log("START", startDate);
         console.log("End"+ endDate);
-    },[participantIds,startDate,endDate])
+    },[userId,participantIds,startDate,endDate])
 
     const SaveTripDetails=async()=>{
 

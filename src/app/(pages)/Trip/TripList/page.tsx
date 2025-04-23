@@ -21,7 +21,7 @@ useEffect(()=>{
       router.push("/Trip/AddTrip");
     }
   
-},[tripListData])
+},[router,tripListData])
 
 useEffect(()=>{
 const getTripListData = async (userId:number)=>{
