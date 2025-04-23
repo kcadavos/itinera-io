@@ -12,13 +12,12 @@ import {
   } from "@/components/ui/dropdown-menu"
 
 const AddSuggestionComponent = () => {
-    //const {selectedTripId} = useSelectedTripIdContext();
+    const {selectedTripId} = useSelectedTripIdContext();
     const [activity, setActivity] = useState<string>('');
     const [categorty, setCategory] = useState<string>('');
     const [address, setAddress] = useState<string>('');
     const [detailes, setDetails] = useState<string>('');
 
-    const selectedTripId = 33
 
     const activityData = {
         tripId: selectedTripId,
