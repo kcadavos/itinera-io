@@ -1,4 +1,6 @@
 "use client";
+import React from "react";
+
 import {
   useNameContext,
   useSelectedTripDestinationContext,
@@ -6,9 +8,8 @@ import {
   useSelectedTripEndDateContext,
 } from "@/context/DataContext";
 import { usePathname } from "next/navigation";
-//import { format } from "date-fns"; commented out for vercel
-
-import React from "react";
+import { format, parseISO } from "date-fns";
+import Link from "next/link";
 
 const HeaderComponent = () => {
   const path = usePathname();
@@ -17,29 +18,82 @@ const HeaderComponent = () => {
   const { selectedTripStartDate } = useSelectedTripStartDateContext();
   const { selectedTripEndDate } = useSelectedTripEndDateContext();
   const { selectedTripDestination } = useSelectedTripDestinationContext();
-  // const startDate = new Date(selectedTripStartDate);
-  // const endDate = new Date(selectedTripEndDate);
+
+  const startDate = parseISO(selectedTripStartDate);
+  const endDate = parseISO(selectedTripEndDate);
+
   const findPath = () => {
-    if (path == "/ItinerarySuggestionPages/AddSuggestionPage") {
-      return {message: "What activities are you excided about?",
-        color: "text-black"
+    if (path === "/ItinerarySuggestionPages/AddSuggestionPage") {
+      return {
+        topMessage: (
+          <p>
+            Hi <span className="text-[#4A90E2] text-xl">{name}</span>, let's plan for
+          </p>
+        ),
+        destination: selectedTripDestination,
+        message: "What activities are you excited about?",
+        color: "text-black text-sm",
       };
-    } else {
-    
-      return { message:` for ${selectedTripStartDate} - ${selectedTripEndDate}`,
-    color:"text-[#E67E22]"};
+    } else if (path.startsWith("/ItinerarySuggestionPages")) {
+      return {
+        topMessage: (
+          <p>
+            Hi <span className="text-[#4A90E2] text-xl">{name}</span>, let's plan for
+          </p>
+        ),
+        destination: selectedTripDestination,
+        message: `for ${format(startDate, "MMM, d")} - ${format(endDate, "MMM, d")}`,
+        color: "text-[#E67E22] text-sm",
+      };
+    } else if(path === '/Trip/TripList' ){
+      return {
+        topMessage: (
+          <p>
+            Hi <span className="text-[#4A90E2] text-xl">{name}</span>,
+          </p>
+        ),
+        destination: '',
+        message: "Looking forward to these trips?",
+        color: "text-[#34495E] text-2xl",
+      };
+
+    }else if(path === "/Trip/AddTrip") {
+      return {
+        topMessage: (
+          <p>
+            Hi <span className="text-[#4A90E2] text-xl">{name}</span>,
+          </p>
+        ),
+        destination: '',
+        message: "Where do you want to go?",
+        color: "text-[#34495E] text-2xl",
+      };
+    }else{
+      return {
+        topMessage: (
+          <p className="text-[#E67E22] text-2xl">
+            Votes In,
+            <br />
+            Adventure Out. 
+          </p>
+        ),
+        destination: '',
+        message: "Log In.",
+        color: "text-[#34495E] text-2xl text-medium",
+      };
     }
   };
 
   const bottom = findPath();
+
   return (
     <div className="md:hidden">
       <div className="bg-[#E1ECFF] min-h-[10rem] max-h-[10rem] lg:min-h-[13.2rem] lg:max-h-[13.2rem] pt-10 pb-5 min-w-screen max-w-screen mb-6">
         <div className="mx-8 font-inter">
-          <p className=" text-[#1ABC9C]">Itinera-IO</p>
-          <p>Hi {name}, lets plan for</p>
-          <p className="text-3xl text-[#E67E22]"> {selectedTripDestination} </p>
-          <p className={`text-sm ${bottom.color}` }>{bottom.message}</p>
+          <Link href="/" className="text-[#1ABC9C]">Itinera-IO</Link>
+          <div className="font-medium text-[#34495E]">{bottom.topMessage}</div>
+          <p className="text-3xl text-[#E67E22]">{bottom.destination}</p>
+          <p className={` ${bottom.color}`}>{bottom.message}</p>
         </div>
       </div>
     </div>
