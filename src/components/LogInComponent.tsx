@@ -35,7 +35,8 @@ const LogInComponent = () => {
           //set data context values
           setName(loggedInData.name);
           setUserId(loggedInData.id)
-          router.push('Trip/TripList');
+          // router.push('Trip/TripList');
+          router.push('ItinerarySuggestionPages/AddSuggestionPage');
         }
 
         
