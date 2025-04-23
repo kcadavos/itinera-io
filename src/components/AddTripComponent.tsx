@@ -58,7 +58,6 @@ const AddTripComponent = () => {
       
         if(result){
             alert("Trip Added Here!");
-          
             router.push("/Trip/TripList");
           }else{
             alert("Trip not added");
@@ -66,7 +65,7 @@ const AddTripComponent = () => {
     }
   return (
     //for mobile
-    <div className="block md:hidden ">
+    <div className="block">
   
     <div className="bg-[#ECF0F1] rounded-2xl min-h-[28rem] min-w-[20rem] lg:min-h-[25rem] lg:max-w-[20rem] mx-4 px-4 relative mb-40">
 
