@@ -57,8 +57,8 @@ const AddTripComponent = () => {
         const result = await AddTrip(trip,getToken())
       
         if(result){
-            // alert("Trip Added!");
-            console.log("TRIP ADDED ");
+            alert("Trip Added!");
+          
             router.push("/Trip/TripList");
           }else{
             alert("Trip not added");
