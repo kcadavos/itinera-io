@@ -6,25 +6,20 @@ import { AddTrip, GetParticipantsId } from '@/lib/services/TripDataService';
 import { useRouter } from 'next/navigation';
 import React, { useEffect, useState } from 'react'
 
-//for date picker
+// for date picker
+import DatePicker from 'react-datepicker';
+import "react-datepicker/dist/react-datepicker.css";
 import { format } from "date-fns"
 
- 
-import { cn } from "@/lib/utils"
-import { Button } from "@/components/ui/button"
-import { Calendar } from "@/components/ui/calendar"
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui/popover"
 
 const AddTripComponent = () => {
     const router = useRouter();
     // add new trip useStates
     const [destination,setDestination]= useState<string>('');
-    const [startDate, setStartDate] = useState<string>(''); 
-    const[endDate,setEndDate]= useState<string> ('');
+    // const [startDate, setStartDate] = useState<string>('');
+    const [startDate, setStartDate] = useState<Date | null>(null);
+    // const[endDate,setEndDate]= useState<string> ('');
+    const [endDate, setEndDate] = useState<Date | null>(null);
     const [participantIds, setParticipantIds] = useState<number[]> ([]);
     const{userId}=useUserIdContext();
     
@@ -47,8 +42,8 @@ const AddTripComponent = () => {
         const trip={
             id:0,
             destination:destination,
-            startDate:startDate,// 'YYYY-MM-DD'  this is also how it is saved in DB for DateOnly data type
-            endDate:endDate, //'YYYY-MM-DD' this is also how it is saved in DB for DateOnly data type
+            startDate:startDate ? format(startDate, 'yyyy-MM-dd') : '',// 'YYYY-MM-DD'  this is also how it is saved in DB for DateOnly data type
+            endDate:endDate ? format(endDate, 'yyyy-MM-dd') : '',//'YYYY-MM-DD' this is also how it is saved in DB for DateOnly data type
             ownerId: userId,
             participantsId: participantIds,
             isVotingOpen: true
@@ -57,7 +52,7 @@ const AddTripComponent = () => {
         const result = await AddTrip(trip,getToken())
       
         if(result){
-            alert("Trip Added Here!");
+            alert("Trip Added !");
             router.push("/Trip/TripList");
           }else{
             alert("Trip not added");
@@ -84,69 +79,36 @@ const AddTripComponent = () => {
                     <img src="/assets/Icons/Orion_meeting-geotag.svg" alt="Start Date" className="w-8" />
                     
                 </div>
-                <div className='w-full'>
-                <Popover>
-      <PopoverTrigger asChild>
-        <Button
-          variant={"outline"}
-          className={cn(
-            "w-full bg-white rounded-md py-1 px-2 justify-start text-left font-normal",
-            !startDate && "text-muted-foreground"
-          )  }
-        >
-          
-          {startDate ? format(startDate,"yyyy-MM-dd") : <span>Start Date</span>}
-        </Button>
-      </PopoverTrigger>
-      <PopoverContent className="w-auto p-0">
-        <Calendar
-          mode="single"
-          selected={startDate ? new Date(startDate) : undefined}
-          onSelect={(date) => {
-            if (date) setStartDate(date.toISOString().split("T")[0]); // format as 'YYYY-MM-DD'
-          }}
-          initialFocus
-        />
-      </PopoverContent>
-    </Popover> 
-                </div>
-              
-                 
-
-                {/* <input type="text" placeholder='Start Date YYYY-MM-DD' className='bg-white rounded-md py-1 px-2 w-full' onChange={(e) => setStartDate(e.target.value)} /> */}
+             
+                
+    <DatePicker
+      selected={startDate}
+      onChange={(newDate: Date | null) => setStartDate(newDate)}
+      placeholderText="Start Date"
+      dateFormat="MM/dd/yyyy"  className='bg-white rounded-md py-1 px-2 w-full'
+    />
+                
+                
+ 
+                {/* <input type="date" placeholder='Start Date MM/DD/YYYY' className='bg-white rounded-md py-1 px-2 w-full' onChange={(e) => setStartDate(e.target.value)} /> */}
             </div>
 
             <div className='flex justify-start my-4'>
                 <div className=" mr-2"> 
                     <img src="/assets/Icons/Orion_meeting-geotag.svg" alt="End Date" className='w-8' />
                 </div>
-                <div className='w-full'>
-                <Popover>
-      <PopoverTrigger asChild>
-        <Button
-          variant={"outline"}
-          className={cn(
-            "w-full bg-white rounded-md py-1 px-2 justify-start text-left font-normal",
-            !endDate && "text-muted-foreground"
-          )  }
-        >
-          
-          {endDate ? format(endDate,"yyyy-MM-dd") : <span>End Date</span>}
-        </Button>
-      </PopoverTrigger>
-      <PopoverContent className="w-auto p-0">
-        <Calendar
-          mode="single"
-          selected={endDate ? new Date(endDate) : undefined}
-          onSelect={(date) => {
-            if (date) setEndDate(date.toISOString().split("T")[0]); // format as 'YYYY-MM-DD' removes time
-          }}
-          initialFocus
-        />
-      </PopoverContent>
-    </Popover> 
-                </div>
-                {/* <input type="text" placeholder='End Date YYYY-MM-DD' className='bg-white rounded-md py-1 px-2 w-full'     onChange={(e) => setEndDate(e.target.value)}/> */}
+{/*              
+                <input type="text" placeholder='End Date MM-DD-YYYY' className='bg-white rounded-md py-1 px-2 w-full'     onChange={(e) => setEndDate(e.target.value)}  /> */}
+ 
+
+                    
+<DatePicker
+      selected={endDate}
+      onChange={(newDate: Date | null) => setEndDate(newDate)}
+      placeholderText="End  Date"
+      dateFormat="MM/dd/yyyy"  className='bg-white rounded-md py-1 px-2 w-full'
+    />
+                
             </div>
 
             <div className='flex justify-start my-4'>
