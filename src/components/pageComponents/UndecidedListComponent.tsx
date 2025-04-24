@@ -2,21 +2,21 @@
 
 import React, { useEffect } from 'react'
 import UndecidedCardComponent from '../UndecidedCardComponent'
-import { useSelectedTripIdContext, useUserIdContext } from '@/context/DataContext';
-import { GetUndecidedActivities } from '@/lib/services/ActivityServices';
-
+import { useUserIdContext } from '@/context/DataContext';
+//import { GetUndecidedActivities } from '@/lib/services/ActivityServices';
+//useSelectedTripIdContext, 
 const UndecidedListComponent = () => {
-    const {userId} = useUserIdContext();
-    const {selectedTripId} = useSelectedTripIdContext();
-    // useState for the list data
+  const {userId} = useUserIdContext();
+  // const {selectedTripId} = useSelectedTripIdContext();
+  // useState for the list data
 
-    useEffect(()=>{
-        const getUndecidedList = async ()=>{
-            const undecidedListData = await GetUndecidedActivities(userId, selectedTripId);
-        }
-        getUndecidedList();
+  useEffect(()=>{
+    const getUndecidedList = async ()=>{
+      //  undecidedListData = await GetUndecidedActivities(userId, selectedTripId);
+    }
+    getUndecidedList();
        
-    },[userId]);
+  },[userId]);
 
   return (
     <div>
