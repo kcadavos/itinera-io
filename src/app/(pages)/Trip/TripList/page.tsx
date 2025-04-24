@@ -23,27 +23,27 @@ useEffect(()=>{
   
 },[router,tripListData])
 
-useEffect(()=>{
-const getTripListData = async (userId:number)=>{
-  const tripList= (await GetTripListByUserId(userId, getToken()));  
-    setTripListData(tripList);
-}
-    getTripListData(userId);
-    console.log("USER"+ userId);
-},[userId]);
+  useEffect(()=>{
+    const getTripListData = async (userId:number)=>{
+    const tripList= (await GetTripListByUserId(userId, getToken()));  
+      setTripListData(tripList);
+  }
+      getTripListData(userId);
+      console.log("USER"+ userId);
+  },[userId]);
 
 
   return (
-<div className='pb-40'>
-   {( tripListData!==null && tripListData.length>0) &&(
-    <>
-  <TripCardComponent  trips={tripListData}/> 
-    <FooterComponent/>
-    </>
-   )
+    <div className='pb-40'>
+      {( tripListData!==null && tripListData.length>0) &&(
+        <>
+      <TripCardComponent  trips={tripListData}/> 
+        <FooterComponent/>
+        </>
+      )
 
-    
-   }
+        
+      }
 
     </div>
 
