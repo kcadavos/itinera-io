@@ -1,5 +1,5 @@
 import { ITripData } from '@/lib/Interfaces'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { format } from 'date-fns'; 
 import { useSelectedTripDestinationContext, useSelectedTripEndDateContext, useSelectedTripIdContext, useSelectedTripStartDateContext } from '@/context/DataContext';
 import { useRouter } from 'next/navigation';
@@ -14,19 +14,13 @@ import {
  } from "@/components/ui/accordion"
 
 const TripCardComponent = ({ trips }:{trips:ITripData[]}) => {
-   const bgColors = [
-      "bg-[#1A89BC]",
-       "bg-[#4AAAE2]",
-       "bg-[#F4B400]",
-       "bg-[#E67E22]",
-       "bg-[#4A90E2]",
-    ];
+   const bgColors = ["bg-[#1A89BC]","bg-[#4AAAE2]","bg-[#F4B400]","bg-[#E67E22]","bg-[#4A90E2]"]; // for alternating the trip colors
    const router = useRouter();
     const {selectedTripId,setSelectedTripId}= useSelectedTripIdContext();
     const {setSelectedTripDestination}= useSelectedTripDestinationContext();
     const {selectedTripStartDate,setSelectedTripStartDate}=useSelectedTripStartDateContext();
     const{selectedTripEndDate,setSelectedTripEndDate}=useSelectedTripEndDateContext();
-    const [openItem, setOpenItem] = useState<string >('1');
+
 
 
     
@@ -36,8 +30,13 @@ const TripCardComponent = ({ trips }:{trips:ITripData[]}) => {
     setSelectedTripDestination(trip.destination);
     setSelectedTripStartDate(trip.startDate);
     setSelectedTripEndDate(trip.endDate);
+    
+    if (trip.isVotingOpen){
+       router.push("/ItinerarySuggestionPages/AddSuggestionPage")
+    }else{
+       router.push("/Itinerary/ViewItinerary")
+    }
   
-    router.push("/ItinerarySuggestionPages/AddSuggestionPage")
     
  }
  useEffect (()=>{
@@ -56,21 +55,19 @@ const TripCardComponent = ({ trips }:{trips:ITripData[]}) => {
 
  useEffect(()=>{
    if (trips.length > 0) {
-      const lastTripId =  `${trips[trips.length - 1].id}`;
-      setOpenItem(lastTripId);
+      const lastTripId =  trips[trips.length - 1].id;
+      setSelectedTripId(lastTripId); // this is for loading the accordion on initial load/login
     }
  },[trips])
  
 
     return (
         <>
-
-      
-    {/*Accordion */}
-  
-    <Accordion type="single" collapsible  value={openItem}
-      onValueChange={(val) => setOpenItem(val)} className="w-full p-6 ">
-    {trips.length>0 ?
+   {/*Accordion */}
+   {/* value is for indicating what is collapsed in the accordion*/ }
+    <Accordion type="single" collapsible  value={`${selectedTripId}`} 
+      onValueChange={(val) => setSelectedTripId(Number(val))} className="w-full p-6 ">
+    { trips.length>0 ?
      (
        trips.map ((trip,index) =>(
          <AccordionItem  key = {trip.id} value={`${trip.id}`} className={`border border-white rounded-2xl p-6 w-full relative ${
@@ -78,20 +75,20 @@ const TripCardComponent = ({ trips }:{trips:ITripData[]}) => {
           } ${bgColors[index % bgColors.length]}`}>
      <AccordionTrigger className='flex justify-between   items-center  w-full   [&>svg]:hidden '>
      <h5 className="mb-2 text-2xl font-bold tracking-tight text-white capitalize">{trip.destination}</h5>
-    <p className="font-normal text-lg text-white">{format(new Date(trip.startDate+"T12:00:00"),'MMM-dd')} - {format(new Date(trip.endDate+"T12:00:00"),'MMM-dd')}</p>
+    <p className="font-normal text-lg text-white">{format(new Date(trip.startDate+"T12:00:00"),'MMM dd')}-{format(new Date(trip.endDate+"T12:00:00"),'MMM dd')}</p>
       </AccordionTrigger>
      <AccordionContent>
-     <a  href="#" onClick={()=>handleSelectTrip(trip)}>
+     <div onClick={()=>handleSelectTrip(trip)}>
            
      <p className="text-center font-normal text-3xl text-white">{trip.isVotingOpen? "Voting in Progress" : "Itinerary generated"}</p>
 
-     </a>
+     </div>
      </AccordionContent>
    </AccordionItem>
        ))
      
     
-     ) : <p className='text-2xl'> No trips data list available</p>}
+     ) : (<p className='text-2xl'> No trips data list available</p>)}
      
     </Accordion>
 
