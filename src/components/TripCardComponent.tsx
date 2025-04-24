@@ -55,7 +55,8 @@ const TripCardComponent = ({ trips }:{trips:ITripData[]}) => {
 
  useEffect(()=>{
    if (trips.length > 0) {
-      const lastTripId =  trips[trips.length - 1].id;
+      // const lastTripId =  trips[trips.length - 1].id;
+      const lastTripId = trips[0].id;
       setSelectedTripId(lastTripId); // this is for loading the accordion on initial load/login
     }
  },[trips])
