@@ -2,7 +2,7 @@
 
 import { useSelectedTripIdContext, useUserIdContext } from '@/context/DataContext';
 import { getToken } from '@/lib/services/DataServices';
-import { AddTrip, AddTripReturnTripId, GetParticipantsId } from '@/lib/services/TripDataService';
+import {  AddTripReturnTripId, GetParticipantsId } from '@/lib/services/TripDataService';
 import { useRouter } from 'next/navigation';
 import React, { useEffect, useState } from 'react'
 
@@ -16,7 +16,7 @@ const AddTripComponent = () => {
     const router = useRouter();
 
     // context for selected trip when trip is added
-    const {selectedTripId,setSelectedTripId}= useSelectedTripIdContext();
+    const {setSelectedTripId}= useSelectedTripIdContext();
 
     // add new trip useStates
     const [destination,setDestination]= useState<string>('');

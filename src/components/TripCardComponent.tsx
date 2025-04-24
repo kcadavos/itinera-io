@@ -1,5 +1,5 @@
 import { ITripData } from '@/lib/Interfaces'
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useRef } from 'react'
 import { format } from 'date-fns'; 
 import { useSelectedTripDestinationContext, useSelectedTripEndDateContext, useSelectedTripIdContext, useSelectedTripStartDateContext } from '@/context/DataContext';
 import { useRouter } from 'next/navigation';
@@ -49,7 +49,6 @@ const TripCardComponent = ({ trips }:{trips:ITripData[]}) => {
     
  useEffect (()=>{
     console.log("SELECTED TRIP"+selectedTripId);
-  
  },[selectedTripId])
 
    useEffect (()=>{
@@ -62,7 +61,6 @@ const TripCardComponent = ({ trips }:{trips:ITripData[]}) => {
    },[selectedTripEndDate])
 
 
-useEffect
     return (
         <>
    {/*Accordion */}
