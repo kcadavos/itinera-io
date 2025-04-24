@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 import {
   useNameContext,
@@ -10,6 +10,7 @@ import {
 import { usePathname } from "next/navigation";
 import { format, parseISO } from "date-fns";
 import Link from "next/link";
+import MenuComponent from "./MenuComponent";
 
 const HeaderComponent = () => {
   const path = usePathname();
@@ -21,6 +22,10 @@ const HeaderComponent = () => {
 
   const startDate = parseISO(selectedTripStartDate);
   const endDate = parseISO(selectedTripEndDate);
+  const [isHidden, setIsHidden] = useState(false);
+  useEffect(()=>{
+    setIsHidden(path == '/');
+  },[path])
 
   const findPath = () => {
     if (path === "/ItinerarySuggestionPages/AddSuggestionPage") {
@@ -58,11 +63,16 @@ const HeaderComponent = () => {
           <p>
             {`Hi `}
             <span className="text-[#4A90E2] text-xl">{name}</span>
-            {`, let's plan for`}{" "}
+            {`,`}
           </p>
         ),
         destination: "",
-        message: "Looking forward to these trips?",
+        message: (
+          <p>
+
+            Looking forward to <br /> these trips?
+          </p>
+        ),
         color: "text-[#34495E] text-2xl",
       };
     } else if (path === "/Trip/AddTrip") {
@@ -71,11 +81,16 @@ const HeaderComponent = () => {
           <p>
             {`Hi `}
             <span className="text-[#4A90E2] text-xl">{name}</span>
-            {`, let's plan for`}{" "}
+            {`,`}
           </p>
         ),
         destination: "",
-        message: "Where do you want to go?",
+        message: (
+          <p>
+
+            Where do you  <br /> want to go?
+          </p>
+        ),
         color: "text-[#34495E] text-2xl",
       };
     } else {
@@ -98,14 +113,15 @@ const HeaderComponent = () => {
 
   return (
     <div className="md:hidden">
-      <div className="bg-[#E1ECFF] min-h-[10rem] max-h-[10rem] lg:min-h-[13.2rem] lg:max-h-[13.2rem] pt-10 pb-5 min-w-screen max-w-screen mb-6">
-        <div className="mx-8 font-inter">
+      <div className="bg-[#E1ECFF] min-h-[14rem] max-h-[14rem] lg:min-h-[13.2rem] lg:max-h-[13.2rem] pt-10 pb-10 relative min-w-screen max-w-screen mb-6">
+          {!isHidden && <MenuComponent/>}
+        <div className="mx-8 mt-7 font-inter">
           <Link href="/" className="text-[#1ABC9C]">
-            Itinera-IO
+            <img className="h-10 " src="/assets/icons/itineraLogo.svg" alt="" />
           </Link>
           <div className="font-medium text-[#34495E]">{bottom.topMessage}</div>
           <p className="text-3xl text-[#E67E22]">{bottom.destination}</p>
-          <p className={` ${bottom.color}`}>{bottom.message}</p>
+          <div className={` ${bottom.color}`}>{bottom.message}</div>
         </div>
       </div>
     </div>
