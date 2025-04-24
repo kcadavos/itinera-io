@@ -1,7 +1,7 @@
 'use client'
 import React from 'react'
 
-const NotificationsComponent = () => {
+const MenuComponent= () => {
   return (
     <>
     <div></div>
@@ -9,4 +9,4 @@ const NotificationsComponent = () => {
   )
 }
 
-export default NotificationsComponent
+export default MenuComponent
