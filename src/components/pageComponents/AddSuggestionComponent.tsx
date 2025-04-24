@@ -10,6 +10,7 @@ import {
     DropdownMenuItem,
     DropdownMenuTrigger,
   } from "@/components/ui/dropdown-menu"
+import { useRouter } from 'next/navigation';
 
 const AddSuggestionComponent = () => {
     const {selectedTripId} = useSelectedTripIdContext();
@@ -17,6 +18,8 @@ const AddSuggestionComponent = () => {
     const [categorty, setCategory] = useState<string>('');
     const [address, setAddress] = useState<string>('');
     const [detailes, setDetails] = useState<string>('');
+
+    const router = useRouter();
 
 
     const activityData = {
@@ -32,10 +35,7 @@ const AddSuggestionComponent = () => {
         
         if(result){
             alert("Activity Created!");
-            setActivity('');
-            setCategory('');
-            setAddress('');
-            setDetails('');
+            router.push('/ItinerarySuggestionPages/UndecidedListPage');
 
         }else{
             alert("something went wrong");
@@ -69,15 +69,33 @@ const AddSuggestionComponent = () => {
                         {/* <input type="text" placeholder='Category' className='bg-white rounded-md py-1 px-2 w-full' onChange={(e) => setCategory(e.target.value)} /> */}
                         <DropdownMenu>
                             <DropdownMenuTrigger asChild>
-                                <button className='bg-white rounded-md py-1 px-2 w-full text-gray-500 text-start'>Category</button>
+                                <button className='bg-white rounded-md py-1 px-2 w-full text-[#34495E]/60 text-start hover:border-1 hover:border-black'>
+                                    <div className='flex justify-between'>
+                                        Category
+                                        <svg width="14" height="18" viewBox="0 0 16 14" fill="none" xmlns="http://www.w3.org/2000/svg" className='pt-1 pr-1'>
+                                            <path d="M8.0002 14L0.205975 0.500001L15.7944 0.500002L8.0002 14Z" fill="#6A6A6A" fillOpacity="0.56"/>
+                                        </svg>
+                                    </div>
+                                    
+                                </button>
                             </DropdownMenuTrigger>
                             <DropdownMenuContent className="w-64 border-1 border-black">
-                                <DropdownMenuGroup className='text-gray-500'>
-                                    <DropdownMenuItem >Adventure & Outdoors</DropdownMenuItem>
-                                    <DropdownMenuItem >Culture & History</DropdownMenuItem>
-                                    <DropdownMenuItem >Food & Drink</DropdownMenuItem>
-                                    <DropdownMenuItem >Relaxation & Wellness</DropdownMenuItem>
-                                    <DropdownMenuItem >Entertainment &</DropdownMenuItem>
+                                <DropdownMenuGroup className='text-[#34495E]/60'>
+                                {
+                                    categorty == 'Adventure & Outdoors' ? <DropdownMenuItem className='bg-[#ECF0F1]'>Adventure & Outdoors</DropdownMenuItem> : <DropdownMenuItem onClick={() => setCategory('Adventure & Outdoors')} >Adventure & Outdoors</DropdownMenuItem>       
+                                }
+                                {
+                                    categorty == 'Culture & History' ? <DropdownMenuItem className='bg-[#ECF0F1]'>Culture & History</DropdownMenuItem> : <DropdownMenuItem onClick={() => setCategory('Culture & History')}>Culture & History</DropdownMenuItem>
+                                }
+                                {
+                                    categorty == 'Food & Drink' ? <DropdownMenuItem className='bg-[#ECF0F1]'>Food & Drink</DropdownMenuItem> : <DropdownMenuItem onClick={() => setCategory('Food & Drink')}>Food & Drink</DropdownMenuItem>
+                                }
+                                {
+                                    categorty == 'Relaxation & Wellness' ? <DropdownMenuItem className='bg-[#ECF0F1]'>Relaxation & Wellness</DropdownMenuItem> : <DropdownMenuItem onClick={() => setCategory('Relaxation & Wellness')}>Relaxation & Wellness</DropdownMenuItem>
+                                }
+                                {
+                                    categorty == 'Entertainment & Nightlife' ? <DropdownMenuItem className='bg-[#ECF0F1]'>Entertainment & Nightlife</DropdownMenuItem> : <DropdownMenuItem onClick={() => setCategory('Entertainment & Nightlife')}>Entertainment & Nightlife</DropdownMenuItem>
+                                }
                                 </DropdownMenuGroup>
                             </DropdownMenuContent>
                         </DropdownMenu>
