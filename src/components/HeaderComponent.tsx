@@ -56,7 +56,9 @@ const HeaderComponent = () => {
       return {
         topMessage: (
           <p>
-            Hi <span className="text-[#4A90E2] text-xl">{name}</span>,
+            {`Hi `}
+            <span className="text-[#4A90E2] text-xl">{name}</span>
+            {`, let's plan for`}{" "}
           </p>
         ),
         destination: "",
@@ -67,7 +69,9 @@ const HeaderComponent = () => {
       return {
         topMessage: (
           <p>
-            Hi <span className="text-[#4A90E2] text-xl">{name}</span>,
+            {`Hi `}
+            <span className="text-[#4A90E2] text-xl">{name}</span>
+            {`, let's plan for`}{" "}
           </p>
         ),
         destination: "",
