@@ -1,9 +1,9 @@
 import React from 'react'
 
-const page = () => {
+const ViewItinerary = () => {
   return (
-    <div>page</div>
+    <div>View Itinerary</div>
   )
 }
 
-export default page
+export default ViewItinerary
