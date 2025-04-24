@@ -27,7 +27,9 @@ const HeaderComponent = () => {
       return {
         topMessage: (
           <p>
-            Hi <span className="text-[#4A90E2] text-xl">{name}</span>, let's plan for
+            {`Hi `}
+            <span className="text-[#4A90E2] text-xl">{name}</span>
+            {`, let's plan for`}{" "}
           </p>
         ),
         destination: selectedTripDestination,
@@ -38,46 +40,50 @@ const HeaderComponent = () => {
       return {
         topMessage: (
           <p>
-            Hi <span className="text-[#4A90E2] text-xl">{name}</span>, let's plan for
+            {`Hi `}
+            <span className="text-[#4A90E2] text-xl">{name}</span>
+            {`, let's plan for`}{" "}
           </p>
         ),
         destination: selectedTripDestination,
-        message: `for ${format(startDate, "MMM, d")} - ${format(endDate, "MMM, d")}`,
+        message: `for ${format(startDate, "MMM, d")} - ${format(
+          endDate,
+          "MMM, d"
+        )}`,
         color: "text-[#E67E22] text-sm",
       };
-    } else if(path === '/Trip/TripList' ){
+    } else if (path === "/Trip/TripList") {
       return {
         topMessage: (
           <p>
             Hi <span className="text-[#4A90E2] text-xl">{name}</span>,
           </p>
         ),
-        destination: '',
+        destination: "",
         message: "Looking forward to these trips?",
         color: "text-[#34495E] text-2xl",
       };
-
-    }else if(path === "/Trip/AddTrip") {
+    } else if (path === "/Trip/AddTrip") {
       return {
         topMessage: (
           <p>
             Hi <span className="text-[#4A90E2] text-xl">{name}</span>,
           </p>
         ),
-        destination: '',
+        destination: "",
         message: "Where do you want to go?",
         color: "text-[#34495E] text-2xl",
       };
-    }else{
+    } else {
       return {
         topMessage: (
           <p className="text-[#E67E22] text-2xl">
             Votes In,
             <br />
-            Adventure Out. 
+            Adventure Out.
           </p>
         ),
-        destination: '',
+        destination: "",
         message: "Log In.",
         color: "text-[#34495E] text-2xl text-medium",
       };
@@ -90,7 +96,9 @@ const HeaderComponent = () => {
     <div className="md:hidden">
       <div className="bg-[#E1ECFF] min-h-[10rem] max-h-[10rem] lg:min-h-[13.2rem] lg:max-h-[13.2rem] pt-10 pb-5 min-w-screen max-w-screen mb-6">
         <div className="mx-8 font-inter">
-          <Link href="/" className="text-[#1ABC9C]">Itinera-IO</Link>
+          <Link href="/" className="text-[#1ABC9C]">
+            Itinera-IO
+          </Link>
           <div className="font-medium text-[#34495E]">{bottom.topMessage}</div>
           <p className="text-3xl text-[#E67E22]">{bottom.destination}</p>
           <p className={` ${bottom.color}`}>{bottom.message}</p>
