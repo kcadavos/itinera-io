@@ -38,6 +38,10 @@ const getTripListData = async (userId:number)=>{
     console.log("USER"+ userId);
 },[userId]);
 
+useEffect(()=>{
+console.log("SELECTED TRIP ID: " +selectedTripId);
+},[selectedTripId])
+
 
   return (
     <div className='pb-40'>
