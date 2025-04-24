@@ -1,8 +1,8 @@
 'use client'
 
-import { useUserIdContext } from '@/context/DataContext';
+import { useSelectedTripIdContext, useUserIdContext } from '@/context/DataContext';
 import { getToken } from '@/lib/services/DataServices';
-import { AddTrip, GetParticipantsId } from '@/lib/services/TripDataService';
+import {  AddTripReturnTripId, GetParticipantsId } from '@/lib/services/TripDataService';
 import { useRouter } from 'next/navigation';
 import React, { useEffect, useState } from 'react'
 
@@ -14,6 +14,10 @@ import { format } from "date-fns"
 
 const AddTripComponent = () => {
     const router = useRouter();
+
+    // context for selected trip when trip is added
+    const {setSelectedTripId}= useSelectedTripIdContext();
+
     // add new trip useStates
     const [destination,setDestination]= useState<string>('');
     // const [startDate, setStartDate] = useState<string>('');
@@ -24,7 +28,6 @@ const AddTripComponent = () => {
     const{userId}=useUserIdContext();
     
     const handleParticipantsEmailList = async(emails:string)=>{
-
         const participantsEmailList = emails.split(',').map(email => email.trim()).filter(email => email.length > 0); //Split to array and remove white spaces and empty entries
         const participantsIdList = await Promise.all(participantsEmailList.map(email => GetParticipantsId(email)));
          setParticipantIds (participantsIdList.filter((id): id is number => id != null));// removes null items before setting to partcipantsList
@@ -36,6 +39,10 @@ const AddTripComponent = () => {
         console.log("START", startDate);
         console.log("End"+ endDate);
     },[userId,participantIds,startDate,endDate])
+
+    useEffect (()=>{
+        console.log("USERID CHANGED "+userId);
+    },[userId])
 
     const SaveTripDetails=async()=>{
 
@@ -49,10 +56,11 @@ const AddTripComponent = () => {
             isVotingOpen: true
         }
         
-        const result = await AddTrip(trip,getToken())
+        const tripId = await AddTripReturnTripId(trip,getToken())
       
-        if(result){
+        if(tripId){
             alert("Trip Added !");
+            setSelectedTripId(tripId);
             router.push("/Trip/TripList");
           }else{
             alert("Sorry Trip not added");

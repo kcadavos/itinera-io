@@ -48,6 +48,27 @@ export const AddTrip = async (trip:ITripData, token:string)=>{
     return data.success;
 }
 
+export const AddTripReturnTripId = async (trip:ITripData, token:string)=>{
+    console.log("TRIP"+ trip)
+    const res = await fetch(url+"/Trip/AddTripReturnTripId",{
+        method: "POST",
+        headers: {
+            "Content-Type":"application/json",
+            "Authorization":"Bearer "+token,
+        },
+        body: JSON.stringify(trip)
+    });
+    if (!res.ok){
+        const errorData = await res.json();
+        const errorMsg = errorData.message;
+        console.log ("Error on Add Trip "+ errorMsg);
+        return 0;
+    }
+    const data = await res.json();
+    return data;
+}
+
+
 export const GetParticipantsId = async (email:string) => {
     const res = await fetch(url + `User/GetUserInfoByEmail/${email}`);
 

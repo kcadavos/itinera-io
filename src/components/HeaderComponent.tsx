@@ -6,6 +6,7 @@ import {
   // useSelectedTripStartDateContext,
   // useSelectedTripEndDateContext,
 } from "@/context/DataContext";
+
 import { usePathname } from "next/navigation";
 // import { format } from "date-fns";
 // import {  parseISO } from "date-fns";
@@ -114,6 +115,7 @@ const HeaderComponent = () => {
 
   return (
     <div className="md:hidden">
+
       <div className="bg-[#E1ECFF] min-h-[14rem] max-h-[14rem] lg:min-h-[13.2rem] lg:max-h-[13.2rem] pt-10 pb-10 relative min-w-screen max-w-screen mb-6">
           {!isHidden && <MenuComponent/>}
         <div className="mx-8 mt-7 font-inter">
