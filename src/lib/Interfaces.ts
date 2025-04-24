@@ -42,3 +42,12 @@ export interface IActivityData {
     address: string,
     details: string,
 }
+
+export interface IUndecidedData {
+    userId: number,
+    tripId: number,
+    activity: string,
+    category: string,
+    address: string,
+    details: string
+}
