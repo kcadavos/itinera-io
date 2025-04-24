@@ -1,4 +1,6 @@
 "use client";
+import React, { useEffect, useState } from "react";
+
 import {
   useNameContext,
   useSelectedTripDestinationContext,
@@ -8,9 +10,9 @@ import {
 import Link from "next/link";
 
 import { usePathname } from "next/navigation";
-//import { format } from "date-fns"; commented out for vercel
-
-import React from "react";
+import { format, parseISO } from "date-fns";
+import Link from "next/link";
+import MenuComponent from "./MenuComponent";
 
 const HeaderComponent = () => {
   const path = usePathname();
@@ -19,29 +21,110 @@ const HeaderComponent = () => {
   const { selectedTripStartDate } = useSelectedTripStartDateContext();
   const { selectedTripEndDate } = useSelectedTripEndDateContext();
   const { selectedTripDestination } = useSelectedTripDestinationContext();
-  // const startDate = new Date(selectedTripStartDate);
-  // const endDate = new Date(selectedTripEndDate);
+
+  const startDate = parseISO(selectedTripStartDate);
+  const endDate = parseISO(selectedTripEndDate);
+  const [isHidden, setIsHidden] = useState(false);
+  useEffect(()=>{
+    setIsHidden(path == '/');
+  },[path])
+
   const findPath = () => {
-    if (path == "/ItinerarySuggestionPages/AddSuggestionPage") {
-      return {message: "What activities are you excided about?",
-        color: "text-black"
+    if (path === "/ItinerarySuggestionPages/AddSuggestionPage") {
+      return {
+        topMessage: (
+          <p>
+            {`Hi `}
+            <span className="text-[#4A90E2] text-xl">{name}</span>
+            {`, let's plan for`}{" "}
+          </p>
+        ),
+        destination: selectedTripDestination,
+        message: "What activities are you excited about?",
+        color: "text-black text-sm",
+      };
+    } else if (path.startsWith("/ItinerarySuggestionPages")) {
+      return {
+        topMessage: (
+          <p>
+            {`Hi `}
+            <span className="text-[#4A90E2] text-xl">{name}</span>
+            {`, let's plan for`}{" "}
+          </p>
+        ),
+        destination: selectedTripDestination,
+        message: `for ${format(startDate, "MMM, d")} - ${format(
+          endDate,
+          "MMM, d"
+        )}`,
+        color: "text-[#E67E22] text-sm",
+      };
+    } else if (path === "/Trip/TripList") {
+      return {
+        topMessage: (
+          <p>
+            {`Hi `}
+            <span className="text-[#4A90E2] text-xl">{name}</span>
+            {`,`}
+          </p>
+        ),
+        destination: "",
+        message: (
+          <p>
+
+            Looking forward to <br /> these trips?
+          </p>
+        ),
+        color: "text-[#34495E] text-2xl",
+      };
+    } else if (path === "/Trip/AddTrip") {
+      return {
+        topMessage: (
+          <p>
+            {`Hi `}
+            <span className="text-[#4A90E2] text-xl">{name}</span>
+            {`,`}
+          </p>
+        ),
+        destination: "",
+        message: (
+          <p>
+
+            Where do you  <br /> want to go?
+          </p>
+        ),
+        color: "text-[#34495E] text-2xl",
       };
     } else {
-    
-      return { message:` for ${selectedTripStartDate} - ${selectedTripEndDate}`,
-    color:"text-[#E67E22]"};
+      return {
+        topMessage: (
+          <p className="text-[#E67E22] text-2xl">
+            Votes In,
+            <br />
+            Adventure Out.
+          </p>
+        ),
+        destination: "",
+        message: "Log In.",
+        color: "text-[#34495E] text-2xl text-medium",
+      };
     }
   };
 
   const bottom = findPath();
+
   return (
     <div className="md:hidden">
-      <div className="bg-[#E1ECFF] min-h-[10rem] max-h-[10rem] lg:min-h-[13.2rem] lg:max-h-[13.2rem] pt-10 pb-5 min-w-screen max-w-screen mb-6">
-        <div className="mx-8 font-inter">
-          <Link href="/Trip/TripList" className=" text-[#1ABC9C]">Itinera-IO</Link>
-          <p>Hi {name}, lets plan for</p>
-          <p className="text-3xl text-[#E67E22]"> {selectedTripDestination} </p>
-          <p className={`text-sm ${bottom.color}` }>{bottom.message}</p>
+
+      <div className="bg-[#E1ECFF] min-h-[14rem] max-h-[14rem] lg:min-h-[13.2rem] lg:max-h-[13.2rem] pt-10 pb-10 relative min-w-screen max-w-screen mb-6">
+          {!isHidden && <MenuComponent/>}
+        <div className="mx-8 mt-7 font-inter">
+          <Link href="/" className="text-[#1ABC9C]">
+            <img className="h-10 " src="/assets/icons/itineraLogo.svg" alt="" />
+          </Link>
+          <div className="font-medium text-[#34495E]">{bottom.topMessage}</div>
+          <p className="text-3xl text-[#E67E22]">{bottom.destination}</p>
+          <div className={` ${bottom.color}`}>{bottom.message}</div>
         </div>
       </div>
     </div>
