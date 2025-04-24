@@ -23,14 +23,19 @@ useEffect(()=>{
   
 },[router,tripListData])
 
-  useEffect(()=>{
-    const getTripListData = async (userId:number)=>{
-    const tripList= (await GetTripListByUserId(userId, getToken()));  
-      setTripListData(tripList);
-  }
-      getTripListData(userId);
-      console.log("USER"+ userId);
-  },[userId]);
+useEffect(()=>{
+const getTripListData = async (userId:number)=>{
+
+  const tripList= (await GetTripListByUserId(userId,getToken()));
+
+//  Sort by startDate (earliest first)
+  const sortedTrips = tripList.sort((a:ITripData, b:ITripData) =>  new Date(a.startDate).getTime() - new Date(b.startDate).getTime());
+
+    setTripListData(sortedTrips);
+}
+    getTripListData(userId);
+    console.log("USER"+ userId);
+},[userId]);
 
 
   return (
