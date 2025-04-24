@@ -40,16 +40,16 @@ const getTripListData = async (userId:number)=>{
 
 
   return (
-<div className='pb-40'>
-   {( tripListData!==null && tripListData.length>0) &&(
-    <>
-  <TripCardComponent  trips={tripListData}/> 
-    <FooterComponent/>
-    </>
-   )
+    <div className='pb-40'>
+      {( tripListData!==null && tripListData.length>0) &&(
+        <>
+      <TripCardComponent  trips={tripListData}/> 
+        <FooterComponent/>
+        </>
+      )
 
-    
-   }
+        
+      }
 
     </div>
 
