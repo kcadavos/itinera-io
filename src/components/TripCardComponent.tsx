@@ -1,5 +1,5 @@
 import { ITripData } from '@/lib/Interfaces'
-import React, { useEffect } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { format } from 'date-fns'; 
 import { useSelectedTripDestinationContext, useSelectedTripEndDateContext, useSelectedTripIdContext, useSelectedTripStartDateContext } from '@/context/DataContext';
 import { useRouter } from 'next/navigation';
@@ -20,10 +20,9 @@ const TripCardComponent = ({ trips }:{trips:ITripData[]}) => {
     const {setSelectedTripDestination}= useSelectedTripDestinationContext();
     const {selectedTripStartDate,setSelectedTripStartDate}=useSelectedTripStartDateContext();
     const{selectedTripEndDate,setSelectedTripEndDate}=useSelectedTripEndDateContext();
-
-
-
-    
+   
+   // Refs to autos croll to selected trip
+   const tripRefs = useRef<(HTMLDivElement | null)[]>([]);
 
  const handleSelectTrip= (trip:ITripData)=>{
     setSelectedTripId (trip.id);
@@ -36,9 +35,18 @@ const TripCardComponent = ({ trips }:{trips:ITripData[]}) => {
     }else{
        router.push("/Itinerary/ViewItinerary")
     }
-  
     
  }
+   // Auto scroll to expanded accordion item
+   useEffect(() => {
+      const index = trips.findIndex(trip => trip.id === selectedTripId);
+      const ref = tripRefs.current[index];
+      if (ref) {
+        ref.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }, [selectedTripId]);
+
+    
  useEffect (()=>{
     console.log("SELECTED TRIP"+selectedTripId);
   
@@ -53,15 +61,8 @@ const TripCardComponent = ({ trips }:{trips:ITripData[]}) => {
       console.log("END " +selectedTripEndDate)
    },[selectedTripEndDate])
 
- useEffect(()=>{
-   if (trips.length > 0) {
-      // const lastTripId =  trips[trips.length - 1].id;
-      const lastTripId = trips[0].id;
-      setSelectedTripId(lastTripId); // this is for loading the accordion on initial load/login
-    }
- },[trips])
- 
 
+useEffect
     return (
         <>
    {/*Accordion */}
@@ -71,9 +72,10 @@ const TripCardComponent = ({ trips }:{trips:ITripData[]}) => {
     { trips.length>0 ?
      (
        trips.map ((trip,index) =>(
-         <AccordionItem  key = {trip.id} value={`${trip.id}`} className={`border border-white rounded-2xl p-6 w-full relative ${
+         <AccordionItem  key = {index} value={`${trip.id}`} className={`border border-white rounded-2xl p-6 w-full relative ${
             index !== 0 ? "-mt-6" : ""
           } ${bgColors[index % bgColors.length]}`}>
+            <div ref={(el) => {tripRefs.current[index] = el}}>
      <AccordionTrigger className='flex justify-between   items-center  w-full   [&>svg]:hidden '>
      <h5 className="mb-2 text-2xl font-bold tracking-tight text-white capitalize">{trip.destination}</h5>
     <p className="font-normal text-lg text-white">{format(new Date(trip.startDate+"T12:00:00"),'MMM dd')}-{format(new Date(trip.endDate+"T12:00:00"),'MMM dd')}</p>
@@ -85,6 +87,7 @@ const TripCardComponent = ({ trips }:{trips:ITripData[]}) => {
 
      </div>
      </AccordionContent>
+            </div>
    </AccordionItem>
        ))
      
