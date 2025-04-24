@@ -1,14 +1,14 @@
 "use client";
 import React, { useEffect, useState } from "react";
-
 import {
   useNameContext,
   useSelectedTripDestinationContext,
-  useSelectedTripStartDateContext,
-  useSelectedTripEndDateContext,
+  // useSelectedTripStartDateContext,
+  // useSelectedTripEndDateContext,
 } from "@/context/DataContext";
 import { usePathname } from "next/navigation";
-import { format, parseISO } from "date-fns";
+// import { format } from "date-fns";
+// import {  parseISO } from "date-fns";
 import Link from "next/link";
 import MenuComponent from "./MenuComponent";
 
@@ -16,12 +16,12 @@ const HeaderComponent = () => {
   const path = usePathname();
 
   const { name } = useNameContext();
-  const { selectedTripStartDate } = useSelectedTripStartDateContext();
-  const { selectedTripEndDate } = useSelectedTripEndDateContext();
+  // const { selectedTripStartDate } = useSelectedTripStartDateContext();
+  // const { selectedTripEndDate } = useSelectedTripEndDateContext();
   const { selectedTripDestination } = useSelectedTripDestinationContext();
 
-  const startDate = parseISO(selectedTripStartDate);
-  const endDate = parseISO(selectedTripEndDate);
+  // const startDate = parseISO(selectedTripStartDate);
+  // const endDate = parseISO(selectedTripEndDate);
   const [isHidden, setIsHidden] = useState(false);
   useEffect(()=>{
     setIsHidden(path == '/');
@@ -51,10 +51,11 @@ const HeaderComponent = () => {
           </p>
         ),
         destination: selectedTripDestination,
-        message: `for ${format(startDate, "MMM, d")} - ${format(
-          endDate,
-          "MMM, d"
-        )}`,
+        // message:`for ${format(startDate, "MMM dd")} - ${format(
+        //   endDate,
+        //   "MMM dd"
+        // )}` ,
+        message: "Unkown Dates",
         color: "text-[#E67E22] text-sm",
       };
     } else if (path === "/Trip/TripList") {
