@@ -1,14 +1,15 @@
 "use client";
 import React, { useEffect, useState } from "react";
-
 import {
   useNameContext,
   useSelectedTripDestinationContext,
   useSelectedTripStartDateContext,
   useSelectedTripEndDateContext,
 } from "@/context/DataContext";
+
 import { usePathname } from "next/navigation";
-import { format, parseISO } from "date-fns";
+import { format } from "date-fns";
+import {  parseISO } from "date-fns";
 import Link from "next/link";
 import MenuComponent from "./MenuComponent";
 
@@ -20,14 +21,16 @@ const HeaderComponent = () => {
   const { selectedTripEndDate } = useSelectedTripEndDateContext();
   const { selectedTripDestination } = useSelectedTripDestinationContext();
 
-  const startDate = parseISO(selectedTripStartDate);
-  const endDate = parseISO(selectedTripEndDate);
+  
   const [isHidden, setIsHidden] = useState(false);
   useEffect(()=>{
     setIsHidden(path == '/');
   },[path])
 
   const findPath = () => {
+    const startDate = selectedTripStartDate ? parseISO(selectedTripStartDate) : null;
+const endDate = selectedTripEndDate ? parseISO(selectedTripEndDate) : null;
+
     if (path === "/ItinerarySuggestionPages/AddSuggestionPage") {
       return {
         topMessage: (
@@ -51,10 +54,9 @@ const HeaderComponent = () => {
           </p>
         ),
         destination: selectedTripDestination,
-        // message: `for ${format(startDate, "MMM, d")} - ${format(
-        //   endDate,
-        //   "MMM, d"
-        // )}`,
+        message: startDate && endDate
+        ? `for ${format(startDate, "MMM dd")} - ${format(endDate, "MMM dd")}`
+        : "Unknown Dates",
         color: "text-[#E67E22] text-sm",
       };
     } else if (path === "/Trip/TripList") {
@@ -113,6 +115,7 @@ const HeaderComponent = () => {
 
   return (
     <div className="md:hidden">
+
       <div className="bg-[#E1ECFF] min-h-[14rem] max-h-[14rem] lg:min-h-[13.2rem] lg:max-h-[13.2rem] pt-10 pb-10 relative min-w-screen max-w-screen mb-6">
           {!isHidden && <MenuComponent/>}
         <div className="mx-8 mt-7 font-inter">
