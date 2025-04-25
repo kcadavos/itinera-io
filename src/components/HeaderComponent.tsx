@@ -124,7 +124,7 @@ const HeaderComponent = () => {
        
           {!isHidden && <MenuComponent />}
 
-          <div className="font-medium text-[#34495E]">{bottom.topMessage}</div>
+          <div className="font-medium text-[#34495E] mt-5">{bottom.topMessage}</div>
           <p className="text-3xl text-[#E67E22]">{bottom.destination}</p>
           <div className={` ${bottom.color}`}>{bottom.message}</div>
         </div>

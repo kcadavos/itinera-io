@@ -20,7 +20,7 @@ const MenuComponent = () => {
         />
       </div>
       {!isHidden && (
-        <div className="grid text-[#E67E22] font-medium gap-2">
+        <div className="grid text-[#E67E22] font-medium mt-5 gap-2">
           <Link href="/Trip/TripList">Trip Dashboard</Link>
           <Link href="/AccountDetails">Account Details</Link>
           <Link href="/NotificationPage">Notifications</Link>
