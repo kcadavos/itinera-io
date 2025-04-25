@@ -32,9 +32,9 @@ const TripCardComponent = ({ trips }:{trips:ITripData[]}) => {
     setSelectedTripEndDate(trip.endDate);
     
     if (trip.isVotingOpen){
-       router.push("/ItinerarySuggestionPages/AddSuggestionPage")
+      router.push("/ItinerarySuggestionPages/AddSuggestionPage")
     }else{
-       router.push("/Itinerary/ViewItinerary")
+      router.push("/Itinerary/ViewItinerary")
     }
   
     

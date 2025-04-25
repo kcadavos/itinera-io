@@ -35,7 +35,7 @@ export const GetUndecidedActivities = async (userId: number, tripId: number) => 
         return null;
     }
 
-    const userData: IUndecidedData = await res.json();
+    const userData = await res.json();
     return userData;
 
 }

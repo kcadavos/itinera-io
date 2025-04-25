@@ -51,10 +51,10 @@ const HeaderComponent = () => {
           </p>
         ),
         destination: selectedTripDestination,
-        message: `for ${format(startDate, "MMM, d")} - ${format(
-          endDate,
-          "MMM, d"
-        )}`,
+        // message: `for ${format(startDate, "MMM, d")} - ${format(
+        //   endDate,
+        //   "MMM, d"
+        // )}`,
         color: "text-[#E67E22] text-sm",
       };
     } else if (path === "/Trip/TripList") {
