@@ -6,7 +6,7 @@ const MenuComponent = () => {
   const [isHidden, setIsHidden] = useState(true);
 
   const menuToggle = () => {
-    setIsHidden((bool) => !bool);
+    setIsHidden(!isHidden);
   };
 
   return (
