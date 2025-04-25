@@ -9,7 +9,7 @@ import {
 
 import { usePathname } from "next/navigation";
 import { format } from "date-fns";
-import {  parseISO } from "date-fns";
+import { parseISO } from "date-fns";
 import Link from "next/link";
 import MenuComponent from "./MenuComponent";
 
@@ -21,15 +21,16 @@ const HeaderComponent = () => {
   const { selectedTripEndDate } = useSelectedTripEndDateContext();
   const { selectedTripDestination } = useSelectedTripDestinationContext();
 
-  
   const [isHidden, setIsHidden] = useState(false);
-  useEffect(()=>{
-    setIsHidden(path == '/');
-  },[path])
+  useEffect(() => {
+    setIsHidden(path == "/");
+  }, [path]);
 
   const findPath = () => {
-    const startDate = selectedTripStartDate ? parseISO(selectedTripStartDate) : null;
-const endDate = selectedTripEndDate ? parseISO(selectedTripEndDate) : null;
+    const startDate = selectedTripStartDate
+      ? parseISO(selectedTripStartDate)
+      : null;
+    const endDate = selectedTripEndDate ? parseISO(selectedTripEndDate) : null;
 
     if (path === "/ItinerarySuggestionPages/AddSuggestionPage") {
       return {
@@ -54,9 +55,13 @@ const endDate = selectedTripEndDate ? parseISO(selectedTripEndDate) : null;
           </p>
         ),
         destination: selectedTripDestination,
-        message: startDate && endDate
-        ? `for ${format(startDate, "MMM dd")} - ${format(endDate, "MMM dd")}`
-        : "Unknown Dates",
+        message:
+          startDate && endDate
+            ? `for ${format(startDate, "MMM dd")} - ${format(
+                endDate,
+                "MMM dd"
+              )}`
+            : "Unknown Dates",
         color: "text-[#E67E22] text-sm",
       };
     } else if (path === "/Trip/TripList") {
@@ -71,7 +76,6 @@ const endDate = selectedTripEndDate ? parseISO(selectedTripEndDate) : null;
         destination: "",
         message: (
           <p>
-
             Looking forward to <br /> these trips?
           </p>
         ),
@@ -89,8 +93,7 @@ const endDate = selectedTripEndDate ? parseISO(selectedTripEndDate) : null;
         destination: "",
         message: (
           <p>
-
-            Where do you  <br /> want to go?
+            Where do you <br /> want to go?
           </p>
         ),
         color: "text-[#34495E] text-2xl",
@@ -114,14 +117,14 @@ const endDate = selectedTripEndDate ? parseISO(selectedTripEndDate) : null;
   const bottom = findPath();
 
   return (
-    <div className="md:hidden">
+    <div>
+      <div className="bg-[#E1ECFF] min-h-[14rem]  lg:min-h-[13.2rem] lg:max-h-[13.2rem] pt-10 pb-10 relative min-w-screen max-w-screen mb-6">
+        <div className="mx-8 mt-10 font-inter">
+        
+          <img className="h-10 absolute left-6 top-10" src="/assets/icons/itineraLogo.svg" alt="" />
+       
+          {!isHidden && <MenuComponent />}
 
-      <div className="bg-[#E1ECFF] min-h-[14rem] max-h-[14rem] lg:min-h-[13.2rem] lg:max-h-[13.2rem] pt-10 pb-10 relative min-w-screen max-w-screen mb-6">
-          {!isHidden && <MenuComponent/>}
-        <div className="mx-8 mt-7 font-inter">
-          <Link href="/" className="text-[#1ABC9C]">
-            <img className="h-10 " src="/assets/icons/itineraLogo.svg" alt="" />
-          </Link>
           <div className="font-medium text-[#34495E]">{bottom.topMessage}</div>
           <p className="text-3xl text-[#E67E22]">{bottom.destination}</p>
           <div className={` ${bottom.color}`}>{bottom.message}</div>
