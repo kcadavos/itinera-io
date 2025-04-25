@@ -18,6 +18,7 @@ const AddSuggestionComponent = () => {
     const [category, setCategory] = useState<string>('');
     const [address, setAddress] = useState<string>('');
     const [detailes, setDetails] = useState<string>('');
+    let categoryChoices: string = 'Category';
 
     const router = useRouter();
 
@@ -42,7 +43,27 @@ const AddSuggestionComponent = () => {
         } 
     }
 
-
+    switch(category){
+        case 'Adventure & Outdoors':
+            categoryChoices = 'Adventure & Outdoors';
+            break;
+        case 'Culture & History':
+            categoryChoices = 'Culture & History';
+            break;
+        case 'Food & Drink':
+            categoryChoices = 'Food & Drink';
+            break;
+        case 'Relaxation & Wellness':
+            categoryChoices = 'Relaxation & Wellness';
+            break;
+        case 'Entertainment & Nightlife':
+            categoryChoices = 'Entertainment & Nightlife';
+            break;
+        default:
+            categoryChoices = 'Category';
+            break;
+    }
+        
 
   return (
     <div>
@@ -65,13 +86,13 @@ const AddSuggestionComponent = () => {
                         <div className=" mr-2"> 
                             <img src="/assets/Icons/Orion_travel-ticket.svg" alt="category" className="w-8" />
                         </div>
-
-                        {/* <input type="text" placeholder='Category' className='bg-white rounded-md py-1 px-2 w-full' onChange={(e) => setCategory(e.target.value)} /> */}
+                        
                         <DropdownMenu>
                             <DropdownMenuTrigger asChild>
                                 <button className='bg-white rounded-md py-1 px-2 w-full text-[#34495E]/60 text-start hover:border-1 hover:border-black'>
                                     <div className='flex justify-between'>
-                                        Category
+                                        {categoryChoices}
+                                        
                                         <svg width="14" height="18" viewBox="0 0 16 14" fill="none" xmlns="http://www.w3.org/2000/svg" className='pt-1 pr-1'>
                                             <path d="M8.0002 14L0.205975 0.500001L15.7944 0.500002L8.0002 14Z" fill="#6A6A6A" fillOpacity="0.56"/>
                                         </svg>
