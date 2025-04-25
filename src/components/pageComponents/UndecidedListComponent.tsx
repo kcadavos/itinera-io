@@ -1,27 +1,29 @@
 'use client'
 
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import UndecidedCardComponent from '../UndecidedCardComponent'
-import { useUserIdContext } from '@/context/DataContext';
-//import { GetUndecidedActivities } from '@/lib/services/ActivityServices';
-//useSelectedTripIdContext, 
+import { useSelectedTripIdContext, useUserIdContext } from '@/context/DataContext';
+import { GetUndecidedActivities } from '@/lib/services/ActivityServices';
+import { IUndecidedData } from '@/lib/Interfaces';
+
 const UndecidedListComponent = () => {
   const {userId} = useUserIdContext();
-  // const {selectedTripId} = useSelectedTripIdContext();
-  // useState for the list data
+  const {selectedTripId} = useSelectedTripIdContext();
+  const [undecidedList, setUndercidedList] = useState<IUndecidedData[] | null>(null);
 
   useEffect(()=>{
     const getUndecidedList = async ()=>{
-      //  undecidedListData = await GetUndecidedActivities(userId, selectedTripId);
+      const undecidedListData = await GetUndecidedActivities(userId, selectedTripId);
+      setUndercidedList(undecidedListData);
     }
     getUndecidedList();
        
-  },[userId]);
+  },[userId, selectedTripId]);
 
   return (
     <div>
-        <p className='text-center text-[#2C3E50] mb-2'>What do you think about these activities?</p>
-        <UndecidedCardComponent />
+      <p className='text-center text-[#2C3E50] mb-2'>What do you think about these activities?</p>
+      <UndecidedCardComponent activities={undecidedList} />
     </div>
   )
 }

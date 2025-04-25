@@ -15,7 +15,7 @@ import { useRouter } from 'next/navigation';
 const AddSuggestionComponent = () => {
     const {selectedTripId} = useSelectedTripIdContext();
     const [activity, setActivity] = useState<string>('');
-    const [categorty, setCategory] = useState<string>('');
+    const [category, setCategory] = useState<string>('');
     const [address, setAddress] = useState<string>('');
     const [detailes, setDetails] = useState<string>('');
 
@@ -25,7 +25,7 @@ const AddSuggestionComponent = () => {
     const activityData = {
         tripId: selectedTripId,
         activity: activity,
-        category: categorty,
+        category: category,
         address: address,
         details: detailes,
     }
@@ -82,19 +82,19 @@ const AddSuggestionComponent = () => {
                             <DropdownMenuContent className="w-64 border-1 border-black">
                                 <DropdownMenuGroup className='text-[#34495E]/60'>
                                 {
-                                    categorty == 'Adventure & Outdoors' ? <DropdownMenuItem className='bg-[#ECF0F1]'>Adventure & Outdoors</DropdownMenuItem> : <DropdownMenuItem onClick={() => setCategory('Adventure & Outdoors')} >Adventure & Outdoors</DropdownMenuItem>       
+                                    category == 'Adventure & Outdoors' ? <DropdownMenuItem className='bg-[#ECF0F1]'>Adventure & Outdoors</DropdownMenuItem> : <DropdownMenuItem onClick={() => setCategory('Adventure & Outdoors')} >Adventure & Outdoors</DropdownMenuItem>       
                                 }
                                 {
-                                    categorty == 'Culture & History' ? <DropdownMenuItem className='bg-[#ECF0F1]'>Culture & History</DropdownMenuItem> : <DropdownMenuItem onClick={() => setCategory('Culture & History')}>Culture & History</DropdownMenuItem>
+                                    category == 'Culture & History' ? <DropdownMenuItem className='bg-[#ECF0F1]'>Culture & History</DropdownMenuItem> : <DropdownMenuItem onClick={() => setCategory('Culture & History')}>Culture & History</DropdownMenuItem>
                                 }
                                 {
-                                    categorty == 'Food & Drink' ? <DropdownMenuItem className='bg-[#ECF0F1]'>Food & Drink</DropdownMenuItem> : <DropdownMenuItem onClick={() => setCategory('Food & Drink')}>Food & Drink</DropdownMenuItem>
+                                    category == 'Food & Drink' ? <DropdownMenuItem className='bg-[#ECF0F1]'>Food & Drink</DropdownMenuItem> : <DropdownMenuItem onClick={() => setCategory('Food & Drink')}>Food & Drink</DropdownMenuItem>
                                 }
                                 {
-                                    categorty == 'Relaxation & Wellness' ? <DropdownMenuItem className='bg-[#ECF0F1]'>Relaxation & Wellness</DropdownMenuItem> : <DropdownMenuItem onClick={() => setCategory('Relaxation & Wellness')}>Relaxation & Wellness</DropdownMenuItem>
+                                    category == 'Relaxation & Wellness' ? <DropdownMenuItem className='bg-[#ECF0F1]'>Relaxation & Wellness</DropdownMenuItem> : <DropdownMenuItem onClick={() => setCategory('Relaxation & Wellness')}>Relaxation & Wellness</DropdownMenuItem>
                                 }
                                 {
-                                    categorty == 'Entertainment & Nightlife' ? <DropdownMenuItem className='bg-[#ECF0F1]'>Entertainment & Nightlife</DropdownMenuItem> : <DropdownMenuItem onClick={() => setCategory('Entertainment & Nightlife')}>Entertainment & Nightlife</DropdownMenuItem>
+                                    category == 'Entertainment & Nightlife' ? <DropdownMenuItem className='bg-[#ECF0F1]'>Entertainment & Nightlife</DropdownMenuItem> : <DropdownMenuItem onClick={() => setCategory('Entertainment & Nightlife')}>Entertainment & Nightlife</DropdownMenuItem>
                                 }
                                 </DropdownMenuGroup>
                             </DropdownMenuContent>

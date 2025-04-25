@@ -26,7 +26,7 @@ const LoginSignUpComponent = () => {
         
         <div className="bg-[#ECF0F1] rounded-2xl min-h-[26rem] min-w-[20rem] lg:min-h-[25rem] lg:max-w-[20rem] mx-4 px-4 relative mb-25">
           {
-            switchBool ? <LogInComponent /> : <AccountCreationComponent />
+            switchBool ? <LogInComponent /> : <AccountCreationComponent switchboolswitch={setSwitchBool} />
           }  
         </div>
 
@@ -97,7 +97,7 @@ const LoginSignUpComponent = () => {
                 </div> 
                 : <div className="bg-[#ECF0F1] rounded-2xl min-w-[22rem] min-h-[22rem] max-w-[25rem] mx-4 px-4 relative">
                   <div className="flex justify-center">
-                    <AccountCreationComponent /> 
+                    <AccountCreationComponent switchboolswitch={setSwitchBool}  /> 
                   </div>  
                 </div>
               }  
