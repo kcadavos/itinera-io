@@ -10,7 +10,6 @@ import {
 import { usePathname } from "next/navigation";
 import { format } from "date-fns";
 import { parseISO } from "date-fns";
-import Link from "next/link";
 import MenuComponent from "./MenuComponent";
 
 const HeaderComponent = () => {
