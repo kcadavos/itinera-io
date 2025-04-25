@@ -1,14 +1,16 @@
-// import { useAppcontext } from "@/context/DataContext";
 import { CreateAccount } from "@/lib/services/DataServices";
 import React, { useState } from "react";
 
-const AccountCreationComponent = () => {
+type AccountCreationProps = {
+  switchboolswitch: (val: boolean) => void;
+};
+
+const AccountCreationComponent: React.FC<AccountCreationProps> = ({ switchboolswitch }) => {
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [confirmPassword, setConfirmPassword] = useState<string>('');
   const [username, setUsername] = useState<string>('');
 
-  //const {setSwitchBool} = useAppcontext();
 
   const submitCreation = async () => {
 
@@ -23,9 +25,9 @@ const AccountCreationComponent = () => {
 
       if(result){
         alert("Account Created!");
-        //setSwitchBool(true) 
+        switchboolswitch(true)
       }else{
-        alert("Account Already Exsists");
+        alert("Account Already Exists");
       } 
     }else{
       alert("Passwords are not the same");
@@ -74,7 +76,7 @@ const AccountCreationComponent = () => {
         <div className="mr-4">
           <img
             src="/assets/Icons/Orion_key.svg"
-            alt="conferm password"
+            alt="confirm password"
             className="w-10 p-1"
           />
         </div>
