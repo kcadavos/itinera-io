@@ -23,7 +23,10 @@ const UndecidedListComponent = () => {
   return (
     <div>
       <p className='text-center text-[#2C3E50] mb-2'>What do you think about these activities?</p>
-      <UndecidedCardComponent activities={undecidedList} />
+      <div className='mb-35' >
+        <UndecidedCardComponent activities={undecidedList} />
+      </div>
+      
     </div>
   )
 }
