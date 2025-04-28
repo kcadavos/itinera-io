@@ -84,3 +84,19 @@ export const GetParticipantsId = async (email:string) => {
     
 
 }
+
+// export const GetParticipantEmail = async (id:number) => {
+//     const res = await fetch(url + `User/GetUserInfoByEmail/${email}`);
+
+//     if(!res.ok){
+//         const data = await res.json();
+//         const message = data.message;
+//         console.log(message);
+//         return null;
+//     }
+
+//         const userData: IUserInfo = await res.json();
+//         return userData.id;
+    
+
+// }

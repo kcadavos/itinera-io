@@ -3,7 +3,7 @@ import FooterComponent from '@/components/FooterComponent'
 import TripCardComponent from '@/components/TripCardComponent'
 import {  useSelectedTripIdContext, useUserIdContext } from '@/context/DataContext'
 import { getToken } from '@/lib/services/DataServices'
-import { ITripData } from '@/lib/Interfaces'
+import { ITripData } from '@/lib/TripInterfaces'
 import { GetTripListByUserId } from '@/lib/services/TripDataService'
 import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from 'react'
