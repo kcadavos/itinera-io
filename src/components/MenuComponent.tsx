@@ -15,7 +15,7 @@ const MenuComponent = () => {
         <img
           onClick={menuToggle}
           className="w-9 "
-          src="/assets/icons/Orion_world-map2.svg"
+          src="/assets/Icons/Orion_world-map2.svg"
           alt="Menu"
         />
       </div>
