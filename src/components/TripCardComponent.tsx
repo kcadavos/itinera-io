@@ -101,11 +101,11 @@ const updateTripContext =(trip:ITripData)=>{
       </div>
       {trip.isVotingOpen? 
       (<div className='flex  flex-col  items-center gap-2 hover:cursor-pointer' onClick={()=>handleSelectTrip(trip)}>
-      <img src="/assets/icons/Orion_markers_lightweight_white.svg" alt="View Activities" className='w-auto h-20'/>
+      <img src="/assets/Icons/Orion_markers_lightweight_white.svg" alt="View Activities" className='w-auto h-20'/>
        <p className="text-center font-normal text-lg text-white">View Activities</p>
       </div>)  :
       (<div className='flex  flex-col  items-center gap-2 hover:cursor-pointer' onClick={()=>handleSelectTrip(trip)}>
-      <img src="/assets/icons/Orion_travel-map_lightweight_white.svg" alt="View Itinerary" className='w-auto h-20'/>
+      <img src="/assets/Icons/Orion_travel-map_lightweight_white.svg" alt="View Itinerary" className='w-auto h-20'/>
        <p className="text-center font-normal text-lg text-white">View Itinerary</p>
       </div>)
       }
