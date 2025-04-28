@@ -11,27 +11,27 @@ const NavbarComponent = () => {
       case "/ItinerarySuggestionPages/AddSuggestionPage":
         return [
           {
-            src: "/assets/icons/Orion_add-place.svg",
+            src: "/assets/Icons/Orion_add-place.svg",
             href: "/ItinerarySuggestionPages/AddSuggestionPage",
             alt: "Add Suggestions Button"
           },
           {
-            src: "/assets/icons/Orion_markers 1.svg ",
+            src: "/assets/Icons/Orion_markers 1.svg ",
             href: "/ItinerarySuggestionPages/UndecidedListPage",
             alt:"Undecided List Button"
           },
           {
-            src: "/assets/icons/Orion_checkin-place 2.svg",
+            src: "/assets/Icons/Orion_checkin-place 2.svg",
             href: "/ItinerarySuggestionPages/LikedListPage",
             alt:"Liked List Button"
           },
           {
-            src: "/assets/icons/Orion_delete-place 1.svg",
+            src: "/assets/Icons/Orion_delete-place 1.svg",
             href: " /ItinerarySuggestionPages/DislikedListPage",
             alt: "Itinerary Button"
           },
           {
-            src: "/assets/icons/Orion_travel-map 1.svg",
+            src: "/assets/Icons/Orion_travel-map 1.svg",
             href: " /ItinerarySuggestionPages/ItineraryPage",
             alt: "Itinerary Button"
           },
@@ -39,26 +39,26 @@ const NavbarComponent = () => {
       case "/ItinerarySuggestionPages/DislikedListPage":
         return [
           {
-            src: "/assets/icons/Orion_add-place 1.svg",
+            src: "/assets/Icons/Orion_add-place 1.svg",
             href: "/ItinerarySuggestionPages/AddSuggestionPage",
              alt: "Add Suggestions Button"
           },
           {
-            src: "/assets/icons/Orion_markers 1.svg ",
+            src: "/assets/Icons/Orion_markers 1.svg ",
             href: "/ItinerarySuggestionPages/UndecidedListPage",
             alt:"Undecided List Button"
           },
           {
-            src: "/assets/icons/Orion_checkin-place 2.svg",
+            src: "/assets/Icons/Orion_checkin-place 2.svg",
             href: "/ItinerarySuggestionPages/LikedListPage",
             alt:"Liked List Button"
           },
           {
-            src: "/assets/icons/Orion_delete-place.svg",
+            src: "/assets/Icons/Orion_delete-place.svg",
             href: "/ItinerarySuggestionPages/DislikedListPage",
           },
           {
-            src: "/assets/icons/Orion_travel-map 1.svg",
+            src: "/assets/Icons/Orion_travel-map 1.svg",
             href: "/ItinerarySuggestionPages/ItineraryPage",
             alt: "Itinerary Button"
           },
@@ -66,27 +66,27 @@ const NavbarComponent = () => {
       case "/ItinerarySuggestionPages/ItineraryPage":
         return [
           {
-            src: "/assets/icons/Orion_add-place 1.svg",
+            src: "/assets/Icons/Orion_add-place 1.svg",
             href: "/ItinerarySuggestionPages/AddSuggestionPage",
              alt: "Add Suggestions Button"
           },
           {
-            src: "/assets/icons/Orion_markers 1.svg ",
+            src: "/assets/Icons/Orion_markers 1.svg ",
             href: "/ItinerarySuggestionPages/UndecidedListPage",
             alt:"Undecided List Button"
           },
           {
-            src: "/assets/icons/Orion_checkin-place 2.svg",
+            src: "/assets/Icons/Orion_checkin-place 2.svg",
             href: " /ItinerarySuggestionPages/LikedListPage",
             alt:"Liked List Button"
           },
           {
-            src: "/assets/icons/Orion_delete-place 1.svg",
+            src: "/assets/Icons/Orion_delete-place 1.svg",
             href: "/ItinerarySuggestionPages/DislikedListPage",
             alt: "Disliked List Button"
           },
           {
-            src: "/assets/icons/Orion_travel-map.svg",
+            src: "/assets/Icons/Orion_travel-map.svg",
             href: "/ItinerarySuggestionPages/ItineraryPage",
             alt: "Itinerary Button"
           },
@@ -95,27 +95,27 @@ const NavbarComponent = () => {
       case "/ItinerarySuggestionPages/LikedListPage":
         return [
           {
-            src: "/assets/icons/Orion_add-place 1.svg",
+            src: "/assets/Icons/Orion_add-place 1.svg",
             href: " /ItinerarySuggestionPages/AddSuggestionPage",
              alt: "Add Suggestions Button"
           },
           {
-            src: "/assets/icons/Orion_markers 1.svg ",
+            src: "/assets/Icons/Orion_markers 1.svg ",
             href: "/ItinerarySuggestionPages/UndecidedListPage",
             alt:"Undecided List Button"
           },
           {
-            src: "/assets/icons/Orion_checkin-place.svg",
+            src: "/assets/Icons/Orion_checkin-place.svg",
             href: " /ItinerarySuggestionPages/LikedListPage",
             alt:"Liked List Button"
           },
           {
-            src: "/assets/icons/Orion_delete-place 1.svg",
+            src: "/assets/Icons/Orion_delete-place 1.svg",
             href: "/ItinerarySuggestionPages/DislikedListPage",
              alt: "Disliked List Button"
           },
           {
-            src: "/assets/icons/Orion_travel-map 1.svg",
+            src: "/assets/Icons/Orion_travel-map 1.svg",
             href: " /ItinerarySuggestionPages/ItineraryPage",
             alt: "Itinerary Button"
           },
@@ -123,27 +123,27 @@ const NavbarComponent = () => {
       case "/ItinerarySuggestionPages/UndecidedListPage":
         return [
           {
-            src: "/assets/icons/Orion_add-place 1.svg",
+            src: "/assets/Icons/Orion_add-place 1.svg",
             href: " /ItinerarySuggestionPages/AddSuggestionPage",
              alt: "Add Suggestions Button"
           },
           {
-            src: "/assets/icons/Orion_markers.svg ",
+            src: "/assets/Icons/Orion_markers.svg ",
             href: " /ItinerarySuggestionPages/UndecidedListPage",
             alt:"Undecided List Button"
           },
           {
-            src: "/assets/icons/Orion_checkin-place 2.svg",
+            src: "/assets/Icons/Orion_checkin-place 2.svg",
             href: "/ItinerarySuggestionPages/LikedListPage",
             alt:"Liked List Button"
           },
           {
-            src: "/assets/icons/Orion_delete-place 1.svg",
+            src: "/assets/Icons/Orion_delete-place 1.svg",
             href: " /ItinerarySuggestionPages/DislikedListPage",
              alt: "Disliked List Button"
           },
           {
-            src: "/assets/icons/Orion_travel-map 1.svg",
+            src: "/assets/Icons/Orion_travel-map 1.svg",
             href: "/ItinerarySuggestionPages/ItineraryPage",
             alt: "Itinerary Button"
           },
@@ -151,27 +151,27 @@ const NavbarComponent = () => {
       default:
         return [
           {
-            src: "/assets/icons/Orion_add-place 1.svg",
+            src: "/assets/Icons/Orion_add-place 1.svg",
             href: " /ItinerarySuggestionPages/AddSuggestionPage",
              alt: "Add Suggestions Button"
           },
           {
-            src: "/assets/icons/Orion_markers 1.svg ",
+            src: "/assets/Icons/Orion_markers 1.svg ",
             href: " /ItinerarySuggestionPages/UndecidedListPage",
             alt:"Undecided List Button"
           },
           {
-            src: "/assets/icons/Orion_checkin-place 2.svg",
+            src: "/assets/Icons/Orion_checkin-place 2.svg",
             href: "/ItinerarySuggestionPages/LikedListPage",
             alt:"Liked List Button"
           },
           {
-            src: "/assets/icons/Orion_delete-place 1.svg",
+            src: "/assets/Icons/Orion_delete-place 1.svg",
             href: " /ItinerarySuggestionPages/DislikedListPage",
              alt: "Disliked List Button"
           },
           {
-            src: "/assets/icons/Orion_travel-map 1.svg",
+            src: "/assets/Icons/Orion_travel-map 1.svg",
             href: " /ItinerarySuggestionPages/ItineraryPage",
             alt: "Itinerary Button"
           }

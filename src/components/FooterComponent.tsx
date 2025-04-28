@@ -8,13 +8,13 @@ const FooterComponent = () => {
         switch(path){
             case "/HomePage":
             return {text:"Initialize a Trip",
-              src:"/assets/icons/Orion_aircraft 1.svg",
+              src:"/assets/Icons/Orion_aircraft 1.svg",
               href:"/Trip/AddTrip"
                   };
             case "/Trip/TripList":
             return { 
               text:"Initiate a Trip",
-              src:"/assets/icons/Orion_aircraft 1.svg",
+              src:"/assets/Icons/Orion_aircraft 1.svg",
               //set href to an object instead of just string to add 'query' for identifying when user is adding a trip
                href: {
                 pathname: "/Trip/AddTrip",
@@ -23,7 +23,7 @@ const FooterComponent = () => {
             } ;
             default:
                 return {text: "Go to Trip List",
-                  src:"/assets/icons/Orion_destination-map 1.svg",
+                  src:"/assets/Icons/Orion_destination-map 1.svg",
                   href:"/Trip/TripList"
                 };
 
