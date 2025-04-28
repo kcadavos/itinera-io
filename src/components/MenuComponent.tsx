@@ -21,9 +21,9 @@ const MenuComponent = () => {
       </div>
       {!isHidden && (
         <div className="grid text-[#E67E22] font-medium mt-5 gap-2">
-          <Link href="/Trip/TripList">Trip Dashboard</Link>
-          <Link href="/AccountDetails">Account Details</Link>
-          <Link href="/NotificationPage">Notifications</Link>
+          <Link href="/Trip/TripList" onClick={menuToggle}>Trip Dashboard</Link>
+          <Link href="/AccountDetails" onClick={menuToggle}>Account Details</Link>
+          <Link href="/NotificationPage" onClick={menuToggle}>Notifications</Link>
           <Link
             href="/"
             onClick={() => {
