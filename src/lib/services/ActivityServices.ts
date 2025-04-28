@@ -1,4 +1,4 @@
-import { IActivityData, IUndecidedData } from "../Interfaces";
+import { IActivityData } from "../Interfaces";
 
 
 const url = 'https://itineraioapi-cqapgsgcbschc7hu.westus-01.azurewebsites.net/';
@@ -35,7 +35,7 @@ export const GetUndecidedActivities = async (userId: number, tripId: number) => 
         return null;
     }
 
-    const userData: IUndecidedData = await res.json();
+    const userData = await res.json();
     return userData;
 
 }
