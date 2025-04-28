@@ -1,6 +1,6 @@
 'use client'
 
-import { useSelectedTripDestinationContext, useSelectedTripEndDateContext, useSelectedTripIdContext,  useSelectedTripStartDateContext, useUserIdContext } from '@/context/DataContext';
+import { useSelectedTripDestinationContext, useSelectedTripEndDateContext, useSelectedTripIdContext,    useSelectedTripStartDateContext, useUserIdContext } from '@/context/DataContext';
 import { getToken } from '@/lib/services/DataServices';
 import {  AddTripReturnTripId, GetParticipantsId } from '@/lib/services/TripDataService';
 import { useRouter, useSearchParams } from 'next/navigation';
@@ -17,14 +17,14 @@ const AddTripComponent = () => {
     const searchParams = useSearchParams();
     
     // to identify if user is adding a new trip or editing or viewing
-    const mode = searchParams.get('mode');
+    const [mode] = useState(searchParams.get('mode'));
 
     // context for selected trip when trip is added
-    const {selectedTripId,setSelectedTripId}= useSelectedTripIdContext();
+    const {setSelectedTripId}= useSelectedTripIdContext();
     const {selectedTripDestination} = useSelectedTripDestinationContext();
     const {selectedTripStartDate}=useSelectedTripStartDateContext();
     const {selectedTripEndDate}=useSelectedTripEndDateContext();
-    // const {selectedTripParticipantsIdList}=useSelectedTripParticipantsIdListContext();
+    // const {selectedParticipantsIdList}=useSelectedTripParticipantsIdListContext();
     
 
     // add new trip useStates

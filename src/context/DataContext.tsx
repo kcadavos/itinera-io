@@ -37,6 +37,10 @@ interface selectedTripEndDateInterface {
     setSelectedTripEndDate: (endDate:string)=>void;
 }
 
+interface selectedParticipantsListIdInterface{
+    selectedParticipantsIdList: number[],
+    setSelectedParticipantsIdList:(participantsIdList:number[])=>void
+}
 
 // Creating the context
 // const SwitchBoolContext = createContext<Context>({
@@ -74,6 +78,11 @@ const UserIdContext = createContext<userIdInterface> ({
     setUserId : userId=> userId
 })
 
+const SelectedParticipantsListIdContext  = createContext<selectedParticipantsListIdInterface>({
+    selectedParticipantsIdList :[],
+    setSelectedParticipantsIdList: selectedPartcipantsIdList => selectedPartcipantsIdList
+})
+
 // Creating the wrapper
 export function AppWrapper({ children }: { children: React.ReactNode }){
     // const [switchBool, setSwitchBool] = useState<boolean>(true);
@@ -83,6 +92,8 @@ export function AppWrapper({ children }: { children: React.ReactNode }){
     const[selectedTripDestination,setSelectedTripDestination]=useState<string>('');
     const[selectedTripStartDate,setSelectedTripStartDate]=useState<string>('');
     const[selectedTripEndDate,setSelectedTripEndDate]=useState<string>('');
+    const[selectedParticipantsIdList,setSelectedParticipantsIdList]=useState<number[]>([]);
+    
     return(
         // <SwitchBoolContext.Provider value={ { switchBool, setSwitchBool } }>
         //     {children}
@@ -93,7 +104,9 @@ export function AppWrapper({ children }: { children: React.ReactNode }){
             <SelectedTripDestinationContext.Provider value={{selectedTripDestination,setSelectedTripDestination}}>
             <SelectedTripStartDateContext.Provider value = {{selectedTripStartDate,setSelectedTripStartDate}}>
             <SelectedTripEndDateContext.Provider value ={{selectedTripEndDate,setSelectedTripEndDate}}>
+            <SelectedParticipantsListIdContext.Provider value ={{selectedParticipantsIdList,setSelectedParticipantsIdList}}>
              {children}
+            </SelectedParticipantsListIdContext.Provider>
             </SelectedTripEndDateContext.Provider>
             </SelectedTripStartDateContext.Provider>
             </SelectedTripDestinationContext.Provider>
@@ -128,4 +141,8 @@ export function useSelectedTripEndDateContext(){
 }
 export function useUserIdContext(){
     return useContext(UserIdContext);
+}
+
+export function useSelectedTripParticipantsIdListContext(){
+    return useContext(SelectedParticipantsListIdContext);
 }

@@ -1,7 +1,7 @@
 import { ITripData } from '@/lib/TripInterfaces'
 import React, { useEffect, useRef } from 'react'
 import { format } from 'date-fns'; 
-import { useSelectedTripDestinationContext, useSelectedTripEndDateContext, useSelectedTripIdContext, useSelectedTripParticipantsIdListContext, useSelectedTripStartDateContext } from '@/context/DataContext';
+import { useSelectedTripDestinationContext, useSelectedTripEndDateContext, useSelectedTripIdContext, useSelectedTripStartDateContext } from '@/context/DataContext';
 import { useRouter } from 'next/navigation';
 
 
@@ -20,7 +20,7 @@ const TripCardComponent = ({ trips }:{trips:ITripData[]}) => {
     const {setSelectedTripDestination}= useSelectedTripDestinationContext();
     const {selectedTripStartDate,setSelectedTripStartDate}=useSelectedTripStartDateContext();
     const{selectedTripEndDate,setSelectedTripEndDate}=useSelectedTripEndDateContext();
-    const{setSelectedTripParticipantsIdList} = useSelectedTripParticipantsIdListContext();
+    // const{setSelectedParticipantsListIdList}=useSelectedTripParticipantsIdListContext();
    
 // Refs to autos croll to selected trip
 const tripRefs = useRef<(HTMLDivElement | null)[]>([]);
@@ -30,7 +30,7 @@ const updateTripContext =(trip:ITripData)=>{
   setSelectedTripDestination(trip.destination);
   setSelectedTripStartDate(trip.startDate);
   setSelectedTripEndDate(trip.endDate);
-  setSelectedTripParticipantsIdList(trip.participantsId);
+  // setSelectedTripParticipantsIdList(trip.participantsId);
 
 }
  const handleSelectTrip= (trip:ITripData)=>{
