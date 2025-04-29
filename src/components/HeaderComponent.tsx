@@ -5,6 +5,7 @@ import {
   useSelectedTripDestinationContext,
   useSelectedTripStartDateContext,
   useSelectedTripEndDateContext,
+  useLoginStatusContext,
 } from "@/context/DataContext";
 
 import { usePathname } from "next/navigation";
@@ -14,6 +15,9 @@ import MenuComponent from "./MenuComponent";
 
 const HeaderComponent = () => {
   const path = usePathname();
+  const { loginStatus } = useLoginStatusContext();
+
+  
 
   const { name } = useNameContext();
   const { selectedTripStartDate } = useSelectedTripStartDateContext();
@@ -97,7 +101,14 @@ const HeaderComponent = () => {
         ),
         color: "text-[#34495E] text-2xl",
       };
-    } else {
+    } else if(loginStatus === "failed"){
+      return {
+        topMessage:"",
+        destination:"",
+        message:"",
+        color:""
+      }
+    }else {
       return {
         topMessage: (
           <p className="text-[#E67E22] text-2xl">

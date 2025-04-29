@@ -3,7 +3,7 @@ import { GetLoggedInUserData, Login } from '@/lib/services/DataServices';
 import { IToken } from '@/lib/Interfaces';
 import React, { useState } from 'react'
 import { useRouter } from "next/navigation";
-import { useNameContext, useUserIdContext } from '@/context/DataContext';
+import { useLoginStatusContext, useNameContext, useUserIdContext } from '@/context/DataContext';
 
 const LogInComponent = () => {
   const [email, setEmail] = useState<string>('');
@@ -13,6 +13,7 @@ const LogInComponent = () => {
 
   
   const router = useRouter();
+  const { setLoginStatus } = useLoginStatusContext();
 
   const submitLogin = async () => {
   
@@ -42,7 +43,7 @@ const LogInComponent = () => {
         
       }
     }else{
-      alert("Login was no good wrong password or somthing")
+      setLoginStatus('failed');
     }
     }
   
