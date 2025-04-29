@@ -1,11 +1,8 @@
 import { CreateAccount } from "@/lib/services/DataServices";
 import React, { useState } from "react";
 
-type AccountCreationProps = {
-  switchboolswitch: (val: boolean) => void;
-};
 
-const AccountCreationComponent: React.FC<AccountCreationProps> = ({ switchboolswitch }) => {
+const AccountCreationComponent = ({ switchboolswitch }:{switchboolswitch: (val: boolean) => void;}) => {
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [confirmPassword, setConfirmPassword] = useState<string>('');
