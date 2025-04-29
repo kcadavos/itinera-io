@@ -1,7 +1,7 @@
 import { ITripData } from '@/lib/TripInterfaces'
 import React, { useEffect, useRef } from 'react'
 import { format } from 'date-fns'; 
-import { useSelectedTripDestinationContext, useSelectedTripEndDateContext, useSelectedTripIdContext, useSelectedTripStartDateContext } from '@/context/DataContext';
+import { useSelectedTripDestinationContext, useSelectedTripEndDateContext, useSelectedTripIdContext, useSelectedTripOwnerIdContext, useSelectedTripParticipantsIdListContext, useSelectedTripStartDateContext, useUserIdContext } from '@/context/DataContext';
 import { useRouter } from 'next/navigation';
 
 
@@ -16,11 +16,14 @@ import {
 const TripCardComponent = ({ trips }:{trips:ITripData[]}) => {
    const bgColors = ["bg-[#1A89BC]","bg-[#4AAAE2]","bg-[#F4B400]","bg-[#E67E22]","bg-[#4A90E2]"]; // for alternating the trip colors
    const router = useRouter();
+   const {userId}=useUserIdContext();
     const {selectedTripId,setSelectedTripId}= useSelectedTripIdContext();
     const {setSelectedTripDestination}= useSelectedTripDestinationContext();
     const {selectedTripStartDate,setSelectedTripStartDate}=useSelectedTripStartDateContext();
     const{selectedTripEndDate,setSelectedTripEndDate}=useSelectedTripEndDateContext();
-    // const{setSelectedParticipantsListIdList}=useSelectedTripParticipantsIdListContext();
+    const{setSelectedParticipantsIdList}=useSelectedTripParticipantsIdListContext();
+    const{setSelectedTripOwnerId}=useSelectedTripOwnerIdContext();
+
    
 // Refs to autos croll to selected trip
 const tripRefs = useRef<(HTMLDivElement | null)[]>([]);
@@ -30,12 +33,12 @@ const updateTripContext =(trip:ITripData)=>{
   setSelectedTripDestination(trip.destination);
   setSelectedTripStartDate(trip.startDate);
   setSelectedTripEndDate(trip.endDate);
-  // setSelectedTripParticipantsIdList(trip.participantsId);
+  setSelectedParticipantsIdList(trip.participantsId);
+  setSelectedTripOwnerId(trip.ownerId);
 
 }
  const handleSelectTrip= (trip:ITripData)=>{
 
-  // updateTripContext(trip);
     if (trip.isVotingOpen){
        router.push("/ItinerarySuggestionPages/AddSuggestionPage")
     }else{
@@ -45,7 +48,7 @@ const updateTripContext =(trip:ITripData)=>{
   }
 
  const handleEditTrip=()=>{
-  // updateTripContext(trip);
+
       router.push("/Trip/AddTrip")
  }
    // Auto scroll to expanded accordion item
@@ -58,6 +61,8 @@ const updateTripContext =(trip:ITripData)=>{
       updateTripContext(trips[index]);  
     }, [selectedTripId,trips]);
 
+
+   
     
  useEffect (()=>{
     console.log("SELECTED TRIP"+selectedTripId);
@@ -84,7 +89,7 @@ const updateTripContext =(trip:ITripData)=>{
        trips.map ((trip,index) =>(
          <AccordionItem  key = {index} value={`${trip.id}`} className={`border border-white rounded-2xl p-6 w-full relative ${
             index !== 0 ? "-mt-6" : ""
-          } ${bgColors[index % bgColors.length]}`} onClick={()=>updateTripContext}>
+          } ${bgColors[index % bgColors.length]}`} onClick={()=>updateTripContext(trip)}>
             <div ref={(el) => {tripRefs.current[index] = el}}>
      <AccordionTrigger className='flex justify-between   items-center  w-full   [&>svg]:hidden '> 
      <h5 className="mb-2 text-2xl font-bold tracking-tight text-white capitalize">{trip.destination}</h5>
@@ -93,11 +98,13 @@ const updateTripContext =(trip:ITripData)=>{
      <AccordionContent >
      <div  >
            
-     <p className="text-center font-normal text-3xl text-white  mb-5" >{trip.isVotingOpen? "Voting in Progress" : "Itinerary generated"}</p>
+     <p className="text-center font-normal text-3xl text-white mb-5 " >{trip.isVotingOpen? "Voting in Progress" : "Itinerary generated"}</p>
+
     <div className='flex justify-between'>
       <div className='flex  flex-col  items-center gap-2' onClick={()=>handleEditTrip()}>
-        <img src="/assets/Icons/Orion_aircraft_lightweight_white.svg" alt="Edit Trip Details" className='w-auto h-20'/>
-      <p className="text-center font-normal text-lg  text-white"> View Trip Details</p>
+        <img src="/assets/Icons/Orion_aircraft_lightweight_white.svg" alt="Edit/ View Trip Details" className='w-auto h-20'/>
+      
+      <p className="text-center font-normal text-lg  text-white"> {(userId===trip.ownerId) ? "Edit Trip Details": "View Trip Details"}</p>
       </div>
       {trip.isVotingOpen? 
       (<div className='flex  flex-col  items-center gap-2 hover:cursor-pointer' onClick={()=>handleSelectTrip(trip)}>
