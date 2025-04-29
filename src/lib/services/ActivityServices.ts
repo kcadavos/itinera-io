@@ -39,3 +39,37 @@ export const GetUndecidedActivities = async (userId: number, tripId: number) => 
     return userData;
 
 }
+
+//------------------------- add to liked/disliked list
+
+
+
+//------------------------------get liked activities list
+export const GetLikedActivities = async (userId: number, tripId: number) => {
+    const res = await fetch(url + `Activity/GetLikedActivities/${userId}/${tripId}`);
+
+    if(!res.ok){
+        const data = await res.json();
+        const message = data.message;
+        console.log(message);
+        return null;
+    }
+    const userData = await res.json();
+    return userData;
+}
+
+//----------------------------get disliked list
+export const GetDislikedActivities = async (userId: number, tripId: number) => {
+    const res = await fetch(url + `Activity/GetDislikedActivities/${userId}/${tripId}`);
+
+    if(!res.ok){
+        const data = await res.json();
+        const message = data.message;
+        console.log(message);
+        return null;
+    }
+
+    const userData = await res.json();
+    return userData;
+
+}

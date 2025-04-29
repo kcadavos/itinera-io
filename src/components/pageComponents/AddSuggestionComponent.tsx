@@ -35,11 +35,10 @@ const AddSuggestionComponent = () => {
         const result = await AddActivity(activityData);
         
         if(result){
-            alert("Activity Created!");
             router.push('/ItinerarySuggestionPages/UndecidedListPage');
 
         }else{
-            alert("something went wrong");
+            alert("Something went wrong");
         } 
     }
 
