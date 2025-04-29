@@ -43,7 +43,7 @@ export interface IActivityData {
     details: string,
 }
 
-export interface IUndecidedData {
+export interface IActivityListData {
     userId: number,
     tripId: number,
     activity: string,
