@@ -29,6 +29,8 @@ const AddSuggestionComponent = () => {
         category: category,
         address: address,
         details: detailes,
+        voteYes: [],
+        voteNo: []
     }
 
     const addActivityFetch = async () => {
