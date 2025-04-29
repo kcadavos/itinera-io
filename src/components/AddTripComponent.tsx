@@ -26,7 +26,7 @@ const AddTripComponent = () => {
     const {selectedTripStartDate}=useSelectedTripStartDateContext();
     const {selectedTripEndDate}=useSelectedTripEndDateContext();
     const{selectedParticipantsIdList}=useSelectedTripParticipantsIdListContext();
-    const{setSelectedTripOwnerId,selectedTripOwnerId}=useSelectedTripOwnerIdContext();
+    const{selectedTripOwnerId}=useSelectedTripOwnerIdContext();
     
     // add/edit  trip data
     const{userId}=useUserIdContext();
@@ -163,11 +163,11 @@ const AddTripComponent = () => {
         // console.log("SEARCH PARAMS" +mode);
     },[userId,participantIds,startDate,endDate])
 
-    useEffect (()=>{
-        console.log("USERID CHANGED "+userId);
-        console.log("SET START"+ selectedTripStartDate);
+    // useEffect (()=>{
+    //     console.log("USERID CHANGED "+userId);
+    //     console.log("SET START"+ selectedTripStartDate);
         
-    },[userId])
+    // },[userId])
 
 
      
