@@ -7,6 +7,12 @@ import { createContext, useContext, useState } from "react";
 //     setSwitchBool: (switchBool: boolean) => void;
 // }
 
+type LoginStatus = 'idle' | 'success' | 'failed';
+
+interface LoginStatusInterface {
+  loginStatus: LoginStatus;
+  setLoginStatus: (status: LoginStatus) => void;
+}
 interface nameInterface {
     name: string;
     setName : (name: string)=>void;
@@ -89,6 +95,10 @@ const SelectedTripOwnerIdContext = createContext<selectedTripOwnerIdInterface>({
     selectedTripOwnerId:0,
     setSelectedTripOwnerId: ownerId=>ownerId
 })
+const LoginStatusContext = createContext<LoginStatusInterface>({
+    loginStatus: 'idle',
+    setLoginStatus: () => {},
+  });
 // Creating the wrapper
 export function AppWrapper({ children }: { children: React.ReactNode }){
     // const [switchBool, setSwitchBool] = useState<boolean>(true);
@@ -100,11 +110,13 @@ export function AppWrapper({ children }: { children: React.ReactNode }){
     const[selectedTripEndDate,setSelectedTripEndDate]=useState<string>('');
     const[selectedParticipantsIdList,setSelectedParticipantsIdList]=useState<number[]>([]);
     const[selectedTripOwnerId,setSelectedTripOwnerId]=useState<number>(0);
+    const [loginStatus, setLoginStatus] = useState<LoginStatus>('idle');
     
     return(
         // <SwitchBoolContext.Provider value={ { switchBool, setSwitchBool } }>
         //     {children}
         // </SwitchBoolContext.Provider>
+        <LoginStatusContext.Provider value={{ loginStatus, setLoginStatus }}>
         <NameContext.Provider value ={{name,setName}}>
             <UserIdContext.Provider  value = {{userId,setUserId}}>
             <SelectedTripIdContext.Provider value={{selectedTripId,setSelectedTripId}}>
@@ -122,6 +134,7 @@ export function AppWrapper({ children }: { children: React.ReactNode }){
             </SelectedTripIdContext.Provider>
             </UserIdContext.Provider>
         </NameContext.Provider>
+        </LoginStatusContext.Provider>
     )
 }
 
@@ -156,3 +169,6 @@ export function useSelectedTripParticipantsIdListContext(){
 export function useSelectedTripOwnerIdContext(){
     return useContext(SelectedTripOwnerIdContext);
 }
+export function useLoginStatusContext() {
+    return useContext(LoginStatusContext);
+  }
