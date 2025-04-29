@@ -4,17 +4,17 @@ import React, { useEffect, useState } from 'react'
 import UndecidedCardComponent from '../UndecidedCardComponent'
 import { useSelectedTripIdContext, useUserIdContext } from '@/context/DataContext';
 import { GetUndecidedActivities } from '@/lib/services/ActivityServices';
-import { IUndecidedData } from '@/lib/Interfaces';
+import {IActivityListData} from '@/lib/Interfaces';
 
 const UndecidedListComponent = () => {
   const {userId} = useUserIdContext();
   const {selectedTripId} = useSelectedTripIdContext();
-  const [undecidedList, setUndercidedList] = useState<IUndecidedData[] | null>(null);
+  const [undecidedList, setUndecidedList] = useState<IActivityListData[] | null>(null);
 
   useEffect(()=>{
     const getUndecidedList = async ()=>{
       const undecidedListData = await GetUndecidedActivities(userId, selectedTripId);
-      setUndercidedList(undecidedListData);
+      setUndecidedList(undecidedListData);
     }
     getUndecidedList();
        
