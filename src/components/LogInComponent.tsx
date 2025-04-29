@@ -27,6 +27,7 @@ const LogInComponent = () => {
       const token: IToken = await Login(userData);
 
     if(token != null){
+      setLoginStatus('success')
       if(typeof window != null){
         localStorage.setItem("ItineraToken", token.token);
         console.log(token.token);

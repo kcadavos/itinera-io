@@ -103,9 +103,14 @@ const HeaderComponent = () => {
       };
     } else if(loginStatus === "failed"){
       return {
-        topMessage:"",
+        topMessage:(
+          <p className="text-[#E67E22] text-2xl">
+           Invalid Username <br />
+            or Password.
+          </p>
+        ),
         destination:"",
-        message:"",
+        message:"Please try again.",
         color:""
       }
     }else {
