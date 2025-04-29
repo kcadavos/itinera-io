@@ -2,22 +2,49 @@ import { IUndecidedData } from '@/lib/Interfaces'
 import React from 'react'
 
 const UndecidedCardComponent = ({ activities }:{activities:IUndecidedData[] | null}) => {
-  const bgColors = ["bg-[#1A89BC]","bg-[#4AAAE2]","bg-[#F4B400]","bg-[#E67E22]","bg-[#4A90E2]"];
+  const bgColors: string[] = ["bg-[#1A89BC]","bg-[#4AAAE2]","bg-[#F4B400]","bg-[#E67E22]","bg-[#4A90E2]"];
+
+
+  const IconSwitch = (category: string) => {
+    switch(category){
+      case 'Adventure & Outdoors':
+        return '/assets/Icons/Orion_beach.svg'
+      case 'Culture & History':
+        return '/assets/Icons/Orion_binocular.svg';
+      case 'Food & Drink':
+        return '/assets/Icons/Orion_restaurant.svg';
+      case 'Relaxation & Wellness':
+        return '/assets/Icons/Orion_sun-lounger.svg';
+      case 'Entertainment & Nightlife':
+        return '/assets/Icons/Orion_camping.svg';
+      default:
+        return '/assets/Icons/Orion_camera.svg'; 
+
+    }
+  }
 
   
   return (
     activities?.map((activity: IUndecidedData, idx: number) => (
       <div key={idx} className={`${bgColors[idx % bgColors.length]} p-4 my-2 mb-10 mx-8 rounded-bl-2xl rounded-tr-2xl relative`}>
-        <div className='text-white'>
-          <h3 className='text-2xl mb-1'>{activity.activity}</h3>
-          <p className='text-md my-1'>{activity.address}</p>
-          <p className='text-sm my-2'>{activity.details}</p>
+        <div className='flex justify-between'>
+
+          <div className='text-white'>
+            <h3 className='text-2xl mb-1'>{activity.activity}</h3>
+            <p className='text-md my-1'>{activity.address}</p>
+            <p className='text-sm my-2'>{activity.details}</p>
+          </div>
+
+          <div>
+            <img src={IconSwitch(activity.category)} alt="category" className=' w-10' />
+          </div>
         </div>
+        
 
         <div className="flex justify-center mt-18 absolute -bottom-7 left-50 transform -translate-x-1/2">
-          <button className="bg-[#E67E22] hover:bg-[#d56b0f] border-2 border-white text-xl text-white rounded-[2.5rem] p-2 cursor-pointer" >
+          <button className="bg-[#1ABC9C] hover:bg-[#67afa0] border-2 border-white text-xl text-white rounded-[2.5rem] p-2 cursor-pointer" >
             <img
-              src="/assets/Icons/Orion_add-place 1.svg"
+              src="/assets/Icons/Orion_checkin-place 2.svg"
               className="w-8"
               alt="add"
             />
@@ -25,7 +52,7 @@ const UndecidedCardComponent = ({ activities }:{activities:IUndecidedData[] | nu
         </div>
 
         <div className="flex justify-center mt-18 absolute -bottom-7 left-65 transform -translate-x-1/2">
-          <button className="bg-[#E67E22] hover:bg-[#d56b0f] border-2 border-white text-xl text-white rounded-[2.5rem] p-2 cursor-pointer" >
+          <button className="bg-[#1ABC9C] hover:bg-[#67afa0] border-2 border-white text-xl text-white rounded-[2.5rem] p-2 cursor-pointer" >
             <img
               src="/assets/Icons/Orion_delete-place 1.svg"
               className="w-8"
