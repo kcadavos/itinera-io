@@ -41,8 +41,6 @@ const AddTripComponent = () => {
     // error checking 
     const [submitted, setSubmitted] = useState(false);//false on page load
 
-
-
      
     //mode of the page either reset the value of the fields else set values from data context
     useEffect(()=>{  
@@ -56,7 +54,7 @@ const AddTripComponent = () => {
                 setParticipantsEmailList('');
             
                
-                } else {
+                } else { // for editing
                 setTripId  (selectedTripId);
                 setDestination(selectedTripDestination);
                 const parsedStartDate = parse(selectedTripStartDate, "yyyy-MM-dd", new Date());
@@ -121,9 +119,7 @@ const AddTripComponent = () => {
       
     }
 
-    // const EditTripDetails=async()=>{
-    //     setSubmitted(true);
-    // }
+   
 
     //for getting IDs based on email
     useEffect(()=>{
