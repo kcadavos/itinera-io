@@ -41,12 +41,13 @@ interface selectedParticipantsListIdInterface{
     selectedParticipantsIdList: number[],
     setSelectedParticipantsIdList:(participantsIdList:number[])=>void
 }
+interface selectedTripOwnerIdInterface{
+    selectedTripOwnerId: number,
+    setSelectedTripOwnerId:(ownerId:number)=>void
+}
 
-// Creating the context
-// const SwitchBoolContext = createContext<Context>({
-//     switchBool: true ,
-//     setSwitchBool: (switchBool: boolean) => switchBool
-// });
+
+
 
 const NameContext = createContext<nameInterface>({
     name:'',
@@ -73,6 +74,7 @@ const SelectedTripEndDateContext = createContext<selectedTripEndDateInterface> (
     setSelectedTripEndDate: endDate=>endDate
 })
 
+
 const UserIdContext = createContext<userIdInterface> ({
     userId : 0,
     setUserId : userId=> userId
@@ -83,6 +85,10 @@ const SelectedParticipantsListIdContext  = createContext<selectedParticipantsLis
     setSelectedParticipantsIdList: selectedPartcipantsIdList => selectedPartcipantsIdList
 })
 
+const SelectedTripOwnerIdContext = createContext<selectedTripOwnerIdInterface>({
+    selectedTripOwnerId:0,
+    setSelectedTripOwnerId: ownerId=>ownerId
+})
 // Creating the wrapper
 export function AppWrapper({ children }: { children: React.ReactNode }){
     // const [switchBool, setSwitchBool] = useState<boolean>(true);
@@ -93,6 +99,7 @@ export function AppWrapper({ children }: { children: React.ReactNode }){
     const[selectedTripStartDate,setSelectedTripStartDate]=useState<string>('');
     const[selectedTripEndDate,setSelectedTripEndDate]=useState<string>('');
     const[selectedParticipantsIdList,setSelectedParticipantsIdList]=useState<number[]>([]);
+    const[selectedTripOwnerId,setSelectedTripOwnerId]=useState<number>(0);
     
     return(
         // <SwitchBoolContext.Provider value={ { switchBool, setSwitchBool } }>
@@ -105,7 +112,9 @@ export function AppWrapper({ children }: { children: React.ReactNode }){
             <SelectedTripStartDateContext.Provider value = {{selectedTripStartDate,setSelectedTripStartDate}}>
             <SelectedTripEndDateContext.Provider value ={{selectedTripEndDate,setSelectedTripEndDate}}>
             <SelectedParticipantsListIdContext.Provider value ={{selectedParticipantsIdList,setSelectedParticipantsIdList}}>
+            <SelectedTripOwnerIdContext.Provider value={{selectedTripOwnerId,setSelectedTripOwnerId}}>
              {children}
+            </SelectedTripOwnerIdContext.Provider>
             </SelectedParticipantsListIdContext.Provider>
             </SelectedTripEndDateContext.Provider>
             </SelectedTripStartDateContext.Provider>
@@ -118,9 +127,6 @@ export function AppWrapper({ children }: { children: React.ReactNode }){
 
 // Function to allow acces to data
 
-// export function useAppcontext() {
-//     return useContext(SwitchBoolContext);
-// }
 
 export function useNameContext(){
     return useContext(NameContext);
@@ -145,4 +151,8 @@ export function useUserIdContext(){
 
 export function useSelectedTripParticipantsIdListContext(){
     return useContext(SelectedParticipantsListIdContext);
+}
+
+export function useSelectedTripOwnerIdContext(){
+    return useContext(SelectedTripOwnerIdContext);
 }
