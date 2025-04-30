@@ -1,9 +1,11 @@
+import { useUserIdContext } from '@/context/DataContext';
 import { IActivityListData} from '@/lib/Interfaces'
-import React from 'react'
+import { AddVote } from '@/lib/services/ActivityServices';
+import React, { useState } from 'react'
 
 const UndecidedCardComponent = ({ activities }:{activities:IActivityListData[] | null}) => {
   const bgColors: string[] = ["bg-[#1A89BC]","bg-[#4AAAE2]","bg-[#F4B400]","bg-[#E67E22]","bg-[#4A90E2]"];
-
+  const {userId} = useUserIdContext();
 
   const IconSwitch = (category: string) => {
     switch(category){
@@ -22,10 +24,25 @@ const UndecidedCardComponent = ({ activities }:{activities:IActivityListData[] |
     }
   }
 
+  const castVote = async (activitiesId: number, vote: string) => {
+    const voteData = {
+      activityId: activitiesId,
+      userId: userId,
+      voteType: vote  
+    }
+
+    const result = await AddVote(voteData);
+    if(result){
+      console.log('success');
+    }else{
+      console.log('something went wrong');
+    }
+  }
+
   
   return (
     activities?.map((activity: IActivityListData, idx: number) => (
-      <div key={idx} className={`${bgColors[idx % bgColors.length]} p-4 my-2 mb-10 mx-8 rounded-bl-2xl rounded-tr-2xl relative`}>
+      <div key={idx} className={`${bgColors[idx % bgColors.length]} p-4 my-2 mb-10 mx-8 rounded-bl-2xl rounded-tr-2xl relative`} >
         <div className='flex justify-between mb-3'>
 
           <div className='text-white'>
@@ -41,7 +58,7 @@ const UndecidedCardComponent = ({ activities }:{activities:IActivityListData[] |
         
 
         <div className="flex justify-center mt-18 absolute -bottom-7 left-50 transform -translate-x-1/2">
-          <button className="bg-[#1ABC9C] hover:bg-[#67afa0] border-2 border-white text-xl text-white rounded-[2.5rem] p-2 cursor-pointer"  >
+          <button className="bg-[#1ABC9C] hover:bg-[#67afa0] border-2 border-white text-xl text-white rounded-[2.5rem] p-2 cursor-pointer" onClick={() => castVote(activity.id, "yes")}  >
             <img
               src="/assets/Icons/Orion_checkin-place 2.svg"
               className="w-8"
@@ -51,7 +68,7 @@ const UndecidedCardComponent = ({ activities }:{activities:IActivityListData[] |
         </div>
 
         <div className="flex justify-center mt-18 absolute -bottom-7 left-65 transform -translate-x-1/2">
-          <button className="bg-[#1ABC9C] hover:bg-[#67afa0] border-2 border-white text-xl text-white rounded-[2.5rem] p-2 cursor-pointer" >
+          <button className="bg-[#1ABC9C] hover:bg-[#67afa0] border-2 border-white text-xl text-white rounded-[2.5rem] p-2 cursor-pointer" onClick={() => castVote(activity.id, "no")} >
             <img
               src="/assets/Icons/Orion_delete-place 1.svg"
               className="w-8"

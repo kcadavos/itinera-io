@@ -12,21 +12,21 @@ const LikedListComponent = () => {
     const [likedList, setLikedList] = useState<IActivityListData[] | null>(null);
   
     useEffect(()=>{
-        const getLikedList = async ()=>{
+      const getLikedList = async ()=>{
         const likedListData = await GetLikedActivities(userId, selectedTripId);
         setLikedList(likedListData);
-        }
-        getLikedList();         
+      }
+      getLikedList();         
     },[userId, selectedTripId]);
 
    
 
   return (
     <div>
-        <p className='text-center text-[#2C3E50] mb-2'>These are the acivities you liked.</p>
-        <div className='mb-35' > 
-            <LikedCardComponent activities={likedList} />
-        </div>
+      <p className='text-center text-[#2C3E50] mb-2'>These are the acivities you liked.</p>
+      <div className='mb-35' > 
+        <LikedCardComponent activities={likedList} />
+      </div>
     </div>
     
   )

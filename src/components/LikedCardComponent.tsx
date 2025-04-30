@@ -26,10 +26,10 @@ const LikedCardComponent = ({ activities }:{activities:IActivityListData[] | nul
     activities?.map((activity: IActivityListData, idx: number) => (
         <div key={idx} className={`${bgColors[idx % bgColors.length]} p-4 my-2 mb-10 mx-8 rounded-bl-2xl rounded-tr-2xl relative`}>
 
-            <div className="flex justify-center mt-18 absolute -top-25 -right-15 transform -translate-x-7/8">
-                <button className="bg-[#1ABC9C] hover:bg-[#67afa0] border-2 border-white text-xl text-white rounded-[2.5rem] p-2 cursor-pointer"  >
+            <div className="flex justify-center mt-18 absolute -top-23 -right-12 transform -translate-x-7/8">
+                <button className="bg-[#1ABC9C] hover:bg-[#67afa0] border-2 border-white text-xl text-white rounded-[2.5rem] p-[.1rem] cursor-pointer"  >
                     <img
-                    src="/assets/Icons/Orion_checkin-place 2.svg"
+                    src="/assets/Icons/Orion_remove.svg"
                     className="w-8"
                     alt="add"
                     />
