@@ -1,9 +1,11 @@
-import { IActivityListData } from '@/lib/Interfaces'
+import { useUserIdContext } from '@/context/DataContext';
+import {IActivityListData } from '@/lib/Interfaces'
+import { RemoveVote } from '@/lib/services/ActivityServices';
 import React from 'react'
 
 const DislikedCardComponent = ({ activities }:{activities:IActivityListData[] | null}) => {
   const bgColors: string[] = ["bg-[#1A89BC]","bg-[#4AAAE2]","bg-[#F4B400]","bg-[#E67E22]","bg-[#4A90E2]"];
-  
+  const {userId} = useUserIdContext();
   
     const IconSwitch = (category: string) => {
         switch(category){
@@ -21,13 +23,28 @@ const DislikedCardComponent = ({ activities }:{activities:IActivityListData[] | 
                 return '/assets/Icons/Orion_camera.svg'; 
         }
     }
+
+    const removeVoteFromDisliked = async (activitiesId: number, vote: string) => {
+        const voteData = {
+            activityId: activitiesId,
+            userId: userId,
+            voteType: vote  
+        }
+        
+        const result = await RemoveVote(voteData);
+        if(result){
+            console.log('success');
+        }else{
+            console.log('something went wrong');
+        }
+    }
   
     return (
       activities?.map((activity: IActivityListData, idx: number) => (
           <div key={idx} className={`${bgColors[idx % bgColors.length]} p-4 my-2 mb-10 mx-8 rounded-bl-2xl rounded-tr-2xl relative`}>
   
             <div className="flex justify-center mt-18 absolute -top-23 -right-12 transform -translate-x-7/8">
-                <button className="bg-[#1ABC9C] hover:bg-[#67afa0] border-2 border-white text-xl text-white rounded-[2.5rem] p-[.1rem] cursor-pointer"  >
+                <button className="bg-[#1ABC9C] hover:bg-[#67afa0] border-2 border-white text-xl text-white rounded-[2.5rem] p-[.1rem] cursor-pointer" onClick={() => removeVoteFromDisliked(activity.id, "no")} >
                     <img
                       src="/assets/Icons/Orion_remove.svg"
                       className="w-8"

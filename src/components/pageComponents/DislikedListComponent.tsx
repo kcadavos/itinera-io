@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react'
 import { useSelectedTripIdContext, useUserIdContext } from '@/context/DataContext';
 import { IActivityListData } from '@/lib/Interfaces';
 import { GetDislikedActivities } from '@/lib/services/ActivityServices';
-import DisikedCardComponent from '../LikedCardComponent';
+import DisikedCardComponent from '../DislikedCardComponent';
 
 const DislikedListComponent = () => {
     const {userId} = useUserIdContext();
