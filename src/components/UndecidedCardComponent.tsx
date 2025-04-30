@@ -1,7 +1,7 @@
 import { useUserIdContext } from '@/context/DataContext';
 import { IActivityListData} from '@/lib/Interfaces'
 import { AddVote } from '@/lib/services/ActivityServices';
-import React, { useState } from 'react'
+import React from 'react'
 
 const UndecidedCardComponent = ({ activities }:{activities:IActivityListData[] | null}) => {
   const bgColors: string[] = ["bg-[#1A89BC]","bg-[#4AAAE2]","bg-[#F4B400]","bg-[#E67E22]","bg-[#4A90E2]"];

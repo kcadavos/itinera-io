@@ -1,4 +1,4 @@
-import { IActivityData, IActivityListData, IVotedata } from "../Interfaces";
+import { IActivityData,  IVotedata } from "../Interfaces";
 
 
 const url = 'https://itineraioapi-cqapgsgcbschc7hu.westus-01.azurewebsites.net/';
@@ -62,7 +62,24 @@ export const AddVote = async (vote: IVotedata) => {
 }
 
 //------------------remove from liked/dislied list
+export const RemoveVote = async (vote: IVotedata) => {
+    const res = await fetch(url + 'Activity/RemoveVote', {
+        method: "PATCH",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body:JSON.stringify(vote)
+    });
 
+    if(!res.ok){
+        const data = await res.json();
+        const message = data.message;
+        console.log(message);
+        return null;
+    }
+    const data = await res.json();
+    return data;
+}
 
 //------------------------------get liked activities list
 export const GetLikedActivities = async (userId: number, tripId: number) => {
