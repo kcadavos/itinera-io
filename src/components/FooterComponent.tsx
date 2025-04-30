@@ -24,25 +24,27 @@ const FooterComponent = () => {
             return { 
               text:"Initiate a Trip",
               src:"/assets/Icons/Orion_aircraft 1.svg",
-              //set href to an object instead of just string to add 'query' for identifying when user is adding a trip
                href: {
                 pathname: "/Trip/AddTrip",
                 query: { mode: 'add' },
-                onClick: undefined,
-              }
+              },
+              onClick: undefined,
             } ;
             case accountStatus === 'account':
               return{
-                text:"Initiate a Trip",
-              src:"/assets/Icons/Orion_aircraft 1.svg",
-              //set href to an object instead of just string to add 'query' for identifying when user is adding a trip
-               href: {
-                pathname: "/Trip/AddTrip",
-                query: { mode: 'add' },
-                onClick: handleClick,
-              }
+                text:"Change Password",
+              src:"",
+               href: "",
+              onClick: handleClick,
 
               };
+              case accountStatus === "password":
+                return{
+                  text:"Change Name",
+                  src:"",
+                   href: "",
+                  onClick: handleClick,
+                };
             // case loginStatus === "create":
             //   return{
             //     text: "hi",
@@ -68,7 +70,7 @@ const FooterComponent = () => {
         <div className="text-white flex justify-center text-4xl font-medium ">        
          <Link href={bottom.href} onClick={bottom.onClick} className="flex">
         <p>{bottom.text}</p>
-        <img className='w-12 h-12' src={bottom.src} alt="image" />
+        <img className='w-12 h-12' src={bottom.src} alt="" />
          </Link>
           
         </div>
