@@ -1,3 +1,4 @@
+import { useCreateStatusContext } from "@/context/DataContext";
 import { CreateAccount } from "@/lib/services/DataServices";
 import React, { useState } from "react";
 
@@ -10,7 +11,7 @@ const AccountCreationComponent: React.FC<AccountCreationProps> = ({ switchboolsw
   const [password, setPassword] = useState<string>('');
   const [confirmPassword, setConfirmPassword] = useState<string>('');
   const [username, setUsername] = useState<string>('');
-
+  const { setCreateStatus } = useCreateStatusContext();
 
   const submitCreation = async () => {
 
@@ -24,13 +25,13 @@ const AccountCreationComponent: React.FC<AccountCreationProps> = ({ switchboolsw
       const result = await CreateAccount(userData);
 
       if(result){
-        alert("Account Created!");
+        setCreateStatus('success');
         switchboolswitch(true)
       }else{
-        alert("Account Already Exists");
+        setCreateStatus('exists')
       } 
     }else{
-      alert("Passwords are not the same");
+      setCreateStatus('failed');
     }
   }
 

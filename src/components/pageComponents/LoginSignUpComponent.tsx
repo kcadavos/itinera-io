@@ -2,21 +2,19 @@
 
 import AccountCreationComponent from "@/components/AccountCreationComponent";
 import LogInComponent from "@/components/LogInComponent";
+import { useLoginStatusContext } from "@/context/DataContext";
 
-import {  useEffect, useState } from "react";
+import { useState } from "react";
 
 const LoginSignUpComponent = () => {
   const [switchBool, setSwitchBool] = useState<boolean>(true);
-
+const {loginStatus, setLoginStatus} = useLoginStatusContext();
  
   const handleSwitch = () => {
+    setLoginStatus(loginStatus === "create" ? "idle" : "create");
     setSwitchBool(!switchBool);
     console.log(switchBool)
   }
-
-  useEffect(()=>{
-
-  },[]) 
 
   
   return (

@@ -2,13 +2,19 @@
 
 import { createContext, useContext, useState } from "react";
 
-// interface Context {
-//     switchBool: boolean,
-//     setSwitchBool: (switchBool: boolean) => void;
-// }
 
-type LoginStatus = 'idle' | 'success' | 'failed';
+type LoginStatus = 'idle' | 'success' | 'failed'| "create";
+type CreateStatus = 'idle'|'success'| 'failed' | 'exists';
+type AccountStatus = 'idle'| 'password'| 'account'
 
+interface AccountStatusInterFace{
+    accountStatus: AccountStatus;
+    setAccountStatus: (status: AccountStatus)=> void;
+}
+interface CreateStatusInterFace{
+    createStatus: CreateStatus;
+    setCreateStatus: (status: CreateStatus)=> void;
+}
 interface LoginStatusInterface {
   loginStatus: LoginStatus;
   setLoginStatus: (status: LoginStatus) => void;
@@ -99,9 +105,18 @@ const LoginStatusContext = createContext<LoginStatusInterface>({
     loginStatus: 'idle',
     setLoginStatus: () => {},
   });
-// Creating the wrapper
+const CreateStatusContext = createContext<CreateStatusInterFace>({
+  createStatus: 'idle',
+ setCreateStatus: ()=>{}
+});
+
+const AccountStatusContext = createContext<AccountStatusInterFace>({
+    accountStatus: 'idle',
+    setAccountStatus:()=>{}
+})
+
 export function AppWrapper({ children }: { children: React.ReactNode }){
-    // const [switchBool, setSwitchBool] = useState<boolean>(true);
+   
     const [name,setName] = useState<string>('');
     const[userId,setUserId] = useState<number> (0);
     const[selectedTripId,setSelectedTripId]=useState<number>(0);
@@ -111,11 +126,12 @@ export function AppWrapper({ children }: { children: React.ReactNode }){
     const[selectedParticipantsIdList,setSelectedParticipantsIdList]=useState<number[]>([]);
     const[selectedTripOwnerId,setSelectedTripOwnerId]=useState<number>(0);
     const [loginStatus, setLoginStatus] = useState<LoginStatus>('idle');
-    
+    const [createStatus, setCreateStatus] = useState<CreateStatus>('idle');
+    const [accountStatus, setAccountStatus] = useState<AccountStatus>('idle');
+
     return(
-        // <SwitchBoolContext.Provider value={ { switchBool, setSwitchBool } }>
-        //     {children}
-        // </SwitchBoolContext.Provider>
+        <AccountStatusContext.Provider value={{ accountStatus, setAccountStatus}}>
+        <CreateStatusContext.Provider value={{ createStatus, setCreateStatus}}>
         <LoginStatusContext.Provider value={{ loginStatus, setLoginStatus }}>
         <NameContext.Provider value ={{name,setName}}>
             <UserIdContext.Provider  value = {{userId,setUserId}}>
@@ -135,6 +151,8 @@ export function AppWrapper({ children }: { children: React.ReactNode }){
             </UserIdContext.Provider>
         </NameContext.Provider>
         </LoginStatusContext.Provider>
+        </CreateStatusContext.Provider>
+        </AccountStatusContext.Provider>
     )
 }
 
@@ -171,4 +189,12 @@ export function useSelectedTripOwnerIdContext(){
 }
 export function useLoginStatusContext() {
     return useContext(LoginStatusContext);
+  }
+
+  export function useCreateStatusContext(){
+    return useContext(CreateStatusContext);
+  }
+
+  export function useAccountStatusContext(){
+    return useContext(AccountStatusContext);
   }
