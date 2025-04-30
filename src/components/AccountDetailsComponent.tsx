@@ -1,10 +1,11 @@
+"use client"
 import React from 'react'
 
 const submitChange = ()=>{
 
 }
 
-const AccountDetails = () => {
+const AccountDetailsComponent = () => {
   return (
     <div className=" ">
     <div className="flex justify-start my-4 pt-10">
@@ -92,4 +93,4 @@ const AccountDetails = () => {
   )
 }
 
-export default AccountDetails
+export default AccountDetailsComponent

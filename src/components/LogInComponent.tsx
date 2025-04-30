@@ -16,7 +16,6 @@ const LogInComponent = () => {
   const { setLoginStatus } = useLoginStatusContext();
 
   const submitLogin = async () => {
-  setLoginStatus('create');
     const userData = {
       email: email,
       password: password
