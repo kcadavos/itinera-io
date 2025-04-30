@@ -31,7 +31,7 @@ const AccountDetailsComponent = () => {
         <img
           src="/assets/Icons/Orion_keyhole.svg"
           alt="password"
-          className="w-10 p-1"
+          className="w-10 p-1 disabled"
         />
       </div>
 
