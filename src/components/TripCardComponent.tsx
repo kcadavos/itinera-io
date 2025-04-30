@@ -98,22 +98,22 @@ const updateTripContext =(trip:ITripData)=>{
      <AccordionContent >
      <div  >
            
-     <p className="text-center font-normal text-3xl text-white mb-5 " >{trip.isVotingOpen? "Voting in Progress" : "Itinerary generated"}</p>
+     <p className=" text-center font-normal text-3xl text-white mb-5 " >{trip.isVotingOpen? "Voting in Progress" : "Itinerary generated"}</p>
 
     <div className='flex justify-between'>
       <div className='flex  flex-col  items-center gap-2' onClick={()=>handleEditTrip()}>
         <img src="/assets/Icons/Orion_aircraft_lightweight_white.svg" alt="Edit/ View Trip Details" className='w-auto h-20'/>
       
-      <p className="text-center font-normal text-lg  text-white"> {(userId===trip.ownerId) ? "Edit Trip Details": "View Trip Details"}</p>
+      <p className="text-center font-normal  text-lg  text-white"> {(userId===trip.ownerId) ? "Edit Trip Details": "View Trip Details"}</p>
       </div>
       {trip.isVotingOpen? 
-      (<div className='flex  flex-col  items-center gap-2 hover:cursor-pointer' onClick={()=>handleSelectTrip(trip)}>
+      (<div className=' flex  flex-col  items-center gap-2 hover:cursor-pointer' onClick={()=>handleSelectTrip(trip)}>
       <img src="/assets/Icons/Orion_markers_lightweight_white.svg" alt="View Activities" className='w-auto h-20'/>
-       <p className="text-center font-normal text-lg text-white">View Activities</p>
+       <p className=" text-center font-normal text-lg text-white">View Activities</p>
       </div>)  :
       (<div className='flex  flex-col  items-center gap-2 hover:cursor-pointer' onClick={()=>handleSelectTrip(trip)}>
-      <img src="/assets/Icons/Orion_travel-map_lightweight_white.svg" alt="View Itinerary" className='w-auto h-20'/>
-       <p className="text-center font-normal text-lg text-white">View Itinerary</p>
+      <img src="/assets/Icons/Orion_travel-map_lightweight_white.svg" alt="View Itinerary" className=' w-auto h-20'/>
+       <p className=" text-center font-normal   text-lg text-white">View Itinerary</p>
       </div>)
       }
       </div>

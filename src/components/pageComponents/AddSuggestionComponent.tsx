@@ -29,17 +29,18 @@ const AddSuggestionComponent = () => {
         category: category,
         address: address,
         details: detailes,
+        voteYes: [],
+        voteNo: []
     }
 
     const addActivityFetch = async () => {
         const result = await AddActivity(activityData);
         
         if(result){
-            alert("Activity Created!");
             router.push('/ItinerarySuggestionPages/UndecidedListPage');
 
         }else{
-            alert("something went wrong");
+            alert("Something went wrong");
         } 
     }
 
