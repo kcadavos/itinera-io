@@ -18,7 +18,7 @@ const UndecidedListComponent = () => {
     }
     getUndecidedList();
        
-  },[userId, selectedTripId]);
+  },[userId, selectedTripId, undecidedList]);
 
   return (
     <div>

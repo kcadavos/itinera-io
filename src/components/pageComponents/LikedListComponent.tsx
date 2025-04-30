@@ -17,7 +17,7 @@ const LikedListComponent = () => {
         setLikedList(likedListData);
       }
       getLikedList();         
-    },[userId, selectedTripId]);
+    },[userId, selectedTripId, likedList]);
 
    
 
