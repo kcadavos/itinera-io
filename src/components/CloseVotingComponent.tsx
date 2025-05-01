@@ -1,15 +1,14 @@
-import { useSelectedTripIsVotingOpenContext } from '@/context/DataContext';
-import Image from 'next/image'
+// import { useSelectedTripIsVotingOpenContext } from '@/context/DataContext';
 import  { useState} from 'react'
 
 
 const CloseVotingComponent = () => {
 
   const [schedIntensity, setSchedIntensity] = useState<string>('1');
-  const {selectedTripIsVotingOpen,setSelectedTripIsVotingOpen}=useSelectedTripIsVotingOpenContext();
+  // const {selectedTripIsVotingOpen,setSelectedTripIsVotingOpen}=useSelectedTripIsVotingOpenContext();
 
 const GenerateItinerary =()=>{
-  
+
 }
 
   return (
