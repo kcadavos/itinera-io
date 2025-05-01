@@ -59,6 +59,12 @@ interface selectedTripOwnerIdInterface{
 }
 
 
+interface selectedTripIsVotingOpenInterface{
+    selectedTripIsVotingOpen: boolean,
+    setSelectedTripIsVotingOpen:(ownerId:boolean)=>void
+}
+
+
 
 
 const NameContext = createContext<nameInterface>({
@@ -101,6 +107,11 @@ const SelectedTripOwnerIdContext = createContext<selectedTripOwnerIdInterface>({
     selectedTripOwnerId:0,
     setSelectedTripOwnerId: ownerId=>ownerId
 })
+
+const SelectedTripIsVotingOpenContext = createContext <selectedTripIsVotingOpenInterface>({
+    selectedTripIsVotingOpen:true,
+    setSelectedTripIsVotingOpen :isVotingOpen=>isVotingOpen
+})
 const LoginStatusContext = createContext<LoginStatusInterface>({
     loginStatus: 'idle',
     setLoginStatus: () => {},
@@ -125,6 +136,7 @@ export function AppWrapper({ children }: { children: React.ReactNode }){
     const[selectedTripEndDate,setSelectedTripEndDate]=useState<string>('');
     const[selectedParticipantsIdList,setSelectedParticipantsIdList]=useState<number[]>([]);
     const[selectedTripOwnerId,setSelectedTripOwnerId]=useState<number>(0);
+    const[selectedTripIsVotingOpen,setSelectedTripIsVotingOpen]=useState<boolean>(false);
     const [loginStatus, setLoginStatus] = useState<LoginStatus>('idle');
     const [createStatus, setCreateStatus] = useState<CreateStatus>('idle');
     const [accountStatus, setAccountStatus] = useState<AccountStatus>('idle');
@@ -141,7 +153,9 @@ export function AppWrapper({ children }: { children: React.ReactNode }){
             <SelectedTripEndDateContext.Provider value ={{selectedTripEndDate,setSelectedTripEndDate}}>
             <SelectedParticipantsListIdContext.Provider value ={{selectedParticipantsIdList,setSelectedParticipantsIdList}}>
             <SelectedTripOwnerIdContext.Provider value={{selectedTripOwnerId,setSelectedTripOwnerId}}>
+             <SelectedTripIsVotingOpenContext.Provider value={{selectedTripIsVotingOpen,setSelectedTripIsVotingOpen}}>
              {children}
+             </SelectedTripIsVotingOpenContext.Provider>
             </SelectedTripOwnerIdContext.Provider>
             </SelectedParticipantsListIdContext.Provider>
             </SelectedTripEndDateContext.Provider>
@@ -186,6 +200,10 @@ export function useSelectedTripParticipantsIdListContext(){
 
 export function useSelectedTripOwnerIdContext(){
     return useContext(SelectedTripOwnerIdContext);
+}
+
+export function useSelectedTripIsVotingOpenContext(){
+    return useContext(SelectedTripIsVotingOpenContext);
 }
 export function useLoginStatusContext() {
     return useContext(LoginStatusContext);
