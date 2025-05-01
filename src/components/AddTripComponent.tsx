@@ -54,7 +54,7 @@ const AddTripComponent = () => {
                 setParticipantsEmailList('');
             
                
-                } else { // for editing
+                } else { // for editing or viewing
                 setTripId  (selectedTripId);
                 setDestination(selectedTripDestination);
                 const parsedStartDate = parse(selectedTripStartDate, "yyyy-MM-dd", new Date());
