@@ -1,7 +1,7 @@
 import { ITripData } from '@/lib/TripInterfaces'
 import React, { useEffect, useRef } from 'react'
 import { format } from 'date-fns'; 
-import { useSelectedTripDestinationContext, useSelectedTripEndDateContext, useSelectedTripIdContext, useSelectedTripOwnerIdContext, useSelectedTripParticipantsIdListContext, useSelectedTripStartDateContext, useUserIdContext } from '@/context/DataContext';
+import { useSelectedTripDestinationContext, useSelectedTripEndDateContext, useSelectedTripIdContext, useSelectedTripIsVotingOpenContext, useSelectedTripOwnerIdContext, useSelectedTripParticipantsIdListContext, useSelectedTripStartDateContext, useUserIdContext } from '@/context/DataContext';
 import { useRouter } from 'next/navigation';
 
 
@@ -23,7 +23,7 @@ const TripCardComponent = ({ trips }:{trips:ITripData[]}) => {
     const{selectedTripEndDate,setSelectedTripEndDate}=useSelectedTripEndDateContext();
     const{setSelectedParticipantsIdList}=useSelectedTripParticipantsIdListContext();
     const{setSelectedTripOwnerId}=useSelectedTripOwnerIdContext();
-
+    const{setSelectedTripIsVotingOpen}=useSelectedTripIsVotingOpenContext();
    
 // Refs to autos croll to selected trip
 const tripRefs = useRef<(HTMLDivElement | null)[]>([]);
@@ -35,6 +35,8 @@ const updateTripContext =(trip:ITripData)=>{
   setSelectedTripEndDate(trip.endDate);
   setSelectedParticipantsIdList(trip.participantsId);
   setSelectedTripOwnerId(trip.ownerId);
+  setSelectedTripIsVotingOpen(trip.isVotingOpen);
+
 
 }
  const handleSelectTrip= (trip:ITripData)=>{
@@ -42,7 +44,7 @@ const updateTripContext =(trip:ITripData)=>{
     if (trip.isVotingOpen){
        router.push("/ItinerarySuggestionPages/AddSuggestionPage")
     }else{
-       router.push("/Itinerary/ViewItinerary")
+       router.push("/ItinerarySuggestionPages/ItineraryPage")
     }
     
   }
