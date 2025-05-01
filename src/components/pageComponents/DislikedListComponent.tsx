@@ -5,6 +5,7 @@ import { useSelectedTripIdContext, useUserIdContext } from '@/context/DataContex
 import { IActivityListData } from '@/lib/Interfaces';
 import { GetDislikedActivities } from '@/lib/services/ActivityServices';
 import DisikedCardComponent from '../DislikedCardComponent';
+import { getToken } from '@/lib/services/DataServices';
 
 const DislikedListComponent = () => {
     const {userId} = useUserIdContext();
@@ -13,7 +14,7 @@ const DislikedListComponent = () => {
   
     useEffect(()=>{
       const getDislikedList = async ()=>{
-        const dislikedListData = await GetDislikedActivities(userId, selectedTripId);
+        const dislikedListData = await GetDislikedActivities(userId, selectedTripId, getToken());
         setDislikedList(dislikedListData);
       }
       getDislikedList();         

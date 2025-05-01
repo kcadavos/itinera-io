@@ -1,6 +1,7 @@
 import { useUserIdContext } from '@/context/DataContext';
 import { IActivityListData} from '@/lib/Interfaces'
 import { AddVote } from '@/lib/services/ActivityServices';
+import { getToken } from '@/lib/services/DataServices';
 import React from 'react'
 
 const UndecidedCardComponent = ({ activities }:{activities:IActivityListData[] | null}) => {
@@ -31,7 +32,7 @@ const UndecidedCardComponent = ({ activities }:{activities:IActivityListData[] |
       voteType: vote  
     }
 
-    const result = await AddVote(voteData);
+    const result = await AddVote(voteData, getToken());
     if(result){
       console.log('success');
     }else{

@@ -5,6 +5,7 @@ import { useSelectedTripIdContext, useUserIdContext } from '@/context/DataContex
 import { IActivityListData } from '@/lib/Interfaces';
 import { GetLikedActivities } from '@/lib/services/ActivityServices';
 import LikedCardComponent from '../LikedCardComponent';
+import { getToken } from '@/lib/services/DataServices';
 
 const LikedListComponent = () => {
     const {userId} = useUserIdContext();
@@ -13,7 +14,7 @@ const LikedListComponent = () => {
   
     useEffect(()=>{
       const getLikedList = async ()=>{
-        const likedListData = await GetLikedActivities(userId, selectedTripId);
+        const likedListData = await GetLikedActivities(userId, selectedTripId, getToken());
         setLikedList(likedListData);
       }
       getLikedList();         
