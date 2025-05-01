@@ -7,7 +7,7 @@ const submitChange = ()=>{
 
 const AccountDetailsComponent = () => {
   return (
-    <div className=" ">
+    <div className="bg-[#ECF0F1] rounded-2xl min-h-[26rem] min-w-[20rem] lg:min-h-[25rem] lg:max-w-[20rem] mx-4 px-4 relative mb-25 ">
     <div className="flex justify-start my-4 pt-10">
       <div className="mr-4">
         <img

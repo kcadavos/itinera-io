@@ -71,7 +71,7 @@ const AddSuggestionComponent = () => {
         {/* mobile */}
         <div className="block md:hidden">
             
-            <div className="bg-[#ECF0F1] rounded-2xl min-h-[28rem] min-w-[20rem] lg:min-h-[25rem] lg:max-w-[20rem] mx-4 px-4 relative mb-40">
+            <div className="bg-[#ECF0F1] rounded-2xl min-h-[28rem] min-w-[20rem] lg:min-h-[25rem] lg:max-w-[20rem] mx-4 mt-5 px-4 relative mb-40">
 
                 <div className='p-2 pt-8'>
 

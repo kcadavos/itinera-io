@@ -10,7 +10,7 @@ const FooterComponent = () => {
 
 
     const handleClick = () =>{
-      setAccountStatus(accountStatus === 'account' ? 'password' : 'account' )
+      setAccountStatus(accountStatus === 'password' ? 'account' : 'password' )
     }
     
     const selectedPage = () => {
