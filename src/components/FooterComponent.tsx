@@ -12,6 +12,7 @@ const FooterComponent = () => {
     const handleClick = () =>{
       setAccountStatus(accountStatus === 'account' ? 'password' : 'account' )
     }
+    
     const selectedPage = () => {
         switch(true){
             case  path == "/HomePage":

@@ -14,6 +14,10 @@ const MenuComponent = () => {
     setIsHidden(!isHidden)
   };
 
+  const logOut = () =>{
+  setAccountStatus("idle");
+  localStorage.clear();
+  };
   return (
     <>
       <div className="bg-white rounded-full w-15 h-15 flex justify-center absolute  top-5 right-10 ">
@@ -31,9 +35,7 @@ const MenuComponent = () => {
           <Link href="/NotificationPage" onClick={menuToggle}>Notifications</Link>
           <Link
             href="/"
-            onClick={() => {
-              localStorage.clear();
-            }}
+            onClick={logOut}
           >
             Log Out
           </Link>
