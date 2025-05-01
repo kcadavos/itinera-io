@@ -1,7 +1,7 @@
 import { ITripData } from '@/lib/TripInterfaces'
 import React, { useEffect, useRef } from 'react'
 import { format } from 'date-fns'; 
-import { useSelectedTripDestinationContext, useSelectedTripEndDateContext, useSelectedTripIdContext, useSelectedTripOwnerIdContext, useSelectedTripParticipantsIdListContext, useSelectedTripStartDateContext, useUserIdContext } from '@/context/DataContext';
+import { useSelectedTripDestinationContext, useSelectedTripEndDateContext, useSelectedTripIdContext, useSelectedTripIsVotingOpenContext, useSelectedTripOwnerIdContext, useSelectedTripParticipantsIdListContext, useSelectedTripStartDateContext, useUserIdContext } from '@/context/DataContext';
 import { useRouter } from 'next/navigation';
 
 
@@ -23,7 +23,7 @@ const TripCardComponent = ({ trips }:{trips:ITripData[]}) => {
     const{selectedTripEndDate,setSelectedTripEndDate}=useSelectedTripEndDateContext();
     const{setSelectedParticipantsIdList}=useSelectedTripParticipantsIdListContext();
     const{setSelectedTripOwnerId}=useSelectedTripOwnerIdContext();
-
+    const{setSelectedTripIsVotingOpen}=useSelectedTripIsVotingOpenContext();
    
 // Refs to autos croll to selected trip
 const tripRefs = useRef<(HTMLDivElement | null)[]>([]);
@@ -35,6 +35,8 @@ const updateTripContext =(trip:ITripData)=>{
   setSelectedTripEndDate(trip.endDate);
   setSelectedParticipantsIdList(trip.participantsId);
   setSelectedTripOwnerId(trip.ownerId);
+  setSelectedTripIsVotingOpen(trip.isVotingOpen);
+
 
 }
  const handleSelectTrip= (trip:ITripData)=>{
@@ -42,7 +44,7 @@ const updateTripContext =(trip:ITripData)=>{
     if (trip.isVotingOpen){
        router.push("/ItinerarySuggestionPages/AddSuggestionPage")
     }else{
-       router.push("/Itinerary/ViewItinerary")
+       router.push("/ItinerarySuggestionPages/ItineraryPage")
     }
     
   }
@@ -101,19 +103,19 @@ const updateTripContext =(trip:ITripData)=>{
      <p className=" text-center font-normal text-3xl text-white mb-5 " >{trip.isVotingOpen? "Voting in Progress" : "Itinerary generated"}</p>
 
     <div className='flex justify-between'>
-      <div className='flex  flex-col  items-center gap-2' onClick={()=>handleEditTrip()}>
+      <div className='flex  flex-col  items-center gap-2 cursor-pointer' onClick={()=>handleEditTrip()}>
         <img src="/assets/Icons/Orion_aircraft_lightweight_white.svg" alt="Edit/ View Trip Details" className='w-auto h-20'/>
       
-      <p className="text-center font-normal  text-lg  text-white"> {(userId===trip.ownerId) ? "Edit Trip Details": "View Trip Details"}</p>
+      <p className="text-center font-normal  text-lg  text-white "> {(userId===trip.ownerId) ? "Edit Trip Details": "View Trip Details"}</p>
       </div>
       {trip.isVotingOpen? 
-      (<div className=' flex  flex-col  items-center gap-2 hover:cursor-pointer' onClick={()=>handleSelectTrip(trip)}>
+      (<div className=' flex  flex-col  items-center gap-2  hover:cursor-pointer' onClick={()=>handleSelectTrip(trip)}>
       <img src="/assets/Icons/Orion_markers_lightweight_white.svg" alt="View Activities" className='w-auto h-20'/>
-       <p className=" text-center font-normal text-lg text-white">View Activities</p>
+       <p className=" text-center font-normal text-lg text-white ">View Activities</p>
       </div>)  :
       (<div className='flex  flex-col  items-center gap-2 hover:cursor-pointer' onClick={()=>handleSelectTrip(trip)}>
       <img src="/assets/Icons/Orion_travel-map_lightweight_white.svg" alt="View Itinerary" className=' w-auto h-20'/>
-       <p className=" text-center font-normal   text-lg text-white">View Itinerary</p>
+       <p className=" text-center font-normal   text-lg text-white ">View Itinerary</p>
       </div>)
       }
       </div>

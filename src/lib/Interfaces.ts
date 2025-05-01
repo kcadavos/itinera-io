@@ -3,9 +3,7 @@ export interface IUserInfoCreate {
     password: string
     name: string
 }
-// export interface IUserTrips{
-    
-// }
+
 
 export interface IUserDataLogin {
     password: string
@@ -44,10 +42,16 @@ export interface IActivityData {
 }
 
 export interface IActivityListData {
-    userId: number,
+    id: number,
     tripId: number,
     activity: string,
     category: string,
     address: string,
     details: string
+}
+
+export interface IVotedata {
+    activityId: number,
+    userId: number,
+    voteType: string
 }
