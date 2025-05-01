@@ -5,6 +5,7 @@ import UndecidedCardComponent from '../UndecidedCardComponent'
 import { useSelectedTripIdContext, useUserIdContext } from '@/context/DataContext';
 import { GetUndecidedActivities } from '@/lib/services/ActivityServices';
 import {IActivityListData} from '@/lib/Interfaces';
+import { getToken } from '@/lib/services/DataServices';
 
 const UndecidedListComponent = () => {
   const {userId} = useUserIdContext();
@@ -13,7 +14,7 @@ const UndecidedListComponent = () => {
 
   useEffect(()=>{
     const getUndecidedList = async ()=>{
-      const undecidedListData = await GetUndecidedActivities(userId, selectedTripId);
+      const undecidedListData = await GetUndecidedActivities(userId, selectedTripId, getToken());
       setUndecidedList(undecidedListData);
     }
     getUndecidedList();
