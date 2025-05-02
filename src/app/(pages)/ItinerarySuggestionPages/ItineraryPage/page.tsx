@@ -46,7 +46,7 @@ console.log(itineraryListData+ "ITI IS CHANGED")
 
        ( (itineraryListData!=null && itineraryListData.length>0)?
        <DisplayItineraryDayComponent iList={itineraryListData}/>
-       : <p> Missing Itinerary Data</p>
+       : <p> Missing Itinerary Data.</p>
        )
       }
 
