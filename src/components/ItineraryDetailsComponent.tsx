@@ -10,7 +10,7 @@ type Props = {
 const ItineraryDetailsComponent = ({ itineraryItem }: Props) => {
     // const{selectedTripStartDate}=useSelectedTripStartDateContext();
   return (
-    <></>
+    <> <p> {itineraryItem.activityIds}ACTIVITIES</p></>
   )
 }
 

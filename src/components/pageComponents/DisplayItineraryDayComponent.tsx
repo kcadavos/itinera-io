@@ -1,6 +1,5 @@
 import React from 'react';
 import { IItineraryData } from '@/lib/ItineraryInterfaces';
-import ItineraryDetailsComponent from '../ItineraryDetailsComponent';
 import { addDays, format } from 'date-fns';
 import { useSelectedTripStartDateContext } from '@/context/DataContext';
 

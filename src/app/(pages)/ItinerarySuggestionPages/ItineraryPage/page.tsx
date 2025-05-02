@@ -1,7 +1,7 @@
 'use client'
 import CloseVotingComponent from '@/components/CloseVotingComponent'
 import DisplayItineraryDayComponent from '@/components/pageComponents/DisplayItineraryDayComponent'
-import { useSelectedTripIdContext, useSelectedTripIsVotingOpenContext, useUserIdContext } from '@/context/DataContext'
+import { useSelectedTripIdContext, useSelectedTripIsVotingOpenContext } from '@/context/DataContext'
 import { IItineraryData } from '@/lib/ItineraryInterfaces'
 import { getToken } from '@/lib/services/DataServices'
 import { GetItineraryListByTripId } from '@/lib/services/ItineraryServices'
@@ -12,7 +12,6 @@ const ItineraryPage = () => {
 const [itineraryListData,setItineraryListData] = useState<IItineraryData[] | null>(null);
 const {selectedTripIsVotingOpen}=useSelectedTripIsVotingOpenContext();
 const{selectedTripId}=useSelectedTripIdContext();
-const {userId} =useUserIdContext();
 
 useEffect(()=>{
   const getItineraryListData =async(selectedTripId:number)=>{
