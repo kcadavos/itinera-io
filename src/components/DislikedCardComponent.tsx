@@ -1,6 +1,7 @@
 import { useUserIdContext } from '@/context/DataContext';
 import {IActivityListData } from '@/lib/Interfaces'
 import { RemoveVote } from '@/lib/services/ActivityServices';
+import { getToken } from '@/lib/services/DataServices';
 import React from 'react'
 
 const DislikedCardComponent = ({ activities }:{activities:IActivityListData[] | null}) => {
@@ -31,7 +32,7 @@ const DislikedCardComponent = ({ activities }:{activities:IActivityListData[] | 
             voteType: vote  
         }
         
-        const result = await RemoveVote(voteData);
+        const result = await RemoveVote(voteData, getToken());
         if(result){
             console.log('success');
         }else{

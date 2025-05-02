@@ -12,37 +12,49 @@ const FooterComponent = () => {
     const handleClick = () =>{
       setAccountStatus(accountStatus === 'account' ? 'password' : 'account' )
     }
+    
     const selectedPage = () => {
         switch(true){
             case  path == "/HomePage":
-            return {text:"Initialize a Trip",
+            return {
+              css: "w-12 h-12",
+              alt: "plane",
+              text:"Initialize a Trip",
               src:"/assets/Icons/Orion_aircraft 1.svg",
               href:"/Trip/AddTrip",
               onClick: undefined,
                   };
             case path === "/Trip/TripList":
             return { 
+              css: "w-12 h-12",
+              alt: "Plane",
               text:"Initiate a Trip",
               src:"/assets/Icons/Orion_aircraft 1.svg",
-              //set href to an object instead of just string to add 'query' for identifying when user is adding a trip
                href: {
                 pathname: "/Trip/AddTrip",
                 query: { mode: 'add' },
-                onClick: undefined,
-              }
+              },
+              onClick: undefined,
             } ;
             case accountStatus === 'account':
               return{
-                text:"Initiate a Trip",
-              src:"/assets/Icons/Orion_aircraft 1.svg",
-              //set href to an object instead of just string to add 'query' for identifying when user is adding a trip
-               href: {
-                pathname: "/Trip/AddTrip",
-                query: { mode: 'add' },
-                onClick: handleClick,
-              }
+                css: "",
+                alt: undefined,
+                text:"Change Password",
+              src:undefined,
+               href: "",
+              onClick: handleClick,
 
               };
+              case accountStatus === "password":
+                return{
+                  css: "",
+                  alt: undefined,
+                  text:"Change Name",
+                  src:undefined,
+                   href: "",
+                  onClick: handleClick,
+                };
             // case loginStatus === "create":
             //   return{
             //     text: "hi",
@@ -52,7 +64,10 @@ const FooterComponent = () => {
             // };
             
             default:
-                return {text: "Go to Trip List",
+                return {
+                  css: "w-12 h-12",
+                  alt:"map",
+                  text: "Go to Trip List",
                   src:"/assets/Icons/Orion_destination-map 1.svg",
                   href:"/Trip/TripList",
                   onClick: undefined,
@@ -68,7 +83,7 @@ const FooterComponent = () => {
         <div className="text-white flex justify-center text-4xl font-medium ">        
          <Link href={bottom.href} onClick={bottom.onClick} className="flex">
         <p>{bottom.text}</p>
-        <img className='w-12 h-12' src={bottom.src} alt="image" />
+        <img className={bottom.css} src={bottom.src} alt={bottom.alt} />
          </Link>
           
         </div>

@@ -11,6 +11,7 @@ import {
     DropdownMenuTrigger,
   } from "@/components/ui/dropdown-menu"
 import { useRouter } from 'next/navigation';
+import { getToken } from '@/lib/services/DataServices';
 
 const AddSuggestionComponent = () => {
     const {selectedTripId} = useSelectedTripIdContext();
@@ -34,7 +35,7 @@ const AddSuggestionComponent = () => {
     }
 
     const addActivityFetch = async () => {
-        const result = await AddActivity(activityData);
+        const result = await AddActivity(activityData, getToken());
         
         if(result){
             router.push('/ItinerarySuggestionPages/UndecidedListPage');
