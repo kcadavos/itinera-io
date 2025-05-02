@@ -1,11 +1,12 @@
 import { useSelectedTripIdContext, useSelectedTripIsVotingOpenContext, useSelectedTripOwnerIdContext, useUserIdContext } from '@/context/DataContext';
+import { getToken } from '@/lib/services/DataServices';
 import { GenerateAndSaveItinerary } from '@/lib/services/ItineraryServices';
 import  { useEffect, useState} from 'react'
 
 
 const CloseVotingComponent = () => {
 
-  const [schedIntensity, setSchedIntensity] = useState<number>(1);
+  const [schedIntensity, setSchedIntensity] = useState<number>(2);
   const {setSelectedTripIsVotingOpen,selectedTripIsVotingOpen}=useSelectedTripIsVotingOpenContext();
   const{selectedTripId}= useSelectedTripIdContext();
   const {selectedTripOwnerId} =useSelectedTripOwnerIdContext();
@@ -20,7 +21,7 @@ const GenerateItinerary =async()=>{
 
   console.log("REQ"+ JSON.stringify(request))
 
-  const success = await GenerateAndSaveItinerary (request)
+  const success = await GenerateAndSaveItinerary (request, getToken())
   if (success)
     alert("ITI GENERATED");
     setSelectedTripIsVotingOpen(false);
