@@ -5,13 +5,14 @@ import { useSelectedTripIdContext, useSelectedTripIsVotingOpenContext } from '@/
 import { IItineraryData } from '@/lib/ItineraryInterfaces'
 import { getToken } from '@/lib/services/DataServices'
 import { GetItineraryListByTripId } from '@/lib/services/ItineraryServices'
+import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from 'react'
 
 const ItineraryPage = () => {
-
+const router=useRouter();
 const [itineraryListData,setItineraryListData] = useState<IItineraryData[] | null>(null);
 const {selectedTripIsVotingOpen}=useSelectedTripIsVotingOpenContext();
-const{selectedTripId}=useSelectedTripIdContext();
+const{selectedTripId,setSelectedTripId}=useSelectedTripIdContext();
 
 useEffect(()=>{
   const getItineraryListData =async(selectedTripId:number)=>{
@@ -31,7 +32,16 @@ useEffect(()=>{
       }
   }
   console.log("inside use effect for tripID" +selectedTripId )
+  if(selectedTripId>0)
   getItineraryListData(selectedTripId);
+else 
+{
+  setSelectedTripId(Number(sessionStorage.getItem("ItineraSelectedTripId")));
+  console.log("trip id  is not greater than 0")
+  router.push("/Trip/TripList")
+
+}
+ 
   
 },[selectedTripId, selectedTripIsVotingOpen])
 
