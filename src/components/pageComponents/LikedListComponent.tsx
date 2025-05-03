@@ -24,10 +24,16 @@ const LikedListComponent = () => {
 
   return (
     <div>
-      <p className='text-center text-[#2C3E50] mb-2'>These are the acivities you liked.</p>
-      <div className='mb-35' > 
-        <LikedCardComponent activities={likedList} />
-      </div>
+      {
+        likedList != null ? 
+        <div>
+          <p className='text-center text-[#2C3E50] mb-2'>These are the acivities you liked.</p>
+          <div className='mb-35' > 
+            <LikedCardComponent activities={likedList} />
+          </div>
+        </div> 
+        : <p className='text-center text-[#2C3E50] mb-2'>No liked activities.</p>
+      }
     </div>
     
   )

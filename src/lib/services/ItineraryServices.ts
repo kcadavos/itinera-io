@@ -44,3 +44,27 @@ export const GetItineraryListByTripId = async (tripId: number,token:string)=>{
     console.log("FETCH DATA"+data);
     return data;
 }
+
+//get activities by ID
+export const GetActivityDetailsByActivityId= async (activityId: number,token:string)=>{
+    const res = await fetch (url+"/Activity/GetActivityDetails/"+activityId,{
+        method: "GET",
+        headers: {
+            "Content-Type":"application/json",
+            "Authorization": "Bearer "+ token 
+        }
+    });
+    
+    //if promise is not ok
+    if (!res.ok){
+        const errorData = await res.json();
+        const errorMsg = errorData.message;
+        console.log("Error on GetActivityDetailsByActivityId fetch: " +errorMsg);
+        return [] // return empty array 
+    }
+
+    const data = await res.json();
+    console.log("FETCH DATA"+data);
+    return data;
+
+}

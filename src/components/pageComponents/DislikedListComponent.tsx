@@ -24,10 +24,16 @@ const DislikedListComponent = () => {
 
   return (
     <div>
-      <p className='text-center text-[#2C3E50] mb-2'>These are the acivities you disliked.</p>
-      <div className='mb-35' > 
-        <DisikedCardComponent activities={dislikedList} />
-      </div>
+      {
+        dislikedList != null ? 
+        <div>
+          <p className='text-center text-[#2C3E50] mb-2'>These are the acivities you disliked.</p>
+          <div className='mb-35' > 
+            <DisikedCardComponent activities={dislikedList} />
+          </div>
+        </div>
+        : <p className='text-center text-[#2C3E50] mb-2'>No disliked activities.</p>
+      }
     </div>
     
   )

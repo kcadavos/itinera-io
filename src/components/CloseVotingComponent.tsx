@@ -23,10 +23,7 @@ const GenerateItinerary =async()=>{
 
   const success = await GenerateAndSaveItinerary (request, getToken())
   if (success)
-    alert("ITI GENERATED");
     setSelectedTripIsVotingOpen(false);
-
-
 }
 
 useEffect(()=>{
