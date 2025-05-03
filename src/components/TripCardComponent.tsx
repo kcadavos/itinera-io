@@ -60,7 +60,10 @@ const updateTripContext =(trip:ITripData)=>{
       if (ref) {
         ref.scrollIntoView({ behavior: 'smooth', block: 'start' });
       }
-      updateTripContext(trips[index]);  
+      if(selectedTripId)
+      updateTripContext(trips[index]);
+      else
+      setSelectedTripId(Number(sessionStorage.getItem("ItineraSelectedTripId")));
     }, [selectedTripId,trips]);
 
 
@@ -68,6 +71,9 @@ const updateTripContext =(trip:ITripData)=>{
     
  useEffect (()=>{
     console.log("SELECTED TRIP"+selectedTripId);
+    if (selectedTripId>=0)
+    sessionStorage.setItem("ItineraSelectedTripId",String(selectedTripId))
+  
  },[selectedTripId])
 
    useEffect (()=>{
@@ -85,7 +91,7 @@ const updateTripContext =(trip:ITripData)=>{
    {/*Accordion */}
    {/* value is for indicating what is collapsed in the accordion*/ }
     <Accordion type="single" collapsible  value={`${selectedTripId}`} 
-      onValueChange={(val) => setSelectedTripId(Number(val))} className="w-full p-6 ">
+      onValueChange={(val) =>setSelectedTripId(Number(val))} className="w-full p-6 ">
     { trips.length>0 ?
      (
        trips.map ((trip,index) =>(

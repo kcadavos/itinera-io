@@ -4,6 +4,7 @@ import { IToken } from '@/lib/Interfaces';
 import React, { useState } from 'react'
 import { useRouter } from "next/navigation";
 import { useLoginStatusContext, useNameContext, useUserIdContext } from '@/context/DataContext';
+import { stringify } from 'querystring';
 
 const LogInComponent = () => {
   const [email, setEmail] = useState<string>('');
@@ -40,6 +41,7 @@ const LogInComponent = () => {
             //set data context values
             setName(loggedInData.name);
             setUserId(loggedInData.id)
+            sessionStorage.setItem("ItineraUserId",String(loggedInData.id));
             router.push('Trip/TripList');
           }
         }

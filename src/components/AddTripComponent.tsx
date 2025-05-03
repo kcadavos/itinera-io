@@ -71,6 +71,11 @@ const AddTripComponent = () => {
             if(userId!==selectedTripOwnerId && mode!=='add')
                 setIsDisabled(true);
       },[selectedTripOwnerId,userId])
+
+      useEffect(()=>{
+        if(userId==0)
+        router.push("/Trip/TripList")
+      },[userId])
    
     const SaveTripDetails=async()=>{
         setSubmitted(true);
@@ -153,11 +158,11 @@ const AddTripComponent = () => {
     useEffect(()=>{
         
         console.log("PARTICIPANTS"+participantIds);
-        // console.log("USERID"+userId);
-        // console.log("START", startDate);
-        // console.log("End"+ endDate);
-        // console.log("SEARCH PARAMS" +mode);
-    },[userId,participantIds,startDate,endDate])
+        console.log("USERID"+userId);
+        console.log("START", startDate);
+        console.log("End"+ endDate);
+        console.log("SEARCH PARAMS MODE" +mode);
+    },[userId,participantIds,startDate,endDate,])
 
     // useEffect (()=>{
     //     console.log("USERID CHANGED "+userId);
