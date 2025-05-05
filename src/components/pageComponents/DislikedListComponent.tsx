@@ -17,8 +17,9 @@ const DislikedListComponent = () => {
         const dislikedListData = await GetDislikedActivities(userId, selectedTripId, getToken());
         setDislikedList(dislikedListData);
       }
+      
       getDislikedList();         
-    },[userId, selectedTripId, dislikedList]);
+    },[userId, selectedTripId]);
 
    
 

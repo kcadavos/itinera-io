@@ -19,7 +19,7 @@ const UndecidedListComponent = () => {
     }
     getUndecidedList();
        
-  },[userId, selectedTripId, undecidedList]);
+  },[userId, selectedTripId]);
 
   
   return (
