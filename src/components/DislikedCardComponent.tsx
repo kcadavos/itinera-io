@@ -4,7 +4,7 @@ import { RemoveVote } from '@/lib/services/ActivityServices';
 import { getToken } from '@/lib/services/DataServices';
 import React from 'react'
 
-const DislikedCardComponent = ({ activities }:{activities:IActivityListData[] | null}) => {
+const DislikedCardComponent = ({ activities, getDislikedList }:{activities:IActivityListData[] | null, getDislikedList: () => Promise<void>;}) => {
   const bgColors: string[] = ["bg-[#1A89BC]","bg-[#4AAAE2]","bg-[#F4B400]","bg-[#E67E22]","bg-[#4A90E2]"];
   const {userId} = useUserIdContext();
   
@@ -38,6 +38,7 @@ const DislikedCardComponent = ({ activities }:{activities:IActivityListData[] | 
         }else{
             console.log('something went wrong');
         }
+        getDislikedList();
     }
   
     return (

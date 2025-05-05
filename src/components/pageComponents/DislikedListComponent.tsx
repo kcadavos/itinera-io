@@ -12,13 +12,15 @@ const DislikedListComponent = () => {
     const {selectedTripId} = useSelectedTripIdContext();
     const [dislikedList, setDislikedList] = useState<IActivityListData[] | null>(null);
   
+
+    const getDislikedList = async ()=>{
+      const dislikedListData = await GetDislikedActivities(userId, selectedTripId, getToken());
+      setDislikedList(dislikedListData);
+    }
     useEffect(()=>{
-      const getDislikedList = async ()=>{
-        const dislikedListData = await GetDislikedActivities(userId, selectedTripId, getToken());
-        setDislikedList(dislikedListData);
-      }
-      
-      getDislikedList();         
+            
+      getDislikedList();    
+
     },[userId, selectedTripId]);
 
    
@@ -30,7 +32,7 @@ const DislikedListComponent = () => {
         <div>
           <p className='text-center text-[#2C3E50] mb-2'>These are the acivities you disliked.</p>
           <div className='mb-35' > 
-            <DisikedCardComponent activities={dislikedList} />
+            <DisikedCardComponent activities={dislikedList} getDislikedList={getDislikedList} />
           </div>
         </div>
         : <p className='text-center text-[#2C3E50] mb-2'>No disliked activities.</p>

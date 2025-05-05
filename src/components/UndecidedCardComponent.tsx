@@ -4,7 +4,7 @@ import { AddVote } from '@/lib/services/ActivityServices';
 import { getToken } from '@/lib/services/DataServices';
 import React from 'react'
 
-const UndecidedCardComponent = ({ activities }:{activities:IActivityListData[] | null}) => {
+const UndecidedCardComponent = ({ activities, getUndecidedList }:{activities:IActivityListData[] | null, getUndecidedList: () => Promise<void>;}) => {
   const bgColors: string[] = ["bg-[#1A89BC]","bg-[#4AAAE2]","bg-[#F4B400]","bg-[#E67E22]","bg-[#4A90E2]"];
   const {userId} = useUserIdContext();
 
@@ -24,7 +24,7 @@ const UndecidedCardComponent = ({ activities }:{activities:IActivityListData[] |
         return '/assets/Icons/Orion_camera.svg'; 
     }
   }
-
+  
   const castVote = async (activitiesId: number, vote: string) => {
     const voteData = {
       activityId: activitiesId,
@@ -38,6 +38,7 @@ const UndecidedCardComponent = ({ activities }:{activities:IActivityListData[] |
     }else{
       console.log('something went wrong');
     }
+    getUndecidedList();
   }
 
   

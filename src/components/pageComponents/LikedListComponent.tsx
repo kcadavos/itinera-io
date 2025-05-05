@@ -12,12 +12,15 @@ const LikedListComponent = () => {
     const {selectedTripId} = useSelectedTripIdContext();
     const [likedList, setLikedList] = useState<IActivityListData[] | null>(null);
   
+
+    const getLikedList = async ()=>{
+      const likedListData = await GetLikedActivities(userId, selectedTripId, getToken());
+      setLikedList(likedListData);
+    }
     useEffect(()=>{
-      const getLikedList = async ()=>{
-        const likedListData = await GetLikedActivities(userId, selectedTripId, getToken());
-        setLikedList(likedListData);
-      }
-      getLikedList();         
+      
+      getLikedList();
+
     },[userId, selectedTripId]);
 
    
@@ -29,7 +32,7 @@ const LikedListComponent = () => {
         <div>
           <p className='text-center text-[#2C3E50] mb-2'>These are the acivities you liked.</p>
           <div className='mb-35' > 
-            <LikedCardComponent activities={likedList} />
+            <LikedCardComponent activities={likedList} getLikedList={getLikedList} />
           </div>
         </div> 
         : <p className='text-center text-[#2C3E50] mb-2'>No liked activities.</p>

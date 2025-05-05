@@ -4,7 +4,7 @@ import { RemoveVote } from '@/lib/services/ActivityServices';
 import { getToken } from '@/lib/services/DataServices';
 import React from 'react'
 
-const LikedCardComponent = ({ activities }:{activities:IActivityListData[] | null}) => {
+const LikedCardComponent = ({ activities, getLikedList }:{activities:IActivityListData[] | null, getLikedList: () => Promise<void>;}) => {
     const bgColors: string[] = ["bg-[#1A89BC]","bg-[#4AAAE2]","bg-[#F4B400]","bg-[#E67E22]","bg-[#4A90E2]"];
     const {userId} = useUserIdContext();
 
@@ -38,6 +38,7 @@ const LikedCardComponent = ({ activities }:{activities:IActivityListData[] | nul
         }else{
           console.log('something went wrong');
         }
+        getLikedList();
     }
 
   return (
