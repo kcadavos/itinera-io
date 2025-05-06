@@ -4,11 +4,12 @@ import { IActivityData,  IVotedata } from "../Interfaces";
 const url = 'https://itineraioapi-cqapgsgcbschc7hu.westus-01.azurewebsites.net/';
 
 // --------------------------adding acivity
-export const AddActivity = async (activity: IActivityData) => {
+export const AddActivity = async (activity: IActivityData, token:string) => {
     const res = await fetch(url + 'Activity/AddActivity', {
         method: "POST",
         headers: {
-            "Content-Type": "application/json"
+            "Content-Type": "application/json",
+            "Authorization": "Bearer "+ token
         },
         body:JSON.stringify(activity)
     });
@@ -25,8 +26,14 @@ export const AddActivity = async (activity: IActivityData) => {
 }
 
 // --------------------------get the list for the undecided acivities
-export const GetUndecidedActivities = async (userId: number, tripId: number) => {
-    const res = await fetch(url + `Activity/GetUndecidedActivities/${userId}/${tripId}`);
+export const GetUndecidedActivities = async (userId: number, tripId: number, token:string) => {
+    const res = await fetch(url + `Activity/GetUndecidedActivities/${userId}/${tripId}`,{
+        method: "GET",
+        headers: {
+            "Content-Type":"application/json",
+            "Authorization": "Bearer "+ token 
+        }
+    });
 
     if(!res.ok){
         const data = await res.json();
@@ -41,11 +48,12 @@ export const GetUndecidedActivities = async (userId: number, tripId: number) => 
 }
 
 //------------------------- add to liked/disliked list
-export const AddVote = async (vote: IVotedata) => {
+export const AddVote = async (vote: IVotedata, token:string) => {
     const res = await fetch(url + 'Activity/AddVote', {
         method: "PATCH",
         headers: {
-            "Content-Type": "application/json"
+            "Content-Type": "application/json",
+            "Authorization": "Bearer "+ token
         },
         body:JSON.stringify(vote)
     });
@@ -62,11 +70,12 @@ export const AddVote = async (vote: IVotedata) => {
 }
 
 //------------------remove from liked/dislied list
-export const RemoveVote = async (vote: IVotedata) => {
+export const RemoveVote = async (vote: IVotedata, token:string) => {
     const res = await fetch(url + 'Activity/RemoveVote', {
         method: "PATCH",
         headers: {
-            "Content-Type": "application/json"
+            "Content-Type": "application/json",
+            "Authorization": "Bearer "+ token
         },
         body:JSON.stringify(vote)
     });
@@ -82,8 +91,14 @@ export const RemoveVote = async (vote: IVotedata) => {
 }
 
 //------------------------------get liked activities list
-export const GetLikedActivities = async (userId: number, tripId: number) => {
-    const res = await fetch(url + `Activity/GetLikedActivities/${userId}/${tripId}`);
+export const GetLikedActivities = async (userId: number, tripId: number, token:string) => {
+    const res = await fetch(url + `Activity/GetLikedActivities/${userId}/${tripId}`,{
+        method: "GET",
+        headers: {
+            "Content-Type":"application/json",
+            "Authorization": "Bearer "+ token 
+        }
+    });
 
     if(!res.ok){
         const data = await res.json();
@@ -96,8 +111,14 @@ export const GetLikedActivities = async (userId: number, tripId: number) => {
 }
 
 //----------------------------get disliked list
-export const GetDislikedActivities = async (userId: number, tripId: number) => {
-    const res = await fetch(url + `Activity/GetDislikedActivities/${userId}/${tripId}`);
+export const GetDislikedActivities = async (userId: number, tripId: number, token:string) => {
+    const res = await fetch(url + `Activity/GetDislikedActivities/${userId}/${tripId}`,{
+        method: "GET",
+        headers: {
+            "Content-Type":"application/json",
+            "Authorization": "Bearer "+ token 
+        }
+    });
 
     if(!res.ok){
         const data = await res.json();

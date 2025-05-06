@@ -66,4 +66,13 @@ export const getToken =()=>{
     return localStorage.getItem("ItineraToken") ?? ""; // return a empty string if the local storage is null
 }
 
+export const getStoredUserId =()=>{
+    return sessionStorage.getItem("ItineraUserId") ?? ""; // return a empty string if the local storage is null
+}
+
+export const getStoredTripId =()=>{
+    return sessionStorage.getItem("ItineraSelectedTripId") ?? ""; // return a empty string if the local storage is null
+}
+
+
 
