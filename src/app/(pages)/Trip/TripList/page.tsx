@@ -10,7 +10,7 @@ import React, { useEffect, useState } from 'react'
 
 const TripList = () => {
 const router = useRouter();
-const {userId} = useUserIdContext();
+const {userId,setUserId} = useUserIdContext();
 const [tripListData,setTripListData] = useState<ITripData[] | null>(null); //sets to null initially so that it doesnt route to add trip upon page load while data is not yet fetched
 const {selectedTripId,setSelectedTripId}=useSelectedTripIdContext();
 
@@ -18,13 +18,14 @@ const {selectedTripId,setSelectedTripId}=useSelectedTripIdContext();
 useEffect(()=>{
   if (tripListData !== null && tripListData.length ===0)
     {
+      console.log("ROUTER PUSH");
       router.push("/Trip/AddTrip");
     }
   
 },[router,tripListData])
 
 useEffect(()=>{
-const getTripListData = async (userId:number)=>{
+const getTripListData = async ()=>{
   const tripList= (await GetTripListByUserId(userId,getToken()));
   //  Sort by startDate (earliest first)
   const sortedTrips = tripList.sort((a:ITripData, b:ITripData) =>  new Date(a.startDate).getTime() - new Date(b.startDate).getTime());
@@ -33,9 +34,16 @@ const getTripListData = async (userId:number)=>{
       setSelectedTripId(sortedTrips[0].id)
     } // this is for initial load when no selected trip yet
    
-}
-    getTripListData(userId);
-    console.log("USER"+ userId);
+} 
+  if(userId)
+    {
+      getTripListData();
+      console.log("USER"+ userId);
+    }
+    else{
+      setUserId(Number(sessionStorage.getItem("ItineraUserId")))
+    }
+  
 },[userId]);
 
 useEffect(()=>{

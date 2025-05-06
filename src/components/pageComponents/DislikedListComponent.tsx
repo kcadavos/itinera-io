@@ -5,28 +5,38 @@ import { useSelectedTripIdContext, useUserIdContext } from '@/context/DataContex
 import { IActivityListData } from '@/lib/Interfaces';
 import { GetDislikedActivities } from '@/lib/services/ActivityServices';
 import DisikedCardComponent from '../DislikedCardComponent';
+import { getToken } from '@/lib/services/DataServices';
 
 const DislikedListComponent = () => {
     const {userId} = useUserIdContext();
     const {selectedTripId} = useSelectedTripIdContext();
     const [dislikedList, setDislikedList] = useState<IActivityListData[] | null>(null);
   
+
+    const getDislikedList = async ()=>{
+      const dislikedListData = await GetDislikedActivities(userId, selectedTripId, getToken());
+      setDislikedList(dislikedListData);
+    }
     useEffect(()=>{
-      const getDislikedList = async ()=>{
-        const dislikedListData = await GetDislikedActivities(userId, selectedTripId);
-        setDislikedList(dislikedListData);
-      }
-      getDislikedList();         
-    },[userId, selectedTripId, dislikedList]);
+            
+      getDislikedList();    
+
+    },[userId, selectedTripId]);
 
    
 
   return (
     <div>
-      <p className='text-center text-[#2C3E50] mb-2'>These are the acivities you disliked.</p>
-      <div className='mb-35' > 
-        <DisikedCardComponent activities={dislikedList} />
-      </div>
+      {
+        dislikedList != null ? 
+        <div>
+          <p className='text-center text-[#2C3E50] mb-2'>These are the acivities you disliked.</p>
+          <div className='mb-35' > 
+            <DisikedCardComponent activities={dislikedList} getDislikedList={getDislikedList} />
+          </div>
+        </div>
+        : <p className='text-center text-[#2C3E50] mb-2'>No disliked activities.</p>
+      }
     </div>
     
   )

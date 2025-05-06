@@ -1,11 +1,13 @@
-import { useUserIdContext } from '@/context/DataContext';
+import { useSelectedTripIsVotingOpenContext, useUserIdContext } from '@/context/DataContext';
 import { IActivityListData} from '@/lib/Interfaces'
 import { AddVote } from '@/lib/services/ActivityServices';
+import { getToken } from '@/lib/services/DataServices';
 import React from 'react'
 
-const UndecidedCardComponent = ({ activities }:{activities:IActivityListData[] | null}) => {
+const UndecidedCardComponent = ({ activities, getUndecidedList }:{activities:IActivityListData[] | null, getUndecidedList: () => Promise<void>;}) => {
   const bgColors: string[] = ["bg-[#1A89BC]","bg-[#4AAAE2]","bg-[#F4B400]","bg-[#E67E22]","bg-[#4A90E2]"];
   const {userId} = useUserIdContext();
+  const {selectedTripIsVotingOpen} = useSelectedTripIsVotingOpenContext();
 
   const IconSwitch = (category: string) => {
     switch(category){
@@ -23,7 +25,7 @@ const UndecidedCardComponent = ({ activities }:{activities:IActivityListData[] |
         return '/assets/Icons/Orion_camera.svg'; 
     }
   }
-
+  
   const castVote = async (activitiesId: number, vote: string) => {
     const voteData = {
       activityId: activitiesId,
@@ -31,18 +33,19 @@ const UndecidedCardComponent = ({ activities }:{activities:IActivityListData[] |
       voteType: vote  
     }
 
-    const result = await AddVote(voteData);
+    const result = await AddVote(voteData, getToken());
     if(result){
       console.log('success');
     }else{
       console.log('something went wrong');
     }
+    getUndecidedList();
   }
 
   
   return (
     activities?.map((activity: IActivityListData, idx: number) => (
-      <div key={idx} className={`${bgColors[idx % bgColors.length]} p-4 my-2 mb-10 mx-8 rounded-bl-2xl rounded-tr-2xl relative`} >
+      <div key={idx} className={`${bgColors[idx % bgColors.length]} p-4 my-2 mb-10 mx-8 sm:mx-16 md:mx-36 rounded-bl-2xl rounded-tr-2xl relative`} >
         <div className='flex justify-between mb-3'>
 
           <div className='text-white'>
@@ -57,25 +60,34 @@ const UndecidedCardComponent = ({ activities }:{activities:IActivityListData[] |
         </div>
         
 
-        <div className="flex justify-center mt-18 absolute -bottom-7 left-50 transform -translate-x-1/2">
-          <button className="bg-[#1ABC9C] hover:bg-[#67afa0] border-2 border-white text-xl text-white rounded-[2.5rem] p-2 cursor-pointer" onClick={() => castVote(activity.id, "yes")}  >
-            <img
-              src="/assets/Icons/Orion_checkin-place 2.svg"
-              className="w-8"
-              alt="add"
-            />
-          </button>
-        </div>
+        {
+          selectedTripIsVotingOpen ? 
+          <div className="flex justify-center mt-18 absolute -bottom-7 left-50 sm:left-75
+          md:left-80 transform -translate-x-1/2">
+            <button className="bg-[#1ABC9C] hover:bg-[#67afa0] border-2 border-white text-xl text-white rounded-[2.5rem] p-2 cursor-pointer " onClick={() => castVote(activity.id, "yes")}  >
+              <img
+                src="/assets/Icons/Orion_checkin-place 2.svg"
+                className="w-8"
+                alt="add"
+              />
+            </button>
+          </div> :
+          <></>
+        }
 
-        <div className="flex justify-center mt-18 absolute -bottom-7 left-65 transform -translate-x-1/2">
-          <button className="bg-[#1ABC9C] hover:bg-[#67afa0] border-2 border-white text-xl text-white rounded-[2.5rem] p-2 cursor-pointer" onClick={() => castVote(activity.id, "no")} >
-            <img
-              src="/assets/Icons/Orion_delete-place 1.svg"
-              className="w-8"
-              alt="add"
-            />
-          </button>
-        </div>
+        {
+          selectedTripIsVotingOpen ? 
+          <div className="flex justify-center mt-18 absolute -bottom-7 left-65 sm:left-90 md:left-95 transform -translate-x-1/2">
+            <button className="bg-[#1ABC9C] hover:bg-[#67afa0] border-2 border-white text-xl text-white rounded-[2.5rem] p-2 cursor-pointer" onClick={() => castVote(activity.id, "no")} >
+              <img
+                src="/assets/Icons/Orion_delete-place 1.svg"
+                className="w-8"
+                alt="add"
+              />
+            </button>
+          </div> : 
+          <></>
+        }
       </div>
     ))
   )
