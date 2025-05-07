@@ -1,11 +1,43 @@
 "use client"
-import React from 'react'
+import { LoginDetailsUser } from '@/lib/services/AccountDetailsService';
+import { GetParticipantEmail, GetParticipantName } from '@/lib/services/TripDataService';
+import React, { useEffect, useState } from 'react'
 
-const submitChange = ()=>{
-
-}
 
 const AccountDetailsComponent = () => {
+
+  const [ username, setUsername] = useState<string>('');
+  const [ email, setEmail] = useState<string>('');
+
+  useEffect(()=>{
+    const userId = Number(sessionStorage.getItem("ItineraUserId")) || 0 ;
+    const fetchEmail = async ()=>{
+      setEmail(await GetParticipantEmail(userId))   
+    setUsername(await GetParticipantName(userId)|| "");
+    }
+    fetchEmail()
+  }, [])
+
+  const  submitChange = async ()=>{
+    const userId = Number(sessionStorage.getItem("ItineraUserId")) || 0 ;
+    const token = localStorage.getItem("ItineraToken"); 
+
+    const userData = {
+      id: userId ,
+      email: await GetParticipantEmail(userId),
+      name: username
+    }
+
+    if (!token) {
+      console.error("Missing token");
+      return;
+    }
+    console.log(userData)
+      await LoginDetailsUser(userData, token);
+      
+   
+    
+  }
   return (
     <div className="bg-[#ECF0F1] rounded-2xl min-h-[26rem] min-w-[20rem] lg:min-h-[25rem] lg:max-w-[20rem] mx-4 px-4 relative mb-25 ">
     <div className="flex justify-start my-4 pt-10">
@@ -21,8 +53,10 @@ const AccountDetailsComponent = () => {
         type="email"
         placeholder="Email Address"
         required
-        className="bg-white rounded-lg p-1 px-6"
-        // onChange={(e) => setEmail(e.target.value)}
+        disabled
+        className="bg-white rounded-lg p-1 px-6 "
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
       />
     </div>
 
@@ -39,10 +73,12 @@ const AccountDetailsComponent = () => {
 
       <input
         type="text"
-        placeholder="Name"
+        placeholder=""
+        value={username}
         required
         className="bg-white rounded-lg p-1 px-6"
-        // onChange={(e) => setUsername(e.target.value)}
+        onChange={(e) => setUsername(e.target.value)}
+
       />
     </div>
 
