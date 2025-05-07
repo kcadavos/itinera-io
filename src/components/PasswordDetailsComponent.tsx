@@ -47,7 +47,7 @@ const PasswordDetailsComponent = () => {
           placeholder=" Old Password"
           required
           className="bg-white rounded-lg p-1 px-6"
-          onChange={(e) => setOldPassword(e.target.value)}
+          // onChange={(e) => setOldPassword(e.target.value)}
         />
       </div>
       <div className="flex justify-start my-4">
@@ -64,7 +64,7 @@ const PasswordDetailsComponent = () => {
           placeholder="New Password"
           required
           className="bg-white rounded-lg p-1 px-6"
-          onChange={(e) => setNewPassword(e.target.value)}
+          // onChange={(e) => setNewPassword(e.target.value)}
         />
       </div>
 
