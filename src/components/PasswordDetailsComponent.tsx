@@ -1,38 +1,47 @@
 "use client";
-// import { LoginDetailsPassword} from "@/lib/services/AccountDetailsService";
-
-// import React, { useEffect, useState } from "react";
+import { LoginDetailsPassword } from "@/lib/services/AccountDetailsService";
+import React, { useState } from "react";
 
 const PasswordDetailsComponent = () => {
-//   const [ newpassword, setNewPassword] = useState<string>('');
-//   const [ oldpassword, setOldPassword] = useState<string>('');
+  const [newPassword, setNewPassword] = useState<string>("");
+  const [confirmNewPassword, setConfirmNewPassword] = useState<string>("");
+  const [oldPassword, setOldPassword] = useState<string>("");
 
-//   useEffect(()=>{
-  
-    
-//   }, [])
+  const submitChange = async () => {
+    const userId = Number(sessionStorage.getItem("ItineraUserId")) || 0;
+    const token = localStorage.getItem("ItineraToken");
 
-//   const  submitChange = async ()=>{
-//     const userId = Number(sessionStorage.getItem("ItineraUserId")) || 0 ;
-//     const token = localStorage.getItem("ItineraToken"); 
+    if (!token) {
+      console.error("Missing token");
+      return;
+    }
 
-//     const userData = {
-//       "userId": userId,
-//   "oldPassword": oldpassword ,
-//   "newPassword": newpassword
-//     }
-    
-//     if (!token) {
-//       console.error("Missing token");
-//       return;
-//     }
-    
-//       // await LoginDetailsPassword(userData, token);
-      
-   
-    
+    if (newPassword !== confirmNewPassword) {
+      console.error("Passwords do not match");
+      alert("New password and confirmation must match.");
+      return;
+    }
+
+    const userData = {
+      id: userId,
+      oldPassword: oldPassword,
+      newPassword: newPassword,
+    };
+
+    try {
+      const result = await LoginDetailsPassword(userData, token);
+      if (result) {
+        alert("Password changed successfully.");
+      } else {
+        alert("Failed to change password.");
+      }
+    } catch (error) {
+      console.error("Error changing password:", error);
+    }
+  };
+
   return (
-    <div className="bg-[#ECF0F1] rounded-2xl min-h-[26rem] min-w-[20rem] lg:min-h-[25rem] lg:max-w-[20rem] mx-4 px-4 relative mb-25 ">
+    <div className="bg-[#ECF0F1] rounded-2xl min-h-[26rem] min-w-[20rem] lg:min-h-[25rem] lg:max-w-[20rem] mx-4 px-4 relative mb-25">
       <div className="flex justify-start my-4 pt-10">
         <div className="mr-4">
           <img
@@ -41,15 +50,15 @@ const PasswordDetailsComponent = () => {
             className="w-10 p-1"
           />
         </div>
-
         <input
           type="password"
-          placeholder=" Old Password"
+          placeholder="Old Password"
           required
           className="bg-white rounded-lg p-1 px-6"
-          // onChange={(e) => setOldPassword(e.target.value)}
+          onChange={(e) => setOldPassword(e.target.value)}
         />
       </div>
+
       <div className="flex justify-start my-4">
         <div className="mr-4">
           <img
@@ -58,17 +67,16 @@ const PasswordDetailsComponent = () => {
             className="w-10 p-1"
           />
         </div>
-
         <input
           type="password"
           placeholder="New Password"
           required
           className="bg-white rounded-lg p-1 px-6"
-          // onChange={(e) => setNewPassword(e.target.value)}
+          onChange={(e) => setNewPassword(e.target.value)}
         />
       </div>
 
-      <div className="flex justify-start my-4 ">
+      <div className="flex justify-start my-4">
         <div className="mr-4">
           <img
             src="/assets/Icons/Orion_key.svg"
@@ -76,14 +84,26 @@ const PasswordDetailsComponent = () => {
             className="w-10 p-1"
           />
         </div>
-
         <input
           type="password"
           placeholder="Confirm New Password"
           required
           className="bg-white rounded-lg p-1 px-6"
-          // onChange={(e) => set(e.target.value)}
+          onChange={(e) => setConfirmNewPassword(e.target.value)}
         />
+      </div>
+
+      <div className="flex justify-center mt-18 absolute -bottom-7 left-1/2 transform -translate-x-1/2">
+        <button
+          className="bg-[#E67E22] hover:bg-[#d56b0f] border-4 border-white text-xl text-white rounded-[2.5rem] p-3 cursor-pointer"
+          onClick={submitChange}
+        >
+          <img
+            src="/assets/Icons/Orion_add-user.svg"
+            className="w-10"
+            alt="submit"
+          />
+        </button>
       </div>
     </div>
   );
