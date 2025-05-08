@@ -23,11 +23,11 @@ const PasswordDetailsComponent = () => {
     }
 
     const userData = {
-      id: userId,
+      userId: userId,
       oldPassword: oldPassword,
       newPassword: newPassword,
     };
-
+console.log(userData)
     try {
       const result = await LoginDetailsPassword(userData, token);
       if (result) {

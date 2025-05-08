@@ -21,6 +21,7 @@ export const LoginDetailsUser = async (user:IUserInfo, token:string) => {
     const data = await res.json();
     return data;
 }
+
 export const LoginDetailsPassword = async (user:IChangePassword, token:string) => {
     const res = await fetch(url + 'User/EditPassword', {
         method: "PUT",

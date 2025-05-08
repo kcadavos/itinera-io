@@ -12,7 +12,7 @@ export interface IUserDataLogin {
 }
 
 export interface IChangePassword{
-    id: number,
+    userId: number,
   oldPassword: string,
   newPassword: string
 }
