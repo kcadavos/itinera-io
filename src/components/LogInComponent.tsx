@@ -1,15 +1,13 @@
 'use client'
 import { GetLoggedInUserData, Login } from '@/lib/services/DataServices';
 import { IToken } from '@/lib/Interfaces';
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { useRouter } from "next/navigation";
 import { useLoginStatusContext, useNameContext, useUserIdContext } from '@/context/DataContext';
 
 
 const LogInComponent = () => {
-  useEffect(() => {
-    alert("Heads up! This app is still getting dressed for desktop. For the best experience, check it out on your phone or a smaller screen. 😊");
-  }, []);
+ 
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const {setName}=useNameContext();
