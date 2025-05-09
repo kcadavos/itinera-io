@@ -11,6 +11,11 @@ export interface IUserDataLogin {
    
 }
 
+export interface IChangePassword{
+    userId: number,
+  oldPassword: string,
+  newPassword: string
+}
 
 // to use for getting userid and user's name from db
 export interface IUserInfo{ 

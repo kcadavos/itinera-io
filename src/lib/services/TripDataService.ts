@@ -127,7 +127,7 @@ export const GetParticipantEmail = async (id:number) => {
         const data = await res.json();
         const message = data.message;
         console.log(message);
-        return null;
+        return "";
     }
 
         const userData: IUserInfo = await res.json();

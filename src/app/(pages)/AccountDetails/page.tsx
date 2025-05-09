@@ -8,8 +8,8 @@ const AccountDetails = () => {
   
   return (
     <>
-   {accountStatus === 'account' && <AccountDetailsComponent />}
-   {accountStatus === 'password' && <PasswordDetailsComponent />}
+   {(accountStatus === 'account'|| accountStatus==="successAcc"|| accountStatus==='failAcc') && <AccountDetailsComponent />}
+   {(accountStatus === 'password'|| accountStatus ==='mustmatch'||accountStatus==='failed'||accountStatus==="successPass") && <PasswordDetailsComponent />}
     </>
   )
 }
