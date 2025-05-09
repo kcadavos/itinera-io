@@ -1,4 +1,5 @@
 "use client"
+import { useAccountStatusContext } from '@/context/DataContext';
 import { LoginDetailsUser } from '@/lib/services/AccountDetailsService';
 import { GetParticipantEmail, GetParticipantName } from '@/lib/services/TripDataService';
 import React, { useEffect, useState } from 'react'
@@ -8,12 +9,15 @@ const AccountDetailsComponent = () => {
 
   const [ username, setUsername] = useState<string>('');
   const [ email, setEmail] = useState<string>('');
+  const [originalUsername, setOriginalUsername] = useState('');
+const {setAccountStatus} = useAccountStatusContext();
 
   useEffect(()=>{
     const userId = Number(sessionStorage.getItem("ItineraUserId")) || 0 ;
     const fetchEmail = async ()=>{
       setEmail(await GetParticipantEmail(userId))   
     setUsername(await GetParticipantName(userId)|| "");
+    setOriginalUsername(await GetParticipantName(userId) || "");
     }
     fetchEmail()
   }, [])
@@ -29,10 +33,20 @@ const AccountDetailsComponent = () => {
     }
 
     if (!token) {
-      console.error("Missing token");
+      setAccountStatus('failAcc')
       return;
     }
-    console.log(userData)
+    if (username === originalUsername) {
+      setAccountStatus("failAcc"); 
+      return;
+    }
+    try {
+      await LoginDetailsUser(userData, token);
+      setAccountStatus("successAcc");
+      setOriginalUsername(username);
+    } catch {
+      setAccountStatus("failAcc");
+    }
       await LoginDetailsUser(userData, token);
       
    
@@ -54,7 +68,7 @@ const AccountDetailsComponent = () => {
         placeholder="Email Address"
         required
         disabled
-        className="bg-white rounded-lg p-1 px-6 "
+        className="bg-[#D9D9D9] text-[#34495E] rounded-lg p-1 px-6 "
         value={email}
         onChange={(e) => setEmail(e.target.value)}
       />

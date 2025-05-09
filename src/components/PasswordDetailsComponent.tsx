@@ -1,4 +1,5 @@
 "use client";
+import { useAccountStatusContext } from "@/context/DataContext";
 import { LoginDetailsPassword } from "@/lib/services/AccountDetailsService";
 import React, { useState } from "react";
 
@@ -6,7 +7,7 @@ const PasswordDetailsComponent = () => {
   const [newPassword, setNewPassword] = useState<string>("");
   const [confirmNewPassword, setConfirmNewPassword] = useState<string>("");
   const [oldPassword, setOldPassword] = useState<string>("");
-
+const {setAccountStatus} = useAccountStatusContext();
   const submitChange = async () => {
     const userId = Number(sessionStorage.getItem("ItineraUserId")) || 0;
     const token = localStorage.getItem("ItineraToken");
@@ -18,7 +19,7 @@ const PasswordDetailsComponent = () => {
 
     if (newPassword !== confirmNewPassword) {
       console.error("Passwords do not match");
-      alert("New password and confirmation must match.");
+      setAccountStatus('mustmatch');
       return;
     }
 
@@ -31,9 +32,9 @@ console.log(userData)
     try {
       const result = await LoginDetailsPassword(userData, token);
       if (result) {
-        alert("Password changed successfully.");
+        setAccountStatus('successPass');
       } else {
-        alert("Failed to change password.");
+      setAccountStatus('failed')
       }
     } catch (error) {
       console.error("Error changing password:", error);
