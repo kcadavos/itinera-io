@@ -1,0 +1,11 @@
+select *
+from Activity
+where TripId = 21;
+
+--delete from Activity where tripId =21
+
+--update Trip set isVotingOpen=1 where id=21;
+
+select *
+from trip
+where id=21

@@ -11,7 +11,7 @@ type ActivityDetailsProps = {
 };
 
 
-const ActivityDetailsComponent = ({ activityId, index,iListLength }: ActivityDetailsProps) => {
+const ItineraryActivityDetailsComponent = ({ activityId, index,iListLength }: ActivityDetailsProps) => {
      const[activityDetail, setActivityDetail]=useState<IActivityData>();
 
     useEffect(()=>{
@@ -130,4 +130,4 @@ const BackgroundColorSwitch = (category: string) => {
   )
 }
 
-export default ActivityDetailsComponent
+export default ItineraryActivityDetailsComponent
