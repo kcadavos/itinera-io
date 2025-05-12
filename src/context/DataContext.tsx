@@ -5,7 +5,7 @@ import { createContext, useContext, useState } from "react";
 
 type LoginStatus = 'idle' | 'success' | 'failed'| "create";
 type CreateStatus = 'idle'|'success'| 'failed' | 'exists';
-type AccountStatus = 'idle'| 'password'| 'account'
+type AccountStatus = 'idle'| 'password'| 'account'| 'failed'|'mustmatch'|'successPass'|'successAcc'| 'failAcc';
 
 interface AccountStatusInterFace{
     accountStatus: AccountStatus;

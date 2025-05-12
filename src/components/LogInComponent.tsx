@@ -7,6 +7,7 @@ import { useLoginStatusContext, useNameContext, useUserIdContext } from '@/conte
 
 
 const LogInComponent = () => {
+ 
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const {setName}=useNameContext();

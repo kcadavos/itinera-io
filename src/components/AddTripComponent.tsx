@@ -15,7 +15,7 @@ import { format, parse } from "date-fns";
 const AddTripComponent = () => {
     //for routing and query
     const router = useRouter();
-    const searchParams = useSearchParams();
+    const searchParams = useSearchParams(); // for querying the mode the user
     
     // to identify if user is adding a new trip or editing or viewing
     const mode = searchParams.get('mode');

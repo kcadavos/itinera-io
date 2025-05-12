@@ -10,7 +10,7 @@ const FooterComponent = () => {
 
 
     const handleClick = () =>{
-      setAccountStatus(accountStatus === 'account' ? 'password' : 'account' )
+      setAccountStatus(accountStatus === 'password' ? 'account' : 'password' )
     }
     
     const selectedPage = () => {
@@ -36,6 +36,8 @@ const FooterComponent = () => {
               },
               onClick: undefined,
             } ;
+            case accountStatus ==="successAcc":
+            case accountStatus==='failAcc':
             case accountStatus === 'account':
               return{
                 css: "",
@@ -46,6 +48,9 @@ const FooterComponent = () => {
               onClick: handleClick,
 
               };
+              case accountStatus ==="failed":
+              case accountStatus ==="successPass":
+              case accountStatus==="mustmatch":
               case accountStatus === "password":
                 return{
                   css: "",

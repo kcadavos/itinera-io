@@ -21,7 +21,6 @@ useEffect(()=>{
       console.log("ROUTER PUSH");
       router.push("/Trip/AddTrip");
     }
-  
 },[router,tripListData])
 
 useEffect(()=>{
@@ -46,17 +45,14 @@ const getTripListData = async ()=>{
   
 },[userId]);
 
-useEffect(()=>{
-console.log("SELECTED TRIP ID: " +selectedTripId);
-},[selectedTripId])
-
+              
 
   return (
     <div className='pb-40'>
       {( tripListData!==null && tripListData.length>0) &&(
         <>
       <TripCardComponent  trips={tripListData}/> 
-        <FooterComponent/>
+      <FooterComponent/>
         </>
       )
 
