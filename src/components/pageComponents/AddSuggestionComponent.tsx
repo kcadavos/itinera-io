@@ -12,6 +12,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { useRouter } from "next/navigation";
 import { getToken } from "@/lib/services/DataServices";
+import DesktopSideComponent from "../DesktopSideComponent";
 
 const AddSuggestionComponent = () => {
   const { selectedTripId } = useSelectedTripIdContext();
@@ -241,15 +242,15 @@ const AddSuggestionComponent = () => {
 
       {/* desktop */}
       <div className="hidden lg:block">
-        <div className="grid grid-cols-3">
+        <div className="grid grid-cols-4">
 
-          <div>
-
+          <div className="col-[1]">
+            <DesktopSideComponent />          
           </div>
           
           {
             selectedTripIsVotingOpen ?
-            <div className="bg-[#ECF0F1] rounded-2xl min-w-[20rem] min-h-[26rem] max-w-[55rem] mx-4 px-6 relative mb-40 col-span-2 mt-20">
+            <div className="bg-[#ECF0F1] rounded-2xl min-w-[20rem] min-h-[26rem] max-w-[55rem] mx-4 px-6 relative mb-40 col-span-3 mt-20">
               <div className="p-6 pt-8 grid grid-cols-2 gap-6">
 
                 <div className="grid grid-rows-4 p-4">
@@ -414,7 +415,7 @@ const AddSuggestionComponent = () => {
                 </button>
               </div>
             </div> :
-            <div className="text-center text-[#2C3E50] mt-10">
+            <div className="text-center text-[#2C3E50] mt-10 col-span-3">
               <p className="text-xl mb-4">Voting is closed.</p>
               <p>Unable to add new activities.</p>
             </div>

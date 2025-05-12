@@ -6,26 +6,41 @@ const DesktopSideComponent = () => {
     <div className="hidden lg:block">
 
         <div>
-            <div className="bg-[#E1ECFF] min-h-[14rem]  lg:min-h-[13.2rem] lg:max-h-[13.2rem] pt-10 pb-10 relative min-w-screen max-w-screen mb-6">
-                <div className="mx-8 mt-10 font-inter">
+            <div className="bg-[#E1ECFF] min-h-[14rem]  lg:min-h-[12rem] lg:max-h-[12rem] pt-2 pb-10 relative w-full mb-6">
+                <div className="mx-6 mt-10 font-inter">
                     <img
-                        className="h-10 absolute left-6 top-10"
+                        className="h-10 absolute top-5 "
                         src="/assets/Icons/itineraLogo.svg"
                         alt=""
                     />
 
-                    <MenuComponent />
+                    <div className=''>
+                        <MenuComponent />
+                    </div>
+                    
 
-                    <div className="font-medium text-[#34495E] mt-5"></div>
-                    <p className="text-3xl text-[#E67E22]"></p>
+                    <div className="font-medium text-[#34495E] mt-5">Hi</div>
+                    <p className="text-lg text-[#34495E]">Looking forward to these trips?</p>
                     <div ></div>
                 </div>
             </div>
         </div>
 
-        <div>
-            
+        <div className='text-center'>
+            <p>trip cards</p>
         </div>
+
+        <div className="fixed bottom-0 ">
+            <div className=" bg-[#1ABC9C] py-3 rounded-t-4xl min-w-[25rem] ">
+                <div className="text-white flex justify-center text-4xl font-medium ">        
+                
+                    <p>Initiate a Trip</p>
+                    <img src="/assets/Icons/Orion_aircraft 1.svg" alt="" className='w-12 h-12' />
+                    
+                </div>
+            </div>
+        </div>
+        
     </div>
   )
 }

@@ -78,7 +78,7 @@ const FooterComponent = () => {
     const bottom = selectedPage();
   return (
     
-      <div className="fixed bottom-0 w-full">
+    <div className="fixed bottom-0 w-full">
       <div className=" bg-[#1ABC9C] min-w-screen max-w-screen py-5 rounded-t-4xl  ">
         <div className="text-white flex justify-center text-4xl font-medium ">        
          <Link href={bottom.href} onClick={bottom.onClick} className="flex">
