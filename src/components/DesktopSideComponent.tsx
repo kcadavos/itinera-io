@@ -18,10 +18,10 @@ const DesktopSideComponent = () => {
                         <MenuComponent />
                     </div>
                     
-
-                    <div className="font-medium text-[#34495E] mt-5">Hi</div>
-                    <p className="text-lg text-[#34495E]">Looking forward to these trips?</p>
-                    <div ></div>
+                    <div className='ml-2' >
+                        <div className="font-medium text-[#34495E] mt-5 ">Hi</div>
+                        <p className="text-lg text-[#34495E]">Looking forward to these trips?</p>
+                    </div>
                 </div>
             </div>
         </div>
