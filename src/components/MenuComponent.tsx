@@ -21,11 +21,11 @@ const MenuComponent = () => {
   return (
     <>
       
-      <div className="bg-white rounded-l-full  flex justify-center absolute  top-0 right-0 p-5">
+      <div className="lg:bg-[#1ABC9C] lg:rounded-l-full flex justify-center absolute top-5 right-5  lg:top-0 lg:right-0 p-1 bg-white rounded-4xl lg:p-4 cursor-pointer">
         <img
           onClick={menuToggle}
-          className="w-9 "
-          src="/assets/Icons/Orion_world-map2.svg"
+          className="w-10 rounded-full "
+          src="/assets/Icons/OrionWorldMapBG.svg"
           alt="Menu"
         />
       </div>
