@@ -32,15 +32,16 @@ useEffect(()=>{
       }
   }
   console.log("inside use effect for tripID" +selectedTripId )
-  if(selectedTripId>0)
-  getItineraryListData(selectedTripId);
-else 
-{
-  setSelectedTripId(Number(sessionStorage.getItem("ItineraSelectedTripId")));
-  console.log("trip id  is not greater than 0")
-  router.push("/Trip/TripList")
 
-}
+  if(selectedTripId>0 ) // fetch details id
+  getItineraryListData(selectedTripId);
+    else 
+    {
+   
+     // this is if TripId is lost from refreshing the page
+      setSelectedTripId(Number(sessionStorage.getItem("ItineraSelectedTripId")));
+      router.push("/Trip/TripList")
+    }
  
   
 },[selectedTripId, selectedTripIsVotingOpen])
@@ -50,7 +51,7 @@ console.log(itineraryListData+ "ITI IS CHANGED")
 },[itineraryListData])
 
   return (
-    <div className='bg-[#ECF0F1] h-full w-screen py-5 '>
+    <div className='bg-[#ECF0F1] min-h-screen w-screen flex  flex-col items-center'>
 
       {selectedTripIsVotingOpen  ?   <CloseVotingComponent/>: 
 
