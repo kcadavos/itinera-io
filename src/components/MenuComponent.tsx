@@ -20,7 +20,8 @@ const MenuComponent = () => {
   };
   return (
     <>
-      <div className="bg-white rounded-full w-15 h-15 flex justify-center absolute  top-5 right-5 ">
+      
+      <div className="bg-white rounded-l-full  flex justify-center absolute  top-0 right-0 p-5">
         <img
           onClick={menuToggle}
           className="w-9 "

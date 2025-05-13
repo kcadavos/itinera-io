@@ -248,9 +248,10 @@ const AddSuggestionComponent = () => {
             <DesktopSideComponent />          
           </div>
           
+          <div className="col-span-3 flex justify-center mt-55">
           {
             selectedTripIsVotingOpen ?
-            <div className="bg-[#ECF0F1] rounded-2xl min-w-[20rem] min-h-[26rem] max-w-[55rem] mx-4 px-6 relative mb-40 col-span-3 mt-20">
+            <div className="bg-[#ECF0F1] rounded-2xl min-w-[20rem] xl:w-[55rem] min-h-[24rem] max-w-[55rem] mx-4 px-6 relative  ">
               <div className="p-6 pt-8 grid grid-cols-2 gap-6">
 
                 <div className="grid grid-rows-4 p-4">
@@ -415,11 +416,12 @@ const AddSuggestionComponent = () => {
                 </button>
               </div>
             </div> :
-            <div className="text-center text-[#2C3E50] mt-10 col-span-3">
+            <div className="text-center text-[#2C3E50] mt-10  col-span-3">
               <p className="text-xl mb-4">Voting is closed.</p>
               <p>Unable to add new activities.</p>
             </div>
           }
+          </div>
           
         </div>
         

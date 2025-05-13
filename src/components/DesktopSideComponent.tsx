@@ -6,7 +6,7 @@ const DesktopSideComponent = () => {
     <div className="hidden lg:block">
 
         <div>
-            <div className="bg-[#E1ECFF] min-h-[14rem]  lg:min-h-[12rem] lg:max-h-[12rem] pt-2 pb-10 relative w-full mb-6">
+            <div className="bg-[#E1ECFF] min-h-[12rem]  lg:max-h-[12rem] pt-2 pb-10 relative w-full mb-6">
                 <div className="mx-6 mt-10 font-inter">
                     <img
                         className="h-10 absolute top-5 "
