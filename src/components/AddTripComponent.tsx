@@ -36,7 +36,7 @@ const AddTripComponent = () => {
   const [startDate, setStartDate] = useState<Date | null>(null);
   const [endDate, setEndDate] = useState<Date | null>(null);
   const [participantsEmailList, setParticipantsEmailList] = useState<string>('');
-  const [participantIds, setParticipantIds] = useState<number[]>([]);
+  const [, setParticipantIds] = useState<number[]>([]);
   const [isDisabled, setIsDisabled] = useState<boolean>(false);
 
   const [submitted, setSubmitted] = useState(false);
@@ -156,7 +156,7 @@ const AddTripComponent = () => {
         <div className="p-2 pt-8 space-y-4">
 
           {(submitted && (!destination || !startDate || !endDate || !participantsEmailList || startDateGreaterThanEndDateError || startDateNotInFutureError || endDateNotInFutureError || notFoundEmails.length > 0)) && (
-            <div role="alert" aria-live="assertive" className="mb-4 p-3 bg-red-100 border border-red-400 text-red-700 rounded">
+            <div className="mb-4 p-3 bg-red-100 border border-red-400 text-red-700 rounded">
               <p className="font-semibold">Please fix the following issues:</p>
               <ul className="list-disc list-inside text-sm space-y-1">
                 {!destination && <li>Destination is required.</li>}
@@ -166,7 +166,12 @@ const AddTripComponent = () => {
                 {startDateGreaterThanEndDateError && <li>Start Date must be before the End Date.</li>}
                 {startDateNotInFutureError && <li>Start Date must be in the future.</li>}
                 {endDateNotInFutureError && <li>End Date must be in the future.</li>}
-                {notFoundEmails.length > 0 && <li>The following user(s) were not found: <strong>{notFoundEmails.join(', ')}</strong>. Please remove or wait for them to sign up.</li>}
+                {notFoundEmails.length > 0 && 
+                    <li>The following user(s) were not found:
+                     <strong>{notFoundEmails.join(', ')}</strong>. 
+                     Please remove them for now and add them later after they sign up.
+                     </li>
+                }
               </ul>
             </div>
           )}
