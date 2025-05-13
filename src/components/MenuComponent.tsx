@@ -20,7 +20,8 @@ const MenuComponent = () => {
   };
   return (
     <>
-      <div className="bg-white rounded-full w-15 h-15 flex justify-center absolute  top-5 right-10 ">
+      
+      <div className="bg-white rounded-l-full  flex justify-center absolute  top-0 right-0 p-5">
         <img
           onClick={menuToggle}
           className="w-9 "
@@ -30,7 +31,7 @@ const MenuComponent = () => {
       </div>
       {!isHidden && (
         <div className="grid text-[#E67E22] font-medium mt-5 gap-2">
-          <Link href="/Trip/TripList" onClick={menuToggle}>Trip Dashboard</Link>
+          <Link href="/Trip/TripList" onClick={menuToggle} >Trip Dashboard</Link>
           <Link href="/AccountDetails" onClick={changeHeader}>Account Details</Link>
           <Link href="/NotificationPage" onClick={menuToggle}>Notifications</Link>
           <Link
