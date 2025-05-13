@@ -11,19 +11,36 @@ const CloseVotingComponent = () => {
   const{selectedTripId}= useSelectedTripIdContext();
   const {selectedTripOwnerId} =useSelectedTripOwnerIdContext();
   const {userId} = useUserIdContext();
+  const [notEnoughActivitiesToGenerate, setNotEnoughActivitiesToGenerate]=useState<boolean>(false); // onpage load it is not generated
   
 
 const GenerateItinerary =async()=>{
+  setNotEnoughActivitiesToGenerate(false); // reset everytime user clicks on generate itinerary button
   const request ={
     tripId : selectedTripId,
     numberOfActivitiesPerDay: schedIntensity
   }
+  console.log("REQ" +JSON.stringify(request));
+  console.log("ENTER GENERATE");
+  const result = await GenerateAndSaveItinerary(request, getToken());
 
-  console.log("REQ"+ JSON.stringify(request))
-
-  const success = await GenerateAndSaveItinerary (request, getToken())
-  if (success)
+  console.log("STATUS"+result.status);
+  console.log("RESULT"+ JSON.stringify(result));
+  if (result.success) {
     setSelectedTripIsVotingOpen(false);
+  } else {
+    switch (result.status) {
+      case 400:
+        setNotEnoughActivitiesToGenerate(true);
+        break;
+      case 500:
+        alert(" Server Error (500): " + result.message +" Try again later.");
+        break;
+      default:
+        alert("Unexpected Error: " + result.message+ " Try again later.");
+        break;
+    }
+  }
 }
 
 useEffect(()=>{
@@ -32,12 +49,35 @@ console.log("INTENSE"+ schedIntensity)
 },[selectedTripIsVotingOpen,schedIntensity])
 
   return (
-    <>
-    <div className=' mx-10 py-10  relative'>
+    <div >
+
+    {/*display if itinerary generation failed*/}
+    {     notEnoughActivitiesToGenerate && 
+      (
+            <div className="mx-10 mt-6 p-5 bg-red-50 border border-red-300 rounded-lg text-red-700">
+        <p className="text-lg font-semibold mb-2">
+          Uh-oh! We couldn’t generate the itinerary with the selected intensity.
+        </p>
+        <p className="mb-3">
+          Try one of the following to help us build a better itinerary:
+        </p>
+        <ul className="list-disc list-inside space-y-1 ps-4">
+          <li>Select a lighter schedule option.</li>
+          <li>Ask your travel buddies to add more activities.</li>
+          <li>Consider shortening the duration of your trip.</li>
+        </ul>
+      </div>
+      )
+        
+      }
+
+    {/*display before generating the itinerary*/}
+      <div className=' mx-10 py-10  relative'>
     <div className='flex px-5  justify-between p-3 border rounded-t-2xl bg-[#1ABC9C]'>
       <img src="/assets/Icons/itineraIcon.svg" className='w-3 h-auto'/>
       <p className='text-white text-xl'>Voting In Progress</p>
     </div>
+    {   /*display generate itinerary if owner else display awaiting for ownner to generate itinerary */}
     <div className='bg-white p-3 space-y-4 rounded-b-2xl'>
       { (selectedTripOwnerId===userId) ? (<div>  <p className='text-lg'>
       Would you like to end the voting phase and generate the itinerary?  How intense would you like the schedule to be?
@@ -52,15 +92,15 @@ console.log("INTENSE"+ schedIntensity)
             <img src="/assets/Icons/Orion_travel-map 1.svg" className="w-10" alt="Generate Itinerary" 
             />
             </button>
-      </div> </div>) :(<p className='text-xl p-5 font-medium'>Itinerary is not ready. Please ensure that you casted your vote to all the suggested activities and  wait for the trip owner to end the voting.</p>)}
+      </div> </div>) :(<p className='text-xl p-5 font-medium'>Hang tight! The itinerary will be ready once you have voted on all suggested activities and the trip owner ends the voting phase.</p>)}
+
+        </div>
  
-      
-    </div>
- 
-    </div>
+      </div>
+
     
     
-    </>
+    </div>
   )
 }
 

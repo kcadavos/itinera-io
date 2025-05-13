@@ -13,12 +13,12 @@ const DisplayItineraryDayComponent = ({iList}:DisplayItineraryDetailsProps) => {
 
 
   return (
-    <>
+    <div className="w-full px-4">
       {iList.map((itinerary:IItineraryData, index:number) => (
  
 
         //itinerary day section 
-        <div key={index} className=' mx-10 py-10  relative'> 
+        <div key={index} className=' mx-10 py-10  relative '> 
 
         {/*itinerary day header*/ }
         <div className='flex px-5  justify-between p-3 border rounded-t-2xl bg-[#1ABC9C]'>
@@ -42,7 +42,7 @@ const DisplayItineraryDayComponent = ({iList}:DisplayItineraryDetailsProps) => {
         
         </div>
       ))}
-  </>
+  </div >
   );
 };
 

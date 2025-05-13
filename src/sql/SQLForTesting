@@ -9,3 +9,7 @@ where TripId = 21;
 select *
 from trip
 where id=21
+
+select * from trip where id=23
+
+select * from Activity where tripid=23
