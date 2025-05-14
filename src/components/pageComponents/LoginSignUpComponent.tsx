@@ -17,7 +17,7 @@ const {loginStatus, setLoginStatus} = useLoginStatusContext();
     setLoginStatus(loginStatus === "create" ? "idle" : "create");
     setSwitchBool(!switchBool);
     console.log(switchBool)
-  }
+  } 
 
   
   return (
