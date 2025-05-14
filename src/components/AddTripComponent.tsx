@@ -214,6 +214,7 @@ const AddTripComponent = () => {
               <img src="/assets/Icons/Orion_meeting-geotag.svg" alt="Start Date" className="w-8" />
             </div>
             <DatePicker
+               disabled={isDisabled}
               selected={startDate}
               onChange={(date) => setStartDate(date)}
               placeholderText="*Start Date"
@@ -227,6 +228,7 @@ const AddTripComponent = () => {
               <img src="/assets/Icons/Orion_meeting-geotag.svg" alt="End Date" className="w-8" />
             </div>
             <DatePicker
+               disabled={isDisabled}
               selected={endDate}
               onChange={(date) => setEndDate(date)}
               placeholderText="*End Date"
@@ -240,6 +242,7 @@ const AddTripComponent = () => {
               <img src="/assets/Icons/Orion_people.svg" alt="Participants" className="w-8" />
             </div>
             <textarea
+               disabled={isDisabled}
               value={participantsEmailList}
               placeholder="*Participants e-mail address (separate with comma)"
               className={`${isDisabled ? 'bg-gray-200 text-gray-500 cursor-not-allowed' : 'bg-white text-black'} rounded-md py-1 px-2 pb-36 w-full resize-none ${submitted && !participantsEmailList ? 'border-2 border-red-500' : ''}`}
