@@ -1,6 +1,8 @@
-import { useSelectedTripIdContext, useSelectedTripIsVotingOpenContext, useSelectedTripOwnerIdContext, useUserIdContext } from '@/context/DataContext';
+import { useSelectedTripIdContext, useSelectedTripIsVotingOpenContext, useSelectedTripOwnerIdContext, useSelectedTripParticipantsIdListContext, useUserIdContext } from '@/context/DataContext';
+import { NotificationTypeEnum } from '@/lib/NotificationInterfaces';
 import { getToken } from '@/lib/services/DataServices';
 import { GenerateAndSaveItinerary } from '@/lib/services/ItineraryServices';
+import { AddGroupNotification } from '@/lib/services/NotificationService';
 import  { useEffect, useState} from 'react'
 
 
@@ -9,6 +11,7 @@ const CloseVotingComponent = () => {
   const [schedIntensity, setSchedIntensity] = useState<number>(2);
   const {setSelectedTripIsVotingOpen,selectedTripIsVotingOpen}=useSelectedTripIsVotingOpenContext();
   const{selectedTripId}= useSelectedTripIdContext();
+  const {selectedParticipantsIdList}=useSelectedTripParticipantsIdListContext();
   const {selectedTripOwnerId} =useSelectedTripOwnerIdContext();
   const {userId} = useUserIdContext();
   const [notEnoughActivitiesToGenerate, setNotEnoughActivitiesToGenerate]=useState<boolean>(false); // onpage load it is not generated
@@ -20,14 +23,29 @@ const GenerateItinerary =async()=>{
     tripId : selectedTripId,
     numberOfActivitiesPerDay: schedIntensity
   }
-  console.log("REQ" +JSON.stringify(request));
-  console.log("ENTER GENERATE");
+
   const result = await GenerateAndSaveItinerary(request, getToken());
 
-  console.log("STATUS"+result.status);
-  console.log("RESULT"+ JSON.stringify(result));
+
   if (result.success) {
     setSelectedTripIsVotingOpen(false);
+    
+    //send itinerary generated for the participants
+    const notificationToAdd={
+      userId:selectedParticipantsIdList, // send notifications to all the partificipants that were found
+      type: NotificationTypeEnum.ItineraryGenerated,
+      referenceId:selectedTripId, // referencing the recently generated itinerary by TripId
+      referenceTable:"itinerary"
+    }
+  
+    const addItineraryNotificationSuccess= await  AddGroupNotification(notificationToAdd,getToken())
+   
+    if (addItineraryNotificationSuccess) {
+      console.log("Notification for generated itinerary  successfully added.");
+    } else {
+      console.log("Failed to add notifications to generated itinerary");
+    }
+
   } else {
     switch (result.status) {
       case 400:
@@ -79,8 +97,13 @@ console.log("INTENSE"+ schedIntensity)
     </div>
     {   /*display generate itinerary if owner else display awaiting for ownner to generate itinerary */}
     <div className='bg-white p-3 space-y-4 rounded-b-2xl'>
-      { (selectedTripOwnerId===userId) ? (<div>  <p className='text-lg'>
-      Would you like to end the voting phase and generate the itinerary?  How intense would you like the schedule to be?
+      { (selectedTripOwnerId===userId) ? (
+      <div> 
+      <p className='text-lg'>
+        Ready to wrap up the voting and create your itinerary?
+        Just a heads-up: once the itinerary is generated, you won&apos;t be able to make changes to the trip or activity details. <br />
+        <br/>
+        How packed would you like the schedule to be?
       </p>
       <div className='flex flex-col space-y-2 mb-10'>
       <label > <input value="1" type="radio" className='mr-2' checked={schedIntensity===1} onChange={(e) => setSchedIntensity(Number(e.target.value))}/> 1 - Light</label>
@@ -92,7 +115,8 @@ console.log("INTENSE"+ schedIntensity)
             <img src="/assets/Icons/Orion_travel-map 1.svg" className="w-10" alt="Generate Itinerary" 
             />
             </button>
-      </div> </div>) :(<p className='text-xl p-5 font-medium'>Hang tight! The itinerary will be ready once you have voted on all suggested activities and the trip owner ends the voting phase.</p>)}
+      </div> </div>
+    ) :(<p className='text-xl p-5 font-medium'>Hang tight! The itinerary will be ready once you have voted on all suggested activities and the trip owner ends the voting phase.</p>)}
 
         </div>
  

@@ -10,6 +10,22 @@ select *
 from trip
 where id=21
 
-select * from trip where id=23
+select * from itinerary where tripId=21
+
+update Trip set isVotingOpen=1 where id=21
+
+delete  from Itinerary where tripId=21
+
+select * from trip where id=21
 
 select * from Activity where tripid=23
+
+delete from notification where referenceId= 21
+
+select * from notification where referenceId=21
+
+
+select * from itinerary
+
+
+select * from [User]

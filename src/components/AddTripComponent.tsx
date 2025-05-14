@@ -4,6 +4,7 @@ import {
   useSelectedTripDestinationContext,
   useSelectedTripEndDateContext,
   useSelectedTripIdContext,
+  useSelectedTripIsVotingOpenContext,
   useSelectedTripOwnerIdContext,
   useSelectedTripParticipantsIdListContext,
   useSelectedTripStartDateContext,
@@ -31,6 +32,7 @@ const AddTripComponent = () => {
   const { selectedTripEndDate } = useSelectedTripEndDateContext();
   const { selectedParticipantsIdList } = useSelectedTripParticipantsIdListContext();
   const { selectedTripOwnerId } = useSelectedTripOwnerIdContext();
+  const {selectedTripIsVotingOpen}=useSelectedTripIsVotingOpenContext();
 
   const { userId } = useUserIdContext();
   const [tripId, setTripId] = useState<number>(0);
@@ -67,14 +69,16 @@ const AddTripComponent = () => {
   }, [mode, selectedTripId, selectedTripDestination, selectedTripStartDate, selectedTripEndDate, selectedParticipantsIdList]);
 
   useEffect(() => {
-    if (userId !== selectedTripOwnerId && mode !== 'add') setIsDisabled(true);
-  }, [selectedTripOwnerId, userId]);
+    //disable fields if not the owner and in edit mode or selectedTripvoting is closed
+    if ((userId !== selectedTripOwnerId && mode !== 'add')|| selectedTripIsVotingOpen===false) 
+      setIsDisabled(true);
+  }, [selectedTripOwnerId, userId,selectedTripIsVotingOpen]);
 
   useEffect(() => {
     if (userId === 0) router.push('/Trip/TripList');
   }, [userId]);
 
-  const CheckStartEndDateAreValid = (): boolean => {
+  const CheckStartEndDateAreValid = ():boolean => {
     if (!startDate || !endDate) return false;
 
     const today = new Date();
@@ -93,6 +97,7 @@ const AddTripComponent = () => {
     setSubmitted(true);
     setNotFoundEmails([]);
 
+   
     const { foundIds, emailsNotFound } = await transformParticipantsEmailToId(participantsEmailList);
 
     const datesAreValid = CheckStartEndDateAreValid();
@@ -125,7 +130,7 @@ const AddTripComponent = () => {
             referenceId:tripId, // referencing the recently added trip
             referenceTable:"trip"
           }
-          console.log("NOTIF" + JSON.stringify(notificationToAdd));
+        
           const addNotificationSuccess= await  AddGroupNotification(notificationToAdd,getToken())
          
           if (addNotificationSuccess) {
@@ -139,10 +144,56 @@ const AddTripComponent = () => {
         } else {
           alert('Something went wrong. Trip details were not saved. Please try again.');
         }
-      } else {
+      } else // for edit state
+     {
+
         const success = await EditTrip(trip, getToken());
 
-        if (success) router.push('/Trip/TripList');
+        if (success){
+
+          // send update notification on existing users 
+          const existingUsers = foundIds.filter(id => selectedParticipantsIdList.includes(id))
+          if (existingUsers.length>0)
+            {
+              const notificationToAdd={
+                userId:existingUsers, // send notifications to existing users
+                type: NotificationTypeEnum.TripUpdated,
+                referenceId:tripId, // referencing the recently added trip
+                referenceTable:"trip"
+              }
+              console.log("NOTIF" + JSON.stringify(notificationToAdd));
+              const addUpdateNotificationSuccess= await  AddGroupNotification(notificationToAdd,getToken())
+             
+              if (addUpdateNotificationSuccess) {
+                console.log("Notifications successfully added for update trip.");
+              } else {
+                console.log("Failed to add notification for update trip");
+              }
+            }
+
+          // find the newly added IDs and send trip added/invited notification
+          const newIdsAdded = foundIds.filter(id => !selectedParticipantsIdList.includes(id))
+          if (newIdsAdded.length>0) // if new Id was added then proceed to send notification
+            { 
+              const notificationToAdd={
+                userId:newIdsAdded, // send notifications to newly added participants
+                type: NotificationTypeEnum.TripAdded,
+                referenceId:tripId, // referencing the recently added trip
+                referenceTable:"trip"
+              }
+              console.log("NOTIF" + JSON.stringify(notificationToAdd));
+              const addTripNotificationSuccess= await  AddGroupNotification(notificationToAdd,getToken())
+             
+              if (addTripNotificationSuccess) {
+                console.log("Notifications successfully added.");
+              } else {
+                console.log("Failed to add notifications.");
+              }
+            }
+       
+          router.push('/Trip/TripList');
+        } 
+          
         else alert('Something went wrong. Trip details were not edited. Please try again');
       }
     }
