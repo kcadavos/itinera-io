@@ -51,7 +51,7 @@ console.log(itineraryListData+ "ITI IS CHANGED")
 },[itineraryListData])
 
   return (
-    <div className='bg-[#ECF0F1] min-h-screen w-screen flex  flex-col items-center'>
+    <div className='bg-[#ECF0F1] max-w-screen flex  flex-col items-center pb-20'>
 
       {selectedTripIsVotingOpen  ?   <CloseVotingComponent/>: 
 
