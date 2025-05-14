@@ -4,12 +4,10 @@ import AccountCreationComponent from "@/components/AccountCreationComponent";
 import LogInComponent from "@/components/LogInComponent";
 import { useLoginStatusContext } from "@/context/DataContext";
 
-import { useEffect, useState } from "react";
+import {  useState } from "react";
 
 const LoginSignUpComponent = () => {
-  useEffect(() => {
-    alert("Heads up! This app is still getting dressed for desktop. For the best experience, check it out on your phone or a smaller screen. 😊");
-  }, []);
+
   const [switchBool, setSwitchBool] = useState<boolean>(true);
 const {loginStatus, setLoginStatus} = useLoginStatusContext();
  

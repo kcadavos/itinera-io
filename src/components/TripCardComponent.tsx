@@ -24,6 +24,7 @@ const TripCardComponent = ({ trips }:{trips:ITripData[]}) => {
     const{setSelectedParticipantsIdList}=useSelectedTripParticipantsIdListContext();
     const{setSelectedTripOwnerId}=useSelectedTripOwnerIdContext();
     const{setSelectedTripIsVotingOpen}=useSelectedTripIsVotingOpenContext();
+    
    
 // Refs to autos croll to selected trip
 const tripRefs = useRef<(HTMLDivElement | null)[]>([]);
@@ -112,7 +113,7 @@ const updateTripContext =(trip:ITripData)=>{
       <div className='flex  flex-col  items-center gap-2 cursor-pointer' onClick={()=>handleEditTrip()}>
         <img src="/assets/Icons/Orion_aircraft_lightweight_white.svg" alt="Edit/ View Trip Details" className='w-auto h-20'/>
       
-      <p className="text-center font-normal  text-lg  text-white "> {(userId===trip.ownerId) ? "Edit Trip Details": "View Trip Details"}</p>
+      <p className="text-center font-normal  text-lg  text-white "> {(userId===trip.ownerId  && trip.isVotingOpen==true) ? "Edit Trip Details": "View Trip Details"}</p>
       </div>
       {trip.isVotingOpen? 
       (<div className=' flex  flex-col  items-center gap-2  hover:cursor-pointer' onClick={()=>handleSelectTrip(trip)}>
