@@ -13,7 +13,7 @@ const DisplayItineraryDayComponent = ({iList}:DisplayItineraryDetailsProps) => {
 
 
   return (
-    <div className="w-full px-4">
+    <div className="w-full">
       {iList.map((itinerary:IItineraryData, index:number) => (
  
 

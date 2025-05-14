@@ -17,6 +17,8 @@ import React, { useEffect, useState } from 'react';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { format, parse } from 'date-fns';
+import { AddGroupNotification} from '@/lib/services/NotificationService';
+import { NotificationTypeEnum } from '@/lib/NotificationInterfaces';
 
 const AddTripComponent = () => {
   const router = useRouter();
@@ -113,10 +115,27 @@ const AddTripComponent = () => {
 
       if (mode === 'add') {
         const tripId = await AddTripReturnTripId(trip, getToken());
+       
 
-        if (tripId) {
+        if (tripId) { //add is successful create group notification  for participants for added trip and forward the user to the trip dashboard
           setSelectedTripId(tripId);
+          const notificationToAdd={
+            userId:foundIds, // send notifications to all the partificipants that were found
+            type: NotificationTypeEnum.TripAdded,
+            referenceId:tripId, // referencing the recently added trip
+            referenceTable:"trip"
+          }
+          console.log("NOTIF" + JSON.stringify(notificationToAdd));
+          const addNotificationSuccess= await  AddGroupNotification(notificationToAdd,getToken())
+         
+          if (addNotificationSuccess) {
+            console.log("Notifications successfully added.");
+          } else {
+            console.log("Failed to add notifications.");
+          }
+
           router.push('/Trip/TripList');
+
         } else {
           alert('Something went wrong. Trip details were not saved. Please try again.');
         }
