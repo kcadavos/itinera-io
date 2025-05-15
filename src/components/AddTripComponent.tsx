@@ -70,7 +70,7 @@ const AddTripComponent = () => {
 
   useEffect(() => {
     //disable fields if not the owner and in edit mode or selectedTripvoting is closed
-    if ((userId !== selectedTripOwnerId && mode !== 'add')|| selectedTripIsVotingOpen===false) 
+    if ((userId !== selectedTripOwnerId && mode !== 'add')|| (selectedTripIsVotingOpen===false &&mode!=='add')) 
       setIsDisabled(true);
   }, [selectedTripOwnerId, userId,selectedTripIsVotingOpen]);
 
