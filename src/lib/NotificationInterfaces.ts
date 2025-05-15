@@ -19,3 +19,13 @@ export interface IAddGroupNotification {
     referenceId: number;
     referenceTable: string;
 }
+
+export interface   INotificationData{
+    id:number,
+    userId:number
+    type:NotificationTypeEnum 
+    referenceId:number
+    referenceTable:string
+    isRead:boolean
+    createdDate:Date
+}

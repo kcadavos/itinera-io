@@ -28,6 +28,29 @@ export const GetTripListByUserId = async (userId: number,token:string)=>{
 
 }
 
+export const GetTripDetails = async (tripId: number,token:string)=>{
+    const res = await fetch (url+"/Trip/GetTripDetails/"+tripId,{
+        method: "GET",
+        headers: {
+            "Content-Type":"application/json",
+            "Authorization": "Bearer "+ token 
+        }
+    });
+    
+    //if promise is not ok
+    if (!res.ok){
+        const errorData = await res.json();
+        const errorMsg = errorData.message;
+        console.log("Error on Get Trip Details fetch: " +errorMsg);
+        return null;
+    }
+
+    const data = await res.json();
+    console.log("FETCH DATA"+data);
+    return data;
+
+}
+
 export const AddTrip = async (trip:ITripData, token:string)=>{
     console.log("TRIP"+ trip)
     const res = await fetch(url+"/Trip/AddTrip",{

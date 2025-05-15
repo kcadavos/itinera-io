@@ -43,7 +43,7 @@ const LogInComponent = () => {
             setName(loggedInData.name);
             setUserId(loggedInData.id)
             sessionStorage.setItem("ItineraUserId",String(loggedInData.id));
-            router.push('Trip/TripList');
+            router.push('/NotificationPage');
           }
         }
       }else{

@@ -46,3 +46,27 @@ console.log("ENTERD ADD GROUp");
     return data.success;
 }
 
+
+
+export const GetUnreadNotifactionsByUser = async (userId: number,token:string)=>{
+    const res = await fetch (url+"/Notification/GetUnreadNotificationsByUserId/"+userId,{
+        method: "GET",
+        headers: {
+            "Content-Type":"application/json",
+            "Authorization": "Bearer "+ token 
+        }
+    });
+    
+    //if promise is not ok
+    if (!res.ok){
+        const errorData = await res.json();
+        const errorMsg = errorData.message;
+        console.log("Error on GetUnreadNotifications fetch: " +errorMsg);
+        return [] // return empty array 
+    }
+
+    const data = await res.json();
+    console.log("FETCH DATA"+data);
+    return data;
+
+}
