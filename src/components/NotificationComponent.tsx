@@ -8,7 +8,6 @@ import { format } from 'date-fns';
 const NotificationComponent = ({notification,key}:{notification:INotificationData,key:number}) => {
     const [componentMsg1,setComponentMsg1]= useState <string>("");
     const [componentMsg2,setComponentMsg2]=useState<string>("");
-    const[,setComponentMsg3]=useState<string>("");
     const [tripDestination,setTripDestination]=useState<string>("");
 
 
@@ -50,17 +49,16 @@ const NotificationComponent = ({notification,key}:{notification:INotificationDat
                     break;
                   case NotificationTypeEnum.TripUpdated: 
                     setComponentMsg1("Your trip to ");
-                    setComponentMsg3("LOCATION HERE");
+        
                     setComponentMsg2("has been updated");
                     break;
                     case NotificationTypeEnum.ItineraryGenerated: 
                     setComponentMsg1("Your new itinerary for ");
-                    setComponentMsg3("LOCATION HERE");
+ 
                     setComponentMsg2("is ready to explore");
                     break;
                 default: 
                     setComponentMsg1("You have a new notification");
-                    setComponentMsg3("");
                     setComponentMsg2("");
                     break;
             }
