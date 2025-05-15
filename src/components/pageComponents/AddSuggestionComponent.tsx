@@ -304,7 +304,7 @@ const AddSuggestionComponent = () => {
                           </div>
                         </button>
                       </DropdownMenuTrigger>
-                      <DropdownMenuContent className="sm:w-100 md:w-130 border-1 border-black">
+                      <DropdownMenuContent className="sm:w-100 md:w-130 lg:w-76 border-1 border-black">
                         <DropdownMenuGroup className="text-[#34495E]/60">
                           {category == "Adventure & Outdoors" ? (
                             <DropdownMenuItem className="bg-[#ECF0F1]">

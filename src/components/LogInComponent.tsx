@@ -7,10 +7,10 @@ import { useLoginStatusContext, useNameContext, useUserIdContext } from '@/conte
 
 
 const LogInComponent = () => {
-useEffect(()=>{
+  useEffect(()=>{
 
-alert(" Thanks for checking us out! We are re still working on the desktop experience.For the best view, please switch to a mobile or smaller screen.");
-},[])
+  alert(" Thanks for checking us out! We are re still working on the desktop experience.For the best view, please switch to a mobile or smaller screen.");
+  },[])
  
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
@@ -47,7 +47,8 @@ alert(" Thanks for checking us out! We are re still working on the desktop exper
             setName(loggedInData.name);
             setUserId(loggedInData.id)
             sessionStorage.setItem("ItineraUserId",String(loggedInData.id));
-            router.push('/NotificationPage');
+            router.push('/Trip/TripList');
+
           }
         }
       }else{
