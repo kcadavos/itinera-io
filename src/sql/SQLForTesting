@@ -22,7 +22,7 @@ select * from Activity where tripid=23
 
 delete from notification where referenceId= 21
 
-select * from notification where referenceId=21
+select * from notification where  userId=21;
 
 
 select * from itinerary
