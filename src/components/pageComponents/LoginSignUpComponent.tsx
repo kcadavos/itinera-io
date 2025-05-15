@@ -4,7 +4,7 @@ import AccountCreationComponent from "@/components/AccountCreationComponent";
 import LogInComponent from "@/components/LogInComponent";
 import { useLoginStatusContext } from "@/context/DataContext";
 
-import {  useState } from "react";
+import {  useEffect, useState } from "react";
 
 const LoginSignUpComponent = () => {
 
@@ -17,6 +17,10 @@ const {loginStatus, setLoginStatus} = useLoginStatusContext();
     console.log(switchBool)
   } 
 
+  useEffect(()=>{
+  
+    alert(" Thanks for checking us out! We are re still working on the desktop experience.For the best view, please switch to a mobile or smaller screen.");
+    },[])
   
   return (
     <div>
