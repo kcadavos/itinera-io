@@ -29,7 +29,7 @@ const TripCardComponent = ({ trips }:{trips:ITripData[]}) => {
 // Refs to autos croll to selected trip
 const tripRefs = useRef<(HTMLDivElement | null)[]>([]);
 
-const updateTripContext =(trip:ITripData)=>{
+const updateTripContext =(trip:ITripData)=>{ // update trip context when user selects a different card
   setSelectedTripId (trip.id);
   setSelectedTripDestination(trip.destination);
   setSelectedTripStartDate(trip.startDate);
