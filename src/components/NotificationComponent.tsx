@@ -4,11 +4,15 @@ import { getToken } from '@/lib/services/DataServices';
 import { GetTripDetails } from '@/lib/services/TripDataService';
 import React, { useEffect, useState } from 'react'
 import { format } from 'date-fns'; 
+import { useSelectedTripIdContext } from '@/context/DataContext';
+import { useRouter } from 'next/navigation';
 
-const NotificationComponent = ({notification,keyForKey}:{notification:INotificationData,keyForKey:number}) => {
+const NotificationComponent = ({notification,index}:{notification:INotificationData,index:number}) => {
+    const router = useRouter();
     const [componentMsg1,setComponentMsg1]= useState <string>("");
     const [componentMsg2,setComponentMsg2]=useState<string>("");
     const [tripDestination,setTripDestination]=useState<string>("");
+    const {setSelectedTripId}=useSelectedTripIdContext();
 
     const bgColors: string[] = ["bg-[#1A89BC]","bg-[#4AAAE2]","bg-[#F4B400]","bg-[#E67E22]","bg-[#4A90E2]"];
     const IconSwitch = (referenceTable: string) => {
@@ -67,10 +71,15 @@ const NotificationComponent = ({notification,keyForKey}:{notification:INotificat
 
     },[notification])
 
+    const handleNotificationClick=()=>{// route to trip cards and set the selected trip context based on the card that was clicked
+        setSelectedTripId(notification.referenceId); // references to the trip id for this notification
+        router.push('/Trip/TripList');
+    }
+
   return (
     <>
   
-        <div key={keyForKey} className={`${bgColors[keyForKey % bgColors.length]} text-white p-4 my-2 mb-10 mx-8 sm:mx-16 md:mx-36 rounded-bl-2xl rounded-tr-2xl relative flex flex-col`}>
+        <div  className={`${bgColors[index % bgColors.length]} text-white p-4 my-2 mb-10 mx-8 sm:mx-16 md:mx-36 rounded-bl-2xl rounded-tr-2xl relative flex flex-col`} onClick={handleNotificationClick}>
        
         <p> {componentMsg1}</p>
     <div className='flex justify-between'>
