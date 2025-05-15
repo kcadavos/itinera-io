@@ -14,7 +14,7 @@ const {userId,setUserId} = useUserIdContext();
 const [tripListData,setTripListData] = useState<ITripData[] | null>(null); //sets to null initially so that it doesnt route to add trip upon page load while data is not yet fetched
 const {selectedTripId,setSelectedTripId}=useSelectedTripIdContext();
 
-// routing when trip list is empty
+// routing to add trips when trip list is empty
 useEffect(()=>{
   if (tripListData !== null && tripListData.length ===0)
     {
@@ -34,7 +34,7 @@ const getTripListData = async ()=>{
     } // this is for initial load when no selected trip yet
    
 } 
-  if(userId)
+  if(userId)// if user refreshes the page, get the userId from session storage
     {
       getTripListData();
       console.log("USER"+ userId);
