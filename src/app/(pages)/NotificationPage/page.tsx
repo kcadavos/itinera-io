@@ -28,9 +28,9 @@ const NotificationPage = () => {
     <div className='pb-20'>
       { (notificationList.length>0) && (
         notificationList.map((notification, index)=>(
-        <>
-          <NotificationComponent notification={notification} index={index}/>
-        </>)
+    
+          <NotificationComponent notification={notification} key={index}/>
+      )
         
         ))
 

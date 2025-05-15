@@ -5,14 +5,10 @@ import { GetTripDetails } from '@/lib/services/TripDataService';
 import React, { useEffect, useState } from 'react'
 import { format } from 'date-fns'; 
 
-const NotificationComponent = ({notification,index}:{notification:INotificationData,index:number}) => {
+const NotificationComponent = ({notification,key}:{notification:INotificationData,key:number}) => {
     const [componentMsg1,setComponentMsg1]= useState <string>("");
     const [componentMsg2,setComponentMsg2]=useState<string>("");
-    const[,setComponentMsg3]=useState<string>("");
     const [tripDestination,setTripDestination]=useState<string>("");
-
-
-
 
     const bgColors: string[] = ["bg-[#1A89BC]","bg-[#4AAAE2]","bg-[#F4B400]","bg-[#E67E22]","bg-[#4A90E2]"];
     const IconSwitch = (referenceTable: string) => {
@@ -50,17 +46,16 @@ const NotificationComponent = ({notification,index}:{notification:INotificationD
                     break;
                   case NotificationTypeEnum.TripUpdated: 
                     setComponentMsg1("Your trip to ");
-                    setComponentMsg3("LOCATION HERE");
+        
                     setComponentMsg2("has been updated");
                     break;
                     case NotificationTypeEnum.ItineraryGenerated: 
                     setComponentMsg1("Your new itinerary for ");
-                    setComponentMsg3("LOCATION HERE");
+ 
                     setComponentMsg2("is ready to explore");
                     break;
                 default: 
                     setComponentMsg1("You have a new notification");
-                    setComponentMsg3("");
                     setComponentMsg2("");
                     break;
             }
@@ -75,7 +70,7 @@ const NotificationComponent = ({notification,index}:{notification:INotificationD
   return (
     <>
   
-        <div key={index} className={`${bgColors[index % bgColors.length]} text-white p-4 my-2 mb-10 mx-8 sm:mx-16 md:mx-36 rounded-bl-2xl rounded-tr-2xl relative flex flex-col`}>
+        <div key={key} className={`${bgColors[key % bgColors.length]} text-white p-4 my-2 mb-10 mx-8 sm:mx-16 md:mx-36 rounded-bl-2xl rounded-tr-2xl relative flex flex-col`}>
        
         <p> {componentMsg1}</p>
     <div className='flex justify-between'>
