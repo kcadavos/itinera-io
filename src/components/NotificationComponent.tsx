@@ -5,7 +5,7 @@ import { GetTripDetails } from '@/lib/services/TripDataService';
 import React, { useEffect, useState } from 'react'
 import { format } from 'date-fns'; 
 
-const NotificationComponent = ({notification,key}:{notification:INotificationData,key:number}) => {
+const NotificationComponent = ({notification,keyForKey}:{notification:INotificationData,keyForKey:number}) => {
     const [componentMsg1,setComponentMsg1]= useState <string>("");
     const [componentMsg2,setComponentMsg2]=useState<string>("");
     const [tripDestination,setTripDestination]=useState<string>("");
@@ -70,7 +70,7 @@ const NotificationComponent = ({notification,key}:{notification:INotificationDat
   return (
     <>
   
-        <div key={key} className={`${bgColors[key % bgColors.length]} text-white p-4 my-2 mb-10 mx-8 sm:mx-16 md:mx-36 rounded-bl-2xl rounded-tr-2xl relative flex flex-col`}>
+        <div key={keyForKey} className={`${bgColors[keyForKey % bgColors.length]} text-white p-4 my-2 mb-10 mx-8 sm:mx-16 md:mx-36 rounded-bl-2xl rounded-tr-2xl relative flex flex-col`}>
        
         <p> {componentMsg1}</p>
     <div className='flex justify-between'>

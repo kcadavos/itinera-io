@@ -29,7 +29,7 @@ const NotificationPage = () => {
       { (notificationList.length>0) && (
         notificationList.map((notification, index)=>(
     
-          <NotificationComponent notification={notification} key={index}/>
+          <NotificationComponent notification={notification} keyForKey={index}/>
       )
         
         ))
