@@ -10,9 +10,6 @@ const NotificationComponent = ({notification,key}:{notification:INotificationDat
     const [componentMsg2,setComponentMsg2]=useState<string>("");
     const [tripDestination,setTripDestination]=useState<string>("");
 
-
-
-
     const bgColors: string[] = ["bg-[#1A89BC]","bg-[#4AAAE2]","bg-[#F4B400]","bg-[#E67E22]","bg-[#4A90E2]"];
     const IconSwitch = (referenceTable: string) => {
         switch(referenceTable){
