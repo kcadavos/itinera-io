@@ -180,8 +180,8 @@ const NavbarComponent = () => {
   };
   const images = selectedPage();
   return (
-    <div className="fixed bottom-0 w-full">
-      <div className=" bg-[#1ABC9C] min-w-screen max-w-screen py-5 rounded-t-4xl  ">
+    <div className="fixed bottom-0 lg:top-0 w-full">
+      <div className=" bg-[#1ABC9C] max-w-screen py-5 rounded-t-4xl lg:rounded-none lg:w- ">
         <div className="flex gap-5 justify-center ">
           {images.map(({ src, href, alt }, index) => (
             <Link key={index} href={href}>
