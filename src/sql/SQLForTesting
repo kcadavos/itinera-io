@@ -32,5 +32,3 @@ select * from trip
 select * from [User]
 
 select * from trip
-
-`

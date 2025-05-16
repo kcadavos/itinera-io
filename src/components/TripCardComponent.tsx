@@ -96,11 +96,11 @@ const updateTripContext =(trip:ITripData)=>{ // update trip context when user se
     { trips.length>0 ?
      (
        trips.map ((trip,index) =>(
-         <AccordionItem  key = {index} value={`${trip.id}`} className={`border border-white rounded-2xl p-6 w-full relative ${
+         <AccordionItem  key = {index} value={`${trip.id}`} className={`border  border-white rounded-2xl p-6 w-full relative ${
             index !== 0 ? "-mt-6" : ""
           } ${bgColors[index % bgColors.length]}`} onClick={()=>updateTripContext(trip)}>
             <div ref={(el) => {tripRefs.current[index] = el}}>
-     <AccordionTrigger className='flex justify-between   items-center  w-full   [&>svg]:hidden '> 
+     <AccordionTrigger className='flex justify-between   items-center  w-full   [&>svg]:hidden cursor-pointer'> 
      <h5 className="mb-2 text-2xl font-bold tracking-tight text-white capitalize">{trip.destination}</h5>
     <p className="font-normal text-lg text-white">{format(new Date(trip.startDate+"T12:00:00"),'MMM dd')}-{format(new Date(trip.endDate+"T12:00:00"),'MMM dd')}</p>
       </AccordionTrigger>
@@ -109,18 +109,18 @@ const updateTripContext =(trip:ITripData)=>{ // update trip context when user se
            
      <p className=" text-center font-normal text-3xl text-white mb-5 " >{trip.isVotingOpen? "Voting in Progress" : "Itinerary generated"}</p>
 
-    <div className='flex justify-between'>
-      <div className='flex  flex-col  items-center gap-2 cursor-pointer' onClick={()=>handleEditTrip()}>
+    <div className='flex justify-between '>
+      <div className='flex  flex-col  items-center gap-2 cursor-pointer hover:opacity-80' onClick={()=>handleEditTrip()}>
         <img src="/assets/Icons/Orion_aircraft_lightweight_white.svg" alt="Edit/ View Trip Details" className='w-auto h-20'/>
       
       <p className="text-center font-normal  text-lg  text-white "> {(userId===trip.ownerId  && trip.isVotingOpen==true) ? "Edit Trip Details": "View Trip Details"}</p>
       </div>
       {trip.isVotingOpen? 
-      (<div className=' flex  flex-col  items-center gap-2  hover:cursor-pointer' onClick={()=>handleSelectTrip(trip)}>
+      (<div className=' flex  flex-col  items-center gap-2  hover:cursor-pointer hover:opacity-80' onClick={()=>handleSelectTrip(trip)}>
       <img src="/assets/Icons/Orion_markers_lightweight_white.svg" alt="View Activities" className='w-auto h-20'/>
        <p className=" text-center font-normal text-lg text-white ">View Activities</p>
       </div>)  :
-      (<div className='flex  flex-col  items-center gap-2 hover:cursor-pointer' onClick={()=>handleSelectTrip(trip)}>
+      (<div className='flex  flex-col  items-center gap-2 hover:cursor-pointer hover:opacity-50' onClick={()=>handleSelectTrip(trip)}>
       <img src="/assets/Icons/Orion_travel-map_lightweight_white.svg" alt="View Itinerary" className=' w-auto h-20'/>
        <p className=" text-center font-normal   text-lg text-white ">View Itinerary</p>
       </div>)
