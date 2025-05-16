@@ -12,20 +12,25 @@ where id=21
 
 select * from itinerary where tripId=21
 
-update Trip set isVotingOpen=1 where id=21
+update Trip set isVotingOpen=1 where id=31
 
-delete  from Itinerary where tripId=21
+delete  from Itinerary where tripId=31
 
-select * from trip where id=21
 
-select * from Activity where tripid=23
+delete  from trip where ownerId=3 and id between 32 and 109
 
-delete from notification where referenceId= 21
+
+select * from Notification where UserId=7
 
 select * from notification where  userId=21;
 
 
-select * from itinerary
+select * from trip where id =109
+select * from trip
 
 
 select * from [User]
+
+select * from trip
+
+`

@@ -17,6 +17,7 @@ const MenuComponent = () => {
   const logOut = () =>{
   setAccountStatus("idle");
   localStorage.clear();
+  sessionStorage.clear();
   };
   return (
     <>
