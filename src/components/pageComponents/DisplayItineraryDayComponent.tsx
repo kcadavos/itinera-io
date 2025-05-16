@@ -2,7 +2,7 @@ import React from 'react';
 import { IItineraryData } from '@/lib/ItineraryInterfaces';
 import { addDays, format } from 'date-fns';
 import { useSelectedTripStartDateContext } from '@/context/DataContext';
-import ActivityDetailsComponent from '../ActivityDetailsComponent';
+import ItineraryActivityDetailsComponent from '../ItineraryActivityDetailsComponent';
 
 type DisplayItineraryDetailsProps = {
     iList: IItineraryData[];
@@ -13,12 +13,12 @@ const DisplayItineraryDayComponent = ({iList}:DisplayItineraryDetailsProps) => {
 
 
   return (
-    <>
+    <div className="w-full">
       {iList.map((itinerary:IItineraryData, index:number) => (
  
 
         //itinerary day section 
-        <div key={index} className=' mx-10 py-10  relative'> 
+        <div key={index} className=' mx-10 py-10  relative '> 
 
         {/*itinerary day header*/ }
         <div className='flex px-5  justify-between p-3 border rounded-t-2xl bg-[#1ABC9C]'>
@@ -29,26 +29,11 @@ const DisplayItineraryDayComponent = ({iList}:DisplayItineraryDetailsProps) => {
 
           {/* start of the activities in the days section*/ }
           <div className=' bg-white p-3 space-y-4 rounded-b-2xl ' >
-            {/* {itinerary.activityIds.map((activity:number)=>(
-              <div key={activity}>
-
-              <div className='bg-amber-600 rounded-full w-18 h-auto p-3 border-2 border-black' >
-                <img src="/assets/Icons/Orion_travel-map 1.svg" className="object-cover" alt="Activity Type Icon"/>
-              </div>
-          
-              <div>
-              
-              <p className='text-lg'> Activity Detail here</p>
-              </div>
         
-              </div>// end of activity item
-            
-            ))} */}
-
             {itinerary.activityIds.map((activityId: number, idx:number )=>(
             
            <div key={activityId} id="activityComponent" className='pb-10'>
-              <ActivityDetailsComponent activityId={activityId} index={idx} iListLength={itinerary.activityIds.length}/>
+              <ItineraryActivityDetailsComponent activityId={activityId} index={idx} iListLength={itinerary.activityIds.length}/>
          
             </div>))} 
             {/* end of mapping activity details */}
@@ -57,7 +42,7 @@ const DisplayItineraryDayComponent = ({iList}:DisplayItineraryDetailsProps) => {
         
         </div>
       ))}
-  </>
+  </div >
   );
 };
 

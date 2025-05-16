@@ -19,7 +19,10 @@ const Layout = ({ children }: { children: React.ReactNode }) =>  {
  
 
       {children}
-      {!isHidden && <FooterComponent/>}
+      <div className='block lg:hidden'>
+        {!isHidden && <FooterComponent/>}
+      </div>
+      
     </div>
   )
 }

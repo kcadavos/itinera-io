@@ -7,7 +7,10 @@ const Layout = ({ children }: { children: React.ReactNode }) =>  {
     <div>
 
       {children}
-     <NavbarComponent/>
+      <div className='block lg:hidden'>
+        <NavbarComponent/>
+      </div>
+     
     </div>
   )
 }

@@ -7,6 +7,8 @@ import { useLoginStatusContext, useNameContext, useUserIdContext } from '@/conte
 
 
 const LogInComponent = () => {
+  
+ 
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const {setName}=useNameContext();
@@ -42,7 +44,7 @@ const LogInComponent = () => {
             setName(loggedInData.name);
             setUserId(loggedInData.id)
             sessionStorage.setItem("ItineraUserId",String(loggedInData.id));
-            router.push('Trip/TripList');
+            router.push('/Trip/TripList');
           }
         }
       }else{
