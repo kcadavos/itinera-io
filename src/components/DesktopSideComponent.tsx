@@ -1,7 +1,11 @@
 import React from 'react'
 import MenuComponent from './MenuComponent'
+import { useNameContext } from '@/context/DataContext';
 
 const DesktopSideComponent = () => {
+    const { name } = useNameContext();
+    
+
   return (
     <div className="hidden lg:block">
 
@@ -14,12 +18,15 @@ const DesktopSideComponent = () => {
                         alt=""
                     />
 
-                    <div className=''>
+                    <div className='pb-2'>
                         <MenuComponent />
                     </div>
                     
-                    <div className='ml-2' >
-                        <div className="font-medium text-[#34495E] mt-5 ">Hi</div>
+                    <div className='ml-2 ' >
+                        <p className="font-medium text-[#34495E] ">
+                            Hi <span className="text-[#4A90E2] ">{name}</span>,
+                        </p>
+                        
                         <p className="text-lg text-[#34495E]">Looking forward to these trips?</p>
                     </div>
                 </div>

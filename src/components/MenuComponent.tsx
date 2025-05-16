@@ -26,7 +26,7 @@ const MenuComponent = () => {
         <img
           onClick={menuToggle}
           className="w-10 rounded-full "
-          src="/assets/Icons/OrionWorldMapBG.svg"
+          src="/assets/Icons/OrionWorldMapBg.svg"
           alt="Menu"
         />
       </div>
