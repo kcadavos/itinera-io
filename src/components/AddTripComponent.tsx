@@ -37,8 +37,8 @@ const AddTripComponent = () => {
   const { userId } = useUserIdContext();
   const [tripId, setTripId] = useState<number>(0);
   const [destination, setDestination] = useState<string>('');
-  const [startDate, setStartDate] = useState<Date | null>(null);
-  const [endDate, setEndDate] = useState<Date | null>(null);
+  const [startDate, setStartDate] = useState<Date |null>(null);
+  const [endDate, setEndDate] = useState<Date|null >(null);
   const [participantsEmailList, setParticipantsEmailList] = useState<string>('');
   const [, setParticipantIds] = useState<number[]>([]);
   const [isDisabled, setIsDisabled] = useState<boolean>(false);
@@ -48,6 +48,7 @@ const AddTripComponent = () => {
   const [startDateNotInFutureError, setStartDateNotInFutureError] = useState<boolean>(false);
   const [endDateNotInFutureError, setEndDateNotInFutureError] = useState<boolean>(false);
   const [notFoundEmails, setNotFoundEmails] = useState<string[]>([]);
+
 
   useEffect(() => {
     if (mode === 'add') {
@@ -74,9 +75,7 @@ const AddTripComponent = () => {
       setIsDisabled(true);
   }, [selectedTripOwnerId, userId,selectedTripIsVotingOpen]);
 
-  useEffect(() => {
-    if (userId === 0) router.push('/Trip/TripList');
-  }, [userId]);
+
 
   const CheckStartEndDateAreValid = ():boolean => {
     if (!startDate || !endDate) return false;
@@ -209,7 +208,7 @@ const AddTripComponent = () => {
     return { foundIds, emailsNotFound };
   };
 
-  useEffect(() => {
+  useEffect(() => {// if in edit mode
     if (mode !== 'add') {
       const transformParticipantsIdToEmails = async () => {
         const participantEmailList = await Promise.all(selectedParticipantsIdList.map(id => GetParticipantEmail(id)));
