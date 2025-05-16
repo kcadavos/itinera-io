@@ -32,7 +32,7 @@ const MenuComponent = () => {
       </div>
       {!isHidden && (
         <div className="grid text-[#E67E22] font-medium mt-5 gap-2">
-          <Link href="/Trip/TripList" onClick={menuToggle} >Trip Dashboard</Link>
+          <Link href="/Trip/TripList" className="block lg:hidden" onClick={menuToggle} >Trip Dashboard</Link>
           <Link href="/AccountDetails" onClick={changeHeader}>Account Details</Link>
           <Link href="/NotificationPage" onClick={menuToggle}>Notifications</Link>
           <Link

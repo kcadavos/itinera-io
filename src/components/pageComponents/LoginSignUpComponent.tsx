@@ -61,7 +61,7 @@ const {loginStatus, setLoginStatus} = useLoginStatusContext();
       {/* desktop */}
       <div className="hidden lg:block">
         <div className="grid grid-cols-3">
-          <div className="bg-[url(/assets/images/shifaaz-shamoon.png)] min-h-[100vh] max-w-[65rem] bg-cover bg-no-repeat col-span-2">
+          <div className="bg-[url(/assets/images/shifaaz-shamoon.png)] h-auto max-w-full bg-cover bg-no-repeat col-span-2">
           
           </div>
 
