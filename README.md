@@ -7,12 +7,9 @@ Traveling with friends should be all about adventure, not endless group chats an
         Activity Name
         Category (Sightseeing, Food, Adventure, Relaxation, Shopping)
         Location
-        Duration 
-        Cost (Optional)
         Details (Optional)
-        Photos (Optional)
     Voting System – Travelers vote on suggested activities.
-    Itinerary Generation – The app automatically generates itineraries based on the most popular choices & location distances
+    Itinerary Generation – The app automatically generates itineraries based on the most popular choices.
 
 
 ### Figma 
