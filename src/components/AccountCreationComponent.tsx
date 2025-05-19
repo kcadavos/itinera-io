@@ -146,7 +146,7 @@ const AccountCreationComponent = ({ switchboolswitch }:{switchboolswitch: (val: 
         errorDisplayEmail || errorDisplayPassword || errorDisplayConfirmPassword || errorDisplayName ? <p className="text-[#F40000] text-center text-md mt-5">*Field Required</p> : <></>
       }
       {
-        errorDisplayDoublePassword ? <p className="text-[#F40000] text-center text-md mt-5">*Passwords don&apos;t match</p> : <></>
+        errorDisplayDoublePassword  ? <p className="text-[#F40000] text-center text-md mt-5">*Passwords don&apos;t match</p> : <></>
       }
 
       <div className="flex justify-center mt-18 absolute -bottom-7 left-1/2 transform -translate-x-1/2">
