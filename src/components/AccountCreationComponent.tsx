@@ -13,6 +13,7 @@ const AccountCreationComponent = ({ switchboolswitch }:{switchboolswitch: (val: 
   const [errorDisplayPassword, setErrorDisplayPassword] = useState<boolean>(false);
   const [errorDisplayConfirmPassword, setErrorDisplayConfirmPassword] = useState<boolean>(false);
   const [errorDisplayName, setErrorDisplayName] = useState<boolean>(false);
+  const [errorDisplayDoublePassword, setErrorDisplayDoublePassword] = useState<boolean>(false);
 
   const submitCreation = async () => {
     console.log('button pressed');
@@ -23,7 +24,7 @@ const AccountCreationComponent = ({ switchboolswitch }:{switchboolswitch: (val: 
       name: username
     }
 
-    if(password != '' && password == confirmPassword){
+    if(password != '' && password == confirmPassword && email != '' && username != ''){
       const result = await CreateAccount(userData);
 
       if(result){
@@ -34,28 +35,41 @@ const AccountCreationComponent = ({ switchboolswitch }:{switchboolswitch: (val: 
       } 
     }else{
       setCreateStatus('failed');
-      if(password == ''){
-        setErrorDisplayPassword(true);
+      
+
+      if(password !== confirmPassword && password != '' && confirmPassword != '' ){
+        setErrorDisplayDoublePassword(true);
       }else{
-        setErrorDisplayPassword(false);
+        setErrorDisplayDoublePassword(false);
       }
-      if(confirmPassword == ''){
-        setErrorDisplayConfirmPassword(true);
+
+      if(email == ''){
+        setErrorDisplayEmail(true);
+        setErrorDisplayDoublePassword(false);
       }else{
-        setErrorDisplayConfirmPassword(false);
+        setErrorDisplayEmail(false);
+      }
+      if(username == ''){
+        setErrorDisplayName(true);
+        setErrorDisplayDoublePassword(false);
+      }else{
+        setErrorDisplayName(false);
+      }
+      if(password === '' ){
+          setErrorDisplayPassword(true);
+          setErrorDisplayDoublePassword(false);
+      }else{
+          setErrorDisplayPassword(false);
+      }
+      if(confirmPassword === '' ){
+          setErrorDisplayConfirmPassword(true);
+          setErrorDisplayDoublePassword(false);
+      }else{
+          setErrorDisplayConfirmPassword(false);
       }
     }
 
-    if(email == ''){
-      setErrorDisplayEmail(true);
-    }else{
-      setErrorDisplayEmail(false);
-    }
-    if(username == ''){
-      setErrorDisplayName(true);
-    }else{
-      setErrorDisplayName(false);
-    }
+    
   }
 
   return (
@@ -91,7 +105,7 @@ const AccountCreationComponent = ({ switchboolswitch }:{switchboolswitch: (val: 
           type="password"
           placeholder="Password"
           required
-          className={`bg-white rounded-lg p-1 px-6 ${errorDisplayPassword ? 'border-2 border-[#F40000]' : 'border-none'}`}
+          className={`bg-white rounded-lg p-1 px-6 ${errorDisplayPassword || errorDisplayDoublePassword ? 'border-2 border-[#F40000]' : 'border-none'}`}
           onChange={(e) => setPassword(e.target.value)}
         />
       </div>
@@ -109,7 +123,7 @@ const AccountCreationComponent = ({ switchboolswitch }:{switchboolswitch: (val: 
           type="password"
           placeholder="Confirm Password"
           required
-          className={`bg-white rounded-lg p-1 px-6 ${errorDisplayConfirmPassword ? 'border-2 border-[#F40000]' : 'border-none'}`}
+          className={`bg-white rounded-lg p-1 px-6 ${errorDisplayConfirmPassword || errorDisplayDoublePassword ? 'border-2 border-[#F40000]' : 'border-none'}`}
           onChange={(e) => setConfirmPassword(e.target.value)}
         />
       </div>
@@ -133,7 +147,10 @@ const AccountCreationComponent = ({ switchboolswitch }:{switchboolswitch: (val: 
       </div>
 
       {
-        (errorDisplayEmail || errorDisplayPassword || errorDisplayConfirmPassword || errorDisplayName) ? <p className="text-[#F40000] text-center text-md mt-5">*Field Required</p> : <></>
+        errorDisplayEmail || errorDisplayPassword || errorDisplayConfirmPassword || errorDisplayName ? <p className="text-[#F40000] text-center text-md mt-5">*Field Required</p> : <></>
+      }
+      {
+        errorDisplayDoublePassword  ? <p className="text-[#F40000] text-center text-md mt-5">*Passwords don&apos;t match</p> : <></>
       }
 
       <div className="flex justify-center mt-18 absolute -bottom-7 left-1/2 transform -translate-x-1/2">

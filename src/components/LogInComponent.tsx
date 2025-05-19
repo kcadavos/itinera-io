@@ -15,6 +15,7 @@ const LogInComponent = () => {
   const {setUserId}= useUserIdContext();
   const [errorDisplayEmail, setErrorDisplayEmail] = useState<boolean>(false);
   const [errorDisplayPassword, setErrorDisplayPassword] = useState<boolean>(false);
+  const [errorDisplayDouble, setErrorDisplayDouble] =  useState<boolean>(false);
 
   
   const router = useRouter();
@@ -50,14 +51,20 @@ const LogInComponent = () => {
       }else{
         setLoginStatus('failed');
         setErrorDisplayEmail(true);
-        setErrorDisplayPassword(true);        
+        setErrorDisplayPassword(true);
+        setErrorDisplayDouble(false);        
       }
     }else{
+      setErrorDisplayDouble(true); 
       if(password == ''){
         setErrorDisplayPassword(true);
+      }else{
+        setErrorDisplayPassword(false);
       }
       if(email == ''){
         setErrorDisplayEmail(true);
+      }else{
+        setErrorDisplayEmail(false);
       }
     }
   
@@ -85,7 +92,7 @@ const LogInComponent = () => {
       </div>
 
       {
-        (errorDisplayEmail || errorDisplayPassword) ? <p className="text-[#F40000] text-center text-md mt-5">*Field Required</p> : <></>
+        (errorDisplayEmail === true && errorDisplayPassword === false) || (errorDisplayEmail === false && errorDisplayPassword === true) || errorDisplayDouble === true ? <p className="text-[#F40000] text-center text-md mt-5">*Field Required</p> : <></>
       }
 
       <div className="flex justify-center my-4 absolute -bottom-9 left-1/2 transform -translate-x-1/2 ">
