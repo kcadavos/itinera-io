@@ -45,21 +45,25 @@ const AccountCreationComponent = ({ switchboolswitch }:{switchboolswitch: (val: 
 
       if(email == ''){
         setErrorDisplayEmail(true);
+        setErrorDisplayDoublePassword(false);
       }else{
         setErrorDisplayEmail(false);
       }
       if(username == ''){
         setErrorDisplayName(true);
+        setErrorDisplayDoublePassword(false);
       }else{
         setErrorDisplayName(false);
       }
       if(password === '' ){
           setErrorDisplayPassword(true);
+          setErrorDisplayDoublePassword(false);
       }else{
           setErrorDisplayPassword(false);
       }
       if(confirmPassword === '' ){
           setErrorDisplayConfirmPassword(true);
+          setErrorDisplayDoublePassword(false);
       }else{
           setErrorDisplayConfirmPassword(false);
       }
