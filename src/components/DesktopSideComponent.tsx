@@ -1,9 +1,43 @@
-import React from 'react'
+'use client'
+
+import React, { useEffect, useState } from 'react'
 import MenuComponent from './MenuComponent'
-import { useNameContext } from '@/context/DataContext';
+import { useNameContext, useSelectedTripIdContext, useUserIdContext } from '@/context/DataContext';
+import { useRouter } from 'next/navigation';
+import { ITripData } from '@/lib/TripInterfaces';
+import { getToken } from '@/lib/services/DataServices';
+import { GetTripListByUserId } from '@/lib/services/TripDataService';
+import TripCardComponent from './TripCardComponent';
 
 const DesktopSideComponent = () => {
     const { name } = useNameContext();
+    const {userId, setUserId} = useUserIdContext();
+    const [tripListData, setTripListData] = useState<ITripData[]>([]); 
+    const {selectedTripId, setSelectedTripId}=useSelectedTripIdContext();
+    const router = useRouter();
+    
+    useEffect(()=>{ 
+        const getTripListData = async ()=>{
+        const tripList= (await GetTripListByUserId(userId,getToken())); 
+            if (tripList.length>0 && tripList !== null)  
+            {  
+                setTripListData(tripList);
+            
+                if (selectedTripId==0)
+                setSelectedTripId(tripList[0].id)
+            }
+    
+        } 
+        if(userId)
+        {
+            getTripListData();
+            console.log("USER"+ userId);
+        }else{
+            setUserId(Number(sessionStorage.getItem("ItineraUserId")))
+        }
+        console.log("TLDATA:" + JSON.stringify(tripListData));
+      
+    },[selectedTripId,userId,router]);
     
 
   return (
@@ -33,8 +67,20 @@ const DesktopSideComponent = () => {
             </div>
         </div>
 
-        <div className='text-center'>
-            <p>trip cards</p>
+        <div className='overflow-y-scroll max-h-[28rem]'>
+            {( tripListData!==null && tripListData.length>0) &&(
+                <>
+                    <TripCardComponent  trips={tripListData}/> 
+                </>
+            ) 
+            }
+            {( tripListData.length=== 0) && (
+                <div className="flex flex-col items-center justify-center text-center mt-24 px-4">
+                    <h2 className="text-2xl font-semibold text-gray-800">Ready to Explore?</h2>
+                    <p className="text-gray-600 mt-2 max-w-md"> Welcome to your Trips Dashboard! You haven&apos;t planned a trip yet — but adventure is just a few clicks away. Start building your first getaway!  </p>
+            
+                </div>
+            )}
         </div>
 
         <div className="fixed bottom-0 ">
