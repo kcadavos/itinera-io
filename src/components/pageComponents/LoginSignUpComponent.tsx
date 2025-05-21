@@ -67,8 +67,14 @@ const {loginStatus, setLoginStatus} = useLoginStatusContext();
 
           <div className="float-right bg-[#E1ECFF] min-h-screen max-h-screen">
             <div className=" rounded-2xl min-h-[13.2rem] max-h-[13.2rem] pt-10 pb-5 min-w-[30rem] max-w-[30rem] mb-2">
+
+
+            <div className="mx-6">
+
+              <img src="/assets/Icons/itineralogo2.svg" alt="itineralogo"  className="h-15 w-auto"/>
+            </div>  
               <div className="mx-8 font-inter">
-                <p className=" text-[#1ABC9C]">Itinera-IO</p>
+               
                 {
                   switchBool ? (
                     <div className="text-3xl">            
@@ -80,7 +86,7 @@ const {loginStatus, setLoginStatus} = useLoginStatusContext();
                     <div className="text-3xl">            
                       <div className="flex">
                         <p className="text-[#2C3E50]">Welcome, </p>
-                        <p className="text-[#E67E22]">Nomad.</p>
+                        <p className="text-[#E67E22]">Itinerista.</p>
                       </div>
                       <p className="text-[#2C3E50]">Ready for an Adventure?</p>
                     </div>
