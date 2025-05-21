@@ -120,7 +120,7 @@ const updateTripContext =(trip:ITripData)=>{ // update trip context when user se
       <img src="/assets/Icons/Orion_markers_lightweight_white.svg" alt="View Activities" className='w-auto h-20 lg:h-12'/>
        <p className=" text-center font-normal text-lg text-white ">View Activities</p>
       </div>)  :
-      (<div className='flex  flex-col  items-center gap-2 hover:cursor-pointer hover:opacity-50' onClick={()=>handleSelectTrip(trip)}>
+      (<div className='flex  flex-col  items-center gap-2 hover:cursor-pointer hover:opacity-80' onClick={()=>handleSelectTrip(trip)}>
       <img src="/assets/Icons/Orion_travel-map_lightweight_white.svg" alt="View Itinerary" className=' w-auto h-20 lg:h-12'/>
        <p className=" text-center font-normal   text-lg text-white ">View Itinerary</p>
       </div>)
