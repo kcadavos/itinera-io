@@ -1,9 +1,58 @@
-import LoginSignUpComponent from "@/components/pageComponents/LoginSignUpComponent";
+'use client'
 
+import { useIsMobile } from "@/lib/hooks/useIsMobile";
+import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 export default function Home() {
+  const router = useRouter();
+  const isMobile = useIsMobile(); // this is a hook to determine the screen size
+
+  useEffect(() => {
+    if (isMobile === false) {
+      router.push("/LoginPage"); // routes to login screen
+    } 
+
+  }, [isMobile, router]);
+
   return (
     <div className="font-roboto m-0 p-0 max-h-screen max-w-screen">
-      <LoginSignUpComponent />
+
+  {/*mobile view show splash block else route to login page */}    
+    <div className="block lg:hidden w-full h-screen relative">
+    {/* Background image wrapper */}
+    <div className="absolute inset-0 z-0">
+      {/* Background image with overlay */}
+      <div className="w-full h-full bg-[url(/assets/images/shifaaz-shamoon.png)] bg-cover bg-no-repeat bg-center"
+           style={{ backgroundPosition: '60% center', filter: 'brightness(85%)' }}>
+      </div>
     </div>
+  
+    {/* Foreground content - sits above the image and overlay */}
+    <div className="relative z-10 flex flex-col items-center justify-between h-full text-white text-center px-4 py-20">
+      <img
+        src="/assets/Icons/itineralogo2.svg"
+        alt="itineralogo"
+        className="h-15 w-auto self-end"
+      />
+  
+      <p className="pb-30 font-inter text-outline leading-tight  tracking-wide font-extrabold text-5xl text-[#CD6000]">
+        Plan <br />
+        together <br />
+        for a<br/>
+        stress-free<br/>
+        adventure
+      </p>
+  
+      <button  onClick={() => router.push("/LoginPage")} className="text-white bg-[#1ABC9C] px-6 py-2 rounded-full font-bold border-2 border-white">
+        Get Started
+      </button>
+    </div>
+
+  </div>
+ 
+  
+   
+
+    </div> 
   );
 }

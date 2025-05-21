@@ -4,7 +4,7 @@ import AccountCreationComponent from "@/components/AccountCreationComponent";
 import LogInComponent from "@/components/LogInComponent";
 import { useLoginStatusContext } from "@/context/DataContext";
 
-import {  useEffect, useState } from "react";
+import {   useState } from "react";
 
 const LoginSignUpComponent = () => {
 
@@ -17,10 +17,10 @@ const {loginStatus, setLoginStatus} = useLoginStatusContext();
     console.log(switchBool)
   } 
 
-  useEffect(()=>{
+  // useEffect(()=>{
   
-    alert(" Thanks for checking us out! We are re still working on the desktop experience.For the best view, please switch to a mobile or smaller screen.");
-    },[])
+  //   alert(" Thanks for checking us out! We are re still working on the desktop experience.For the best view, please switch to a mobile or smaller screen.");
+  //   },[])
   
   return (
     <div>
@@ -41,7 +41,7 @@ const {loginStatus, setLoginStatus} = useLoginStatusContext();
           </div>
 
 
-        <div className=" bg-[#1ABC9C] min-w-screen max-w-screen py-5 rounded-t-4xl mt-3 lg:mt-[2.1rem] fixed bottom-0">
+        <div className=" bg-[#1ABC9C] min-w-screen max-w-screen h-18  flex justify-center items-center  rounded-t-4xl mt-3 lg:mt-[2.1rem] fixed bottom-0">
           {
             switchBool ? (
               <div className="flex text-white text-3xl justify-center ">

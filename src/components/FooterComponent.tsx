@@ -86,7 +86,7 @@ const FooterComponent = () => {
   return (
     
     <div className="fixed bottom-0 w-full">
-      <div className=" bg-[#1ABC9C] min-w-screen max-w-screen flex justify-center items-center   rounded-t-4xl h-15 ">
+      <div className=" bg-[#1ABC9C] min-w-screen max-w-screen flex justify-center items-center   rounded-t-4xl h-18 ">
         <div className="text-white flex justify-center text-3xl font-medium ">        
          <Link href={bottom.href} onClick={bottom.onClick} className="flex items-center gap-2">
         <p className="pe-2">{bottom.text}</p>
