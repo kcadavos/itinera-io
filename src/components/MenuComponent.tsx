@@ -5,7 +5,7 @@ import React, { useState } from "react";
 
 const MenuComponent = () => {
   const [isHidden, setIsHidden] = useState(true);
- const {accountStatus , setAccountStatus} = useAccountStatusContext();
+  const {accountStatus , setAccountStatus} = useAccountStatusContext();
   const menuToggle = () => {
     setIsHidden(!isHidden);
   };
