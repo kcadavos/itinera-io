@@ -9,7 +9,6 @@ import Link from 'next/link';
 
 const LogInComponent = () => {
   
- 
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const {setName}=useNameContext();

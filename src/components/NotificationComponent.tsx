@@ -81,20 +81,20 @@ const NotificationComponent = ({notification,index}:{notification:INotificationD
   
         <div  className={`${bgColors[index % bgColors.length]} cursor-pointer text-white p-4 my-2 mb-10 mx-8 sm:mx-16 md:mx-36 rounded-bl-2xl rounded-tr-2xl relative flex flex-col`} onClick={handleNotificationClick}>
        
-        <p> {componentMsg1}</p>
-    <div className='flex justify-between'>
+            <p> {componentMsg1}</p>
+            <div className='flex justify-between'>
   
                 <div>
-                <h3 className='text-2xl mb-1'>{tripDestination}</h3>
+                    <h3 className='text-2xl mb-1'>{tripDestination}</h3>
                     <p> {componentMsg2}</p>
                 </div>
             
 
-            <div className='flex align-middle'>
-                <img src={IconSwitch(notification.referenceTable)} alt="category" className=' w-15 opacity-50   ' />
+                <div className='flex align-middle'>
+                    <img src={IconSwitch(notification.referenceTable)} alt="category" className=' w-15 opacity-50   ' />
+                </div>
             </div>
-    </div>
-</div>
+        </div>
       
     </>
     

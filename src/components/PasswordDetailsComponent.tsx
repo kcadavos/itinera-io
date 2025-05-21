@@ -7,7 +7,8 @@ const PasswordDetailsComponent = () => {
   const [newPassword, setNewPassword] = useState<string>("");
   const [confirmNewPassword, setConfirmNewPassword] = useState<string>("");
   const [oldPassword, setOldPassword] = useState<string>("");
-const {setAccountStatus} = useAccountStatusContext();
+  const {setAccountStatus} = useAccountStatusContext();
+
   const submitChange = async () => {
     const userId = Number(sessionStorage.getItem("ItineraUserId")) || 0;
     const token = localStorage.getItem("ItineraToken");
@@ -28,7 +29,7 @@ const {setAccountStatus} = useAccountStatusContext();
       oldPassword: oldPassword,
       newPassword: newPassword,
     };
-console.log(userData)
+    console.log(userData)
     try {
       const result = await LoginDetailsPassword(userData, token);
       if (result) {
