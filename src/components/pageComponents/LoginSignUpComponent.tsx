@@ -34,7 +34,7 @@ const {loginStatus, setLoginStatus} = useLoginStatusContext();
         </div>
 
         <div className="text-[#2C3E50] text-center ">
-              {/* <p >Forgot Password?</p> */}
+              
               {
                 switchBool ? <p className="mt-16" >Don’t have an account?</p> : <p className="mt-16" >Already have an account?</p>
               }
