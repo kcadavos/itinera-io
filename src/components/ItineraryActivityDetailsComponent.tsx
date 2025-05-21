@@ -12,9 +12,9 @@ type ActivityDetailsProps = {
 
 
 const ItineraryActivityDetailsComponent = ({ activityId, index,iListLength }: ActivityDetailsProps) => {
-     const[activityDetail, setActivityDetail]=useState<IActivityData>();
+    const[activityDetail, setActivityDetail]=useState<IActivityData>();
 
-    useEffect(()=>{
+  useEffect(()=>{
     const getItineraryDayData =async()=>{
       const activityDetailData = await GetActivityDetailsByActivityId(activityId,getToken());
       if (activityDetailData!=null)
@@ -24,12 +24,13 @@ const ItineraryActivityDetailsComponent = ({ activityId, index,iListLength }: Ac
     getItineraryDayData();
     
   },[activityId])
+
   useEffect(()=>{
-console.log("ACT" + activityId)
+    console.log("ACT" + activityId)
   },[])
 
   useEffect(()=>{
-console.log(JSON.stringify(activityDetail)+ "details")
+    console.log(JSON.stringify(activityDetail)+ "details")
   },[activityDetail])
 
   const IconSwitch = (category: string) => {

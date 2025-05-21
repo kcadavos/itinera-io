@@ -17,54 +17,54 @@ const CloseVotingComponent = () => {
   const [notEnoughActivitiesToGenerate, setNotEnoughActivitiesToGenerate]=useState<boolean>(false); // onpage load it is not generated
   
 
-const GenerateItinerary =async()=>{
-  setNotEnoughActivitiesToGenerate(false); // reset everytime user clicks on generate itinerary button
-  const request ={
-    tripId : selectedTripId,
-    numberOfActivitiesPerDay: schedIntensity
-  }
+  const GenerateItinerary =async()=>{
+    setNotEnoughActivitiesToGenerate(false); // reset everytime user clicks on generate itinerary button
+    const request ={
+      tripId : selectedTripId,
+      numberOfActivitiesPerDay: schedIntensity
+    }
 
-  const result = await GenerateAndSaveItinerary(request, getToken());
+    const result = await GenerateAndSaveItinerary(request, getToken());
 
 
-  if (result.success) {
-    setSelectedTripIsVotingOpen(false);
+    if (result.success) {
+      setSelectedTripIsVotingOpen(false);
+      
+      //send itinerary generated for the participants
+      const notificationToAdd={
+        userId:selectedParticipantsIdList, // send notifications to all the partificipants that were found
+        type: NotificationTypeEnum.ItineraryGenerated,
+        referenceId:selectedTripId, // referencing the recently generated itinerary by TripId
+        referenceTable:"itinerary"
+      }
     
-    //send itinerary generated for the participants
-    const notificationToAdd={
-      userId:selectedParticipantsIdList, // send notifications to all the partificipants that were found
-      type: NotificationTypeEnum.ItineraryGenerated,
-      referenceId:selectedTripId, // referencing the recently generated itinerary by TripId
-      referenceTable:"itinerary"
-    }
-  
-    const addItineraryNotificationSuccess= await  AddGroupNotification(notificationToAdd,getToken())
-   
-    if (addItineraryNotificationSuccess) {
-      console.log("Notification for generated itinerary  successfully added.");
-    } else {
-      console.log("Failed to add notifications to generated itinerary");
-    }
+      const addItineraryNotificationSuccess= await  AddGroupNotification(notificationToAdd,getToken())
+    
+      if (addItineraryNotificationSuccess) {
+        console.log("Notification for generated itinerary  successfully added.");
+      } else {
+        console.log("Failed to add notifications to generated itinerary");
+      }
 
-  } else {
-    switch (result.status) {
-      case 400:
-        setNotEnoughActivitiesToGenerate(true);
-        break;
-      case 500:
-        alert(" Server Error (500): " + result.message +" Try again later.");
-        break;
-      default:
-        alert("Unexpected Error: " + result.message+ " Try again later.");
-        break;
+    } else {
+      switch (result.status) {
+        case 400:
+          setNotEnoughActivitiesToGenerate(true);
+          break;
+        case 500:
+          alert(" Server Error (500): " + result.message +" Try again later.");
+          break;
+        default:
+          alert("Unexpected Error: " + result.message+ " Try again later.");
+          break;
+      }
     }
   }
-}
 
-useEffect(()=>{
-console.log("VOTING STATUS"+selectedTripIsVotingOpen);
-console.log("INTENSE"+ schedIntensity)
-},[selectedTripIsVotingOpen,schedIntensity])
+  useEffect(()=>{
+  console.log("VOTING STATUS"+selectedTripIsVotingOpen);
+  console.log("INTENSE"+ schedIntensity)
+  },[selectedTripIsVotingOpen,schedIntensity])
 
   return (
     <div >
