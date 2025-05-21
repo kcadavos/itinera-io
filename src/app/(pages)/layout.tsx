@@ -1,6 +1,7 @@
 "use client"
 import FooterComponent from '@/components/FooterComponent'
 
+
 import { usePathname } from 'next/navigation'
 import React, { useEffect , useState } from 'react'
 
@@ -24,6 +25,7 @@ const Layout = ({ children }: { children: React.ReactNode }) =>  {
       {children}
       <div className='block lg:hidden'>
         {!isHidden && <FooterComponent/>}
+       
       </div>
       
     </div>

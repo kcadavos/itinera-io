@@ -1,5 +1,4 @@
 "use client"
-import NavbarComponent from '@/components/NavbarComponent'
 import React from 'react'
 
 const Layout = ({ children }: { children: React.ReactNode }) =>  {
@@ -8,7 +7,7 @@ const Layout = ({ children }: { children: React.ReactNode }) =>  {
 
       {children}
       <div>
-        <NavbarComponent/>
+      
       </div>
      
     </div>
