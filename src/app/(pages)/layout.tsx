@@ -24,6 +24,7 @@ const Layout = ({ children }: { children: React.ReactNode }) =>  {
     <div>
      
      <HeaderComponent />
+     
           <NavbarComponent/>
 
       {children}

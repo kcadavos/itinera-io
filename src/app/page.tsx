@@ -14,11 +14,19 @@ export default function Home() {
 
   }, [isMobile, router]);
 
+  if (isMobile === undefined) {
+    return null; // Prevent hydration mismatch on initial load since it will be undefined
+  }
+    if (!isMobile) {
+    return null; // Prevent rendering splash on desktop (redirect handled in useEffect)
+  }
+
   return (
     <div className="font-roboto m-0 p-0 max-h-screen max-w-screen">
-
+  {( isMobile===true) &&  
+   (<>
   {/*mobile view show splash block else route to login page */}    
-    <div className="block lg:hidden w-full h-screen relative">
+     <div className=" w-full h-screen relative">
     {/* Background image wrapper */}
     <div className="absolute inset-0 z-0">
       {/* Background image with overlay */}
@@ -33,9 +41,9 @@ export default function Home() {
         src="/assets/Icons/itineralogo2.svg"
         alt="itineralogo"
         className="h-15 w-auto self-end"
-      />
+        />
   
-      <p className="pb-30 font-inter text-outline leading-tight  tracking-wide font-extrabold text-5xl text-[#CD6000]">
+      <p className="pb-40 font-inter text-outline leading-tight  tracking-wide font-extrabold text-5xl text-[#CD6000]">
         Plan <br />
         together <br />
         for a<br/>
@@ -49,6 +57,10 @@ export default function Home() {
     </div>
 
   </div>
+        </>
+   )
+}
+
  
   
    
