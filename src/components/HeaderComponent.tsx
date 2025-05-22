@@ -27,7 +27,7 @@ const HeaderComponent = () => {
 
   const [isHidden, setIsHidden] = useState(false);
   useEffect(() => {
-    setIsHidden(path == "/");
+    setIsHidden(path == "/LoginPage");
   }, [path]);
 
   const findPath = () => {
@@ -255,7 +255,7 @@ const HeaderComponent = () => {
         <div className="mx-8 mt-10 font-inter">
           <img
             className="h-12 absolute left-6 top-10"
-            src="/assets/Icons/itineraLogo2.svg"
+            src="/assets/Icons/itineralogo2.svg"
             alt=""
           />
 
