@@ -46,7 +46,7 @@ export default function Home() {
       <p className="pb-40 font-inter text-outline leading-tight  tracking-wide font-extrabold text-5xl text-[#CD6000]">
         Because <br />
         group chats <br />
-        don't<br/>
+        don&apost<br/>
         plan trips
       </p>
       <div className="pb-10">
