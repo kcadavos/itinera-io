@@ -36,7 +36,7 @@ export default function Home() {
     </div>
   
     {/* Foreground content - sits above the image and overlay */}
-    <div className="relative z-10 flex flex-col items-center justify-between h-full text-white text-center px-4 py-20">
+    <div className="relative z-10 flex flex-col items-center justify-between h-full text-white text-center px-4 py-15">
       <img
         src="/assets/Icons/itineralogo2.svg"
         alt="itineralogo"
@@ -44,16 +44,17 @@ export default function Home() {
         />
   
       <p className="pb-40 font-inter text-outline leading-tight  tracking-wide font-extrabold text-5xl text-[#CD6000]">
-        Plan <br />
-        together <br />
-        for a<br/>
-        stress-free<br/>
-        adventure
+        Because <br />
+        group chats <br />
+        don&apost<br/>
+        plan trips
       </p>
-  
-      <button  onClick={() => router.push("/LoginPage")} className="text-white bg-[#1ABC9C] px-6 py-2 rounded-full font-bold border-2 border-white">
+      <div className="pb-10">
+
+      <button  onClick={() => router.push("/LoginPage")} className=" text-white bg-[#1ABC9C] px-6 py-2 rounded-full font-bold border-2 border-white">
         Get Started
       </button>
+      </div>
     </div>
 
   </div>
