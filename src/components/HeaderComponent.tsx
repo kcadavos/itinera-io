@@ -16,9 +16,6 @@ import MenuComponent from "./MenuComponent";
 
 const HeaderComponent = () => {
   const path = usePathname();
-  const { loginStatus } = useLoginStatusContext();
-  const { createStatus } = useCreateStatusContext();
-  const { accountStatus } = useAccountStatusContext();
   const { name } = useNameContext();
   const { selectedTripStartDate } = useSelectedTripStartDateContext();
   const { selectedTripEndDate } = useSelectedTripEndDateContext();
