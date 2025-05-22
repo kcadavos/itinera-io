@@ -79,7 +79,7 @@ const NotificationComponent = ({notification,index}:{notification:INotificationD
   return (
     <>
   
-        <div  className={`${bgColors[index % bgColors.length]} cursor-pointer text-white p-4 my-2 mb-10 mx-8 sm:mx-16 md:mx-36 rounded-bl-2xl rounded-tr-2xl relative flex flex-col`} onClick={handleNotificationClick}>
+        <div  className={`${bgColors[index % bgColors.length]} cursor-pointer text-white p-4 my-2 mb-10 mx-8 sm:mx-16 md:mx-36 rounded-2xl  relative flex flex-col`} onClick={handleNotificationClick}>
        
             <p> {componentMsg1}</p>
             <div className='flex justify-between'>
