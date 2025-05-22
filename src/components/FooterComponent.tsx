@@ -17,19 +17,21 @@ const FooterComponent = () => {
         switch(true){
             case  path == "/HomePage":
             return {
-              css: "w-12 h-12",
+              css: "w-auto h-10 items-center",
               alt: "plane",
               text:"Initialize a Trip",
-              src:"/assets/Icons/Orion_aircraft 1.svg",
+              // src:"/assets/Icons/Orion_aircraft 1.svg",
+              src:"/assets/Icons/Orion_aircraft-climb_white.svg",
               href:"/Trip/AddTrip",
               onClick: undefined,
                   };
             case path === "/Trip/TripList":
             return { 
-              css: "w-12 h-12",
+              css: "w-auto h-10 items-center",
               alt: "Plane",
               text:"Initiate a Trip",
-              src:"/assets/Icons/Orion_aircraft 1.svg",
+              // src:"/assets/Icons/Orion_aircraft 1.svg",
+              src: "/assets/Icons/Orion_aircraft-climb_white.svg",
                href: {
                 pathname: "/Trip/AddTrip",
                 query: { mode: 'add' },
@@ -63,7 +65,7 @@ const FooterComponent = () => {
             
             default:
                 return {
-                  css: "w-12 h-12",
+                  css: "w-auto h-8 items-center ",
                   alt:"map",
                   text: "Go to Trip List",
                   src:"/assets/Icons/Orion_destination-map 1.svg",

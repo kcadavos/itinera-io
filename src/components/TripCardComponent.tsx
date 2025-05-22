@@ -14,9 +14,9 @@ import {
  } from "@/components/ui/accordion"
 
 const TripCardComponent = ({ trips }:{trips:ITripData[]}) => {
-   const bgColors = ["bg-[#1A89BC]","bg-[#4AAAE2]","bg-[#F4B400]","bg-[#E67E22]","bg-[#4A90E2]"]; // for alternating the trip colors
-   const router = useRouter();
-   const {userId}=useUserIdContext();
+    const bgColors = ["bg-[#1A89BC]","bg-[#4AAAE2]","bg-[#F4B400]","bg-[#E67E22]","bg-[#4A90E2]"]; // for alternating the trip colors
+    const router = useRouter();
+    const {userId}=useUserIdContext();
     const {selectedTripId,setSelectedTripId}= useSelectedTripIdContext();
     const {setSelectedTripDestination}= useSelectedTripDestinationContext();
     const {selectedTripStartDate,setSelectedTripStartDate}=useSelectedTripStartDateContext();
@@ -43,16 +43,16 @@ const updateTripContext =(trip:ITripData)=>{ // update trip context when user se
  const handleSelectTrip= (trip:ITripData)=>{
 
     if (trip.isVotingOpen){
-       router.push("/ItinerarySuggestionPages/AddSuggestionPage")
+      router.push("/ItinerarySuggestionPages/AddSuggestionPage")
     }else{
-       router.push("/ItinerarySuggestionPages/ItineraryPage")
+      router.push("/ItinerarySuggestionPages/ItineraryPage")
     }
     
   }
 
  const handleEditTrip=()=>{
 
-      router.push("/Trip/AddTrip")
+    router.push("/Trip/AddTrip")
  }
    // Auto scroll to expanded accordion item
    useEffect(() => {
@@ -70,21 +70,21 @@ const updateTripContext =(trip:ITripData)=>{ // update trip context when user se
 
    
     
- useEffect (()=>{
+  useEffect (()=>{
     console.log("SELECTED TRIP"+selectedTripId);
     if (selectedTripId>=0)
     sessionStorage.setItem("ItineraSelectedTripId",String(selectedTripId))
   
- },[selectedTripId])
+  },[selectedTripId])
 
-   useEffect (()=>{
-      console.log("START " +selectedTripStartDate)
-   },[selectedTripStartDate])
+  useEffect (()=>{
+    console.log("START " +selectedTripStartDate)
+  },[selectedTripStartDate])
 
 
-   useEffect (()=>{
-      console.log("END " +selectedTripEndDate)
-   },[selectedTripEndDate])
+  useEffect (()=>{
+    console.log("END " +selectedTripEndDate)
+  },[selectedTripEndDate])
 
 
     return (
@@ -120,7 +120,7 @@ const updateTripContext =(trip:ITripData)=>{ // update trip context when user se
       <img src="/assets/Icons/Orion_markers_lightweight_white.svg" alt="View Activities" className='w-auto h-20 lg:h-12'/>
        <p className=" text-center font-normal text-lg text-white ">View Activities</p>
       </div>)  :
-      (<div className='flex  flex-col  items-center gap-2 hover:cursor-pointer hover:opacity-50' onClick={()=>handleSelectTrip(trip)}>
+      (<div className='flex  flex-col  items-center gap-2 hover:cursor-pointer hover:opacity-80' onClick={()=>handleSelectTrip(trip)}>
       <img src="/assets/Icons/Orion_travel-map_lightweight_white.svg" alt="View Itinerary" className=' w-auto h-20 lg:h-12'/>
        <p className=" text-center font-normal   text-lg text-white ">View Itinerary</p>
       </div>)

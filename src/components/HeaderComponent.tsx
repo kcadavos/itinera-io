@@ -16,7 +16,9 @@ import MenuComponent from "./MenuComponent";
 
 const HeaderComponent = () => {
   const path = usePathname();
-
+  const { loginStatus } = useLoginStatusContext();
+  const { createStatus } = useCreateStatusContext();
+  const { accountStatus } = useAccountStatusContext();
   const { name } = useNameContext();
   const { selectedTripStartDate } = useSelectedTripStartDateContext();
   const { selectedTripEndDate } = useSelectedTripEndDateContext();
@@ -28,7 +30,7 @@ const HeaderComponent = () => {
   const [isHidden, setIsHidden] = useState(false);
 
   useEffect(() => {
-    setIsHidden(path === "/" || window.innerWidth >= 1024);
+    setIsHidden(path == "/LoginPage");
   }, [path]);
 
   const findPath = () => {
@@ -356,9 +358,9 @@ const desktop = desktopLogic();
       <div className="bg-[#E1ECFF] lg:bg-[#ECF0F1] min-h-[14rem] lg:min-h-[7.5rem] lg:max-h-[7.5rem] lg:w-full pt-10 pb-10 relative mb-6">
         <div className="mx-8 mt-10 lg:mt-0 font-inter lg:hidden">
           <img
-            className="h-10 absolute left-6 top-10 "
-            src="/assets/Icons/itineraLogo.svg"
-            alt="Itinera Logo"
+            className="h-12 absolute left-6 top-10"
+            src="/assets/Icons/itineralogo2.svg"
+            alt=""
           />
 
           {!isHidden && <MenuComponent />}

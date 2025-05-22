@@ -10,7 +10,7 @@ const AccountDetailsComponent = () => {
   const [ username, setUsername] = useState<string>('');
   const [ email, setEmail] = useState<string>('');
   const [originalUsername, setOriginalUsername] = useState('');
-const {setAccountStatus} = useAccountStatusContext();
+  const {setAccountStatus} = useAccountStatusContext();
 
   useEffect(()=>{
     const userId = Number(sessionStorage.getItem("ItineraUserId")) || 0 ;

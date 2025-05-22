@@ -4,7 +4,7 @@ import AccountCreationComponent from "@/components/AccountCreationComponent";
 import LogInComponent from "@/components/LogInComponent";
 import { useLoginStatusContext } from "@/context/DataContext";
 
-import {  useEffect, useState } from "react";
+import {   useState } from "react";
 
 const LoginSignUpComponent = () => {
 
@@ -17,10 +17,10 @@ const {loginStatus, setLoginStatus} = useLoginStatusContext();
     console.log(switchBool)
   } 
 
-  useEffect(()=>{
+  // useEffect(()=>{
   
-    alert(" Thanks for checking us out! We are re still working on the desktop experience.For the best view, please switch to a mobile or smaller screen.");
-    },[])
+  //   alert(" Thanks for checking us out! We are re still working on the desktop experience.For the best view, please switch to a mobile or smaller screen.");
+  //   },[])
   
   return (
     <div>
@@ -34,14 +34,14 @@ const {loginStatus, setLoginStatus} = useLoginStatusContext();
         </div>
 
         <div className="text-[#2C3E50] text-center ">
-              {/* <p >Forgot Password?</p> */}
+              
               {
                 switchBool ? <p className="mt-16" >Don’t have an account?</p> : <p className="mt-16" >Already have an account?</p>
               }
           </div>
 
 
-        <div className=" bg-[#1ABC9C] min-w-screen max-w-screen py-5 rounded-t-4xl mt-3 lg:mt-[2.1rem] fixed bottom-0">
+        <div className=" bg-[#1ABC9C] min-w-screen max-w-screen h-18  flex justify-center items-center  rounded-t-4xl mt-3 lg:mt-[2.1rem] fixed bottom-0">
           {
             switchBool ? (
               <div className="flex text-white text-3xl justify-center ">
@@ -67,8 +67,14 @@ const {loginStatus, setLoginStatus} = useLoginStatusContext();
 
           <div className="float-right bg-[#E1ECFF] min-h-screen max-h-screen">
             <div className=" rounded-2xl min-h-[13.2rem] max-h-[13.2rem] pt-10 pb-5 min-w-[30rem] max-w-[30rem] mb-2">
+
+
+            <div className="mx-6">
+
+              <img src="/assets/Icons/itineralogo2.svg" alt="itineralogo"  className="h-15 w-auto"/>
+            </div>  
               <div className="mx-8 font-inter">
-                <p className=" text-[#1ABC9C]">Itinera-IO</p>
+               
                 {
                   switchBool ? (
                     <div className="text-3xl">            
@@ -80,7 +86,7 @@ const {loginStatus, setLoginStatus} = useLoginStatusContext();
                     <div className="text-3xl">            
                       <div className="flex">
                         <p className="text-[#2C3E50]">Welcome, </p>
-                        <p className="text-[#E67E22]">Nomad.</p>
+                        <p className="text-[#E67E22]">Itinerista.</p>
                       </div>
                       <p className="text-[#2C3E50]">Ready for an Adventure?</p>
                     </div>
