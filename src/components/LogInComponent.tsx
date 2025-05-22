@@ -98,14 +98,15 @@ const LogInComponent = () => {
       <div className="flex justify-center my-4 absolute -bottom-9 left-1/2 transform -translate-x-1/2 ">
         <button className="bg-[#E67E22] hover:bg-[#d56b0f] lg:border-4 lg:border-white text-xl text-white rounded-xl p-[.6rem] px-12 lg:px-14 cursor-pointer" onClick={submitLogin}>Log In</button>
       </div>
-      <div className='text-center'>
+
+      {/* <div className='text-center'>
      <Link href="/forgot-password">
     <p className=" hover:underline cursor-pointer">
       Forgot Password?
     </p>
   </Link>
       </div>
- 
+  */}
               
     </div>
   )

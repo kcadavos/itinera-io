@@ -43,7 +43,7 @@ const updateTripContext =(trip:ITripData)=>{ // update trip context when user se
  const handleSelectTrip= (trip:ITripData)=>{
 
     if (trip.isVotingOpen){
-      router.push("/ItinerarySuggestionPages/AddSuggestionPage")
+      router.push("/ItinerarySuggestionPages/UndecidedListPage")
     }else{
       router.push("/ItinerarySuggestionPages/ItineraryPage")
     }
