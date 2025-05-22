@@ -4,6 +4,7 @@ import "./globals.css";
 import HeaderComponent from "@/components/HeaderComponent";
 import { AppWrapper } from "@/context/DataContext";
 import NavbarComponent from "@/components/NavbarComponent";
+import DesktopSideComponent from "@/components/DesktopSideComponent";
 
 
 const geistSans = Geist({
@@ -34,9 +35,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <AppWrapper>
-          <HeaderComponent />
-          <NavbarComponent/>
+        <AppWrapper>   
           {children}
         </AppWrapper>
       </body>

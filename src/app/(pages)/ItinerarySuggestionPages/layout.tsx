@@ -1,4 +1,5 @@
 "use client"
+
 import React from 'react'
 
 const Layout = ({ children }: { children: React.ReactNode }) =>  {
@@ -6,8 +7,8 @@ const Layout = ({ children }: { children: React.ReactNode }) =>  {
     <div>
 
       {children}
-      <div>
-      
+      <div className='block lg:hidden'>
+        
       </div>
      
     </div>

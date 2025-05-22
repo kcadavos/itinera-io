@@ -243,11 +243,6 @@ const AddSuggestionComponent = () => {
       {/* desktop */}
       <div className="hidden lg:block">
         <div className="grid grid-cols-4">
-
-          <div className="col-[1]">
-            <DesktopSideComponent />          
-          </div>
-          
           <div className="col-span-3 flex justify-center mt-55">
           {
             selectedTripIsVotingOpen ?
