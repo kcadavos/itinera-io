@@ -87,9 +87,16 @@ const DesktopSideComponent = () => {
           </div>
         )}
       </div>
-      <div className="w-[25rem] fixed bottom-0">
-        <FooterComponent />
-      </div>
+      <div className="fixed bottom-0 ">
+            <div className=" bg-[#1ABC9C] py-3 rounded-t-4xl min-w-[25rem] ">
+                <div className="text-white flex justify-center text-4xl font-medium ">        
+                
+                    <p>Initiate a Trip</p>
+                    <img src="/assets/Icons/Orion_aircraft 1.svg" alt="" className='w-12 h-12' />
+                    
+                </div>
+            </div>
+        </div>
     </div>
   );
 };

@@ -21,11 +21,16 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
       setIsHidden(!isLargeScreen); 
       setShowNav(isLargeScreen || (!isLargeScreen && isItineraryRoute));
 
-      if(route === "/LoginPage"){
+      if(route === "/LoginPage" && isLargeScreen){
         setIsHidden(false);
         setShowNav(false);
         setShowSide(false);
         setShowHeader(false);
+      }else if(route === "/LoginPage" && !isLargeScreen){
+        setIsHidden(false);
+        setShowNav(false);
+        setShowSide(false);
+        setShowHeader(true);
       }else{
         setShowNav(true);
         setShowSide(true);
