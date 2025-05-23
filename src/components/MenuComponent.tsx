@@ -16,10 +16,6 @@ const MenuComponent = () => {
   const changeHeader = () => {
     setAccountStatus(accountStatus === "account" ? "password" : "account");
     setIsHidden(true);
-
-  const changeHeader = () => {
-    setAccountStatus(accountStatus === "account" ? "password" : "account");
-    setIsHidden(true);
   };
 
   const logOut = () => {
@@ -29,7 +25,6 @@ const MenuComponent = () => {
     setIsHidden(true);
   };
 
-  // ✅ Click-outside logic
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
       if (menuRef.current && !menuRef.current.contains(e.target as Node)) {
@@ -59,7 +54,6 @@ const MenuComponent = () => {
         />
       </div>
 
-      {/* Wrapped only the menu part in the ref */}
       <div ref={menuRef}>
         {!isHidden && (
           <div className="grid text-[#E67E22] font-medium mt-5 gap-2 lg:pl-2 lg:pt-2">
