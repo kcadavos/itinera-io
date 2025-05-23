@@ -1,4 +1,5 @@
 "use client";
+
 import { useAccountStatusContext } from "@/context/DataContext";
 import Link from "next/link";
 import React, { useState, useRef, useEffect } from "react";
@@ -11,6 +12,10 @@ const MenuComponent = () => {
   const menuToggle = () => {
     setIsHidden(!isHidden);
   };
+
+  const changeHeader = () => {
+    setAccountStatus(accountStatus === "account" ? "password" : "account");
+    setIsHidden(true);
 
   const changeHeader = () => {
     setAccountStatus(accountStatus === "account" ? "password" : "account");
