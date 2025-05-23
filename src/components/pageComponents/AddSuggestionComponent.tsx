@@ -12,7 +12,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { useRouter } from "next/navigation";
 import { getToken } from "@/lib/services/DataServices";
-import DesktopSideComponent from "../DesktopSideComponent";
+
 
 const AddSuggestionComponent = () => {
   const { selectedTripId } = useSelectedTripIdContext();

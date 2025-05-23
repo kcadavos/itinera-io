@@ -227,7 +227,7 @@ const HeaderComponent = () => {
     
     if (path === "/ItinerarySuggestionPages/AddSuggestionPage") {
       return {
-        topMessage: ( <p> Let's plan for <span className="text-5xl text-[#1A89BC]">{selectedTripDestination} </span> 
+        topMessage: ( <p> Let&apos;s plan for <span className="text-5xl text-[#1A89BC]">{selectedTripDestination} </span> 
         <span className="text-[#1A89BC]"> {startDate && endDate
           ? `for ${format(startDate, "MMM dd")} - ${format(endDate, "MMM dd")}`
           : "Unknown Dates"}</span> </p>),
@@ -340,7 +340,7 @@ const HeaderComponent = () => {
 
     
     return {
-      topMessage: ( <p> Let's plan for {selectedTripDestination} {startDate && endDate
+      topMessage: ( <p> Let&apos;s plan for {selectedTripDestination} {startDate && endDate
         ? `for ${format(startDate, "MMM dd")} - ${format(endDate, "MMM dd")}`
         : "Unknown Dates"} </p>),
       bottomMessage:' What activities are you excited about?'
