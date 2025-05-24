@@ -18,6 +18,9 @@ const TripList = () => {
   const { selectedTripId, setSelectedTripId } = useSelectedTripIdContext();
 
   useEffect(() => {
+    if(window.innerWidth > 1024){
+      router.push("/ItinerarySuggestionPages/UndecidedListPage")
+    }
     // pick up triplist data
     const getTripListData = async () => {
       const tripList = await GetTripListByUserId(userId, getToken()); // returned data is already sorted from soonest to latest

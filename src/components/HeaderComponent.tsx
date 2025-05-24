@@ -11,21 +11,21 @@ import {
 } from "@/context/DataContext";
 
 import { usePathname } from "next/navigation";
-import { format } from "date-fns";
-import { parseISO } from "date-fns";
+import { format, parseISO } from "date-fns";
 import MenuComponent from "./MenuComponent";
 
 const HeaderComponent = () => {
   const path = usePathname();
-  const { loginStatus } = useLoginStatusContext();
-  const { createStatus } = useCreateStatusContext();
-  const { accountStatus } = useAccountStatusContext();
   const { name } = useNameContext();
   const { selectedTripStartDate } = useSelectedTripStartDateContext();
   const { selectedTripEndDate } = useSelectedTripEndDateContext();
   const { selectedTripDestination } = useSelectedTripDestinationContext();
+  const { loginStatus } = useLoginStatusContext();
+  const { createStatus } = useCreateStatusContext();
+  const { accountStatus } = useAccountStatusContext();
 
   const [isHidden, setIsHidden] = useState(false);
+
   useEffect(() => {
     setIsHidden(path == "/LoginPage");
   }, [path]);
@@ -33,226 +33,327 @@ const HeaderComponent = () => {
   const findPath = () => {
     const startDate = selectedTripStartDate ? parseISO(selectedTripStartDate) : null;
     const endDate = selectedTripEndDate ? parseISO(selectedTripEndDate) : null;
-  
-    switch (true) {
-      case path === "/ItinerarySuggestionPages/AddSuggestionPage":
-        return {
-          topMessage: (
-            <p>
-              Hi <span className="text-[#4A90E2] text-xl">{name}</span>, Let&apos;s Plan For
-            </p>
-          ),
-          destination: selectedTripDestination,
-          message: "What activities are you excited about?",
-          color: "text-black text-sm",
-        };
-  
-      case path.startsWith("/ItinerarySuggestionPages"):
-        return {
-          topMessage: (
-            <p>
-              Hi <span className="text-[#4A90E2] text-xl">{name}</span>, Let&apos;s Plan For
-            </p>
-          ),
-          destination: selectedTripDestination,
-          message: startDate && endDate
+
+    const greeting = (
+      <p>
+        Hi <span className="text-[#4A90E2] text-xl">{name}</span>,
+      </p>
+    );
+
+    if (path === "/ItinerarySuggestionPages/AddSuggestionPage") {
+      return {
+        topMessage: greeting,
+        destination: selectedTripDestination,
+        message: "What activities are you excited about?",
+        color: "text-black text-sm",
+      };
+    }
+
+    if (path.startsWith("/ItinerarySuggestionPages")) {
+      return {
+        topMessage: greeting,
+        destination: selectedTripDestination,
+        message:
+          startDate && endDate
             ? `for ${format(startDate, "MMM dd")} - ${format(endDate, "MMM dd")}`
             : "Unknown Dates",
-          color: "text-[#E67E22] text-sm",
-        };
-  
-      case path === "/Trip/TripList":
-        return {
-          topMessage: (
-            <p>
-              Hi <span className="text-[#4A90E2] text-xl">{name}</span>,
-            </p>
-          ),
-          destination: "",
-          message: <p>Looking Forward to <br /> These Trips?</p>,
-          color: "text-[#34495E] text-2xl",
-        };
-  
-      case path === "/Trip/AddTrip":
-        return {
-          topMessage: (
-            <p>
-              Hi <span className="text-[#4A90E2] text-xl">{name}</span>,
-            </p>
-          ),
-          destination: "",
-          message: <p>Where Do You <br /> Want to Go?</p>,
-          color: "text-[#34495E] text-2xl",
-        };
-  
-      case loginStatus === "failed":
-        return {
-          topMessage: (
-            <p className="text-[#E67E22] text-2xl">
-              Invalid Username <br /> or Password.
-            </p>
-          ),
-          destination: "",
-          message: "Please try again.",
-          color: "",
-        };
-  
-      case loginStatus === "create":
-        return {
-          topMessage: (
-            <p>
-              Hello, <span className="text-[#E67E22] text-2xl">Itinerista</span>
-            </p>
-          ),
-          destination: "",
-          message: <p>Ready For an Adventure?</p>,
-          color: "text-[#34495E] text-2xl text-medium",
-        };
-  
-      case createStatus === "success":
-        return {
-          topMessage: <p className="text-[#E67E22] text-2xl">Congratulations</p>,
-          destination: "",
-          message: <p>Account Created Successfully!</p>,
-          color: "text-[#34495E] text-2xl text-medium",
-        };
-  
-      case createStatus === "exists":
-        return {
-          topMessage: <p className="text-[#E67E22] text-2xl">Uh Oh</p>,
-          destination: "",
-          message: <p>Account Already Exists.</p>,
-          color: "text-[#34495E] text-2xl text-medium",
-        };
-  
-      case createStatus === "failed":
-        return {
-          topMessage: <p className="text-[#E67E22] text-2xl">Uh Oh</p>,
-          destination: "",
-          message: <p>Passwords Don&apos;t Match.</p>,
-          color: "text-[#34495E] text-2xl text-medium",
-        };
-        case path === "/NotificationPage":
-          return {
-            topMessage:
-            (
-              <p>
-                Hi <span className="text-[#4A90E2] text-xl">{name}</span>,
-              </p>
-            ),
-            destination: "",
-            message: <p>Some New Things For You</p>,
-            color: "text-[#34495E] text-2xl text-medium",
-          };
-        case accountStatus === "password":
-          return {
-            topMessage:
-            (
-              <p>
-                Hi <span className="text-[#4A90E2] text-xl">{name}</span>,
-              </p>
-            ),
-            destination: "",
-            message: <p>Want to Update Your Password</p>,
-            color: "text-[#34495E] text-2xl text-medium",
-          };
-          case accountStatus === "account":
-            return {
-              topMessage:
-              (
-                <p>
-                  Hi <span className="text-[#4A90E2] text-xl">{name}</span>,
-                </p>
-              ),
-              destination: "",
-              message: <p>Want to Update Your Account</p>,
-              color: "text-[#34495E] text-2xl text-medium",
-            };
-          case accountStatus === "mustmatch":
-            return {
-              topMessage:
-              (
-                <p>
-                  Hi <span className="text-[#4A90E2] text-xl">{name}</span>,
-                </p>
-              ),
-              destination: "",
-              message: <p>New Passwords Do Not Match!</p>,
-              color: "text-[#34495E] text-2xl text-medium",
-            };
-          case accountStatus === "failed":
-            return {
-              topMessage:
-              (
-                <p>
-                  Hi <span className="text-[#4A90E2] text-xl">{name}</span>,
-                </p>
-              ),
-              destination: "",
-              message: <p>Old Password Is Not Correct!</p>,
-              color: "text-[#34495E] text-2xl text-medium",
-            };
-          case accountStatus === "successPass":
-            return {
-              topMessage:
-              (
-                <p>
-                  Hi <span className="text-[#4A90E2] text-xl">{name}</span>,
-                </p>
-              ),
-              destination: "",
-              message: <p>Password Changed Successfully</p>,
-              color: "text-[#34495E] text-2xl text-medium",
-            };
-          case accountStatus === "successAcc":
-            return {
-              topMessage:
-              (
-                <p>
-                  Hi <span className="text-[#4A90E2] text-xl">{name}</span>,
-                </p>
-              ),
-              destination: "",
-              message: <p>Name Changed Successfully</p>,
-              color: "text-[#34495E] text-2xl text-medium",
-            };
-          case accountStatus === "failAcc":
-            return {
-              topMessage:
-              (
-                <p>
-                  Hi <span className="text-[#4A90E2] text-xl">{name}</span>,
-                </p>
-              ),
-              destination: "",
-              message: <p>Name Did Not Change</p>,
-              color: "text-[#34495E] text-2xl text-medium",
-            };
-            
-  
-      default:
-        return {
-          topMessage: (
-            <p className="text-[#E67E22] text-2xl">
-              Votes In,
-              <br />
-              Adventure Out.
-            </p>
-          ),
-          destination: "",
-          message: "Log In.",
-          color: "text-[#34495E] text-2xl text-medium",
-        };
+        color: "text-[#E67E22] text-sm",
+      };
     }
+
+    if (path === "/Trip/TripList") {
+      return {
+        topMessage: greeting,
+        destination: "",
+        message: <p>Looking Forward to <br /> These Trips?</p>,
+        color: "text-[#34495E] text-2xl",
+      };
+    }
+
+    if (path === "/Trip/AddTrip") {
+      return {
+        topMessage: greeting,
+        destination: "",
+        message: <p>Where Do You <br /> Want to Go?</p>,
+        color: "text-[#34495E] text-2xl",
+      };
+    }
+
+    if (path === "/NotificationPage") {
+      return {
+        topMessage: greeting,
+        destination: "",
+        message: <p>Some New Things For You</p>,
+        color: "text-[#34495E] text-2xl text-medium",
+      };
+    }
+
+    // Account status
+    if (accountStatus === "password") {
+      return {
+        topMessage: greeting,
+        destination: "",
+        message: <p>Want to Update Your Password</p>,
+        color: "text-[#34495E] text-2xl text-medium",
+      };
+    }
+
+    if (accountStatus === "account") {
+      return {
+        topMessage: greeting,
+        destination: "",
+        message: <p>Want to Update Your Account</p>,
+        color: "text-[#34495E] text-2xl text-medium",
+      };
+    }
+
+    if (accountStatus === "mustmatch") {
+      return {
+        topMessage: greeting,
+        destination: "",
+        message: <p>New Passwords Do Not Match!</p>,
+        color: "text-[#34495E] text-2xl text-medium",
+      };
+    }
+
+    if (accountStatus === "failed") {
+      return {
+        topMessage: greeting,
+        destination: "",
+        message: <p>Old Password Is Not Correct!</p>,
+        color: "text-[#34495E] text-2xl text-medium",
+      };
+    }
+
+    if (accountStatus === "successPass") {
+      return {
+        topMessage: greeting,
+        destination: "",
+        message: <p>Password Changed Successfully</p>,
+        color: "text-[#34495E] text-2xl text-medium",
+      };
+    }
+
+    if (accountStatus === "successAcc") {
+      return {
+        topMessage: greeting,
+        destination: "",
+        message: <p>Name Changed Successfully</p>,
+        color: "text-[#34495E] text-2xl text-medium",
+      };
+    }
+
+    if (accountStatus === "failAcc") {
+      return {
+        topMessage: greeting,
+        destination: "",
+        message: <p>Name Did Not Change</p>,
+        color: "text-[#34495E] text-2xl text-medium",
+      };
+    }
+
+    
+    if (loginStatus === "failed") {
+      return {
+        topMessage: (
+          <p className="text-[#E67E22] text-2xl">
+            Invalid Username <br /> or Password.
+          </p>
+        ),
+        destination: "",
+        message: "Please try again.",
+        color: "",
+      };
+    }
+
+    if (loginStatus === "create") {
+      return {
+        topMessage: (
+          <p>
+            Hello, <span className="text-[#E67E22] text-2xl">Itinerista</span>
+          </p>
+        ),
+        destination: "",
+        message: <p>Ready For an Adventure?</p>,
+        color: "text-[#34495E] text-2xl text-medium",
+      };
+    }
+
+    if (createStatus === "success") {
+      return {
+        topMessage: <p className="text-[#E67E22] text-2xl">Congratulations</p>,
+        destination: "",
+        message: <p>Account Created Successfully!</p>,
+        color: "text-[#34495E] text-2xl text-medium",
+      };
+    }
+
+    if (createStatus === "exists") {
+      return {
+        topMessage: <p className="text-[#E67E22] text-2xl">Uh Oh</p>,
+        destination: "",
+        message: <p>Account Already Exists.</p>,
+        color: "text-[#34495E] text-2xl text-medium",
+      };
+    }
+
+    if (createStatus === "failed") {
+      return {
+        topMessage: <p className="text-[#E67E22] text-2xl">Uh Oh</p>,
+        destination: "",
+        message: <p>Passwords Don&apos;t Match.</p>,
+        color: "text-[#34495E] text-2xl text-medium",
+      };
+    }
+
+    
+    return {
+      topMessage: (
+        <p className="text-[#E67E22] text-2xl">
+          Votes In,
+          <br />
+          Adventure Out.
+        </p>
+      ),
+      destination: "",
+      message: "Log In.",
+      color: "text-[#34495E] text-2xl text-medium",
+    };
   };
-  
 
-  const bottom = findPath();
+  const desktopLogic = ()=>{
+    const startDate = selectedTripStartDate ? parseISO(selectedTripStartDate) : null;
+    const endDate = selectedTripEndDate ? parseISO(selectedTripEndDate) : null;
+    
+    if (path === "/ItinerarySuggestionPages/AddSuggestionPage") {
+      return {
+        topMessage: ( <p> Let&apos;s plan for <span className="text-5xl text-[#1A89BC]">{selectedTripDestination} </span> 
+        <span className="text-[#1A89BC]"> {startDate && endDate
+          ? `for ${format(startDate, "MMM dd")} - ${format(endDate, "MMM dd")}`
+          : "Unknown Dates"}</span> </p>),
+        bottomMessage:' What activities are you excited about?'
+      };
+    }
+    if (path === "/Trip/AddTrip") {
+      return {
+        topMessage:( <p>Where do you want to go?</p> ),
+        bottomMessage:''
+      };
+    }
 
+    if (path === "/NotificationPage") {
+      return {
+        topMessage: ( <p>Some new things for you  </p>),
+        bottomMessage:' '
+      };
+    }
+    if (path === "/ItinerarySuggestionPages/ItineraryPage") {
+      return {
+        topMessage: ( <p> Your itinerary for <span className="text-5xl text-[#1A89BC]">{selectedTripDestination} </span> 
+          <span className="text-[#1A89BC]"> {startDate && endDate
+            ? `for ${format(startDate, "MMM dd")} - ${format(endDate, "MMM dd")}`
+            : "Unknown Dates"}</span> </p>),
+          bottomMessage:''
+      };
+    }
+    if (path === "/ItinerarySuggestionPages/UndecidedListPage") {
+      return {
+        topMessage: ( <p> Your itinerary for <span className="text-5xl text-[#1A89BC]">{selectedTripDestination} </span> 
+          <span className="text-[#1A89BC]"> {startDate && endDate
+            ? `for ${format(startDate, "MMM dd")} - ${format(endDate, "MMM dd")}`
+            : "Unknown Dates"}</span> </p>),
+          bottomMessage:''
+      };
+    }
+    if (path === "/ItinerarySuggestionPages/LikedListPage") {
+      return {
+        topMessage: ( <p> Your itinerary for <span className="text-5xl text-[#1A89BC]">{selectedTripDestination} </span> 
+          <span className="text-[#1A89BC]"> {startDate && endDate
+            ? `for ${format(startDate, "MMM dd")} - ${format(endDate, "MMM dd")}`
+            : "Unknown Dates"}</span> </p>),
+          bottomMessage:''
+      };
+    }
+    if (path === "/ItinerarySuggestionPages/DislikedListPage") {
+      return {
+        topMessage: ( <p> Your itinerary for <span className="text-5xl text-[#1A89BC]">{selectedTripDestination} </span> 
+          <span className="text-[#1A89BC]"> {startDate && endDate
+            ? `for ${format(startDate, "MMM dd")} - ${format(endDate, "MMM dd")}`
+            : "Unknown Dates"}</span> </p>),
+          bottomMessage:''
+      };
+    }
+
+    // Account status
+    if (accountStatus === "password") {
+      return {
+        topMessage: ( <p className="text-[#E67E22]"> Change Your Password </p>),
+        bottomMessage:' '
+      };
+    }
+
+    if (accountStatus === "account") {
+      return {
+        topMessage: ( <p className="text-[#E67E22]"> Change Your Name  </p>),
+        bottomMessage:''
+      };
+    }
+
+    if (accountStatus === "mustmatch") {
+      return {
+        topMessage: ( <p>New Passwords Do Not Match! </p>),
+        bottomMessage:''
+      };
+    }
+
+    if (accountStatus === "failed") {
+      return {
+        topMessage: ( <p> Old Password Is Not Correct! </p>),
+        bottomMessage:' '
+      };
+    }
+
+    if (accountStatus === "successPass") {
+      return {
+        topMessage: ( <p> Password Changed Successfully </p>),
+        bottomMessage:' '
+      };
+    }
+
+    if (accountStatus === "successAcc") {
+      return {
+        topMessage: ( <p> Name Changed Successfully </p>),
+        bottomMessage:' '
+      };
+    }
+
+    if (accountStatus === "failAcc") {
+      return {
+        topMessage: ( <p> Name Did Not Change </p>),
+        bottomMessage:' '
+      };
+    }
+
+    
+    
+    
+
+    
+    return {
+      topMessage: ( <p> Let&apos;s plan for {selectedTripDestination} {startDate && endDate
+        ? `for ${format(startDate, "MMM dd")} - ${format(endDate, "MMM dd")}`
+        : "Unknown Dates"} </p>),
+      bottomMessage:' What activities are you excited about?'
+    };
+    
+  };
+
+  const mobile = findPath();
+const desktop = desktopLogic();
   return (
-    <div className="block lg:hidden">
-      <div className="bg-[#E1ECFF] min-h-[14rem]  lg:min-h-[13.2rem] lg:max-h-[13.2rem] pt-10 pb-10 relative min-w-screen max-w-screen mb-6">
-        <div className="mx-8 mt-10 font-inter">
+    <div>
+      <div className="bg-[#E1ECFF] lg:bg-[#ECF0F1] min-h-[14rem] lg:min-h-[7.5rem] lg:max-h-[7.5rem] lg:w-full pt-10 pb-10 relative mb-6">
+        <div className="mx-8 mt-10 lg:mt-0 font-inter lg:hidden">
           <img
             className="h-12 absolute left-6 top-10"
             src="/assets/Icons/itineralogo2.svg"
@@ -261,11 +362,17 @@ const HeaderComponent = () => {
 
           {!isHidden && <MenuComponent />}
 
-          <div className="font-medium text-[#34495E] mt-5">
-            {bottom.topMessage}
+          <div className="font-medium text-[#34495E] mt-5 ">
+            {mobile.topMessage}
           </div>
-          <p className="text-3xl text-[#E67E22]">{bottom.destination}</p>
-          <div className={` ${bottom.color}`}>{bottom.message}</div>
+
+          <p className="text-3xl text-[#E67E22]">{mobile.destination}</p>
+
+          <div className={mobile.color}>{mobile.message}</div>
+        </div>
+        <div className="hidden lg:block mt-0">
+<div className="text-3xl">{desktop.topMessage}</div>
+<div className="text-2xl">{desktop.bottomMessage}</div>
         </div>
       </div>
     </div>

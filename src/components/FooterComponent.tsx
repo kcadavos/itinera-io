@@ -62,13 +62,6 @@ const FooterComponent = () => {
                    href: "",
                   onClick: handleClick,
                 };
-            // case loginStatus === "create":
-            //   return{
-            //     text: "hi",
-            //     src: "",
-            //     href: "",
-
-            // };
             
             default:
                 return {
@@ -85,11 +78,11 @@ const FooterComponent = () => {
     const bottom = selectedPage();
   return (
     
-    <div className="fixed bottom-0 w-full">
-      <div className=" bg-[#1ABC9C] min-w-screen max-w-screen flex justify-center items-center   rounded-t-4xl h-18 ">
-        <div className="text-white flex justify-center text-3xl font-medium ">        
-         <Link href={bottom.href} onClick={bottom.onClick} className="flex items-center gap-2">
-        <p className="pe-2">{bottom.text}</p>
+    <div className="fixed lg:relative  bottom-0 w-full">
+      <div className=" bg-[#1ABC9C]  py-5 rounded-t-4xl  ">
+        <div className="text-white flex justify-center text-4xl font-medium ">        
+         <Link href={bottom.href} onClick={bottom.onClick} className="flex">
+        <p>{bottom.text}</p>
         <img className={bottom.css} src={bottom.src} alt={bottom.alt} />
          </Link>
           

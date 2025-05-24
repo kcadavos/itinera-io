@@ -12,8 +12,6 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { useRouter } from "next/navigation";
 import { getToken } from "@/lib/services/DataServices";
-import DesktopSideComponent from "../DesktopSideComponent";
-
 const AddSuggestionComponent = () => {
   const { selectedTripId } = useSelectedTripIdContext();
   const {selectedTripIsVotingOpen} = useSelectedTripIsVotingOpenContext();
@@ -243,11 +241,6 @@ const AddSuggestionComponent = () => {
       {/* desktop */}
       <div className="hidden lg:block">
         <div className="grid grid-cols-4">
-
-          <div className="col-[1]">
-            <DesktopSideComponent />          
-          </div>
-          
           <div className="col-span-3 flex justify-center mt-55">
           {
             selectedTripIsVotingOpen ?

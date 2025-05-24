@@ -1,40 +1,59 @@
-"use client"
-import FooterComponent from '@/components/FooterComponent'
-import HeaderComponent from '@/components/HeaderComponent'
-import NavbarComponent from '@/components/NavbarComponent'
+"use client";
+import DesktopSideComponent from "@/components/DesktopSideComponent";
+import FooterComponent from "@/components/FooterComponent";
+import HeaderComponent from "@/components/HeaderComponent";
+import NavbarComponent from "@/components/NavbarComponent";
 
+import { usePathname } from "next/navigation";
+import React, { useEffect, useState } from "react";
 
-import { usePathname } from 'next/navigation'
-import React, { useEffect , useState } from 'react'
-
-const Layout = ({ children }: { children: React.ReactNode }) =>  {
+const Layout = ({ children }: { children: React.ReactNode }) => {
   const route = usePathname();
   const [isHidden, setIsHidden] = useState(false);
-  useEffect(()=>{ 
-    const mobileScreen = window.innerWidth < 1024;
-    if(mobileScreen){
-      setIsHidden(route.startsWith('/ItinerarySuggestionPages'));
-      setIsHidden(route.startsWith('/LoginPage')); /*hides the footer in login page */
-    };
-  },[route])
+  const [showNav, setShowNav] = useState(false);
+  const [showSide, setShowSide] = useState(false);
+  const [showHeader, setShowHeader] = useState(false);
 
-  
-  return (
+  useEffect(() => {
+    
+      const isLargeScreen = window.innerWidth >= 1024;
+      const isItineraryRoute = route.startsWith("/ItinerarySuggestionPages");
+      setIsHidden(!isLargeScreen); 
+      setShowNav(isLargeScreen || (!isLargeScreen && isItineraryRoute));
 
-    <div>
-     
-     <HeaderComponent />
-     
-          <NavbarComponent/>
-
-      {children}
-      <div className='block lg:hidden'>
-        {!isHidden && <FooterComponent/>}
-       
-      </div>
+      if(route === "/LoginPage" && isLargeScreen){
+        setIsHidden(false);
+        setShowNav(false);
+        setShowSide(false);
+        setShowHeader(false);
+      }else if(route === "/LoginPage" && !isLargeScreen){
+        setIsHidden(false);
+        setShowNav(false);
+        setShowSide(false);
+        setShowHeader(true);
+      }else{
+        setShowNav(true);
+        setShowSide(true);
+        setShowHeader(true);
+      }
       
-    </div>
-  )
-}
+  }, [route]);
 
-export default Layout
+  return (
+    <div>
+      <div className={`${route === "/LoginPage" ? "flex flex-col" : "grid lg:grid-cols-4 lg:gap-0"}`}>
+       {showSide && <div className="lg:col-[1]">
+          <DesktopSideComponent />
+        </div>}
+        <div className="w-full lg:col-start-2 lg:col-span-3">
+          {showNav && <NavbarComponent />}
+         {showHeader && <HeaderComponent/>}
+          {children}
+        </div>
+      </div>
+      {isHidden && <FooterComponent />}
+    </div>
+  );
+};
+
+export default Layout;
