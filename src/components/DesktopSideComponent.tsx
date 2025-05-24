@@ -12,7 +12,6 @@ import { ITripData } from "@/lib/TripInterfaces";
 import { getToken } from "@/lib/services/DataServices";
 import { GetTripListByUserId } from "@/lib/services/TripDataService";
 import TripCardComponent from "./TripCardComponent";
-import FooterComponent from "./FooterComponent";
 
 const DesktopSideComponent = () => {
   const { name } = useNameContext();
