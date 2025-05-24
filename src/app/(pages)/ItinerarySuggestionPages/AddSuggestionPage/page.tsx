@@ -3,7 +3,7 @@ import AddSuggestionComponent from "@/components/pageComponents/AddSuggestionCom
 const AddSuggestionPage = () => {
     
   return (
-    <div className='font-roboto m-0 p-0 max-w-screen lg:ml-40'>
+    <div className='font-roboto m-0 p-0 max-w-screen'>
         <AddSuggestionComponent />
     </div>
   )
