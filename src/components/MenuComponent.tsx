@@ -45,7 +45,7 @@ const MenuComponent = () => {
           transitionProperty: "max-height, opacity",
         }}
       >
-                <div className="grid text-[#E67E22] font-medium mt-5 gap-2 lg:pl-2 lg:pt-2">
+        <div className="grid text-[#E67E22] font-medium mt-1 gap-2 lg:pl-2 lg:pt-2">
           <Link
             href="/Trip/TripList"
             className="block lg:hidden transition-colors duration-300 hover:text-[#D35400]"
