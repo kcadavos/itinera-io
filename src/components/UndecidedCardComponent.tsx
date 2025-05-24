@@ -45,7 +45,7 @@ const UndecidedCardComponent = ({ activities, getUndecidedList }:{activities:IAc
   
   return (
     activities?.map((activity: IActivityListData, idx: number) => (
-      <div key={idx} className={`${bgColors[idx % bgColors.length]} p-4 my-2 mb-10 mx-8 sm:mx-16 md:mx-36 rounded-bl-2xl rounded-tr-2xl relative`} >
+      <div key={idx} className={`${bgColors[idx % bgColors.length]} p-4 my-2 mb-10 mx-8 sm:mx-16 md:mx-36 lg:mx-25 xl:mx-36 rounded-bl-2xl rounded-tr-2xl relative`} >
         <div className='flex justify-between mb-3'>
 
           <div className='text-white'>
@@ -62,9 +62,9 @@ const UndecidedCardComponent = ({ activities, getUndecidedList }:{activities:IAc
 
         {
           selectedTripIsVotingOpen ? 
-          <div className="flex justify-center mt-18 absolute -bottom-7 left-50 sm:left-75
-          md:left-80 transform -translate-x-1/2">
-            <button className="bg-[#1ABC9C] hover:bg-[#67afa0] border-2 border-white text-xl text-white rounded-[2.5rem] p-2 cursor-pointer " onClick={() => castVote(activity.id, "yes")}  >
+          <div className="flex justify-center mt-18 absolute -bottom-7 left-50 sm:left-75 md:left-80 lg:left-45 xl:left-80 transform -translate-x-1/2">
+            <button className="bg-[#1ABC9C] hover:bg-[#67afa0] border-2 border-white text-xl text-white rounded-[2.5rem] p-2 lg:px-3 cursor-pointer lg:flex lg:justify-between" onClick={() => castVote(activity.id, "yes")}  >
+              <p className='hidden lg:block mr-2'>Sounds Fun</p>
               <img
                 src="/assets/Icons/Orion_checkin-place 2.svg"
                 className="w-8"
@@ -77,8 +77,9 @@ const UndecidedCardComponent = ({ activities, getUndecidedList }:{activities:IAc
 
         {
           selectedTripIsVotingOpen ? 
-          <div className="flex justify-center mt-18 absolute -bottom-7 left-65 sm:left-90 md:left-95 transform -translate-x-1/2">
-            <button className="bg-[#1ABC9C] hover:bg-[#67afa0] border-2 border-white text-xl text-white rounded-[2.5rem] p-2 cursor-pointer" onClick={() => castVote(activity.id, "no")} >
+          <div className="flex justify-center mt-18 absolute -bottom-7 left-65 sm:left-90 md:left-95  xl:left-[32rem] transform -translate-x-1/2">
+            <button className="bg-[#1ABC9C] hover:bg-[#67afa0] border-2 border-white text-xl text-white rounded-[2.5rem] p-2 lg:px-3 cursor-pointer lg:flex lg:justify-between" onClick={() => castVote(activity.id, "no")} >
+              <p className='hidden lg:block lg:mr-2'>Not for Me</p>
               <img
                 src="/assets/Icons/Orion_delete-place 1.svg"
                 className="w-8"

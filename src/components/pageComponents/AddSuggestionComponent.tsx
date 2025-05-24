@@ -240,11 +240,11 @@ const AddSuggestionComponent = () => {
 
       {/* desktop */}
       <div className="hidden lg:block">
-        <div className="grid grid-cols-4">
-          <div className="col-span-3 flex justify-center mt-55">
+        <div className="grid grid-cols-3">
+          <div className="col-span-3 flex justify-center mt-10">
           {
             selectedTripIsVotingOpen ?
-            <div className="bg-[#ECF0F1] rounded-2xl min-w-[20rem] xl:w-[55rem] min-h-[24rem] max-w-[55rem] mx-4 px-6 relative  ">
+            <div className="bg-[#ECF0F1] rounded-2xl min-w-[20rem] xl:w-[55rem] min-h-[24rem] max-w-[55rem] mx-2 px-6 relative  ">
               <div className="p-6 pt-8 grid grid-cols-2 gap-6">
 
                 <div className="grid grid-rows-4 p-4">
