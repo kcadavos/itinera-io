@@ -44,11 +44,11 @@ const LikedCardComponent = ({ activities, getLikedList }:{activities:IActivityLi
 
   return (
     activities?.map((activity: IActivityListData, idx: number) => (
-        <div key={idx} className={`${bgColors[idx % bgColors.length]} p-4 my-2 mb-10 mx-8 sm:mx-16 md:mx-36 rounded-bl-2xl rounded-tr-2xl relative`}>
+        <div key={idx} className={`${bgColors[idx % bgColors.length]} p-4 my-2 mb-10 mx-8 sm:mx-16 md:mx-36 lg:mx-25 xl:mx-36 rounded-bl-2xl rounded-tr-2xl relative`}>
 
             {
                 selectedTripIsVotingOpen ? 
-                <div className="flex justify-center mt-18 absolute -top-23 -right-12 transform -translate-x-7/8">
+                <div className="flex justify-center mt-18 absolute -top-23 -right-12 transform -translate-x-7/8 lg:hidden">
                     <button className="bg-[#1ABC9C] hover:bg-[#67afa0] border-2 border-white text-xl text-white rounded-[2.5rem] p-[.1rem] cursor-pointer" onClick={() => removeVote(activity.id, "yes")} >
                         <img
                         src="/assets/Icons/Orion_remove.svg"
@@ -72,6 +72,21 @@ const LikedCardComponent = ({ activities, getLikedList }:{activities:IActivityLi
                     <img src={IconSwitch(activity.category)} alt="category" className=' w-15' />
                 </div>
             </div>
+
+            {
+                selectedTripIsVotingOpen ? 
+                <div className="hidden lg:flex justify-center mt-18 absolute -bottom-7 left-75 xl:left-[28rem] transform -translate-x-1/2">
+                    <button className="bg-[#1ABC9C] hover:bg-[#67afa0] border-2 border-white text-xl text-white rounded-[2.5rem] p-[.1rem] cursor-pointer lg:px-5 lg:flex lg:justify-between" onClick={() => removeVote(activity.id, "yes")} >
+                        <p className='hidden lg:block mr-1'>Not Sure Anymore</p>
+                        <img
+                        src="/assets/Icons/Orion_remove.svg"
+                        className="w-8"
+                        alt="add"
+                        />
+                    </button>
+                </div> : 
+                <></>
+            }
 
         </div>
     ))

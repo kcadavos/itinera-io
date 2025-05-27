@@ -31,7 +31,9 @@ const HeaderComponent = () => {
   }, [path]);
 
   const findPath = () => {
-    const startDate = selectedTripStartDate ? parseISO(selectedTripStartDate) : null;
+    const startDate = selectedTripStartDate
+      ? parseISO(selectedTripStartDate)
+      : null;
     const endDate = selectedTripEndDate ? parseISO(selectedTripEndDate) : null;
 
     const greeting = (
@@ -55,7 +57,10 @@ const HeaderComponent = () => {
         destination: selectedTripDestination,
         message:
           startDate && endDate
-            ? `for ${format(startDate, "MMM dd")} - ${format(endDate, "MMM dd")}`
+            ? `for ${format(startDate, "MMM dd")} - ${format(
+                endDate,
+                "MMM dd"
+              )}`
             : "Unknown Dates",
         color: "text-[#E67E22] text-sm",
       };
@@ -65,7 +70,11 @@ const HeaderComponent = () => {
       return {
         topMessage: greeting,
         destination: "",
-        message: <p>Looking Forward to <br /> These Trips?</p>,
+        message: (
+          <p>
+            Looking Forward to <br /> These Trips?
+          </p>
+        ),
         color: "text-[#34495E] text-2xl",
       };
     }
@@ -74,7 +83,11 @@ const HeaderComponent = () => {
       return {
         topMessage: greeting,
         destination: "",
-        message: <p>Where Do You <br /> Want to Go?</p>,
+        message: (
+          <p>
+            Where Do You <br /> Want to Go?
+          </p>
+        ),
         color: "text-[#34495E] text-2xl",
       };
     }
@@ -152,7 +165,6 @@ const HeaderComponent = () => {
       };
     }
 
-    
     if (loginStatus === "failed") {
       return {
         topMessage: (
@@ -206,7 +218,6 @@ const HeaderComponent = () => {
       };
     }
 
-    
     return {
       topMessage: (
         <p className="text-[#E67E22] text-2xl">
@@ -221,138 +232,213 @@ const HeaderComponent = () => {
     };
   };
 
-  const desktopLogic = ()=>{
-    const startDate = selectedTripStartDate ? parseISO(selectedTripStartDate) : null;
+  const desktopLogic = () => {
+    const startDate = selectedTripStartDate
+      ? parseISO(selectedTripStartDate)
+      : null;
     const endDate = selectedTripEndDate ? parseISO(selectedTripEndDate) : null;
-    
+
     if (path === "/ItinerarySuggestionPages/AddSuggestionPage") {
       return {
-        topMessage: ( <p> Let&apos;s plan for <span className="text-5xl text-[#1A89BC]">{selectedTripDestination} </span> 
-        <span className="text-[#1A89BC]"> {startDate && endDate
-          ? `for ${format(startDate, "MMM dd")} - ${format(endDate, "MMM dd")}`
-          : "Unknown Dates"}</span> </p>),
-        bottomMessage:' What activities are you excited about?'
+        topMessage: (
+          <p>
+            {" "}
+            Let&apos;s plan for{" "}
+            <span className="text-5xl text-[#1A89BC]">
+              {selectedTripDestination}{" "}
+            </span>
+            <span className="text-[#1A89BC]">
+              {" "}
+              {startDate && endDate
+                ? `for ${format(startDate, "MMM dd")} - ${format(
+                    endDate,
+                    "MMM dd"
+                  )}`
+                : "Unknown Dates"}
+            </span>{" "}
+          </p>
+        ),
+        bottomMessage: " What activities are you excited about?",
       };
     }
     if (path === "/Trip/AddTrip") {
       return {
-        topMessage:( <p>Where do you want to go?</p> ),
-        bottomMessage:''
+        topMessage: <p>Where do you want to go?</p>,
+        bottomMessage: "",
       };
     }
 
     if (path === "/NotificationPage") {
       return {
-        topMessage: ( <p>Some new things for you  </p>),
-        bottomMessage:' '
+        topMessage: <p>Some new things for you </p>,
+        bottomMessage: " ",
       };
     }
     if (path === "/ItinerarySuggestionPages/ItineraryPage") {
       return {
-        topMessage: ( <p> Your itinerary for <span className="text-5xl text-[#1A89BC]">{selectedTripDestination} </span> 
-          <span className="text-[#1A89BC]"> {startDate && endDate
-            ? `for ${format(startDate, "MMM dd")} - ${format(endDate, "MMM dd")}`
-            : "Unknown Dates"}</span> </p>),
-          bottomMessage:''
+        topMessage: (
+          <p>
+            {" "}
+            Your itinerary for{" "}
+            <span className="text-5xl text-[#1A89BC]">
+              {selectedTripDestination}{" "}
+            </span>
+            <span className="text-[#1A89BC]">
+              {" "}
+              {startDate && endDate
+                ? `for ${format(startDate, "MMM dd")} - ${format(
+                    endDate,
+                    "MMM dd"
+                  )}`
+                : "Unknown Dates"}
+            </span>{" "}
+          </p>
+        ),
+        bottomMessage: "",
       };
     }
     if (path === "/ItinerarySuggestionPages/UndecidedListPage") {
       return {
-        topMessage: ( <p> Your itinerary for <span className="text-5xl text-[#1A89BC]">{selectedTripDestination} </span> 
-          <span className="text-[#1A89BC]"> {startDate && endDate
-            ? `for ${format(startDate, "MMM dd")} - ${format(endDate, "MMM dd")}`
-            : "Unknown Dates"}</span> </p>),
-          bottomMessage:''
+        topMessage: (
+          <p>
+            {" "}
+            Your itinerary for{" "}
+            <span className="text-5xl text-[#1A89BC]">
+              {selectedTripDestination}{" "}
+            </span>
+            <span className="text-[#1A89BC]">
+              {" "}
+              {startDate && endDate
+                ? `for ${format(startDate, "MMM dd")} - ${format(
+                    endDate,
+                    "MMM dd"
+                  )}`
+                : "Unknown Dates"}
+            </span>{" "}
+          </p>
+        ),
+        bottomMessage: "",
       };
     }
     if (path === "/ItinerarySuggestionPages/LikedListPage") {
       return {
-        topMessage: ( <p> Your itinerary for <span className="text-5xl text-[#1A89BC]">{selectedTripDestination} </span> 
-          <span className="text-[#1A89BC]"> {startDate && endDate
-            ? `for ${format(startDate, "MMM dd")} - ${format(endDate, "MMM dd")}`
-            : "Unknown Dates"}</span> </p>),
-          bottomMessage:''
+        topMessage: (
+          <p>
+            {" "}
+            Your itinerary for{" "}
+            <span className="text-5xl text-[#1A89BC]">
+              {selectedTripDestination}{" "}
+            </span>
+            <span className="text-[#1A89BC]">
+              {" "}
+              {startDate && endDate
+                ? `for ${format(startDate, "MMM dd")} - ${format(
+                    endDate,
+                    "MMM dd"
+                  )}`
+                : "Unknown Dates"}
+            </span>{" "}
+          </p>
+        ),
+        bottomMessage: "",
       };
     }
     if (path === "/ItinerarySuggestionPages/DislikedListPage") {
       return {
-        topMessage: ( <p> Your itinerary for <span className="text-5xl text-[#1A89BC]">{selectedTripDestination} </span> 
-          <span className="text-[#1A89BC]"> {startDate && endDate
-            ? `for ${format(startDate, "MMM dd")} - ${format(endDate, "MMM dd")}`
-            : "Unknown Dates"}</span> </p>),
-          bottomMessage:''
+        topMessage: (
+          <p>
+            {" "}
+            Your itinerary for{" "}
+            <span className="text-5xl text-[#1A89BC]">
+              {selectedTripDestination}{" "}
+            </span>
+            <span className="text-[#1A89BC]">
+              {" "}
+              {startDate && endDate
+                ? `for ${format(startDate, "MMM dd")} - ${format(
+                    endDate,
+                    "MMM dd"
+                  )}`
+                : "Unknown Dates"}
+            </span>{" "}
+          </p>
+        ),
+        bottomMessage: "",
       };
     }
 
     // Account status
     if (accountStatus === "password") {
       return {
-        topMessage: ( <p className="text-[#E67E22]"> Change Your Password </p>),
-        bottomMessage:' '
+        topMessage: <p className="text-[#E67E22]"> Change Your Password </p>,
+        bottomMessage: " ",
       };
     }
 
     if (accountStatus === "account") {
       return {
-        topMessage: ( <p className="text-[#E67E22]"> Change Your Name  </p>),
-        bottomMessage:''
+        topMessage: <p className="text-[#E67E22]"> Change Your Name </p>,
+        bottomMessage: "",
       };
     }
 
     if (accountStatus === "mustmatch") {
       return {
-        topMessage: ( <p>New Passwords Do Not Match! </p>),
-        bottomMessage:''
+        topMessage: <p>New Passwords Do Not Match! </p>,
+        bottomMessage: "",
       };
     }
 
     if (accountStatus === "failed") {
       return {
-        topMessage: ( <p> Old Password Is Not Correct! </p>),
-        bottomMessage:' '
+        topMessage: <p> Old Password Is Not Correct! </p>,
+        bottomMessage: " ",
       };
     }
 
     if (accountStatus === "successPass") {
       return {
-        topMessage: ( <p> Password Changed Successfully </p>),
-        bottomMessage:' '
+        topMessage: <p> Password Changed Successfully </p>,
+        bottomMessage: " ",
       };
     }
 
     if (accountStatus === "successAcc") {
       return {
-        topMessage: ( <p> Name Changed Successfully </p>),
-        bottomMessage:' '
+        topMessage: <p> Name Changed Successfully </p>,
+        bottomMessage: " ",
       };
     }
 
     if (accountStatus === "failAcc") {
       return {
-        topMessage: ( <p> Name Did Not Change </p>),
-        bottomMessage:' '
+        topMessage: <p> Name Did Not Change </p>,
+        bottomMessage: " ",
       };
     }
 
-    
-    
-    
-
-    
     return {
-      topMessage: ( <p> Let&apos;s plan for {selectedTripDestination} {startDate && endDate
-        ? `for ${format(startDate, "MMM dd")} - ${format(endDate, "MMM dd")}`
-        : "Unknown Dates"} </p>),
-      bottomMessage:' What activities are you excited about?'
+      topMessage: (
+        <p>
+          {" "}
+          Let&apos;s plan for {selectedTripDestination}{" "}
+          {startDate && endDate
+            ? `for ${format(startDate, "MMM dd")} - ${format(
+                endDate,
+                "MMM dd"
+              )}`
+            : "Unknown Dates"}{" "}
+        </p>
+      ),
+      bottomMessage: " What activities are you excited about?",
     };
-    
   };
 
   const mobile = findPath();
-const desktop = desktopLogic();
+  const desktop = desktopLogic();
   return (
     <div>
-      <div className="bg-[#E1ECFF] lg:bg-[#ECF0F1] min-h-[14rem] lg:min-h-[7.5rem] lg:max-h-[7.5rem] lg:w-full pt-10 pb-10 relative mb-6">
+      <div className="bg-[#E1ECFF] lg:bg-[#ECF0F1] min-h-[14rem] lg:min-h-[7.5rem] lg:max-h-[7.5rem] lg:w-full pt-10 pb-10 relative ">
         <div className="mx-8 mt-10 lg:mt-0 font-inter lg:hidden">
           <img
             className="h-12 absolute left-6 top-10"
@@ -371,8 +457,8 @@ const desktop = desktopLogic();
           <div className={mobile.color}>{mobile.message}</div>
         </div>
         <div className="hidden lg:block mt-0">
-<div className="text-3xl">{desktop.topMessage}</div>
-<div className="text-2xl">{desktop.bottomMessage}</div>
+          <div className="text-3xl">{desktop.topMessage}</div>
+          <div className="text-2xl">{desktop.bottomMessage}</div>
         </div>
       </div>
     </div>

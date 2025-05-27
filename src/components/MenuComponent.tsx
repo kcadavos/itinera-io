@@ -43,8 +43,9 @@ const MenuComponent = () => {
 
   return (
     <>
+      {/* Toggle Button */}
       <div
-        className="lg:bg-[#1ABC9C] lg:rounded-l-full flex justify-center absolute top-5 right-5  lg:top-0 lg:right-0 p-1 bg-white rounded-4xl lg:p-4 cursor-pointer"
+        className="lg:bg-[#1ABC9C] lg:rounded-l-full flex justify-center absolute top-5 right-5 lg:top-0 lg:right-0 p-1 bg-white rounded-4xl lg:p-4 cursor-pointer z-50"
         onClick={menuToggle}
       >
         <img
@@ -54,23 +55,45 @@ const MenuComponent = () => {
         />
       </div>
 
-      <div ref={menuRef}>
-        {!isHidden && (
-          <div className="grid text-[#E67E22] font-medium mt-5 gap-2 lg:pl-2 lg:pt-2">
-            <Link href="/Trip/TripList" className="block lg:hidden" onClick={menuToggle}>
-              Trip Dashboard
-            </Link>
-            <Link href="/AccountDetails" onClick={changeHeader}>
-              Account Details
-            </Link>
-            <Link href="/NotificationPage" onClick={menuToggle}>
-              Notifications
-            </Link>
-            <Link href="/" onClick={logOut}>
-              Log Out
-            </Link>
-          </div>
-        )}
+      {/* Menu with smooth transition and outside click */}
+      <div
+        ref={menuRef}
+        className={`
+          transition-all duration-500 ease-in-out overflow-hidden
+          ${isHidden ? "max-h-0 opacity-0" : "max-h-96 opacity-100"}
+        `}
+        style={{ transitionProperty: "max-height, opacity" }}
+      >
+        <div className="grid text-[#E67E22] font-medium mt-1 gap-2 lg:pl-2 lg:pt-2">
+          <Link
+            href="/Trip/TripList"
+            className="block lg:hidden transition-colors duration-300 hover:text-[#D35400]"
+            onClick={menuToggle}
+          >
+            Trip Dashboard
+          </Link>
+          <Link
+            href="/AccountDetails"
+            className="transition-colors duration-300 hover:text-[#D35400]"
+            onClick={changeHeader}
+          >
+            Account Details
+          </Link>
+          <Link
+            href="/NotificationPage"
+            className="transition-colors duration-300 hover:text-[#D35400]"
+            onClick={menuToggle}
+          >
+            Notifications
+          </Link>
+          <Link
+            href="/"
+            className="transition-colors duration-300 hover:text-[#D35400]"
+            onClick={logOut}
+          >
+            Log Out
+          </Link>
+        </div>
       </div>
     </>
   );

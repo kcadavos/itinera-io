@@ -1,6 +1,6 @@
 'use client'
 import NotificationComponent from '@/components/NotificationComponent';
-import { useUserIdContext } from '@/context/DataContext'
+import { useAccountStatusContext, useUserIdContext } from '@/context/DataContext'
 import { INotificationData } from '@/lib/NotificationInterfaces';
 import { getToken } from '@/lib/services/DataServices';
 import { GetUnreadNotifactionsByUser } from '@/lib/services/NotificationService';
@@ -10,16 +10,17 @@ import React, { useEffect, useState } from 'react'
 const NotificationPage = () => {
   const {userId}=useUserIdContext();
   const [notificationList,setNotificationList] = useState<INotificationData[]>([]);
-
-
+  const { setAccountStatus } = useAccountStatusContext();
   useEffect(()=>{
+    setAccountStatus("idle");
+
     const getNotifications=async()=>{
        const notificationListData = await GetUnreadNotifactionsByUser(userId,getToken());
        if (notificationListData || notificationListData.length> 0)
          setNotificationList(notificationListData);
     }
       getNotifications();
-  },[userId])
+  },[userId, setAccountStatus])
 
 
   return (

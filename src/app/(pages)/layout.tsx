@@ -15,17 +15,28 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
   const [showHeader, setShowHeader] = useState(true);
 
   useEffect(() => {
-    const isLargeScreen = window.innerWidth >= 1024;
-    const isLogin = route === "/LoginPage";
-    const isItineraryRoute = route.startsWith("/ItinerarySuggestionPages");
+    
+      const isLargeScreen = window.innerWidth >= 1024;
+      const isItineraryRoute = route.startsWith("/ItinerarySuggestionPages");
+      setIsHidden(!isLargeScreen); 
+      setShowNav(isLargeScreen || (!isLargeScreen && isItineraryRoute));
 
-    setIsHidden(!isLargeScreen);
-
-    setShowNav(!isLogin && (isLargeScreen || (!isLargeScreen && isItineraryRoute)));
-
-    setShowSide(!isLogin);
-
-    setShowHeader(!isLogin || (isLogin && !isLargeScreen));
+      if(route === "/LoginPage" && isLargeScreen){
+        setIsHidden(false);
+        setShowNav(false);
+        setShowSide(false);
+        setShowHeader(false);
+      }else if(route === "/LoginPage" && !isLargeScreen){
+        setIsHidden(false);
+        setShowNav(false);
+        setShowSide(false);
+        setShowHeader(true);
+      }else{
+        setShowNav(true);
+        setShowSide(true);
+        setShowHeader(true);
+      }
+      
   }, [route]);
 
   return (

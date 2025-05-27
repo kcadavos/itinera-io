@@ -12,7 +12,6 @@ import { ITripData } from "@/lib/TripInterfaces";
 import { getToken } from "@/lib/services/DataServices";
 import { GetTripListByUserId } from "@/lib/services/TripDataService";
 import TripCardComponent from "./TripCardComponent";
-import FooterComponent from "./FooterComponent";
 
 const DesktopSideComponent = () => {
   const { name } = useNameContext();
@@ -42,11 +41,11 @@ const DesktopSideComponent = () => {
   return (
     <div className="hidden lg:block">
       <div>
-        <div className="bg-[#E1ECFF] min-h-[12rem] pt-2 pb-10 relative w-full mb-6 max-h-[13.5rem]">
+        <div className="bg-[#E1ECFF] min-h-[12rem] pt-2 pb-10 relative w-full  max-h-[13.5rem]">
           <div className="mx-6 mt-10 font-inter">
             <img
               className="h-10 absolute top-5 "
-              src="/assets/Icons/itineraLogo.svg"
+              src="/assets/Icons/itineralogo2.svg"
               alt=""
             />
 
@@ -67,7 +66,7 @@ const DesktopSideComponent = () => {
         </div>
       </div>
 
-      <div className="overflow-y-scroll max-h-[28rem]">
+      <div className="overflow-y-scroll max-h-[31rem] rounded-2xl">
         {tripListData !== null && tripListData.length > 0 && (
           <>
             <TripCardComponent trips={tripListData} />
@@ -87,9 +86,16 @@ const DesktopSideComponent = () => {
           </div>
         )}
       </div>
-      <div className="w-[25rem] fixed bottom-0">
-        <FooterComponent />
-      </div>
+      <div className="fixed bottom-0 ">
+            <div className=" bg-[#1ABC9C] py-3 rounded-t-4xl lg:min-w-[20rem] xl:min-w-[25rem] ">
+                <div className="text-white flex justify-center text-[2rem] font-medium ">        
+                
+                    <p>Initiate a Trip</p>
+                    <img src="/assets/Icons/Orion_aircraft 1.svg" alt="" className='w-12 h-12' />
+                    
+                </div>
+            </div>
+        </div>
     </div>
   );
 };
