@@ -87,12 +87,10 @@ const DesktopSideComponent = () => {
         )}
       </div>
       <div className="fixed bottom-0 ">
-            <div className=" bg-[#1ABC9C] py-3 rounded-t-4xl lg:min-w-[20rem] xl:min-w-[25rem] ">
-                <div className="text-white flex justify-center text-[2rem] font-medium ">        
-                
-                    <p>Initiate a Trip</p>
-                    <img src="/assets/Icons/Orion_aircraft 1.svg" alt="" className='w-12 h-12' />
-                    
+            <div className=" bg-[#1ABC9C] py-3 rounded-t-4xl lg:min-w-[20rem] xl:min-w-[24rem] ">
+                <div className="text-white flex justify-center text-[2rem] font-medium ">
+                  <p>Initiate a Trip</p>
+                  <img src="/assets/Icons/Orion_aircraft 1.svg" alt="airplane" className='w-12 h-12' />   
                 </div>
             </div>
         </div>
