@@ -27,7 +27,7 @@ const {loginStatus, setLoginStatus} = useLoginStatusContext();
       {/* mobile */}
       <div className="block lg:hidden">
         
-        <div className="bg-[#ECF0F1] rounded-2xl min-h-[26rem] min-w-[20rem] sm:min-h-[25rem] sm:max-w-none mx-4 sm:mx-16 md:mx-24 px-4 relative mb-25 flex justify-center">
+        <div className="bg-[#ECF0F1] rounded-2xl min-h-[26rem] min-w-[20rem] sm:min-h-[25rem] sm:max-w-none mx-4 sm:mx-16 md:mx-24 px-4 relative mb-25 mt-10 flex justify-center">
           {
             switchBool ? <LogInComponent /> : <AccountCreationComponent switchboolswitch={setSwitchBool} />
           }  
@@ -65,7 +65,7 @@ const {loginStatus, setLoginStatus} = useLoginStatusContext();
           
           </div>
 
-          <div className="float-right bg-[#E1ECFF] min-h-screen max-h-screen">
+          <div className="float-right bg-[#E1ECFF] min-h-screen max-h-screen ">
             <div className=" rounded-2xl min-h-[13.2rem] max-h-[13.2rem] pt-10 pb-5 min-w-[30rem] max-w-[30rem] mb-2">
 
 
@@ -113,7 +113,7 @@ const {loginStatus, setLoginStatus} = useLoginStatusContext();
             </div>
   
   
-            <div className="bg-[#1ABC9C] min-w-[32rem] py-5 rounded-t-4xl mt-[2.6rem] absolute bottom-0">
+            <div className="bg-[#1ABC9C] w-1/3 py-5 rounded-t-4xl mt-[2.6rem]  absolute bottom-0">
               {
                 switchBool ? (
                   <div className="flex text-white text-xl justify-center ">
