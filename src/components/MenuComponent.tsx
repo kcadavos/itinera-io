@@ -7,10 +7,12 @@ import React, { useState, useRef, useEffect } from "react";
 const MenuComponent = () => {
   const [isHidden, setIsHidden] = useState(true);
   const { accountStatus, setAccountStatus } = useAccountStatusContext();
+
   const menuRef = useRef<HTMLDivElement>(null);
+  const buttonRef = useRef<HTMLDivElement>(null);
 
   const menuToggle = () => {
-    setIsHidden(!isHidden);
+    setIsHidden((prev) => !prev);
   };
 
   const changeHeader = () => {
@@ -26,25 +28,38 @@ const MenuComponent = () => {
   };
 
   useEffect(() => {
-    const handleClickOutside = (e: MouseEvent) => {
-      if (menuRef.current && !menuRef.current.contains(e.target as Node)) {
-        setIsHidden(true);
+    // Delay setting up the listener to avoid reacting to the same click that toggled it
+    const timeout = setTimeout(() => {
+      const handleClickOutside = (e: MouseEvent) => {
+        const target = e.target as Node;
+
+        if (
+          menuRef.current &&
+          buttonRef.current &&
+          !menuRef.current.contains(target) &&
+          !buttonRef.current.contains(target)
+        ) {
+          setIsHidden(true);
+        }
+      };
+
+      if (!isHidden) {
+        document.addEventListener("mousedown", handleClickOutside);
       }
-    };
 
-    if (!isHidden) {
-      document.addEventListener("mousedown", handleClickOutside);
-    }
+      return () => {
+        document.removeEventListener("mousedown", handleClickOutside);
+      };
+    }, 0);
 
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
+    return () => clearTimeout(timeout);
   }, [isHidden]);
 
   return (
     <>
       {/* Toggle Button */}
       <div
+        ref={buttonRef}
         className="lg:bg-[#1ABC9C] lg:rounded-l-full flex justify-center absolute top-5 right-5 lg:top-0 lg:right-0 p-1 bg-white rounded-4xl lg:p-4 cursor-pointer z-50"
         onClick={menuToggle}
       >
@@ -55,7 +70,7 @@ const MenuComponent = () => {
         />
       </div>
 
-      {/* Menu with smooth transition and outside click */}
+      {/* Menu */}
       <div
         ref={menuRef}
         className={`
