@@ -12,7 +12,7 @@ const MenuComponent = () => {
   const buttonRef = useRef<HTMLDivElement>(null);
 
   const menuToggle = () => {
-    setIsHidden((prev) => !prev);
+    setIsHidden(!isHidden);
   };
 
   const changeHeader = () => {
