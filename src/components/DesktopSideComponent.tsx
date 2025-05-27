@@ -45,7 +45,7 @@ const DesktopSideComponent = () => {
           <div className="mx-6 mt-10 font-inter">
             <img
               className="h-10 absolute top-5 "
-              src="/assets/Icons/itineraLogo.svg"
+              src="/assets/Icons/itineralogo2.svg"
               alt=""
             />
 

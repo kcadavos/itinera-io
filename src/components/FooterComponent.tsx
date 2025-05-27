@@ -37,30 +37,7 @@ const FooterComponent = () => {
           },
           onClick: undefined,
         };
-      case accountStatus === "successAcc":
-      case accountStatus === "failAcc":
-      case accountStatus === "account":
-        return {
-          css: "",
-          alt: undefined,
-          text: "Change Password",
-          src: undefined,
-          href: "",
-          onClick: handleClick,
-        };
-      case accountStatus === "failed":
-      case accountStatus === "successPass":
-      case accountStatus === "mustmatch":
-      case accountStatus === "password":
-        return {
-          css: "",
-          alt: undefined,
-          text: "Change Name",
-          src: undefined,
-          href: "",
-          onClick: handleClick,
-        };
-
+      
       default:
         return {
           css: "w-auto h-8 items-center ",

@@ -10,7 +10,7 @@ const AccountDetailsComponent = () => {
   const [ username, setUsername] = useState<string>('');
   const [ email, setEmail] = useState<string>('');
   const [originalUsername, setOriginalUsername] = useState('');
-  const {setAccountStatus} = useAccountStatusContext();
+  const {setAccountStatus, accountStatus} = useAccountStatusContext();
 
   useEffect(()=>{
     const userId = Number(sessionStorage.getItem("ItineraUserId")) || 0 ;
@@ -21,6 +21,10 @@ const AccountDetailsComponent = () => {
     }
     fetchEmail()
   }, [])
+
+  const handleClick = () => {
+    setAccountStatus(accountStatus === "password" ? "account" : "password");
+  };
 
   const  submitChange = async ()=>{
     const userId = Number(sessionStorage.getItem("ItineraUserId")) || 0 ;
@@ -53,7 +57,7 @@ const AccountDetailsComponent = () => {
     
   }
   return (
-    <div className="bg-[#ECF0F1] rounded-2xl min-h-[26rem] min-w-[20rem] lg:min-h-[25rem] lg:max-w-[20rem] mx-4 px-4 relative mb-25 ">
+    <div className="bg-[#ECF0F1] rounded-2xl min-h-[26rem] min-w-[20rem] lg:min-h-[25rem] lg:max-w-full mx-4 px-4 relative mb-25 ">
     <div className="flex justify-start my-4 pt-10">
       <div className="mr-4">
         <img
@@ -68,7 +72,7 @@ const AccountDetailsComponent = () => {
         placeholder="Email Address"
         required
         disabled
-        className="bg-[#D9D9D9] text-[#34495E] rounded-lg p-1 px-6 "
+        className="bg-[#D9D9D9] text-[#34495E] rounded-lg p-1 px-6 w-full"
         value={email}
         onChange={(e) => setEmail(e.target.value)}
       />
@@ -90,11 +94,14 @@ const AccountDetailsComponent = () => {
         placeholder=""
         value={username}
         required
-        className="bg-white rounded-lg p-1 px-6"
+        className="bg-white rounded-lg p-1 px-6 w-full"
         onChange={(e) => setUsername(e.target.value)}
 
       />
     </div>
+  
+    <button className="flex justify-self-center mt-20" onClick={handleClick}><p className="text-[#34495E]">Change Password Instead?</p></button>
+
 
     <div className="flex justify-center mt-18 absolute -bottom-7 left-1/2 transform -translate-x-1/2">
       <button className="bg-[#E67E22] hover:bg-[#d56b0f] border-4 border-white text-xl text-white rounded-[2.5rem] p-3 cursor-pointer" onClick={submitChange}>
