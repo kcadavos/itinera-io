@@ -3,13 +3,13 @@ import { NotificationTypeEnum } from '@/lib/NotificationInterfaces';
 import { getToken } from '@/lib/services/DataServices';
 import { GenerateAndSaveItinerary } from '@/lib/services/ItineraryServices';
 import { AddGroupNotification } from '@/lib/services/NotificationService';
-import  { useEffect, useState} from 'react'
+import  {useState} from 'react'
 
 
 const CloseVotingComponent = () => {
 
   const [schedIntensity, setSchedIntensity] = useState<number>(2);
-  const {setSelectedTripIsVotingOpen,selectedTripIsVotingOpen}=useSelectedTripIsVotingOpenContext();
+  const {setSelectedTripIsVotingOpen}=useSelectedTripIsVotingOpenContext();
   const{selectedTripId}= useSelectedTripIdContext();
   const {selectedParticipantsIdList}=useSelectedTripParticipantsIdListContext();
   const {selectedTripOwnerId} =useSelectedTripOwnerIdContext();
@@ -61,10 +61,7 @@ const CloseVotingComponent = () => {
     }
   }
 
-  useEffect(()=>{
-  console.log("VOTING STATUS"+selectedTripIsVotingOpen);
-  console.log("INTENSE"+ schedIntensity)
-  },[selectedTripIsVotingOpen,schedIntensity])
+  
 
   return (
     <div >
