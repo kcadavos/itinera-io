@@ -1,4 +1,4 @@
-import { useAccountStatusContext } from "@/context/DataContext";
+
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import React from "react";
@@ -6,7 +6,7 @@ import React from "react";
 const FooterComponent = () => {
   const path = usePathname();
   // const {loginStatus} = useLoginStatusContext();
-  const { accountStatus, setAccountStatus } = useAccountStatusContext();
+ 
 
   
 
