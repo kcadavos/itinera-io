@@ -193,7 +193,7 @@ const AddTripComponent = () => {
               referenceId: tripId, // referencing the recently added trip
               referenceTable: "trip",
             };
-            console.log("NOTIF" + JSON.stringify(notificationToAdd));
+            
             const addUpdateNotificationSuccess = await AddGroupNotification(
               notificationToAdd,
               getToken()
@@ -218,7 +218,6 @@ const AddTripComponent = () => {
               referenceId: tripId, // referencing the recently added trip
               referenceTable: "trip",
             };
-            console.log("NOTIF" + JSON.stringify(notificationToAdd));
             const addTripNotificationSuccess = await AddGroupNotification(
               notificationToAdd,
               getToken()

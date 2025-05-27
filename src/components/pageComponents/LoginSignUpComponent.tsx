@@ -14,7 +14,6 @@ const {loginStatus, setLoginStatus} = useLoginStatusContext();
   const handleSwitch = () => {
     setLoginStatus(loginStatus === "create" ? "idle" : "create");
     setSwitchBool(!switchBool);
-    console.log(switchBool)
   } 
 
   // useEffect(()=>{

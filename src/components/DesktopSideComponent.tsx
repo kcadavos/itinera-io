@@ -31,11 +31,10 @@ const DesktopSideComponent = () => {
     };
     if (userId) {
       getTripListData();
-      console.log("USER" + userId);
+      
     } else {
       setUserId(Number(sessionStorage.getItem("ItineraUserId")));
     }
-    console.log("TLDATA:" + JSON.stringify(tripListData));
   }, [selectedTripId, userId, router]);
 
   return (
