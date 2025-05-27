@@ -36,7 +36,7 @@ const {loginStatus, setLoginStatus} = useLoginStatusContext();
         <div className="text-[#2C3E50] text-center ">
               
               {
-                switchBool ? <p className="mt-16" >Don’t have an account?</p> : <p className="mt-16" >Already have an account?</p>
+                switchBool ? <p className="mt-16" >Don&apos;t have an account?</p> : <p className="mt-16" >Already have an account?</p>
               }
           </div>
 
@@ -117,12 +117,12 @@ const {loginStatus, setLoginStatus} = useLoginStatusContext();
               {
                 switchBool ? (
                   <div className="flex text-white text-xl justify-center ">
-                    <button className="bg-none cursor-pointer " onClick={handleSwitch}>Don’t have an account? Sign Up</button>
+                    <button className="bg-none cursor-pointer " onClick={handleSwitch}>Don&apos;t have an account? <span className="underline">Sign Up</span> </button>
                   </div>
                   
                 ) : (
                   <div className="flex text-white text-xl justify-center ">
-                    <button className="bg-none cursor-pointer" onClick={handleSwitch}>Already have an Account? Log In</button>
+                    <button className="bg-none cursor-pointer" onClick={handleSwitch}>Already have an Account? <span className="underline">Log In</span></button>
                   </div>
                 )
               }

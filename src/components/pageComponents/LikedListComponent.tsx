@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useEffect, useState } from 'react'
-import { useSelectedTripIdContext, useUserIdContext } from '@/context/DataContext';
+import { useSelectedTripIdContext, useSelectedTripIsVotingOpenContext, useUserIdContext } from '@/context/DataContext';
 import { IActivityListData } from '@/lib/Interfaces';
 import { GetLikedActivities } from '@/lib/services/ActivityServices';
 import LikedCardComponent from '../LikedCardComponent';
@@ -10,6 +10,7 @@ import { getToken } from '@/lib/services/DataServices';
 const LikedListComponent = () => {
     const {userId} = useUserIdContext();
     const {selectedTripId} = useSelectedTripIdContext();
+    const {selectedTripIsVotingOpen} = useSelectedTripIsVotingOpenContext();
     const [likedList, setLikedList] = useState<IActivityListData[] | null>(null);
   
 
@@ -30,7 +31,11 @@ const LikedListComponent = () => {
       {
         likedList != null ? 
         <div>
-          <p className='text-center text-[#2C3E50] mb-2'>These are the acivities you liked.</p>
+          {
+            selectedTripIsVotingOpen ? <p className='text-center text-[#2C3E50] my-2'>These are the acivities you liked.</p> : 
+            <p className='text-center text-[#2C3E50] my-2'>You&apos;re in for these!</p>
+          }
+          
           <div className='mb-35' > 
             <LikedCardComponent activities={likedList} getLikedList={getLikedList} />
           </div>
