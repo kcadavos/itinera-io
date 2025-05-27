@@ -57,62 +57,62 @@ const AccountDetailsComponent = () => {
     
   }
   return (
-    <div className="bg-[#ECF0F1] rounded-2xl min-h-[26rem] min-w-[20rem] lg:min-h-[22rem] lg:max-w-full mx-4 px-4 relative mb-25 lg:mx-30 xl:mx-40">
-    <div className="flex justify-start my-4 pt-10">
-      <div className="mr-4">
-        <img
-          src="/assets/Icons/Orion_user-address.svg"
-          alt="user address"
-          className="w-10 p-1"
+    <div className="bg-[#ECF0F1] rounded-2xl min-h-[26rem] min-w-[20rem] lg:min-h-[22rem] lg:max-w-full mx-4 px-4 relative mb-25 ">
+      <div className="flex justify-start my-4 pt-10">
+        <div className="mr-4">
+          <img
+            src="/assets/Icons/Orion_user-address.svg"
+            alt="user address"
+            className="w-10 p-1"
+          />
+        </div>
+
+        <input
+          type="email"
+          placeholder="Email Address"
+          required
+          disabled
+          className="bg-[#D9D9D9] text-[#34495E] rounded-lg p-1 px-6 w-full"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
         />
       </div>
 
-      <input
-        type="email"
-        placeholder="Email Address"
-        required
-        disabled
-        className="bg-[#D9D9D9] text-[#34495E] rounded-lg p-1 px-6 w-full"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-      />
-    </div>
 
 
+      <div className="flex justify-start my-4">
+        <div className="mr-4">
+          <img
+            src="/assets/Icons/Orion_profile-picture.svg"
+            alt="name"
+            className="w-10 p-1"
+          />
+        </div>
 
-    <div className="flex justify-start my-4">
-      <div className="mr-4">
-        <img
-          src="/assets/Icons/Orion_profile-picture.svg"
-          alt="name"
-          className="w-10 p-1"
+        <input
+          type="text"
+          placeholder=""
+          value={username}
+          required
+          className="bg-white rounded-lg p-1 px-6 w-full"
+          onChange={(e) => setUsername(e.target.value)}
+
         />
       </div>
+    
+      <button className="flex justify-self-center mt-20" onClick={handleClick}><p className="text-[#34495E]">Change Password Instead?</p></button>
 
-      <input
-        type="text"
-        placeholder=""
-        value={username}
-        required
-        className="bg-white rounded-lg p-1 px-6 w-full"
-        onChange={(e) => setUsername(e.target.value)}
 
-      />
+      <div className="flex justify-center mt-18 absolute -bottom-7 left-1/2 transform -translate-x-1/2">
+        <button className="bg-[#E67E22] hover:bg-[#d56b0f] border-4 border-white text-xl text-white rounded-[2.5rem] p-3 cursor-pointer" onClick={submitChange}>
+          <img
+            src="/assets/Icons/Orion_add-user.svg"
+            className="w-10"
+            alt="add"
+          />
+        </button>
+      </div>
     </div>
-  
-    <button className="flex justify-self-center mt-20" onClick={handleClick}><p className="text-[#34495E]">Change Password Instead?</p></button>
-
-
-    <div className="flex justify-center mt-18 absolute -bottom-7 left-1/2 transform -translate-x-1/2">
-      <button className="bg-[#E67E22] hover:bg-[#d56b0f] border-4 border-white text-xl text-white rounded-[2.5rem] p-3 cursor-pointer" onClick={submitChange}>
-        <img
-          src="/assets/Icons/Orion_add-user.svg"
-          className="w-10"
-          alt="add"
-        />
-      </button>
-    </div>
-  </div>
   )
 }
 
