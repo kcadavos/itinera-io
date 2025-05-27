@@ -8,9 +8,7 @@ const FooterComponent = () => {
   // const {loginStatus} = useLoginStatusContext();
   const { accountStatus, setAccountStatus } = useAccountStatusContext();
 
-  const handleClick = () => {
-    setAccountStatus(accountStatus === "password" ? "account" : "password");
-  };
+  
 
   const selectedPage = () => {
     switch (true) {
