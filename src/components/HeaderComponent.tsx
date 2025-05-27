@@ -438,10 +438,10 @@ const HeaderComponent = () => {
   const desktop = desktopLogic();
   return (
     <div>
-      <div className="bg-[#E1ECFF] lg:bg-[#ECF0F1] min-h-[14rem] lg:min-h-[7.5rem] lg:max-h-[7.5rem] lg:w-full pt-10 pb-10 relative ">
-        <div className="mx-8 mt-10 lg:mt-0 font-inter lg:hidden">
+      <div className="bg-[#E1ECFF] lg:bg-[#ECF0F1] min-h-[13rem] lg:min-h-[7.5rem] lg:max-h-[7.5rem] lg:w-full pt-10 pb-10 relative ">
+        <div className="mx-8 mt-9 lg:mt-0 font-inter lg:hidden">
           <img
-            className="h-12 absolute left-6 top-10"
+            className="h-12 absolute left-6 top-9"
             src="/assets/Icons/itineralogo2.svg"
             alt=""
           />

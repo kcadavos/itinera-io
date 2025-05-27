@@ -74,7 +74,7 @@ const LogInComponent = () => {
   return (
     <div className=''>
       
-      <div className="flex justify-start my-4 lg:my-8 pt-24 lg:pt-8">
+      <div className="flex justify-start my-4 lg:my-8 pt-20 lg:pt-8">
         <div className="py-2  mr-4"> 
           <img src="/assets/Icons/Orion_user-address.svg" alt="user address" className="w-10" />
         </div>

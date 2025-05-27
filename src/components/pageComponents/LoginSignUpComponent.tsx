@@ -27,7 +27,7 @@ const {loginStatus, setLoginStatus} = useLoginStatusContext();
       {/* mobile */}
       <div className="block lg:hidden">
         
-        <div className="bg-[#ECF0F1] rounded-2xl min-h-[26rem] min-w-[20rem] sm:min-h-[25rem] sm:max-w-none mx-4 sm:mx-16 md:mx-24 px-4 relative mb-25 flex justify-center">
+        <div className="bg-[#ECF0F1] rounded-2xl min-h-[23rem] min-w-[20rem] sm:min-h-[25rem] sm:max-w-none mx-4 sm:mx-16 md:mx-24 px-4 relative mb-25 flex justify-center">
           {
             switchBool ? <LogInComponent /> : <AccountCreationComponent switchboolswitch={setSwitchBool} />
           }  

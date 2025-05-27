@@ -40,7 +40,7 @@ const NavbarComponent = () => {
   const currentPath = usePathname();
 
   return (
-    <div className="bg-[#1ABC9C] fixed lg:relative bottom-0 lg:top-0  py-5 rounded-t-4xl lg:h-18 lg:py-3 lg:rounded-none  w-full    lg:pr-15 ">
+    <div className="bg-[#1ABC9C] fixed lg:relative bottom-0 lg:top-0  py-3 rounded-t-4xl lg:h-18 lg:py-3 lg:rounded-none  w-full    lg:pr-15 ">
       <div className="flex gap-5 lg:gap-0 justify-center lg:justify-around">
         {navItems.map(({ name, href, srcBlack, srcWhite }) => {
           const isActive = currentPath === href;
