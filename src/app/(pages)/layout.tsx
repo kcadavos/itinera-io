@@ -12,7 +12,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
   const [isHidden, setIsHidden] = useState(false);
   const [showNav, setShowNav] = useState(false);
   const [showSide, setShowSide] = useState(false);
-  const [showHeader, setShowHeader] = useState(false);
+  const [showHeader, setShowHeader] = useState(true);
 
   useEffect(() => {
     
@@ -41,13 +41,21 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
 
   return (
     <div>
-      <div className={`${route === "/LoginPage" ? "flex flex-col" : "grid lg:grid-cols-4 lg:gap-0"}`}>
-       {showSide && <div className="lg:col-[1]">
-          <DesktopSideComponent />
-        </div>}
+      <div
+        className={`${
+          route === "/LoginPage"
+            ? "flex flex-col"
+            : "grid lg:grid-cols-4 lg:gap-0"
+        }`}
+      >
+        {showSide && (
+          <div className="lg:col-[1]">
+            <DesktopSideComponent />
+          </div>
+        )}
         <div className="w-full lg:col-start-2 lg:col-span-3">
           {showNav && <NavbarComponent />}
-         {showHeader && <HeaderComponent/>}
+          {showHeader && <HeaderComponent />}
           {children}
         </div>
       </div>
