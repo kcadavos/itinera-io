@@ -3,6 +3,7 @@ import DesktopSideComponent from "@/components/DesktopSideComponent";
 import FooterComponent from "@/components/FooterComponent";
 import HeaderComponent from "@/components/HeaderComponent";
 import NavbarComponent from "@/components/NavbarComponent";
+//import { set } from "date-fns";
 
 import { usePathname } from "next/navigation";
 import React, { useEffect, useState } from "react";
@@ -31,6 +32,9 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
         setShowNav(false);
         setShowSide(false);
         setShowHeader(true);
+      }else if(!isLargeScreen && isItineraryRoute){
+        setShowNav(true);
+        setIsHidden(false);
       }else{
         setShowNav(true);
         setShowSide(true);
