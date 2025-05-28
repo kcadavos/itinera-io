@@ -277,7 +277,7 @@ const HeaderComponent = () => {
     if (path === "/ItinerarySuggestionPages/ItineraryPage") {
       return {
         topMessage: (
-          <p>
+          <p >
             {" "}
             Your itinerary for{" "}
             <span className="text-5xl text-[#1A89BC]">
@@ -456,9 +456,9 @@ const HeaderComponent = () => {
 
           <div className={mobile.color}>{mobile.message}</div>
         </div>
-        <div className="hidden lg:block mt-0">
-          <div className="text-3xl">{desktop.topMessage}</div>
-          <div className="text-2xl">{desktop.bottomMessage}</div>
+        <div className="hidden lg:block mt-0 ps-10 ">
+          <div className="text-3xl ">{desktop.topMessage}</div>
+          <div className="text-2xl ">{desktop.bottomMessage}</div>
         </div>
       </div>
     </div>

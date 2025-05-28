@@ -80,7 +80,7 @@ const ItineraryActivityDetailsComponent = ({
   };
 
   return (
-    <>
+    <div className="">
       {activityDetail != null ? (
         <div className=" flex justify-between ">
           {" "}
@@ -134,7 +134,7 @@ const ItineraryActivityDetailsComponent = ({
       ) : (
         <p> Missing activity detail Info</p>
       )}
-    </>
+    </div>
   );
 };
 

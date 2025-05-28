@@ -51,12 +51,16 @@ console.log(itineraryListData+ "ITI IS CHANGED")
 },[itineraryListData])
 
   return (
-    <div className='bg-[#ECF0F1] max-w-screen flex flex-col items-center pb-20'>
+    <div className='bg-[#ECF0F1] max-w-screen min-h-screen flex flex-col items-center  '>
 
       {selectedTripIsVotingOpen  ?   <CloseVotingComponent/>: 
 
        ( (itineraryListData!=null && itineraryListData.length>0)?
-       <DisplayItineraryDayComponent iList={itineraryListData}/>
+       (
+        <div className="pb-32 w-full flex justify-center">
+          <DisplayItineraryDayComponent iList={itineraryListData} />
+        </div>
+      )
        : <p> Missing Itinerary Data.</p>
        )
       }
