@@ -107,11 +107,25 @@ const CloseVotingComponent = () => {
             <label > <input value="2" type="radio" className='mr-2' checked={schedIntensity===2} onChange={(e) => setSchedIntensity(Number(e.target.value))}/> 2 - Moderate</label>
             <label > <input value="3" type="radio" className='mr-2' checked={schedIntensity===3} onChange={(e) => setSchedIntensity(Number(e.target.value))}/> 3 - Busy</label>
           </div>
-          <div className="flex justify-center absolute -bottom-0 left-1/2 transform -translate-x-1/2">
+          {/*mobile view only button*/}
+          <div className=" lg:hidden  flex justify-center absolute -bottom-0 left-1/2 transform -translate-x-1/2 ">
             <button  onClick={GenerateItinerary} className="bg-[#E67E22] hover:bg-[#d56b0f] border-4 border-white text-xl text-white rounded-[2.5rem] p-3.5 cursor-pointer" >
               <img src="/assets/Icons/Orion_travel-map 1.svg" className="w-10" alt="Generate Itinerary" 
                 />
             </button>
+            </div>
+            {/*for desktop view button*/}
+            <div className="hidden lg:flex  justify-center absolute -bottom-0 left-1/2 transform -translate-x-1/2 ">
+                <button className="bg-[#E67E22] hover:bg-[#d56b0f] border-4 border-white text-xl text-white rounded-[2.5rem] p-2 px-4 cursor-pointer flex justify-center items-center">
+                  <p className="mr-4">Generate Itinerary</p>
+                  <img
+                    src="/assets/Icons/Orion_travel-map 1.svg"
+                    className="w-8"
+                    alt="add"
+                    onClick={GenerateItinerary}
+                  />
+                </button>
+            
           </div> 
         </div>
         ) :(<p className='text-xl p-5 font-medium'>Hang tight! The itinerary will be ready once you have voted on all suggested activities and the trip owner ends the voting phase.</p>)}
