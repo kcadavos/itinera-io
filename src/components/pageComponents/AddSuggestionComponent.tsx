@@ -19,6 +19,9 @@ const AddSuggestionComponent = () => {
   const [category, setCategory] = useState<string>("");
   const [address, setAddress] = useState<string>("");
   const [detailes, setDetails] = useState<string>("");
+  const [errorDisplayActivity, setErrorDisplayActivity] = useState<boolean>(false);
+  const [errorDisplayCategory, setErrorDisplayCategory] = useState<boolean>(false);
+  const [errorDisplayAddress, setErrorDisplayAddress] = useState<boolean>(false);
   let categoryChoices: string = "Category";
 
   const router = useRouter();
@@ -34,13 +37,35 @@ const AddSuggestionComponent = () => {
   };
 
   const addActivityFetch = async () => {
-    const result = await AddActivity(activityData, getToken());
 
-    if (result) {
-      router.push("/ItinerarySuggestionPages/UndecidedListPage");
-    } else {
-      alert("Something went wrong");
+    if(activity != "" && category != 'Category' && address != ""){
+      const result = await AddActivity(activityData, getToken());
+
+      if (result) {
+        router.push("/ItinerarySuggestionPages/UndecidedListPage");
+      } 
+
+    }else{
+      if(activity == ""){
+        setErrorDisplayActivity(true);
+      }else{
+        setErrorDisplayActivity(false);
+      }
+
+      if(categoryChoices == 'Category'){
+        setErrorDisplayCategory(true);
+      }else{
+        setErrorDisplayCategory(false);
+      }
+
+      if(address == ""){
+        setErrorDisplayAddress(true);
+      }else{
+        setErrorDisplayAddress(false);
+      }
     }
+ 
+
   };
 
   switch (category) {
@@ -71,7 +96,13 @@ const AddSuggestionComponent = () => {
         {
           selectedTripIsVotingOpen ?
           <div className="bg-[#ECF0F1] rounded-2xl min-h-[28rem] min-w-[20rem] lg:min-h-[25rem] lg:max-w-[20rem] mx-4 sm:mx-16 px-4 relative mb-40">
-            <div className="p-2 pt-8">
+
+            {
+              errorDisplayActivity || errorDisplayCategory || errorDisplayAddress ? <p className="text-[#F40000] text-center text-md pt-2">*Field Required</p> : <></>
+            }
+
+
+            <div className={`p-2  ${errorDisplayActivity || errorDisplayCategory || errorDisplayAddress ? 'pt-0' : 'pt-8'}`}>
               <div className="flex justify-start my-4">
                 <div className=" mr-2">
                   <img
@@ -84,7 +115,7 @@ const AddSuggestionComponent = () => {
                 <input
                   type="text"
                   placeholder="Activity"
-                  className="bg-white rounded-md py-1 px-2 w-full"
+                  className={`bg-white rounded-md py-1 px-2 w-full ${errorDisplayActivity ? 'border-2 border-[#F40000]' : 'border-none'}`}
                   onChange={(e) => setActivity(e.target.value)}
                 />
               </div>
@@ -100,7 +131,7 @@ const AddSuggestionComponent = () => {
 
                 <DropdownMenu>
                   <DropdownMenuTrigger asChild>
-                    <button className={`bg-white rounded-md py-1 px-2 w-full ${(categoryChoices == 'Adventure & Outdoors' || categoryChoices == 'Culture & History' || categoryChoices == 'Food & Drink' || categoryChoices == 'Relaxation & Wellness' || categoryChoices == 'Entertainment & Nightlife') ? 'text-black' : 'text-[#34495E]/60'}  text-start hover:border-1 hover:border-black `}>
+                    <button className={`bg-white rounded-md py-1 px-2 w-full ${(categoryChoices == 'Adventure & Outdoors' || categoryChoices == 'Culture & History' || categoryChoices == 'Food & Drink' || categoryChoices == 'Relaxation & Wellness' || categoryChoices == 'Entertainment & Nightlife') ? 'text-black' : 'text-[#34495E]/60'}  text-start hover:border-1 hover:border-black ${errorDisplayCategory ? 'border-2 border-[#F40000]' : 'border-none'} `}>
                       <div className="flex justify-between">
                         {categoryChoices}
 
@@ -195,7 +226,7 @@ const AddSuggestionComponent = () => {
                 <input
                   type="text"
                   placeholder="Address"
-                  className="bg-white rounded-md py-1 px-2 w-full"
+                  className={`bg-white rounded-md py-1 px-2 w-full ${errorDisplayAddress ? 'border-2 border-[#F40000]' : 'border-none'}`}
                   onChange={(e) => setAddress(e.target.value)}
                 />
               </div>
@@ -218,13 +249,14 @@ const AddSuggestionComponent = () => {
               </div>
             </div>
 
+            
+
             <div className="flex justify-center absolute -bottom-7 left-1/2 transform -translate-x-1/2">
-              <button className="bg-[#E67E22] hover:bg-[#d56b0f] border-4 border-white text-xl text-white rounded-[2.5rem] p-3 cursor-pointer">
+              <button className="bg-[#E67E22] hover:bg-[#d56b0f] border-4 border-white text-xl text-white rounded-[2.5rem] p-3 cursor-pointer" onClick={addActivityFetch}>
                 <img
                   src="/assets/Icons/Orion_add-place_solid.svg"
                   className="w-10"
                   alt="add"
-                  onClick={addActivityFetch}
                 />
               </button>
             </div>
@@ -245,9 +277,9 @@ const AddSuggestionComponent = () => {
           {
             selectedTripIsVotingOpen ?
             <div className="bg-[#ECF0F1] rounded-2xl min-w-[20rem] xl:w-[55rem] min-h-[24rem] max-w-[55rem] mx-2 px-6 relative  ">
-              <div className="p-6 pt-8 grid grid-cols-2 gap-6">
+              <div className="px-6 pt-8 grid grid-cols-2 gap-6">
 
-                <div className="grid grid-rows-4 p-4">
+                <div className="grid grid-rows-4 px-4 pt-4">
                   <div className="flex justify-start my-4 col-[1]">
                     <div className=" mr-2">
                       <img
@@ -260,7 +292,7 @@ const AddSuggestionComponent = () => {
                     <input
                       type="text"
                       placeholder="Activity"
-                      className="bg-white rounded-md py-1 px-2 w-full"
+                      className={`bg-white rounded-md py-1 px-2 w-full ${errorDisplayActivity ? 'border-2 border-[#F40000]' : 'border-none'}`}
                       onChange={(e) => setActivity(e.target.value)}
                     />
                   </div>
@@ -276,7 +308,7 @@ const AddSuggestionComponent = () => {
 
                     <DropdownMenu>
                       <DropdownMenuTrigger asChild>
-                        <button className={`bg-white rounded-md py-1 px-2 w-full ${(categoryChoices == 'Adventure & Outdoors' || categoryChoices == 'Culture & History' || categoryChoices == 'Food & Drink' || categoryChoices == 'Relaxation & Wellness' || categoryChoices == 'Entertainment & Nightlife') ? 'text-black cursor-pinter' : 'text-[#34495E]/60'}  text-start cursor-pointer`}>
+                        <button className={`bg-white rounded-md py-1 px-2 w-full ${(categoryChoices == 'Adventure & Outdoors' || categoryChoices == 'Culture & History' || categoryChoices == 'Food & Drink' || categoryChoices == 'Relaxation & Wellness' || categoryChoices == 'Entertainment & Nightlife') ? 'text-black cursor-pinter' : 'text-[#34495E]/60'}  text-start cursor-pointer ${errorDisplayCategory ? 'border-2 border-[#F40000]' : 'border-none'}`}>
                           <div className="flex justify-between">
                             {categoryChoices}
 
@@ -371,15 +403,19 @@ const AddSuggestionComponent = () => {
                     <input
                       type="text"
                       placeholder="Address"
-                      className="bg-white rounded-md py-1 px-2 w-full"
+                      className={`bg-white rounded-md py-1 px-2 w-full ${errorDisplayAddress ? 'border-2 border-[#F40000]' : 'border-none'}`}
                       onChange={(e) => setAddress(e.target.value)}
                     />
                   </div>
 
+                  {
+                    errorDisplayActivity || errorDisplayCategory || errorDisplayAddress ? <p className="text-[#F40000] text-center text-md pt-2">*Field Required</p> : <></>
+                  } 
+
                 </div>
                 
 
-                <div className="flex justify-start my-4 col-[2] p-4">
+                <div className="flex justify-start mt-4 col-[2] p-4">
                   <div className=" mr-2">
                     <img
                       src="/assets/Icons/Orion_map-marker2.svg"
@@ -390,21 +426,23 @@ const AddSuggestionComponent = () => {
 
                   <textarea
                     placeholder="Details"
-                    className="bg-white rounded-md py-1 px-2 pb-36 w-full resize-none"
+                    className="bg-white rounded-md py-1 px-2 pb-34 w-full resize-none"
                     maxLength={350}
                     onChange={(e) => setDetails(e.target.value)}
                   ></textarea>
+
                 </div>
+ 
               </div>
 
+            
               <div className="flex justify-center absolute -bottom-7 left-1/2 transform -translate-x-1/2">
-                <button className="bg-[#E67E22] hover:bg-[#d56b0f] border-4 border-white text-xl text-white rounded-[2.5rem] p-2 px-4 cursor-pointer flex justify-between">
+                <button className="bg-[#E67E22] hover:bg-[#d56b0f] border-4 border-white text-xl text-white rounded-[2.5rem] p-2 px-4 cursor-pointer flex justify-between" onClick={addActivityFetch}>
                   <p className="mr-4">Add Activity Suggestion</p>
                   <img
                     src="/assets/Icons/Orion_add-place_solid.svg"
                     className="w-8"
                     alt="add"
-                    onClick={addActivityFetch}
                   />
                 </button>
               </div>
