@@ -58,7 +58,12 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
           </div>
         )}
         <div className="w-full lg:col-start-2 lg:col-span-3">
-          {showNav && <NavbarComponent />}
+          {showNav &&
+          (
+            <div className={route.startsWith("/ItinerarySuggestionPages") ? "z-50 relative" : ""}>
+            <NavbarComponent />
+          </div>
+          )}
           {showHeader && <HeaderComponent />}
           {children}
         </div>

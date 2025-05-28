@@ -81,6 +81,7 @@ const TripCardComponent = ({ trips }: { trips: ITripData[] }) => {
   }, [selectedTripId, trips]);
 
   useEffect(() => {
+    console.log("TRIP ID CHANGED" + selectedTripId);
     if (selectedTripId >= 0)
       sessionStorage.setItem("ItineraSelectedTripId", String(selectedTripId));
   }, [selectedTripId]);
