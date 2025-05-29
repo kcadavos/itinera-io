@@ -100,7 +100,7 @@ const AccountDetailsComponent = () => {
         />
       </div>
     
-      <button className="flex justify-self-center mt-20 cursor-pointer" onClick={handleClick}><p className="text-[#34495E]">Change Password Instead?</p></button>
+      <button className="flex justify-self-center mt-20 cursor-pointer" onClick={handleClick}><p className="text-[#34495E]  hover:underline">Change Password Instead?</p></button>
 
 
       <div className="flex justify-center mt-18 absolute -bottom-7 left-1/2 transform -translate-x-1/2">
