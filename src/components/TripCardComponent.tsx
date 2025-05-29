@@ -20,8 +20,11 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import { GetTripDetails } from "@/lib/services/TripDataService";
+import { getToken } from "@/lib/services/DataServices";
 
 const TripCardComponent = ({ trips }: { trips: ITripData[] }) => {
+  console.log(trips);
   const bgColors = [
     "bg-[#1A89BC]",
     "bg-[#4AAAE2]",
@@ -45,8 +48,47 @@ const TripCardComponent = ({ trips }: { trips: ITripData[] }) => {
   // Refs to autos croll to selected trip
   const tripRefs = useRef<(HTMLDivElement | null)[]>([]);
 
-  const updateTripContext = (trip: ITripData) => {
-    // update trip context when user selects a different card
+  // const updateTripContext = (trip: ITripData) => {
+
+    
+  //   console.log(trip+  "TRIP data 50");
+  //   setSelectedTripId(trip.id);
+  //   setSelectedTripDestination(trip.destination);
+  //   setSelectedTripStartDate(trip.startDate);
+  //   setSelectedTripEndDate(trip.endDate);
+  //   setSelectedParticipantsIdList(trip.participantsId);
+  //   setSelectedTripOwnerId(trip.ownerId);
+  //   setSelectedTripIsVotingOpen(trip.isVotingOpen);
+  // };
+
+  const updateTripContext = async (trip?: ITripData) => {
+    if (!trip) {
+      // Trip is undefined, fetch from session or API
+      const storedTripId = Number(sessionStorage.getItem("ItineraSelectedTripId"));
+      
+      if (!storedTripId || isNaN(storedTripId)) {
+        console.error("No trip ID available to fetch trip data.");
+        return;
+      }
+  
+      try {
+        const fetchedTrip = await GetTripDetails(storedTripId, getToken());
+        
+        if (fetchedTrip) {
+          console.log("Fetched trip from API:", fetchedTrip);
+          updateTripContext(fetchedTrip); // Recursively call with valid trip
+        } else {
+          console.error("Trip not found.");
+        }
+      } catch (err) {
+        console.error("Failed to fetch trip:", err);
+      }
+  
+      return;
+    }
+  
+    // Trip exists, update context
+    console.log(trip, "TRIP data 50");
     setSelectedTripId(trip.id);
     setSelectedTripDestination(trip.destination);
     setSelectedTripStartDate(trip.startDate);
@@ -55,6 +97,7 @@ const TripCardComponent = ({ trips }: { trips: ITripData[] }) => {
     setSelectedTripOwnerId(trip.ownerId);
     setSelectedTripIsVotingOpen(trip.isVotingOpen);
   };
+
   const handleSelectTrip = (trip: ITripData) => {
     if (trip.isVotingOpen) {
       router.push("/ItinerarySuggestionPages/UndecidedListPage");
@@ -66,6 +109,8 @@ const TripCardComponent = ({ trips }: { trips: ITripData[] }) => {
   const handleEditTrip = () => {
     router.push("/Trip/AddTrip");
   };
+
+
   // Auto scroll to expanded accordion item
   useEffect(() => {
     const index = trips.findIndex((trip) => trip.id === selectedTripId);
@@ -73,7 +118,13 @@ const TripCardComponent = ({ trips }: { trips: ITripData[] }) => {
     if (ref) {
       ref.scrollIntoView({ behavior: "smooth", block: "start" });
     }
-    if (selectedTripId) updateTripContext(trips[index]);
+    if (selectedTripId)
+      {
+         console.log("TRIPS INDEX" +index);
+         console.log((JSON.stringify( trips[index])));
+         console.log("len"+ trips.length);
+        updateTripContext(trips[index]);
+      }
     else
       setSelectedTripId(
         Number(sessionStorage.getItem("ItineraSelectedTripId"))

@@ -26,7 +26,7 @@ export const AddNotification = async (notification:IAddNotification, token:strin
 
 
 export const AddGroupNotification = async (notification:IAddGroupNotification, token:string)=>{
-console.log("ENTERD ADD GROUp");
+
     const res = await fetch(url+"/Notification/AddGroupNotification",{
         method: "POST",
         headers: {

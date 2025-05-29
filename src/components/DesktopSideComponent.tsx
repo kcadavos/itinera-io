@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import MenuComponent from "./MenuComponent";
 import {
   useNameContext,
+  useRefreshDesktopsideContext,
   useSelectedTripIdContext,
   useUserIdContext,
 } from "@/context/DataContext";
@@ -15,6 +16,7 @@ import TripCardComponent from "./TripCardComponent";
 import Link from "next/link";
 
 const DesktopSideComponent = () => {
+  const { refreshDesktopside } = useRefreshDesktopsideContext(); //refresh when voting is closed and  itinerary is generated
   const { name } = useNameContext();
   const { userId, setUserId } = useUserIdContext();
   const [tripListData, setTripListData] = useState<ITripData[]>([]);
@@ -25,6 +27,7 @@ const DesktopSideComponent = () => {
     const getTripListData = async () => {
       const tripList = await GetTripListByUserId(userId, getToken());
       if (tripList.length > 0 && tripList !== null) {
+        console.log(tripList);
         setTripListData(tripList);
 
         if (selectedTripId == 0) setSelectedTripId(tripList[0].id);
@@ -37,6 +40,22 @@ const DesktopSideComponent = () => {
       setUserId(Number(sessionStorage.getItem("ItineraUserId")));
     }
   }, [selectedTripId, userId, router]);
+
+useEffect(() => {
+  const getTripListData = async () => {
+    const tripList = await GetTripListByUserId(userId, getToken());
+    if (tripList.length > 0) {
+      setTripListData(tripList);
+      if (selectedTripId == 0) setSelectedTripId(tripList[0].id);
+    }
+  };
+
+  if (userId) {
+    getTripListData();
+  } else {
+    setUserId(Number(sessionStorage.getItem("ItineraUserId")));
+  }
+}, [refreshDesktopside]); // when refresh is trigged from itinerary generation
 
   return (
     <div className="hidden lg:block">
