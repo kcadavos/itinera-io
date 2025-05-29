@@ -29,6 +29,14 @@ interface userIdInterface{
     setUserId: (userId:number)=>void;
 }
 
+
+interface RefreshDesktopsideInterface {
+    refreshDesktopside: boolean;
+    setRefreshDesktopside: (refresh: boolean) => void;
+  }
+
+
+
 interface selectedTripIdInterface {
     selectedTripId: number;
     setSelectedTripId: (tripId:number)=>void;
@@ -126,6 +134,11 @@ const AccountStatusContext = createContext<AccountStatusInterFace>({
     setAccountStatus:()=>{}
 })
 
+const RefreshDesktopsideContext = createContext<RefreshDesktopsideInterface>({
+    refreshDesktopside: false,
+    setRefreshDesktopside: () => {},
+  });
+
 export function AppWrapper({ children }: { children: React.ReactNode }){
    
     const [name,setName] = useState<string>('');
@@ -140,6 +153,7 @@ export function AppWrapper({ children }: { children: React.ReactNode }){
     const [loginStatus, setLoginStatus] = useState<LoginStatus>('idle');
     const [createStatus, setCreateStatus] = useState<CreateStatus>('idle');
     const [accountStatus, setAccountStatus] = useState<AccountStatus>('idle');
+    const [refreshDesktopside, setRefreshDesktopside] = useState<boolean>(false);
 
     return(
         <AccountStatusContext.Provider value={{ accountStatus, setAccountStatus}}>
@@ -154,7 +168,9 @@ export function AppWrapper({ children }: { children: React.ReactNode }){
             <SelectedParticipantsListIdContext.Provider value ={{selectedParticipantsIdList,setSelectedParticipantsIdList}}>
             <SelectedTripOwnerIdContext.Provider value={{selectedTripOwnerId,setSelectedTripOwnerId}}>
              <SelectedTripIsVotingOpenContext.Provider value={{selectedTripIsVotingOpen,setSelectedTripIsVotingOpen}}>
+             <RefreshDesktopsideContext.Provider value={{ refreshDesktopside, setRefreshDesktopside }}>
              {children}
+             </RefreshDesktopsideContext.Provider>
              </SelectedTripIsVotingOpenContext.Provider>
             </SelectedTripOwnerIdContext.Provider>
             </SelectedParticipantsListIdContext.Provider>
@@ -215,4 +231,8 @@ export function useLoginStatusContext() {
 
   export function useAccountStatusContext(){
     return useContext(AccountStatusContext);
+  }
+
+  export function useRefreshDesktopsideContext() {
+    return useContext(RefreshDesktopsideContext);
   }

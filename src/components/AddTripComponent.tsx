@@ -25,8 +25,10 @@ import "react-datepicker/dist/react-datepicker.css";
 import { format, parse } from "date-fns";
 import { AddGroupNotification } from "@/lib/services/NotificationService";
 import { NotificationTypeEnum } from "@/lib/NotificationInterfaces";
+import { useIsMobile } from "@/lib/hooks/useIsMobile";
 
 const AddTripComponent = () => {
+  const isMobile = useIsMobile(); // uses default 1024px breakpoint
   const router = useRouter();
   const searchParams = useSearchParams();
   const mode = searchParams.get("mode");
@@ -50,6 +52,7 @@ const AddTripComponent = () => {
   const [, setParticipantIds] = useState<number[]>([]);
   const [isDisabled, setIsDisabled] = useState<boolean>(false);
 
+
   const [submitted, setSubmitted] = useState(false);
   const [
     startDateGreaterThanEndDateError,
@@ -69,6 +72,7 @@ const AddTripComponent = () => {
       setEndDate(null);
       setParticipantIds([]);
       setParticipantsEmailList("");
+      setIsDisabled(false);
     } else {
       setTripId(selectedTripId);
       setDestination(selectedTripDestination);
@@ -102,6 +106,7 @@ const AddTripComponent = () => {
       (selectedTripIsVotingOpen === false && mode !== "add")
     )
       setIsDisabled(true);
+    
   }, [selectedTripOwnerId, userId, selectedTripIsVotingOpen]);
 
   const CheckStartEndDateAreValid = (): boolean => {
@@ -151,8 +156,10 @@ const AddTripComponent = () => {
         const tripId = await AddTripReturnTripId(trip, getToken());
 
         if (tripId) {
+          console.log("ADDED TRIP ID"+tripId);
           //add is successful create group notification  for participants for added trip and forward the user to the trip dashboard
           setSelectedTripId(tripId);
+          sessionStorage.setItem("ItineraSelectedTripId", String(tripId));
           const notificationToAdd = {
             userId: foundIds, // send notifications to all the partificipants that were found
             type: NotificationTypeEnum.TripAdded,
@@ -171,7 +178,7 @@ const AddTripComponent = () => {
             console.log("Failed to add notifications.");
           }
 
-          router.push("/Trip/TripList");
+          router.push(isMobile ? "/Trip/TripList" : "/ItinerarySuggestionPages/UndecidedListPage");
         } else {
           alert(
             "Something went wrong. Trip details were not saved. Please try again."
@@ -180,7 +187,8 @@ const AddTripComponent = () => {
       } // for edit state
       else {
         const success = await EditTrip(trip, getToken());
-
+        setSelectedTripId(trip.id);
+        sessionStorage.setItem("ItineraSelectedTripId", String(trip.id));
         if (success) {
           // send update notification on existing users
           const existingUsers = foundIds.filter((id) =>
@@ -230,7 +238,8 @@ const AddTripComponent = () => {
             }
           }
 
-          router.push("/Trip/TripList");
+        
+          router.push(isMobile ? "/Trip/TripList" : "/ItinerarySuggestionPages/UndecidedListPage");
         } else
           alert(
             "Something went wrong. Trip details were not edited. Please try again"

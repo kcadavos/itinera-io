@@ -45,6 +45,9 @@ const TripList = () => {
       setUserId(Number(sessionStorage.getItem("ItineraUserId")));
     }
     console.log("TLDATA:" + JSON.stringify(tripListData));
+
+    console.log(selectedTripId +"TRIPLIST");
+  
   }, [selectedTripId, userId, router]);
 
   return (

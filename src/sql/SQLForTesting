@@ -7,8 +7,8 @@ where TripId = 21;
 --update Trip set isVotingOpen=1 where id=21;
 
 select *
-from trip
-where id=21
+from trip order by Id
+-- where id=21
 
 select * from itinerary where tripId=21
 
@@ -17,7 +17,7 @@ update Trip set isVotingOpen=1 where id=31
 delete  from Itinerary where tripId=31
 
 
-delete  from trip where ownerId=3 and id between 32 and 109
+delete  from trip where ownerId=3 and id between 118 and 118
 
 
 select * from Notification where UserId=7
@@ -32,3 +32,8 @@ select * from trip
 select * from [User]
 
 select * from trip
+
+
+
+delete  from trip where ownerId=3 and id between 112 and 115
+
