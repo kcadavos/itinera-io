@@ -52,7 +52,6 @@ const AddTripComponent = () => {
   const [, setParticipantIds] = useState<number[]>([]);
   const [isDisabled, setIsDisabled] = useState<boolean>(false);
 
-
   const [submitted, setSubmitted] = useState(false);
   const [
     startDateGreaterThanEndDateError,
@@ -106,7 +105,6 @@ const AddTripComponent = () => {
       (selectedTripIsVotingOpen === false && mode !== "add")
     )
       setIsDisabled(true);
-    
   }, [selectedTripOwnerId, userId, selectedTripIsVotingOpen]);
 
   const CheckStartEndDateAreValid = (): boolean => {
@@ -156,7 +154,7 @@ const AddTripComponent = () => {
         const tripId = await AddTripReturnTripId(trip, getToken());
 
         if (tripId) {
-          console.log("ADDED TRIP ID"+tripId);
+          console.log("ADDED TRIP ID" + tripId);
           //add is successful create group notification  for participants for added trip and forward the user to the trip dashboard
           setSelectedTripId(tripId);
           sessionStorage.setItem("ItineraSelectedTripId", String(tripId));
@@ -178,7 +176,11 @@ const AddTripComponent = () => {
             console.log("Failed to add notifications.");
           }
 
-          router.push(isMobile ? "/Trip/TripList" : "/ItinerarySuggestionPages/UndecidedListPage");
+          router.push(
+            isMobile
+              ? "/Trip/TripList"
+              : "/ItinerarySuggestionPages/UndecidedListPage"
+          );
         } else {
           alert(
             "Something went wrong. Trip details were not saved. Please try again."
@@ -201,7 +203,7 @@ const AddTripComponent = () => {
               referenceId: tripId, // referencing the recently added trip
               referenceTable: "trip",
             };
-            
+
             const addUpdateNotificationSuccess = await AddGroupNotification(
               notificationToAdd,
               getToken()
@@ -238,8 +240,11 @@ const AddTripComponent = () => {
             }
           }
 
-        
-          router.push(isMobile ? "/Trip/TripList" : "/ItinerarySuggestionPages/UndecidedListPage");
+          router.push(
+            isMobile
+              ? "/Trip/TripList"
+              : "/ItinerarySuggestionPages/UndecidedListPage"
+          );
         } else
           alert(
             "Something went wrong. Trip details were not edited. Please try again"
@@ -290,9 +295,9 @@ const AddTripComponent = () => {
     <div className="block">
       <div
         id="add"
-        className="flex flex-col h-full max-h-[90vh] bg-[#ECF0F1] rounded-2xl min-h-[28rem] min-w-[20rem] lg:min-h-[25rem] lg:max-w-full lg:mt-5 lg:mx-20 xl:mx-40 mx-4 px-4 relative mb-40 lg:mb-0"
+        className="flex flex-col h-full max-h-[90vh] bg-[#ECF0F1] rounded-2xl min-h-[28rem]  min-w-[20rem] lg:min-h-[24rem] lg:max-w-full lg:mt-5 lg:mx-20 xl:mx-40 mx-4 px-4 relative mb-40 lg:mb-0"
       >
-        <div className="p-2 pt-8 space-y-4">
+        <div className="p-2 pt-8 space-y-4 block lg:hidden">
           {submitted &&
             (!destination ||
               !startDate ||
@@ -438,15 +443,128 @@ const AddTripComponent = () => {
           </div>
         </div>
 
+        <div className="p-2 pt-8 space-y-4 hidden lg:block">
+          <div className="lg:px-6 lg:pt-8 lg:grid lg:grid-cols-2 lg:gap-6">
+
+            <div className="lg:grid lg:grid-rows-4 lg:px-4">
+
+              <div className="flex justify-start">
+                <div className="mr-2">
+                  <img
+                    src="/assets/Icons/Orion_globe.svg"
+                    alt="Destination "
+                    className="w-8"
+                  />
+                </div>
+                <input
+                  disabled={isDisabled}
+                  type="text"
+                  value={destination}
+                  placeholder="*Destination"
+                  className={`${
+                    isDisabled
+                      ? "bg-gray-200 text-gray-500 cursor-not-allowed"
+                      : "bg-white text-black"
+                  } rounded-md py-1 px-2 w-full lg:mb-7 ${
+                    submitted && !destination ? "border-2 border-red-500" : ""
+                  }`}
+                  onChange={(e) => setDestination(e.target.value)}
+                />
+              </div>
+
+              <div className="flex justify-start">
+                <div className="mr-2">
+                  <img
+                    src="/assets/Icons/Orion_meeting-geotag.svg"
+                    alt="Start Date"
+                    className="w-8"
+                  />
+                </div>
+                <DatePicker
+                  disabled={isDisabled}
+                  selected={startDate}
+                  onChange={(date) => setStartDate(date)}
+                  placeholderText="*Start Date"
+                  dateFormat="MM/dd/yyyy"
+                  className={`${
+                    isDisabled
+                      ? "bg-gray-200 text-gray-500 cursor-not-allowed"
+                      : "bg-white text-black"
+                  } rounded-md py-1 px-2 w-full ${
+                    submitted &&
+                    (!startDate ||
+                      startDateGreaterThanEndDateError ||
+                      startDateNotInFutureError)
+                      ? "border-2 border-red-500"
+                      : ""
+                  }`}
+                />
+              </div>
+
+              <div className="flex justify-start">
+                <div className="mr-2">
+                  <img
+                    src="/assets/Icons/Orion_meeting-geotag.svg"
+                    alt="End Date"
+                    className="w-8"
+                  />
+                </div>
+                <DatePicker
+                  disabled={isDisabled}
+                  selected={endDate}
+                  onChange={(date) => setEndDate(date)}
+                  placeholderText="*End Date"
+                  dateFormat="MM/dd/yyyy"
+                  className={`${
+                    isDisabled
+                      ? "bg-gray-200 text-gray-500 cursor-not-allowed"
+                      : "bg-white text-black"
+                  } rounded-md py-1 px-2 w-full ${
+                    submitted && (!endDate || endDateNotInFutureError)
+                      ? "border-2 border-red-500"
+                      : ""
+                  }`}
+                />
+              </div>
+            </div>
+
+            <div className="flex justify-start pb-15">
+              <div className="mr-2">
+                <img
+                  src="/assets/Icons/Orion_people.svg"
+                  alt="Participants"
+                  className="w-8"
+                />
+              </div>
+              <textarea
+                disabled={isDisabled}
+                value={participantsEmailList}
+                placeholder="*Participants e-mail address (separate with comma)"
+                className={`${
+                  isDisabled
+                    ? "bg-gray-200 text-gray-500 cursor-not-allowed"
+                    : "bg-white text-black"
+                } rounded-md py-1 px-2 pb-36 w-full resize-none ${
+                  submitted && !participantsEmailList
+                    ? "border-2 border-red-500"
+                    : ""
+                }`}
+                onChange={(e) => setParticipantsEmailList(e.target.value)}
+              />
+            </div>
+          </div>
+        </div>
+
         {!isDisabled && (
           <div className="flex justify-center absolute -bottom-7 left-1/2 transform -translate-x-1/2">
             <button
               onClick={SaveTripDetails}
-              className="bg-[#E67E22] hover:bg-[#d56b0f] border-4 border-white text-xl text-white rounded-[2.5rem] p-3 cursor-pointer"
+              className="bg-[#E67E22] hover:bg-[#d56b0f] border-4 border-white text-xl text-white rounded-[2.5rem] p-3 lg:px-5 lg:py-2 cursor-pointer lg:flex lg:justify-between"
             >
+              <p className='hidden lg:block mr-2'>Let&apos;s get this trip started</p>
               <img
                 src="/assets/Icons/Orion_aircraft-climb_white.svg"
-                className="w-10"
+                className="w-10 lg:w-8"
                 alt="add"
               />
             </button>
