@@ -32,7 +32,6 @@ const PasswordDetailsComponent = () => {
       oldPassword: oldPassword,
       newPassword: newPassword,
     };
-    console.log(userData)
     try {
       const result = await LoginDetailsPassword(userData, token);
       if (result) {
@@ -46,8 +45,8 @@ const PasswordDetailsComponent = () => {
   };
 
   return (
-    <div className="bg-[#ECF0F1] rounded-2xl min-h-[26rem] min-w-[20rem] lg:min-h-[25rem] lg:max-w-full mx-4 px-4 relative mb-25">
-      <div className="flex justify-start my-4 pt-10">
+    <div className="bg-[#ECF0F1] rounded-2xl min-h-[26rem] min-w-[20rem] lg:min-h-[22rem] lg:max-w-full lg:mt-10 lg:mx-20 xl:mx-40 mx-4 px-4 relative mb-25 lg:px-10">
+      <div className="flex justify-start my-4 pt-10 lg:pt-15">
         <div className="mr-4">
           <img
             src="/assets/Icons/Orion_keyhole.svg"
@@ -97,7 +96,7 @@ const PasswordDetailsComponent = () => {
           onChange={(e) => setConfirmNewPassword(e.target.value)}
         />
       </div>
-      <button className="flex justify-self-center mt-20" onClick={handleClick}><p className="text-[#34495E]">Change Name Instead?</p></button>
+      <button className="flex justify-self-center mt-20 lg:mt-15  cursor-pointer" onClick={handleClick}><p className="text-[#34495E]">Change Name Instead?</p></button>
       <div className="flex justify-center mt-18 absolute -bottom-7 left-1/2 transform -translate-x-1/2">
         <button
           className="bg-[#E67E22] hover:bg-[#d56b0f] border-4 border-white text-xl text-white rounded-[2.5rem] p-3 cursor-pointer"

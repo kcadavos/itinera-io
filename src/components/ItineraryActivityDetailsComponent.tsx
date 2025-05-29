@@ -24,17 +24,10 @@ const ItineraryActivityDetailsComponent = ({
       );
       if (activityDetailData != null) setActivityDetail(activityDetailData);
     };
-    console.log(activityId);
     getItineraryDayData();
   }, [activityId]);
 
-  useEffect(() => {
-    console.log("ACT" + activityId);
-  }, []);
-
-  useEffect(() => {
-    console.log(JSON.stringify(activityDetail) + "details");
-  }, [activityDetail]);
+  
 
   const IconSwitch = (category: string) => {
     switch (category) {
@@ -87,7 +80,7 @@ const ItineraryActivityDetailsComponent = ({
   };
 
   return (
-    <>
+    <div className="">
       {activityDetail != null ? (
         <div className=" flex justify-between ">
           {" "}
@@ -141,7 +134,7 @@ const ItineraryActivityDetailsComponent = ({
       ) : (
         <p> Missing activity detail Info</p>
       )}
-    </>
+    </div>
   );
 };
 

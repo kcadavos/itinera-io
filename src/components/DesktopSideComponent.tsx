@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import MenuComponent from "./MenuComponent";
 import {
   useNameContext,
+  useRefreshDesktopsideContext,
   useSelectedTripIdContext,
   useUserIdContext,
 } from "@/context/DataContext";
@@ -12,8 +13,10 @@ import { ITripData } from "@/lib/TripInterfaces";
 import { getToken } from "@/lib/services/DataServices";
 import { GetTripListByUserId } from "@/lib/services/TripDataService";
 import TripCardComponent from "./TripCardComponent";
+import Link from "next/link";
 
 const DesktopSideComponent = () => {
+  const { refreshDesktopside } = useRefreshDesktopsideContext(); //refresh when voting is closed and  itinerary is generated
   const { name } = useNameContext();
   const { userId, setUserId } = useUserIdContext();
   const [tripListData, setTripListData] = useState<ITripData[]>([]);
@@ -24,6 +27,7 @@ const DesktopSideComponent = () => {
     const getTripListData = async () => {
       const tripList = await GetTripListByUserId(userId, getToken());
       if (tripList.length > 0 && tripList !== null) {
+        console.log(tripList);
         setTripListData(tripList);
 
         if (selectedTripId == 0) setSelectedTripId(tripList[0].id);
@@ -31,12 +35,26 @@ const DesktopSideComponent = () => {
     };
     if (userId) {
       getTripListData();
-      console.log("USER" + userId);
     } else {
       setUserId(Number(sessionStorage.getItem("ItineraUserId")));
     }
-    console.log("TLDATA:" + JSON.stringify(tripListData));
   }, [selectedTripId, userId, router]);
+
+useEffect(() => {
+  const getTripListData = async () => {
+    const tripList = await GetTripListByUserId(userId, getToken());
+    if (tripList.length > 0) {
+      setTripListData(tripList);
+      if (selectedTripId == 0) setSelectedTripId(tripList[0].id);
+    }
+  };
+
+  if (userId) {
+    getTripListData();
+  } else {
+    setUserId(Number(sessionStorage.getItem("ItineraUserId")));
+  }
+}, [refreshDesktopside]); // when refresh is trigged from itinerary generation
 
   return (
     <div className="hidden lg:block">
@@ -87,15 +105,22 @@ const DesktopSideComponent = () => {
         )}
       </div>
       <div className="fixed bottom-0 w-1/4 ">
-            <div className=" bg-[#1ABC9C] py-3 rounded-t-4xl ">
-                <div className="text-white flex justify-center text-[2rem] font-medium ">        
-                
-                    <p>Initiate a Trip</p>
-                    <img src="/assets/Icons/Orion_aircraft 1.svg" alt="" className='w-12 h-12' />
-                    
-                </div>
-            </div>
+        <div className=" bg-[#1ABC9C] py-3 rounded-t-4xl ">
+          <div className="text-white flex justify-center text-[2rem] font-medium ">
+            <Link
+              href={{ pathname: "/Trip/AddTrip", query: { mode: "add" } }}
+              className="flex items-center space-x-4"
+            >
+              <p>Initiate a Trip</p>
+              <img
+                src="/assets/Icons/Orion_aircraft 1.svg"
+                alt=""
+                className="w-12 h-12"
+              />
+            </Link>
+          </div>
         </div>
+      </div>
     </div>
   );
 };

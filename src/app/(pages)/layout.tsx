@@ -3,7 +3,7 @@ import DesktopSideComponent from "@/components/DesktopSideComponent";
 import FooterComponent from "@/components/FooterComponent";
 import HeaderComponent from "@/components/HeaderComponent";
 import NavbarComponent from "@/components/NavbarComponent";
-
+//import { set } from "date-fns";
 
 import { usePathname } from "next/navigation";
 import React, { useEffect, useState } from "react";
@@ -58,7 +58,12 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
           </div>
         )}
         <div className="w-full lg:col-start-2 lg:col-span-3">
-          {showNav && <NavbarComponent />}
+          {showNav &&
+          (
+            <div className={route.startsWith("/ItinerarySuggestionPages") ? "z-50 relative" : ""}>
+            <NavbarComponent />
+          </div>
+          )}
           {showHeader && <HeaderComponent />}
           {children}
         </div>
