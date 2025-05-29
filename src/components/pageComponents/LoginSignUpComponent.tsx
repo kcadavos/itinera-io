@@ -38,7 +38,7 @@ const {loginStatus, setLoginStatus} = useLoginStatusContext();
               {
                 switchBool ? <p className="mt-16" >Don&apos;t have an account?</p> : <p className="mt-16" >Already have an account?</p>
               }
-          </div>
+        </div>
 
 
         <div className=" bg-[#1ABC9C] min-w-screen max-w-screen h-18  flex justify-center items-center  rounded-t-4xl mt-3 lg:mt-[2.1rem] fixed bottom-0">
