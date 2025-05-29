@@ -35,7 +35,6 @@ const DesktopSideComponent = () => {
     };
     if (userId) {
       getTripListData();
-      
     } else {
       setUserId(Number(sessionStorage.getItem("ItineraUserId")));
     }
@@ -106,18 +105,22 @@ useEffect(() => {
         )}
       </div>
       <div className="fixed bottom-0 w-1/4 ">
-            <div className=" bg-[#1ABC9C] py-3 rounded-t-4xl ">
-                <div className="text-white flex justify-center text-[2rem] font-medium ">        
-                <Link
-        href={{ pathname: "/Trip/AddTrip", query: { mode: "add" } }}
-        className="flex items-center space-x-4"
-      >
-                    <p>Initiate a Trip</p>
-                    <img src="/assets/Icons/Orion_aircraft 1.svg" alt="" className='w-12 h-12' />
-                    </Link>
-                </div>
-            </div>
+        <div className=" bg-[#1ABC9C] py-3 rounded-t-4xl ">
+          <div className="text-white flex justify-center text-[2rem] font-medium ">
+            <Link
+              href={{ pathname: "/Trip/AddTrip", query: { mode: "add" } }}
+              className="flex items-center space-x-4"
+            >
+              <p>Initiate a Trip</p>
+              <img
+                src="/assets/Icons/Orion_aircraft 1.svg"
+                alt=""
+                className="w-12 h-12"
+              />
+            </Link>
+          </div>
         </div>
+      </div>
     </div>
   );
 };
