@@ -290,7 +290,7 @@ const AddTripComponent = () => {
     <div className="block">
       <div
         id="add"
-        className="flex flex-col h-full max-h-[90vh] bg-[#ECF0F1] rounded-2xl min-h-[28rem] min-w-[20rem] lg:min-h-[25rem] lg:max-w-full lg:mt-5 lg:mx-20 xl:mx-40 mx-4 px-4 relative mb-40 lg:mb-0"
+        className="mt-10 flex flex-col h-full max-h-[90vh] bg-[#ECF0F1] rounded-2xl min-h-[28rem] min-w-[20rem] lg:min-h-[25rem] lg:max-w-full lg:mt-5 lg:mx-20 xl:mx-40 mx-4 px-4 relative mb-40 lg:mb-0"
       >
         <div className="p-2 pt-8 space-y-4">
           {submitted &&
