@@ -367,14 +367,14 @@ const HeaderComponent = () => {
     // Account status
     if (accountStatus === "password") {
       return {
-        topMessage: <p className="text-[#E67E22]"> Change Your Password </p>,
+        topMessage: <p className="text-[#E67E22] pt-8"> Change Your Password </p>,
         bottomMessage: " ",
       };
     }
 
     if (accountStatus === "account") {
       return {
-        topMessage: <p className="text-[#E67E22]"> Change Your Name </p>,
+        topMessage: <p className="text-[#E67E22] pt-8"> Change Your Name </p>,
         bottomMessage: "",
       };
     }
@@ -454,7 +454,7 @@ const HeaderComponent = () => {
           <div className={mobile.color}>{mobile.message}</div>
         </div>
         <div className="hidden lg:block mt-0 ps-10 ">
-          <div className="text-3xl pt-1 ">{desktop.topMessage}</div>
+          <div className="text-3xl pt-3 ">{desktop.topMessage}</div>
           <div className="text-2xl mt-3 ">{desktop.bottomMessage}</div>
         </div>
       </div>
