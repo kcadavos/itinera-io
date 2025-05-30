@@ -338,7 +338,7 @@ const HeaderComponent = () => {
             </span>
           </p>
         ),
-        bottomMessage: "These are the activities you liked.",
+        bottomMessage: (<p>These are the activities you <span className="text-[#E67E22]"> liked.</span></p>),
       };
     }
     if (path === "/ItinerarySuggestionPages/DislikedListPage") {
