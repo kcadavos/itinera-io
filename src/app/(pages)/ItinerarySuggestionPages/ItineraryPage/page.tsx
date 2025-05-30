@@ -57,7 +57,7 @@ console.log(itineraryListData+ "ITI IS CHANGED")
 
        ( (itineraryListData!=null && itineraryListData.length>0)?
        (
-        <div className="pb-32 w-full flex justify-center">
+        <div className="pb-32 w-full flex justify-center ">
           <DisplayItineraryDayComponent iList={itineraryListData} />
         </div>
       )

@@ -25,7 +25,7 @@ const NotificationPage = () => {
 
   return (
    
-   <div className='pb-20'>
+   <div className='pt-5 pb-20'>
       { (notificationList.length>0) ? (
         notificationList.map((notification, index)=>(
           

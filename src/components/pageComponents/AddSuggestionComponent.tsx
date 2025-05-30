@@ -94,7 +94,7 @@ const AddSuggestionComponent = () => {
   return (
     <div>
       {/* mobile */}
-      <div className="block lg:hidden">
+      <div className="block lg:hidden pt-5">
         {selectedTripIsVotingOpen ? (
           <div className="bg-[#ECF0F1] rounded-2xl min-h-[28rem] min-w-[20rem] lg:min-h-[25rem] lg:max-w-[20rem] mx-4 sm:mx-16 px-4 relative mb-40">
             {errorDisplayActivity ||
