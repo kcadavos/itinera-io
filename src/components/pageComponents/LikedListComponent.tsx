@@ -33,14 +33,14 @@ const LikedListComponent = () => {
         <div>
           {
             selectedTripIsVotingOpen ? <p className='text-center text-[#2C3E50] my-2'>These are the acivities you liked.</p> : 
-            <p className='text-center text-[#2C3E50] my-2'>You&apos;re in for these!</p>
+            <p className='text-center  text-[#2C3E50] my-2'>You&apos;re in for these!</p>
           }
           
           <div className='mb-35' > 
             <LikedCardComponent activities={likedList} getLikedList={getLikedList} />
           </div>
         </div> 
-        : <p className='text-center text-[#2C3E50] mb-2'>No liked activities.</p>
+        : <p className='text-center text-xl pt-5  text-[#2C3E50] mb-2'>No liked activities.</p>
       }
     </div>
     

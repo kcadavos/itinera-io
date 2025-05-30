@@ -30,7 +30,7 @@ const UndecidedListComponent = () => {
     <div>
       { 
         undecidedList != null ? 
-        <div>
+        <div >
           {
             selectedTripIsVotingOpen ? <p className='text-center text-[#2C3E50] my-2'>What do you think about these activities?</p> : 
             <p className='text-center text-[#2C3E50] my-2'>Here&apos;s what you didn&apos;t get a chance to vote on.</p>
@@ -40,7 +40,7 @@ const UndecidedListComponent = () => {
             <UndecidedCardComponent activities={undecidedList} getUndecidedList={getUndecidedList} />
           </div>        
         </div> 
-        : <p className='text-center text-[#2C3E50] mb-2'>No undecided activities.</p>
+        : <p className='text-center text-xl pt-5 text-[#2C3E50] mb-2'>No undecided activities.</p>
       }
     </div>
     
