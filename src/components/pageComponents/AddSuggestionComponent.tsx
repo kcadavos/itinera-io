@@ -1,6 +1,9 @@
 "use client";
 
-import { useSelectedTripIdContext, useSelectedTripIsVotingOpenContext } from "@/context/DataContext";
+import {
+  useSelectedTripIdContext,
+  useSelectedTripIsVotingOpenContext,
+} from "@/context/DataContext";
 import { AddActivity } from "@/lib/services/ActivityServices";
 import React, { useState } from "react";
 import {
@@ -14,14 +17,17 @@ import { useRouter } from "next/navigation";
 import { getToken } from "@/lib/services/DataServices";
 const AddSuggestionComponent = () => {
   const { selectedTripId } = useSelectedTripIdContext();
-  const {selectedTripIsVotingOpen} = useSelectedTripIsVotingOpenContext();
+  const { selectedTripIsVotingOpen } = useSelectedTripIsVotingOpenContext();
   const [activity, setActivity] = useState<string>("");
   const [category, setCategory] = useState<string>("");
   const [address, setAddress] = useState<string>("");
   const [detailes, setDetails] = useState<string>("");
-  const [errorDisplayActivity, setErrorDisplayActivity] = useState<boolean>(false);
-  const [errorDisplayCategory, setErrorDisplayCategory] = useState<boolean>(false);
-  const [errorDisplayAddress, setErrorDisplayAddress] = useState<boolean>(false);
+  const [errorDisplayActivity, setErrorDisplayActivity] =
+    useState<boolean>(false);
+  const [errorDisplayCategory, setErrorDisplayCategory] =
+    useState<boolean>(false);
+  const [errorDisplayAddress, setErrorDisplayAddress] =
+    useState<boolean>(false);
   let categoryChoices: string = "Category";
 
   const router = useRouter();
@@ -37,35 +43,31 @@ const AddSuggestionComponent = () => {
   };
 
   const addActivityFetch = async () => {
-
-    if(activity != "" && category != 'Category' && address != ""){
+    if (activity != "" && category != "Category" && address != "") {
       const result = await AddActivity(activityData, getToken());
 
       if (result) {
         router.push("/ItinerarySuggestionPages/UndecidedListPage");
-      } 
-
-    }else{
-      if(activity == ""){
+      }
+    } else {
+      if (activity == "") {
         setErrorDisplayActivity(true);
-      }else{
+      } else {
         setErrorDisplayActivity(false);
       }
 
-      if(categoryChoices == 'Category'){
+      if (categoryChoices == "Category") {
         setErrorDisplayCategory(true);
-      }else{
+      } else {
         setErrorDisplayCategory(false);
       }
 
-      if(address == ""){
+      if (address == "") {
         setErrorDisplayAddress(true);
-      }else{
+      } else {
         setErrorDisplayAddress(false);
       }
     }
- 
-
   };
 
   switch (category) {
@@ -93,16 +95,27 @@ const AddSuggestionComponent = () => {
     <div>
       {/* mobile */}
       <div className="block lg:hidden">
-        {
-          selectedTripIsVotingOpen ?
+        {selectedTripIsVotingOpen ? (
           <div className="bg-[#ECF0F1] rounded-2xl min-h-[28rem] min-w-[20rem] lg:min-h-[25rem] lg:max-w-[20rem] mx-4 sm:mx-16 px-4 relative mb-40">
+            {errorDisplayActivity ||
+            errorDisplayCategory ||
+            errorDisplayAddress ? (
+              <p className="text-[#F40000] text-center text-md pt-2">
+                *Field Required
+              </p>
+            ) : (
+              <></>
+            )}
 
-            {
-              errorDisplayActivity || errorDisplayCategory || errorDisplayAddress ? <p className="text-[#F40000] text-center text-md pt-2">*Field Required</p> : <></>
-            }
-
-
-            <div className={`p-2  ${errorDisplayActivity || errorDisplayCategory || errorDisplayAddress ? 'pt-0' : 'pt-8'}`}>
+            <div
+              className={`p-2  ${
+                errorDisplayActivity ||
+                errorDisplayCategory ||
+                errorDisplayAddress
+                  ? "pt-0"
+                  : "pt-8"
+              }`}
+            >
               <div className="flex justify-start my-4">
                 <div className=" mr-2">
                   <img
@@ -115,7 +128,11 @@ const AddSuggestionComponent = () => {
                 <input
                   type="text"
                   placeholder="Activity"
-                  className={`bg-white rounded-md py-1 px-2 w-full ${errorDisplayActivity ? 'border-2 border-[#F40000]' : 'border-none'}`}
+                  className={`bg-white rounded-md py-1 px-2 w-full ${
+                    errorDisplayActivity
+                      ? "border-2 border-[#F40000]"
+                      : "border-none"
+                  }`}
                   onChange={(e) => setActivity(e.target.value)}
                 />
               </div>
@@ -131,7 +148,21 @@ const AddSuggestionComponent = () => {
 
                 <DropdownMenu>
                   <DropdownMenuTrigger asChild>
-                    <button className={`bg-white rounded-md py-1 px-2 w-full ${(categoryChoices == 'Adventure & Outdoors' || categoryChoices == 'Culture & History' || categoryChoices == 'Food & Drink' || categoryChoices == 'Relaxation & Wellness' || categoryChoices == 'Entertainment & Nightlife') ? 'text-black' : 'text-[#34495E]/60'}  text-start hover:border-1 hover:border-black ${errorDisplayCategory ? 'border-2 border-[#F40000]' : 'border-none'} `}>
+                    <button
+                      className={`bg-white rounded-md py-1 px-2 w-full ${
+                        categoryChoices == "Adventure & Outdoors" ||
+                        categoryChoices == "Culture & History" ||
+                        categoryChoices == "Food & Drink" ||
+                        categoryChoices == "Relaxation & Wellness" ||
+                        categoryChoices == "Entertainment & Nightlife"
+                          ? "text-black"
+                          : "text-[#34495E]/60"
+                      }  text-start hover:border-1 hover:border-black ${
+                        errorDisplayCategory
+                          ? "border-2 border-[#F40000]"
+                          : "border-none"
+                      } `}
+                    >
                       <div className="flex justify-between">
                         {categoryChoices}
 
@@ -204,7 +235,9 @@ const AddSuggestionComponent = () => {
                         </DropdownMenuItem>
                       ) : (
                         <DropdownMenuItem
-                          onClick={() => setCategory("Entertainment & Nightlife")}
+                          onClick={() =>
+                            setCategory("Entertainment & Nightlife")
+                          }
                         >
                           Entertainment & Nightlife
                         </DropdownMenuItem>
@@ -226,7 +259,11 @@ const AddSuggestionComponent = () => {
                 <input
                   type="text"
                   placeholder="Address"
-                  className={`bg-white rounded-md py-1 px-2 w-full ${errorDisplayAddress ? 'border-2 border-[#F40000]' : 'border-none'}`}
+                  className={`bg-white rounded-md py-1 px-2 w-full ${
+                    errorDisplayAddress
+                      ? "border-2 border-[#F40000]"
+                      : "border-none"
+                  }`}
                   onChange={(e) => setAddress(e.target.value)}
                 />
               </div>
@@ -249,10 +286,11 @@ const AddSuggestionComponent = () => {
               </div>
             </div>
 
-            
-
             <div className="flex justify-center absolute -bottom-7 left-1/2 transform -translate-x-1/2">
-              <button className="bg-[#E67E22] hover:bg-[#d56b0f] border-4 border-white text-xl text-white rounded-[2.5rem] p-3 cursor-pointer" onClick={addActivityFetch}>
+              <button
+                className="bg-[#E67E22] hover:bg-[#d56b0f] border-4 border-white text-xl text-white rounded-[2.5rem] p-3 cursor-pointer"
+                onClick={addActivityFetch}
+              >
                 <img
                   src="/assets/Icons/Orion_add-place_solid.svg"
                   className="w-10"
@@ -260,25 +298,21 @@ const AddSuggestionComponent = () => {
                 />
               </button>
             </div>
-          </div> :
+          </div>
+        ) : (
           <div className="text-center text-[#2C3E50]">
             <p className="text-xl mb-4">Voting is closed.</p>
             <p>Unable to add new activities.</p>
           </div>
-        }
-
+        )}
       </div>
-
 
       {/* desktop */}
       <div className="hidden lg:block">
-        <div className="grid grid-cols-3">
-          <div className="col-span-3 flex justify-center mt-10">
-          {
-            selectedTripIsVotingOpen ?
-            <div className="bg-[#ECF0F1] rounded-2xl min-w-[20rem] xl:w-[55rem] min-h-[24rem] max-w-[55rem] mx-2 px-6 relative  ">
+        <div className="flex justify-center mt-5 lg:max-w-full lg:mx-20 xl:mx-40 min-w-[25rem] min-h-[24rem]">
+          {selectedTripIsVotingOpen ? (
+            <div className="bg-[#ECF0F1] rounded-2xl  mx-2 px-6 relative  lg:min-w-full">
               <div className="px-6 pt-8 grid grid-cols-2 gap-6">
-
                 <div className="grid grid-rows-4 px-4 pt-4">
                   <div className="flex justify-start my-4 col-[1]">
                     <div className=" mr-2">
@@ -292,7 +326,11 @@ const AddSuggestionComponent = () => {
                     <input
                       type="text"
                       placeholder="Activity"
-                      className={`bg-white rounded-md py-1 px-2 w-full ${errorDisplayActivity ? 'border-2 border-[#F40000]' : 'border-none'}`}
+                      className={`bg-white rounded-md py-1 px-2 w-full ${
+                        errorDisplayActivity
+                          ? "border-2 border-[#F40000]"
+                          : "border-none"
+                      }`}
                       onChange={(e) => setActivity(e.target.value)}
                     />
                   </div>
@@ -308,7 +346,21 @@ const AddSuggestionComponent = () => {
 
                     <DropdownMenu>
                       <DropdownMenuTrigger asChild>
-                        <button className={`bg-white rounded-md py-1 px-2 w-full ${(categoryChoices == 'Adventure & Outdoors' || categoryChoices == 'Culture & History' || categoryChoices == 'Food & Drink' || categoryChoices == 'Relaxation & Wellness' || categoryChoices == 'Entertainment & Nightlife') ? 'text-black cursor-pinter' : 'text-[#34495E]/60'}  text-start cursor-pointer ${errorDisplayCategory ? 'border-2 border-[#F40000]' : 'border-none'}`}>
+                        <button
+                          className={`bg-white rounded-md py-1 px-2 w-full ${
+                            categoryChoices == "Adventure & Outdoors" ||
+                            categoryChoices == "Culture & History" ||
+                            categoryChoices == "Food & Drink" ||
+                            categoryChoices == "Relaxation & Wellness" ||
+                            categoryChoices == "Entertainment & Nightlife"
+                              ? "text-black cursor-pinter"
+                              : "text-[#34495E]/60"
+                          }  text-start cursor-pointer ${
+                            errorDisplayCategory
+                              ? "border-2 border-[#F40000]"
+                              : "border-none"
+                          }`}
+                        >
                           <div className="flex justify-between">
                             {categoryChoices}
 
@@ -337,7 +389,9 @@ const AddSuggestionComponent = () => {
                             </DropdownMenuItem>
                           ) : (
                             <DropdownMenuItem
-                              onClick={() => setCategory("Adventure & Outdoors")}
+                              onClick={() =>
+                                setCategory("Adventure & Outdoors")
+                              }
                             >
                               Adventure & Outdoors
                             </DropdownMenuItem>
@@ -370,7 +424,9 @@ const AddSuggestionComponent = () => {
                             </DropdownMenuItem>
                           ) : (
                             <DropdownMenuItem
-                              onClick={() => setCategory("Relaxation & Wellness")}
+                              onClick={() =>
+                                setCategory("Relaxation & Wellness")
+                              }
                             >
                               Relaxation & Wellness
                             </DropdownMenuItem>
@@ -381,7 +437,9 @@ const AddSuggestionComponent = () => {
                             </DropdownMenuItem>
                           ) : (
                             <DropdownMenuItem
-                              onClick={() => setCategory("Entertainment & Nightlife")}
+                              onClick={() =>
+                                setCategory("Entertainment & Nightlife")
+                              }
                             >
                               Entertainment & Nightlife
                             </DropdownMenuItem>
@@ -403,17 +461,25 @@ const AddSuggestionComponent = () => {
                     <input
                       type="text"
                       placeholder="Address"
-                      className={`bg-white rounded-md py-1 px-2 w-full ${errorDisplayAddress ? 'border-2 border-[#F40000]' : 'border-none'}`}
+                      className={`bg-white rounded-md py-1 px-2 w-full ${
+                        errorDisplayAddress
+                          ? "border-2 border-[#F40000]"
+                          : "border-none"
+                      }`}
                       onChange={(e) => setAddress(e.target.value)}
                     />
                   </div>
 
-                  {
-                    errorDisplayActivity || errorDisplayCategory || errorDisplayAddress ? <p className="text-[#F40000] text-center text-md pt-2">*Field Required</p> : <></>
-                  } 
-
+                  {errorDisplayActivity ||
+                  errorDisplayCategory ||
+                  errorDisplayAddress ? (
+                    <p className="text-[#F40000] text-center text-md pt-2">
+                      *Field Required
+                    </p>
+                  ) : (
+                    <></>
+                  )}
                 </div>
-                
 
                 <div className="flex justify-start mt-4 col-[2] p-4">
                   <div className=" mr-2">
@@ -430,14 +496,14 @@ const AddSuggestionComponent = () => {
                     maxLength={350}
                     onChange={(e) => setDetails(e.target.value)}
                   ></textarea>
-
                 </div>
- 
               </div>
 
-            
               <div className="flex justify-center absolute -bottom-7 left-1/2 transform -translate-x-1/2">
-                <button className="bg-[#E67E22] hover:bg-[#d56b0f] border-4 border-white text-xl text-white rounded-[2.5rem] p-2 px-4 cursor-pointer flex justify-between" onClick={addActivityFetch}>
+                <button
+                  className="bg-[#E67E22] hover:bg-[#d56b0f] border-4 border-white text-xl text-white rounded-[2.5rem] p-2 px-4 cursor-pointer flex justify-between"
+                  onClick={addActivityFetch}
+                >
                   <p className="mr-4">Add Activity Suggestion</p>
                   <img
                     src="/assets/Icons/Orion_add-place_solid.svg"
@@ -446,19 +512,15 @@ const AddSuggestionComponent = () => {
                   />
                 </button>
               </div>
-            </div> :
+            </div>
+          ) : (
             <div className="text-center text-[#2C3E50] mt-10  col-span-3">
               <p className="text-xl mb-4">Voting is closed.</p>
               <p>Unable to add new activities.</p>
             </div>
-          }
-          </div>
-          
+          )}
         </div>
-        
       </div>
-
-
     </div>
   );
 };

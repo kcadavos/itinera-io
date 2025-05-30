@@ -96,7 +96,7 @@ const PasswordDetailsComponent = () => {
           onChange={(e) => setConfirmNewPassword(e.target.value)}
         />
       </div>
-      <button className="flex justify-self-center mt-20 lg:mt-15  cursor-pointer" onClick={handleClick}><p className="text-[#34495E]">Change Name Instead?</p></button>
+      <button className="flex justify-self-center mt-20 lg:mt-15  cursor-pointer" onClick={handleClick}><p className="text-[#34495E] hover:underline">Change Name Instead?</p></button>
       <div className="flex justify-center mt-18 absolute -bottom-7 left-1/2 transform -translate-x-1/2">
         <button
           className="bg-[#E67E22] hover:bg-[#d56b0f] border-4 border-white text-xl text-white rounded-[2.5rem] p-3 cursor-pointer"

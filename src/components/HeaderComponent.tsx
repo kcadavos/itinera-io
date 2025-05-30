@@ -301,8 +301,7 @@ const HeaderComponent = () => {
       return {
         topMessage: (
           <p>
-            {" "}
-            Your itinerary for{" "}
+            Let&apos;s plan for{" "}
             <span className="text-5xl text-[#1A89BC]">
               {selectedTripDestination}{" "}
             </span>
@@ -314,18 +313,17 @@ const HeaderComponent = () => {
                     "MMM dd"
                   )}`
                 : "Unknown Dates"}
-            </span>{" "}
+            </span>
           </p>
         ),
-        bottomMessage: "",
+        bottomMessage: "What do you think about these activities?",
       };
     }
     if (path === "/ItinerarySuggestionPages/LikedListPage") {
       return {
         topMessage: (
           <p>
-            {" "}
-            Your itinerary for{" "}
+            Let&apos;s plan for{" "}
             <span className="text-5xl text-[#1A89BC]">
               {selectedTripDestination}{" "}
             </span>
@@ -337,18 +335,17 @@ const HeaderComponent = () => {
                     "MMM dd"
                   )}`
                 : "Unknown Dates"}
-            </span>{" "}
+            </span>
           </p>
         ),
-        bottomMessage: "",
+        bottomMessage: (<p>These are the activities you <span className="text-[#E67E22]"> liked.</span></p>),
       };
     }
     if (path === "/ItinerarySuggestionPages/DislikedListPage") {
       return {
         topMessage: (
           <p>
-            {" "}
-            Your itinerary for{" "}
+            Let&apos;s plan for{" "}
             <span className="text-5xl text-[#1A89BC]">
               {selectedTripDestination}{" "}
             </span>
@@ -360,24 +357,24 @@ const HeaderComponent = () => {
                     "MMM dd"
                   )}`
                 : "Unknown Dates"}
-            </span>{" "}
+            </span>
           </p>
         ),
-        bottomMessage: "",
+        bottomMessage: (<p>These are the activities you <span className="text-[#E67E22]">did not like.</span></p>),
       };
     }
 
     // Account status
     if (accountStatus === "password") {
       return {
-        topMessage: <p className="text-[#E67E22]"> Change Your Password </p>,
+        topMessage: <p className=" pt-8"> Change Your <span className="text-[#E67E22]">Password </span></p>,
         bottomMessage: " ",
       };
     }
 
     if (accountStatus === "account") {
       return {
-        topMessage: <p className="text-[#E67E22]"> Change Your Name </p>,
+        topMessage: <p className=" pt-8"> Change Your <span className="text-[#E67E22]">Name </span></p>,
         bottomMessage: "",
       };
     }
@@ -438,7 +435,7 @@ const HeaderComponent = () => {
   const desktop = desktopLogic();
   return (
     <div>
-      <div className="bg-[#E1ECFF] lg:bg-[#ECF0F1] min-h-[13rem] lg:min-h-[7.5rem] lg:max-h-[7.5rem] lg:w-full pt-10 pb-10 relative ">
+      <div className="bg-[#E1ECFF] lg:bg-[#ECF0F1] min-h-[13rem] lg:min-h-[7.5rem] lg:max-h-[7.5rem] lg:w-full pt-10 lg:p-0 pb-10 relative ">
         <div className="mx-8 mt-9 lg:mt-0 font-inter lg:hidden">
           <img
             className="h-12 absolute left-6 top-9"
@@ -457,8 +454,8 @@ const HeaderComponent = () => {
           <div className={mobile.color}>{mobile.message}</div>
         </div>
         <div className="hidden lg:block mt-0 ps-10 ">
-          <div className="text-3xl ">{desktop.topMessage}</div>
-          <div className="text-2xl ">{desktop.bottomMessage}</div>
+          <div className="text-3xl pt-3 ">{desktop.topMessage}</div>
+          <div className="text-2xl mt-3 ">{desktop.bottomMessage}</div>
         </div>
       </div>
     </div>
