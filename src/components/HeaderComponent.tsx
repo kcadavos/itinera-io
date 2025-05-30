@@ -367,14 +367,14 @@ const HeaderComponent = () => {
     // Account status
     if (accountStatus === "password") {
       return {
-        topMessage: <p className="text-[#E67E22] pt-8"> Change Your Password </p>,
+        topMessage: <p className=" pt-8"> Change Your <span className="text-[#E67E22]">Password </span></p>,
         bottomMessage: " ",
       };
     }
 
     if (accountStatus === "account") {
       return {
-        topMessage: <p className="text-[#E67E22] pt-8"> Change Your Name </p>,
+        topMessage: <p className=" pt-8"> Change Your <span className="text-[#E67E22]">Name </span></p>,
         bottomMessage: "",
       };
     }
