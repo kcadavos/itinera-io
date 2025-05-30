@@ -338,7 +338,7 @@ const HeaderComponent = () => {
             </span>
           </p>
         ),
-        bottomMessage: "These are the activities you liked.",
+        bottomMessage: (<p>These are the activities you <span className="text-[#E67E22]"> liked.</span></p>),
       };
     }
     if (path === "/ItinerarySuggestionPages/DislikedListPage") {
@@ -367,14 +367,14 @@ const HeaderComponent = () => {
     // Account status
     if (accountStatus === "password") {
       return {
-        topMessage: <p className="text-[#E67E22]"> Change Your Password </p>,
+        topMessage: <p className=" pt-8"> Change Your <span className="text-[#E67E22]">Password </span></p>,
         bottomMessage: " ",
       };
     }
 
     if (accountStatus === "account") {
       return {
-        topMessage: <p className="text-[#E67E22]"> Change Your Name </p>,
+        topMessage: <p className=" pt-8"> Change Your <span className="text-[#E67E22]">Name </span></p>,
         bottomMessage: "",
       };
     }
@@ -454,7 +454,7 @@ const HeaderComponent = () => {
           <div className={mobile.color}>{mobile.message}</div>
         </div>
         <div className="hidden lg:block mt-0 ps-10 ">
-          <div className="text-3xl pt-1 ">{desktop.topMessage}</div>
+          <div className="text-3xl pt-3 ">{desktop.topMessage}</div>
           <div className="text-2xl mt-3 ">{desktop.bottomMessage}</div>
         </div>
       </div>

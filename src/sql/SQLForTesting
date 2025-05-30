@@ -37,3 +37,12 @@ select * from trip
 
 delete  from trip where ownerId=3 and id between 112 and 115
 
+
+
+select  * from Activity
+
+delete  from activity where tripid=0
+
+select * from notification
+
+delete  from notification where userId=3 and referenceId between 112 and 162
