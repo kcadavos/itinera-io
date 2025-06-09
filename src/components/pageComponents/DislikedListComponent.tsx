@@ -32,7 +32,7 @@ const DislikedListComponent = () => {
         dislikedList != null ? 
         <div>
           {
-            selectedTripIsVotingOpen ? <p className='text-center text-[#2C3E50] my-2'>These are the acivities you disliked.</p>: 
+            selectedTripIsVotingOpen ? <p className='text-center  text-[#2C3E50] my-2'>These are the acivities you disliked.</p>: 
             <p className='text-center text-[#2C3E50] my-2'>You passed on these.</p>
           }
           
@@ -40,7 +40,7 @@ const DislikedListComponent = () => {
             <DisikedCardComponent activities={dislikedList} getDislikedList={getDislikedList} />
           </div>
         </div>
-        : <p className='text-center text-[#2C3E50] mb-2'>No disliked activities.</p>
+        : <p className='text-center  text-xl pt-5 text-[#2C3E50] mb-2'>No disliked activities.</p>
       }
     </div>
     
