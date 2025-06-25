@@ -18,7 +18,7 @@ const AccountCreationComponent = ({ switchboolswitch }:{switchboolswitch: (val: 
 
   const submitCreation = async () => {
     console.log('button pressed');
-    setDisableBtn(true);
+  
     const userData = {
       email: email,
       password: password,
@@ -26,6 +26,7 @@ const AccountCreationComponent = ({ switchboolswitch }:{switchboolswitch: (val: 
     }
 
     if(password != '' && password == confirmPassword && email != '' && username != ''){
+      setDisableBtn(true);
       const result = await CreateAccount(userData);
 
       if(result){
@@ -75,7 +76,10 @@ const AccountCreationComponent = ({ switchboolswitch }:{switchboolswitch: (val: 
 
   return (
     <div className=" ">
-      <div className="flex justify-start my-4 pt-10">
+      <div className="flex justify-center items-center pt-4">
+         {disableBtn && <p className="text-amber-700  "> Creating User... Please wait.</p>}
+      </div>
+      <div className="flex  justify-start my-4 pt-5">
         <div className="mr-4">
           <img
             src="/assets/Icons/Orion_user-address.svg"
@@ -153,8 +157,8 @@ const AccountCreationComponent = ({ switchboolswitch }:{switchboolswitch: (val: 
       {
         errorDisplayDoublePassword  ? <p className="text-[#F40000] text-center text-md mt-5">*Passwords don&apos;t match</p> : <></>
       }
-
-      <div className="flex justify-center mt-18 absolute -bottom-7 left-1/2 transform -translate-x-1/2">
+      {/*for mobile view button */}
+      <div className="lg:hidden flex justify-center mt-18 absolute -bottom-7 left-1/2 transform -translate-x-1/2">
         <button  onClick={submitCreation} disabled={disableBtn}   className={`border-4 border-white text-xl text-white rounded-[2.5rem] p-3 ${
     disableBtn
       ? 'bg-gray-400 cursor-not-allowed'
@@ -170,7 +174,19 @@ const AccountCreationComponent = ({ switchboolswitch }:{switchboolswitch: (val: 
       
       </div>
 
-      {disableBtn && <p className="text-amber-700 text-center pt-5 "> Creating User... Please wait.</p>}
+      {/*for desktop view button*/}
+      <div className="hidden lg:flex  justify-center mt-18 absolute -bottom-7 left-1/2 transform -translate-x-1/2 ">
+                  <button  onClick={submitCreation} disabled={disableBtn} className={` lg:border-4 lg:border-white text-xl text-white rounded-xl p-[.6rem] px-12  cursor-pointer disableBtn 
+                  ${ disableBtn ? 'bg-gray-400 cursor-not-allowed'
+      : 'bg-[#E67E22] hover:bg-[#d56b0f] cursor-pointer'
+  }`} >
+                    <p className="">Sign Up</p>
+
+                  </button>
+              
+            </div> 
+
+     
     </div>
   );
 };
