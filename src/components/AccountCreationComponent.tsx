@@ -14,10 +14,11 @@ const AccountCreationComponent = ({ switchboolswitch }:{switchboolswitch: (val: 
   const [errorDisplayConfirmPassword, setErrorDisplayConfirmPassword] = useState<boolean>(false);
   const [errorDisplayName, setErrorDisplayName] = useState<boolean>(false);
   const [errorDisplayDoublePassword, setErrorDisplayDoublePassword] = useState<boolean>(false);
+  const [disableBtn, setDisableBtn] = useState<boolean>(false);
 
   const submitCreation = async () => {
     console.log('button pressed');
-
+    setDisableBtn(true);
     const userData = {
       email: email,
       password: password,
@@ -154,14 +155,22 @@ const AccountCreationComponent = ({ switchboolswitch }:{switchboolswitch: (val: 
       }
 
       <div className="flex justify-center mt-18 absolute -bottom-7 left-1/2 transform -translate-x-1/2">
-        <button className="bg-[#E67E22] hover:bg-[#d56b0f] border-4 border-white text-xl text-white rounded-[2.5rem] p-3 cursor-pointer" onClick={submitCreation}>
+        <button  onClick={submitCreation} disabled={disableBtn}   className={`border-4 border-white text-xl text-white rounded-[2.5rem] p-3 ${
+    disableBtn
+      ? 'bg-gray-400 cursor-not-allowed'
+      : 'bg-[#E67E22] hover:bg-[#d56b0f] cursor-pointer'
+  }`}>
           <img
             src="/assets/Icons/Orion_add-user.svg"
             className="w-10"
-            alt="add"
+            alt="create user"
           />
         </button>
+  
+      
       </div>
+
+      {disableBtn && <p className="text-amber-700 text-center pt-5 "> Creating User... Please wait.</p>}
     </div>
   );
 };
