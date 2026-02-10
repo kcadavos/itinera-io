@@ -1,6 +1,6 @@
 import { IUserInfo, IChangePassword } from "../Interfaces";
 
-const url = 'https://itineraioapi-cqapgsgcbschc7hu.westus-01.azurewebsites.net/';
+const url = 'https://itineraioapi-ebdthgaebndcddam.westus2-01.azurewebsites.net';
 
 export const LoginDetailsUser = async (user:IUserInfo, token:string) => {
     const res = await fetch(url + 'User/EditUser', {
