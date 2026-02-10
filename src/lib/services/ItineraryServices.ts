@@ -1,7 +1,7 @@
 import { IItineraryRequest } from "../ItineraryInterfaces";
 
 
-const url = 'https://itineraioapi-ebdthgaebndcddam.westus2-01.azurewebsites.net';
+const url = 'https://itineraioapi-ebdthgaebndcddam.westus2-01.azurewebsites.net/';
 
 export const GenerateAndSaveItinerary = async (request:IItineraryRequest,token:string)=>{
     try {

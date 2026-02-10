@@ -1,7 +1,7 @@
 import { IActivityData,  IVotedata } from "../Interfaces";
 
 
-const url = 'https://itineraioapi-ebdthgaebndcddam.westus2-01.azurewebsites.net';
+const url = 'https://itineraioapi-ebdthgaebndcddam.westus2-01.azurewebsites.net/';
 
 // --------------------------adding acivity
 export const AddActivity = async (activity: IActivityData, token:string) => {

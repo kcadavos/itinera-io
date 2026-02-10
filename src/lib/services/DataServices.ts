@@ -1,7 +1,7 @@
 import { IUserInfoCreate, IUserDataLogin, IUserInfo } from "../Interfaces";
 
 
-const url = 'https://itineraioapi-ebdthgaebndcddam.westus2-01.azurewebsites.net';
+const url = 'https://itineraioapi-ebdthgaebndcddam.westus2-01.azurewebsites.net/';
 
 
 //--------Create Account Fetch ------------

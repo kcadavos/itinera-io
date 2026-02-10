@@ -2,7 +2,7 @@ import { IUserInfo } from "../Interfaces";
 import { ITripData } from "../TripInterfaces";
 
 
-const url = 'https://itineraioapi-ebdthgaebndcddam.westus2-01.azurewebsites.net';
+const url = 'https://itineraioapi-ebdthgaebndcddam.westus2-01.azurewebsites.net/';
 
 
 export const GetTripListByUserId = async (userId: number,token:string)=>{

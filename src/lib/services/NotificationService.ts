@@ -1,7 +1,7 @@
 import { IAddGroupNotification, IAddNotification } from "../NotificationInterfaces";
 
 
-const url = 'https://itineraioapi-ebdthgaebndcddam.westus2-01.azurewebsites.net';
+const url = 'https://itineraioapi-ebdthgaebndcddam.westus2-01.azurewebsites.net/';
 
 export const AddNotification = async (notification:IAddNotification, token:string)=>{
 
