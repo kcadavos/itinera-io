@@ -38,7 +38,7 @@ const HeaderComponent = () => {
 
     const greeting = (
       <p>
-        Hi <span className="text-[#4A90E2] text-xl">{name}</span>,
+        Hi <span id="greetingname" className="text-[#4A90E2] text-xl">{name}</span>,
       </p>
     );
 
