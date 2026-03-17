@@ -72,7 +72,7 @@ const {loginStatus, setLoginStatus} = useLoginStatusContext();
 
               <img src="/assets/Icons/itineralogo2.svg" alt="itineralogo"  className="h-15 w-auto"/>
             </div>  
-              <div id="login-desktop" className="mx-8 font-inter">
+              <div className="mx-8 font-inter">
                
                 {
                   switchBool ? (
@@ -94,7 +94,7 @@ const {loginStatus, setLoginStatus} = useLoginStatusContext();
               </div>  
             </div>
             
-            <div className="flex justify-center">
+            <div id="login-desktop" className="flex justify-center">
               {
                 switchBool ?
                 <div className="bg-white rounded-2xl min-w-[26rem] min-h-[19rem] max-w-[26rem] mx-4 px-4 relative">
