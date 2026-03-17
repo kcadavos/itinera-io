@@ -77,7 +77,7 @@ const LogInComponent = () => {
           <img src="/assets/Icons/Orion_user-address.svg" alt="user address" className="w-10" />
         </div>
             
-        <input  type="email" placeholder="Email Address" required  className={`bg-white lg:bg-[#ECF0F1] rounded-lg p-4 px-6 ${errorDisplayEmail ? 'border-2 border-[#F40000]' : 'border-none'}`} onChange={(e) => setEmail(e.target.value)} />
+        <input id="email-input"  type="email" placeholder="Email Address" required  className={`bg-white lg:bg-[#ECF0F1] rounded-lg p-4 px-6 ${errorDisplayEmail ? 'border-2 border-[#F40000]' : 'border-none'}`} onChange={(e) => setEmail(e.target.value)} />
             
       </div>
           
