@@ -24,9 +24,9 @@ const {loginStatus, setLoginStatus} = useLoginStatusContext();
   return (
     <div>
       {/* mobile */}
-      <div className="block lg:hidden">
+      <div  className="block lg:hidden">
         
-        <div className="bg-[#ECF0F1] rounded-2xl min-h-[26rem] min-w-[20rem] sm:min-h-[25rem] sm:max-w-none mx-4 sm:mx-16 md:mx-24 px-4 relative mb-25 mt-10 flex justify-center">
+        <div  id="login-mobile" className="bg-[#ECF0F1] rounded-2xl min-h-[26rem] min-w-[20rem] sm:min-h-[25rem] sm:max-w-none mx-4 sm:mx-16 md:mx-24 px-4 relative mb-25 mt-10 flex justify-center">
           {
             switchBool ? <LogInComponent /> : <AccountCreationComponent switchboolswitch={setSwitchBool} />
           }  
@@ -72,7 +72,7 @@ const {loginStatus, setLoginStatus} = useLoginStatusContext();
 
               <img src="/assets/Icons/itineralogo2.svg" alt="itineralogo"  className="h-15 w-auto"/>
             </div>  
-              <div className="mx-8 font-inter">
+              <div id="login-desktop" className="mx-8 font-inter">
                
                 {
                   switchBool ? (
