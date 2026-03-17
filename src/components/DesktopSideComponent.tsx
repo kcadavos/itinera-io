@@ -73,7 +73,7 @@ useEffect(() => {
 
             <div className="ml-2 ">
               <p className="font-medium text-[#34495E] ">
-                Hi <span className="text-[#4A90E2] ">{name}</span>,
+                Hi <span id="greetingname-desktop" className="text-[#4A90E2] ">{name}</span>,
               </p>
 
               <p className="text-lg text-[#34495E]">
