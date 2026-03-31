@@ -166,7 +166,7 @@ const TripCardComponent = ({ trips }: { trips: ITripData[] }) => {
                 }}
               >
                 <AccordionTrigger className="flex justify-between   items-center  w-full   [&>svg]:hidden cursor-pointer">
-                  <h5 className="mb-2 text-2xl font-bold tracking-tight text-white capitalize">
+                  <h5  data-testid={`trip-name`} className="mb-2 text-2xl font-bold tracking-tight text-white capitalize">
                     {trip.destination}
                   </h5>
                   <p className="font-normal text-lg text-white">
