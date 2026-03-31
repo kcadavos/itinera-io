@@ -153,6 +153,7 @@ const TripCardComponent = ({ trips }: { trips: ITripData[] }) => {
             <AccordionItem
               key={index}
               value={`${trip.id}`}
+              data-testid={`trip-accordion-${trip.id}`}   // added for automation
               className={`border  border-white rounded-2xl p-6 w-full relative ${
                 index !== 0 ? "-mt-6" : ""
               } ${bgColors[index % bgColors.length]}`}
