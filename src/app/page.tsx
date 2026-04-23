@@ -49,8 +49,10 @@ export default function Home() {
         don&apos;t<br/>
         plan trips
       </p>
-      <div className="pb-10">
-
+      <div className="pb-10 flex flex-col gap-2">
+      <button  onClick={() => window.open("http://kcadavos.my.canva.site/itinera","_blank","noreferrer")} className=" text-[#CD6000]  px-6 py-2 rounded-full font-bold border-2 border-[#CD6000]">
+        Learn More
+      </button>
       <button  onClick={() => router.push("/LoginPage")} className=" text-white bg-[#1ABC9C] px-6 py-2 rounded-full font-bold border-2 border-white">
         Get Started
       </button>
