@@ -108,15 +108,18 @@ const {loginStatus, setLoginStatus} = useLoginStatusContext();
                     <AccountCreationComponent switchboolswitch={setSwitchBool}  /> 
                   </div>  
                 </div>
-              }  
+              }   
             </div>
   
-  
+              
             <div className="bg-[#1ABC9C] w-1/3 py-5 rounded-t-4xl mt-[2.6rem]  absolute bottom-0">
               {
                 switchBool ? (
-                  <div className="flex text-white text-xl justify-center ">
-                    <button className="bg-none cursor-pointer " onClick={handleSwitch}>Don&apos;t have an account? <span className="underline">Sign Up</span> </button>
+                  <div className="flex text-white text-xl justify-center gap-2">
+                    {/* <button className="bg-none cursor-pointer " onClick={handleSwitch}>Don&apos;t have an account? <span className="underline">Sign Up </span> </button> */}
+                    <button className="bg-none cursor-pointer " onClick={handleSwitch}>New Here? <span className="underline">Sign Up </span> </button>
+                   
+                    <button className="bg-none cursor-pointer "  onClick={() => window.open("http://kcadavos.my.canva.site/itinera","_blank","noreferrer")}>  or <span className="underline">Learn More About Itinera</span> </button>
                   </div>
                   
                 ) : (
